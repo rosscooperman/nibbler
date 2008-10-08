@@ -10,3 +10,6 @@
 [submodule "vendor/plugins/fixturereplacement"]
 	path = vendor/plugins/fixturereplacement
 	url = git://github.com/smtlaissezfaire/fixturereplacement.git
+[submodule "vendor/plugins/annotate_models"]
+	path = vendor/plugins/annotate_models
+	url = git://github.com/ctran/annotate_models.git
