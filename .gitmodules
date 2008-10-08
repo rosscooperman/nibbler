@@ -13,3 +13,6 @@
 [submodule "vendor/plugins/annotate_models"]
 	path = vendor/plugins/annotate_models
 	url = git://github.com/ctran/annotate_models.git
+[submodule "vendor/plugins/exception_logger"]
+	path = vendor/plugins/exception_logger
+	url = git://github.com/defunkt/exception_logger.git
