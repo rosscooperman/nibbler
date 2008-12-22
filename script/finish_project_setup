@@ -10,13 +10,6 @@ puts `cp #{RAILS_ROOT}/config/database.example.yml #{RAILS_ROOT}/config/database
 
 puts "** Adding braided plugins and rails"
 
-puts `braid add git://github.com/dchelimsky/rspec.git                   vendor/plugins/rspec`
-puts `braid add git://github.com/dchelimsky/rspec-rails.git             vendor/plugins/rspec_on_rails`
-puts `braid add git://github.com/rails/rails.git                        vendor/rails`
-puts `braid add git://github.com/smtlaissezfaire/fixturereplacement.git vendor/plugins/fixturereplacement`
-puts `braid add git://github.com/ctran/annotate_models.git              vendor/plugins/annotate_models`
-puts `braid add git://github.com/defunkt/exception_logger.git           vendor/plugins/exception_logger`
-puts `braid add git://github.com/hcatlin/make_resourceful.git           vendor/plugins/make_resourceful`
-
+puts "Run 'braid update' for each plugin. This is not done by this script automatically since it may not be what you want."
 
 puts "** Finished setting up project"
