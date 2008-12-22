@@ -1,4 +1,11 @@
 --- 
+vendor/plugins/exception_logger: 
+  squashed: true
+  url: git://github.com/defunkt/exception_logger.git
+  type: git
+  revision: a65c036f338a8089c5414b845e04c1124b4ac520
+  branch: master
+  remote: braid/vendor/plugins/exception-logger
 vendor/plugins/annotate_models: 
   squashed: true
   url: git://github.com/ctran/annotate_models.git
