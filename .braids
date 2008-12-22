@@ -6,6 +6,13 @@ vendor/plugins/rspec:
   revision: 69fd569f5670cd9457fdd30d3e63259943a36ac4
   branch: master
   remote: braid/vendor/plugins/rspec
+vendor/plugins/fixturereplacement: 
+  squashed: true
+  url: git://github.com/smtlaissezfaire/fixturereplacement.git
+  type: git
+  revision: 975addf30b17205ca218ae0acc6cd77a6f7fcbab
+  branch: master
+  remote: braid/vendor/plugins/fixturereplacement
 vendor/rails: 
   squashed: true
   url: git://github.com/rails/rails.git
