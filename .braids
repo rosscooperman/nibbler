@@ -20,6 +20,13 @@ vendor/plugins/rspec:
   revision: 69fd569f5670cd9457fdd30d3e63259943a36ac4
   branch: master
   remote: braid/vendor/plugins/rspec
+vendor/plugins/make_resourceful: 
+  squashed: true
+  url: git://github.com/hcatlin/make_resourceful.git
+  type: git
+  revision: 8a794504ce7c849fe54416d1afa2e42048281470
+  branch: master
+  remote: braid/vendor/plugins/make-resourceful
 vendor/plugins/fixturereplacement: 
   squashed: true
   url: git://github.com/smtlaissezfaire/fixturereplacement.git
