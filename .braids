@@ -1,4 +1,11 @@
 --- 
+vendor/plugins/annotate_models: 
+  squashed: true
+  url: git://github.com/ctran/annotate_models.git
+  type: git
+  revision: c1460b6d96f5afdd96abac634ba660cb18504554
+  branch: master
+  remote: braid/vendor/plugins/annotate-models
 vendor/plugins/rspec: 
   squashed: true
   url: git://github.com/dchelimsky/rspec.git
