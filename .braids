@@ -1,0 +1,8 @@
+--- 
+vendor/plugins/rspec: 
+  squashed: true
+  url: git://github.com/dchelimsky/rspec.git
+  type: git
+  revision: 69fd569f5670cd9457fdd30d3e63259943a36ac4
+  branch: master
+  remote: braid/vendor/plugins/rspec
