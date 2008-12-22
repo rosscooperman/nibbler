@@ -8,8 +8,15 @@ RAILS_ROOT = "#{File.dirname(__FILE__)}/.."
 puts "** Copying database config from template"
 puts `cp #{RAILS_ROOT}/config/database.example.yml #{RAILS_ROOT}/config/database.yml`
 
-puts "** Adding submodules"
-puts `git submodule init`
-puts `git submodule update`
+puts "** Adding braided plugins and rails"
+
+puts `braid add git://github.com/dchelimsky/rspec.git                   vendor/plugins/rspec`
+puts `braid add git://github.com/dchelimsky/rspec-rails.git             vendor/plugins/rspec_on_rails`
+puts `braid add git://github.com/rails/rails.git                        vendor/rails`
+puts `braid add git://github.com/smtlaissezfaire/fixturereplacement.git vendor/plugins/fixturereplacement`
+puts `braid add git://github.com/ctran/annotate_models.git              vendor/plugins/annotate_models`
+puts `braid add git://github.com/defunkt/exception_logger.git           vendor/plugins/exception_logger`
+puts `braid add git://github.com/hcatlin/make_resourceful.git           vendor/plugins/make_resourceful`
+
 
 puts "** Finished setting up project"
