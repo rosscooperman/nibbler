@@ -9,11 +9,6 @@ require 'faker'
 
 require File.expand_path(File.dirname(__FILE__) + "/rspec_extensions")
 
-extra_matchers = %w[model]
-extra_matchers.each do |matcher|
-  require File.expand_path(File.dirname(__FILE__) + "/matchers/#{matcher}_matchers")
-end
-
 require File.dirname(__FILE__) + "/spec_helpers"
 
 Spec::Runner.configure do |config|
@@ -24,7 +19,8 @@ Spec::Runner.configure do |config|
   config.include FixtureReplacement
   config.include SpecHelpers
 
-  extra_matchers.each do |matcher|
+  %w[model].each do |matcher|
+    require File.expand_path(File.dirname(__FILE__) + "/matchers/#{matcher}_matchers")
     config.include "#{matcher}_matchers".camelize.constantize
   end
 end
