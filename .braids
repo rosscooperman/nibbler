@@ -41,6 +41,13 @@ vendor/rails:
   revision: faf8364050c0a3925a8b2af85b6b5c9e94090986
   branch: master
   remote: braid/vendor/rails
+vendor/plugins/rspec-on-rails-matchers: 
+  squashed: true
+  url: git://github.com/joshknowles/rspec-on-rails-matchers.git
+  type: git
+  revision: cfda85023be7b8bc9fd8ecda9b251d85399fb76e
+  branch: master
+  remote: braid/vendor/plugins/rspec-on-rails-matchers
 vendor/plugins/rspec_on_rails: 
   squashed: true
   url: git://github.com/dchelimsky/rspec-rails.git
