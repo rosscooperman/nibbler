@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+# A small script to import a production gzip'ed dump
+
+require "yaml"
+
+class DatabaseLoader
+  attr_reader :db_dump_filename
+  
+  def initialize(filename, run_migrations=false)
+    @db_dump_filename = filename.dup
+    @run_migrations = run_migrations ? true : false
+  end
+  
+  def load
+    gunzip
+    substitute
+    import
+    run_migrations
+  end
+  
+  def gunzip
+    if needs_unziping?
+      puts "* Gunzip'ing #{db_dump_filename}"
+      puts %x(gunzip #{db_dump_filename})
+      @db_dump_filename.gsub!(".gz", "")
+    end
+  end
+
+  def substitute
+#     puts "* Substituting #{new_username_at_host} for #{original_username_at_host}"
+#     puts "* executing #{sed_substitution}"
+#     `#{sed_substitution}`
+  end
+  
+  def import
+    puts "* Importing db dump #{db_dump_filename} to #{database_name}"
+    %x(mysql -u root #{database_name} < #{db_dump_filename})
+  end
+  
+  def run_migrations
+    if should_run_migrations?
+      puts "* Running migrations"
+      puts `rake db:migrate`
+    end
+  end
+
+private
+  
+  def should_run_migrations?
+    @run_migrations == true
+  end
+
+  # The escaping could certainly be done better...
+  def sed_substitution
+    "sed -e \"s/DEFINER=\\\`flavorpill_db\\\`\\\@\\\`\\\%\\\` SQL SECURITY DEFINER/DEFINER=#{new_username_at_host} SQL SECURITY DEFINER/\" #{db_dump_filename} > /tmp/tmp.sql; mv /tmp/tmp.sql #{db_dump_filename}"
+  end
+
+  def original_username_at_host
+    '`flavorpill_db`\@`%`'
+  end
+
+  def new_username_at_host
+    "root@localhost"
+  end
+
+  def needs_unziping?
+    db_dump_filename.include?(".gz")
+  end
+
+  def database_name
+    @database_name ||= development_config["database"]
+  end
+  
+  def database_username
+    development_config["username"]
+  end
+  
+  def database_host
+    development_config["host"]
+  end
+  
+  def development_config
+    yaml_config["development"]
+  end
+
+  def yaml_config
+    @yaml_config ||= YAML.load(File.read("config/database.yml"))
+  end
+
+  def db_dump_contents(&blk)
+    File.open(db_dump_filename, "r+", &blk)
+  end
+end
+
+db_loader = DatabaseLoader.new(ARGV[0], ARGV[1])
+db_loader.load
