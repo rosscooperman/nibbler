@@ -1,4 +1,11 @@
 --- 
+vendor/plugins/cap_db_dump: 
+  squashed: true
+  url: git@github.com:smtlaissezfaire/cap_db_dump.git
+  type: git
+  revision: bbda259f076b07d8d653b087d94026dd5259beeb
+  branch: master
+  remote: braid/vendor/plugins/cap-db-dump
 vendor/plugins/exception_logger: 
   squashed: true
   url: git://github.com/defunkt/exception_logger.git
