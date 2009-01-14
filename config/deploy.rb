@@ -1,3 +1,8 @@
+
+$LOAD_PATH.unshift File.dirname(__FILE__) + "/../vendor/plugins"
+require "cap_db_dump/lib/cap_db_dump/recipes"
+
+
 set :application, "set your application name here"
 set :repository,  "set your repository location here"
 
