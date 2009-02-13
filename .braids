@@ -41,6 +41,13 @@ vendor/plugins/fixturereplacement:
   revision: 975addf30b17205ca218ae0acc6cd77a6f7fcbab
   branch: master
   remote: braid/vendor/plugins/fixturereplacement
+vendor/rails: 
+  squashed: true
+  url: git://github.com/rails/rails.git
+  type: git
+  revision: b0792a3e7be88e3060af19bab01cd3d26d347e4c
+  branch: 2-2-stable
+  remote: braid/vendor/rails
 vendor/plugins/rspec-on-rails-matchers: 
   squashed: true
   url: git://github.com/joshknowles/rspec-on-rails-matchers.git
