@@ -29,6 +29,9 @@ namespace :sync do
     end
   end
 
-  desc "Syncs all directories in public (#{static_dir.join(", ")})"
-  task :default => static_dirs
+  desc "Syncs all directories in public (#{static_dirs.join(", ")})"
+  task :all => static_dirs
 end
+
+desc "Sync all static directories"
+task :sync => "sync:all"
