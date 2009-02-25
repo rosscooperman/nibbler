@@ -48,6 +48,13 @@ vendor/rails:
   revision: b0792a3e7be88e3060af19bab01cd3d26d347e4c
   branch: 2-2-stable
   remote: braid/vendor/rails
+vendor/plugins/country_select: 
+  squashed: true
+  url: git://github.com/rails/country_select.git
+  type: git
+  revision: d3b5d8656df3defc1653aafe1a9bb5f0164c1741
+  branch: master
+  remote: braid/vendor/plugins/country-select
 vendor/plugins/rspec-on-rails-matchers: 
   squashed: true
   url: git://github.com/joshknowles/rspec-on-rails-matchers.git
