@@ -41,6 +41,13 @@ vendor/plugins/fixturereplacement:
   revision: 975addf30b17205ca218ae0acc6cd77a6f7fcbab
   branch: master
   remote: braid/vendor/plugins/fixturereplacement
+vendor/plugins/truncate_table: 
+  squashed: true
+  url: git://github.com/smtlaissezfaire/truncate_table.git
+  type: git
+  revision: a65a9b0fea7778c32593265aea8d91d0c800333a
+  branch: master
+  remote: braid/vendor/plugins/truncate-table
 vendor/rails: 
   squashed: true
   url: git://github.com/rails/rails.git
