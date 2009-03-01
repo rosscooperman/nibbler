@@ -1,0 +1,30 @@
+sign_in:
+  success: "You signed in successfully."
+  problem:
+    error: "Your username, email or password is incorrect. Please try again."
+
+sign_out:
+  success: "You are now signed out. Be good."
+
+forgot_password:
+  success: "We have emailed you a link to reset your password."
+  problem:
+    error: "We're sorry, but we don't have that username or email address on file. <a href=\"/signup\" class=\"nyroModal\">Join Social Designer</a> to become a member."
+
+reset_password:
+  success: "Your password was updated successfully and we've confirmed your email address."
+  problem:
+    error: "You followed an invalid password reset link. Try resetting your password again."
+
+user_create:
+  success: "Welcome!"
+  problem:
+    error: "We're sorry. There was a problem creating your membership."
+
+user_update:
+  success: "You successfully updated your profile."
+  problem:
+    error: "We're sorry. There was a problem updating your profile."
+
+contact_submission:
+  success: "Thank you for contacting us. We will review your submission shortly."
