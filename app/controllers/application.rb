@@ -1,3 +1,5 @@
+require File.dirname(__FILE__) + "/../helpers/list_forms"
+
 class ApplicationController < ActionController::Base
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
