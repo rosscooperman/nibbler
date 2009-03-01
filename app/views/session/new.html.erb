@@ -1,0 +1,10 @@
+<% @page_title  = "Member Sign In" %>
+<% @signin_message = "Have an account already? Let's get to it." %>
+
+<h2 class="header"><%= @page_title %></h2>
+
+<div id="signin_form" class="sign">
+  <% form_for :session, :url => session_path do |f| -%>
+    <%= render :partial => "sign_in", :locals => {:f => f} %>
+  <% end -%>
+</div>

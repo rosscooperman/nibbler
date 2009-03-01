@@ -1,0 +1,9 @@
+<% @page_title = "Whoops" %>
+
+<div class="error_page">
+  <h1>We're sorry...</h1>
+  <p>The functionality you're trying to access is not available to you.</p>
+  <% if logged_in? %>
+    <p><%= link_to "Return to your welcome page", users_path %></p>
+  <% end %>
+</div>

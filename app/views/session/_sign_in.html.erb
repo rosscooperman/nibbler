@@ -1,0 +1,16 @@
+<%= content_tag(:p, @signin_message) if @signin_message %>
+
+<ul class="std_form">
+  <%= f.ul_text_field :email, :text => "Email Address" %>
+  <%= f.ul_password_field :password %>
+  
+  <li class="submit">
+    <%= submit_tag 'Sign In', :class => "bn" %>
+    <span> or <strong><%= link_to "Join &rarr;", new_user_path, :class => "nyroModal" %></strong></span>
+  </li>
+
+  <li class="password_recover">
+    Forgot your password? 
+    <%= link_to 'Retrieve it &rarr;', forgot_password_path %>
+  </li>
+</ul>

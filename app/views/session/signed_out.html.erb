@@ -1,0 +1,9 @@
+<% @page_title = "You are now logged out. Be good." %>
+
+<h2 class="header"><%= @page_title %></h2>
+
+<div id="signin_form" class="sign">
+  <% form_for :session, :url => session_path do |f| -%>
+    <%= render :partial => "sign_in", :locals => {:f => f} %>
+  <% end -%>
+</div>
