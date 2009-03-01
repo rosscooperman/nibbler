@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  include VotingControllerLoader
-
-  skip_before_filter :save_return_to_state
-
   make_resourceful do
     actions(:all)
 

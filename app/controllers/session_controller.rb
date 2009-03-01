@@ -1,10 +1,8 @@
 class SessionController < ApplicationController
   include ControllerAuthentication
-  include VotingControllerLoader
 
   layout 'application'
   skip_before_filter :login_required
-  skip_before_filter :save_return_to_state
 
   def new
     respond_to do |format|
