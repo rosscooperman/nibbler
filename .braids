@@ -1,4 +1,11 @@
 --- 
+vendor/plugins/active_record_defaults: 
+  squashed: true
+  url: git://github.com/aussiegeek/active_record_defaults.git
+  type: git
+  revision: b7e1977743e9e4462c55849c3e2b26c51be8bf28
+  branch: master
+  remote: braid/vendor/plugins/active-record-defaults
 vendor/plugins/cap_db_dump: 
   squashed: true
   url: git@github.com:smtlaissezfaire/cap_db_dump.git
