@@ -1,0 +1,5 @@
+development:
+  app_host: "localhost:3000"
+
+production:
+  app_host: "localhost:3000"
