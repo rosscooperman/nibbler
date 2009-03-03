@@ -1,5 +1,3 @@
-require 'git_rev_num'
-
 module SharedHelper
   def flash_messages(*names)
     output = ""
