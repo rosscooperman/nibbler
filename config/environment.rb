@@ -65,5 +65,8 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 
+  require RAILS_ROOT + "/vendor/plugins/hodel_3000_compliant_logger/lib/hodel_3000_compliant_logger"
+  config.logger = Hodel3000CompliantLogger.new(config.log_path)
+
   config.gem "grit"
 end
