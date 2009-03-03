@@ -29,4 +29,12 @@ module SharedHelper
   def app_host
     SETTINGS[:app_host]
   end
+
+  def git_version_html
+    @git_version_html ||= "<!-- git master:#{git_version} -->"
+  end
+
+  def git_version
+    Grit::Repo.new(RAILS_ROOT).commits.first.id
+  end
 end
