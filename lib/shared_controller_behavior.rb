@@ -1,6 +1,7 @@
  module SharedControllerBehavior
    def self.included(controller)
      controller.class_eval do
+       include Oink::MemoryUsageLogger
        include ExceptionLoggable
        include AuthenticatedSystem
        include Authorization
