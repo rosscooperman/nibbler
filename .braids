@@ -69,6 +69,13 @@ vendor/rails:
   revision: b0792a3e7be88e3060af19bab01cd3d26d347e4c
   branch: 2-2-stable
   remote: braid/vendor/rails
+vendor/plugins/acts_as_sluggable: 
+  squashed: true
+  url: git://github.com/eastmedia/acts_as_slugable.git
+  type: git
+  revision: c9cd4f99d7960d1a49fe33ffa6258960a5bad77d
+  branch: master
+  remote: braid/vendor/plugins/acts-as-sluggable
 vendor/plugins/hodel_3000_compliant_logger: 
   squashed: true
   url: git://github.com/topfunky/hodel_3000_compliant_logger.git
