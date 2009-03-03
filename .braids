@@ -62,6 +62,13 @@ vendor/rails:
   revision: b0792a3e7be88e3060af19bab01cd3d26d347e4c
   branch: 2-2-stable
   remote: braid/vendor/rails
+vendor/plugins/hodel_3000_compliant_logger: 
+  squashed: true
+  url: git://github.com/topfunky/hodel_3000_compliant_logger.git
+  type: git
+  revision: 9b09c9288dd3af7d00c4b652871d34a8b0811b34
+  branch: master
+  remote: braid/vendor/plugins/hodel-3000-compliant-logger
 vendor/plugins/country_select: 
   squashed: true
   url: git://github.com/rails/country_select.git
