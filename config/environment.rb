@@ -48,7 +48,7 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => '_razorpoint_contact_session',
+    :session_key => '_em_session',
     :secret      => 'd4d1ad287d1b38481a5c1feb7ef95bcd6fb25cd71af22b96e5ae6c06c0a8817f1a81a98cfe0a7915774764539dbdad2fbb9993fff21acd2458c6af8920147891'
   }
 
