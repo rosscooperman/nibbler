@@ -135,7 +135,7 @@ namespace :deploy do
   end
 
   desc "Generate the static error pages: 404, etc."
-  task :generate_static_pages, :roles => :app do
+  task :generate_static_pages, :roles => :app, :except => { :no_release => true } do
     run "cd #{current_path} && RAILS_ENV=production rake static_templates:generate"
   end
 
