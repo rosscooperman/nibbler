@@ -27,7 +27,10 @@ module Authenticated
       attr_accessor :password
       attr_accessor :current_password
 
+      validates_presence_of     :username
+      validates_uniqueness_of   :username, :case_sensitive => false
       validates_presence_of     :email
+      validates_uniqueness_of   :email, :case_sensitive => false
       # validates_presence_of     :email_confirmation
 #      validates_confirmation_of :email
       validates_length_of       :email,    :within => 3..100
