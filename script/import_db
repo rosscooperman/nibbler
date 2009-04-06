@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
 # A small script to import a production gzip'ed dump
 
-require "yaml"
+require File.dirname(__FILE__) + "/../config/environment"
 
 class DatabaseLoader
+  PRODUCTION_DB_USERNAME = "FIXME"
+  PRODUCTION_DB_HOST     = "%"
+
   attr_reader :db_dump_filename
   
   def initialize(filename, run_migrations=false)
@@ -27,20 +30,27 @@ class DatabaseLoader
   end
 
   def substitute
-#     puts "* Substituting #{new_username_at_host} for #{original_username_at_host}"
-#     puts "* executing #{sed_substitution}"
-#     `#{sed_substitution}`
+    puts "* Substituting in #{new_username_at_host}"
+    contents = File.read(db_dump_filename)
+    contents.gsub!('DEFINER=`#{PRODUCTION_DB_USERNAME}`@`#{PRODUCTION_DB_HOST}` SQL SECURITY DEFINER',
+                   "DEFINER=#{new_username_at_host} SQL SECURITY DEFINER")
+    File.open(db_dump_filename, "w") do |f|
+      f.write(contents)
+    end
   end
   
   def import
     puts "* Importing db dump #{db_dump_filename} to #{database_name}"
-    %x(mysql -u root #{database_name} < #{db_dump_filename})
+
+    cmd = "mysql -u root #{database_name} < #{db_dump_filename}"
+    puts "** Executing: #{cmd}"
+    `#{cmd}`
   end
   
   def run_migrations
     if should_run_migrations?
       puts "* Running migrations"
-      puts `rake db:migrate`
+      puts `RAILS_ENV=#{rails_env} rake db:migrate`
     end
   end
 
@@ -50,17 +60,8 @@ private
     @run_migrations == true
   end
 
-  # The escaping could certainly be done better...
-  def sed_substitution
-    "sed -e \"s/DEFINER=\\\`flavorpill_db\\\`\\\@\\\`\\\%\\\` SQL SECURITY DEFINER/DEFINER=#{new_username_at_host} SQL SECURITY DEFINER/\" #{db_dump_filename} > /tmp/tmp.sql; mv /tmp/tmp.sql #{db_dump_filename}"
-  end
-
-  def original_username_at_host
-    '`flavorpill_db`\@`%`'
-  end
-
   def new_username_at_host
-    "root@localhost"
+    "#{database_username}@#{database_host}"
   end
 
   def needs_unziping?
@@ -68,19 +69,23 @@ private
   end
 
   def database_name
-    @database_name ||= development_config["database"]
+    @database_name ||= config["database"]
   end
   
   def database_username
-    development_config["username"]
+    config["username"]
   end
   
   def database_host
-    development_config["host"]
+    config["host"]
   end
   
-  def development_config
-    yaml_config["development"]
+  def config
+    yaml_config[rails_env]
+  end
+
+  def rails_env
+    RAILS_ENV
   end
 
   def yaml_config
