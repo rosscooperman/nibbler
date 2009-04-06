@@ -37,4 +37,8 @@ module SharedHelper
   def git_version
     Grit::Repo.new(RAILS_ROOT).commits.first.id
   end
+
+  def staging?
+    SETTINGS[:staging]
+  end
 end

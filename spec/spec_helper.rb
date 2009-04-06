@@ -18,6 +18,7 @@ Spec::Runner.configure do |config|
 
   config.include FixtureReplacement
   config.include SpecHelpers
+  config.include SpecHelpers::ControllerHelpers, :type => :controller
 
   %w[model].each do |matcher|
     require File.expand_path(File.dirname(__FILE__) + "/matchers/#{matcher}_matchers")
