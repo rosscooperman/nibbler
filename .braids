@@ -34,6 +34,13 @@ vendor/plugins/rspec:
   revision: 9e2b793a7e1b7ec2c207fa550282ca9d8080fb2b
   branch: master
   remote: braid/vendor/plugins/rspec
+vendor/plugins/jrails: 
+  squashed: true
+  url: git://github.com/aaronchi/jrails.git
+  type: git
+  revision: b490fa1a6d81e39d3a8d99f9cce8b57c3397b7d7
+  branch: master
+  remote: braid/vendor/plugins/jrails
 vendor/plugins/oink: 
   squashed: true
   url: git://github.com/noahd1/oink.git
