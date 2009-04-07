@@ -13,8 +13,8 @@ describe "/<%= table_name %>/show.<%= default_file_extension %>" do
 <% end -%>
   end
 
-  it "should render attributes in <p>" do
-    render "/<%= table_name %>/show.<%= default_file_extension %>"
+  it "renders attributes in <p>" do
+    render
 <% for attribute in output_attributes -%>
     response.should have_text(/<%= Regexp.escape(attribute.default_value).gsub(/^"|"$/, '')%>/)
 <% end -%>
