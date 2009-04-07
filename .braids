@@ -15,7 +15,7 @@ vendor/plugins/active_record_defaults:
   remote: braid/vendor/plugins/active-record-defaults
 vendor/plugins/cap_db_dump: 
   squashed: true
-  url: git@github.com:smtlaissezfaire/cap_db_dump.git
+  url: git://github.com/smtlaissezfaire/cap_db_dump.git
   type: git
   revision: bbda259f076b07d8d653b087d94026dd5259beeb
   branch: master
