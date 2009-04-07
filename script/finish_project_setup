@@ -8,6 +8,9 @@ RAILS_ROOT = "#{File.dirname(__FILE__)}/.."
 puts "** Copying database config from template"
 puts `cp #{RAILS_ROOT}/config/database.example.yml #{RAILS_ROOT}/config/database.yml`
 
+puts "** Copying settings config from template"
+puts `cp #{RAILS_ROOT}/config/settings.example.yml #{RAILS_ROOT}/config/settings.yml`
+
 puts "** Copying jrails javascript files"
 
 puts `rake jrails:install:javascripts`
