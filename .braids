@@ -55,6 +55,13 @@ vendor/plugins/oink:
   revision: 5e59d82111e10bc614a0cddf0d6d92d6979f6248
   branch: master
   remote: braid/vendor/plugins/oink
+vendor/rails: 
+  squashed: true
+  url: git://github.com/rails/rails.git
+  type: git
+  revision: 651611999df3e57de6f36486b51abd3bf5d66cea
+  branch: 2-3-stable
+  remote: braid/vendor/rails
 vendor/plugins/truncate_table: 
   squashed: true
   type: git
