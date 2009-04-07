@@ -8,12 +8,17 @@ module Spec
         @err = StringIO.new('')
         @out = StringIO.new('')
         @options = Options.new(@err, @out)
+
+        before_suite_parts = []
+        after_suite_parts = []
+        @options.stub!(:before_suite_parts).and_return(before_suite_parts)
+        @options.stub!(:after_suite_parts).and_return(after_suite_parts)
       end
 
       after(:each) do
         Spec::Expectations.differ = nil
       end
-
+      
       describe "#examples" do
         it "should default to empty array" do
           @options.examples.should == []
@@ -99,6 +104,12 @@ module Spec
       describe "#dry_run" do
         it "should default to false" do
           @options.dry_run.should == false
+        end
+      end
+      
+      describe "#debug" do
+        it "should default to false" do
+          @options.debug.should == false
         end
       end
 
@@ -210,6 +221,22 @@ module Spec
         end
       end
 
+      describe "debug option specified" do
+        it "should cause ruby_debug to be required and do nothing" do
+          @options.debug = true
+          @options.should_receive(:require_ruby_debug)
+          @options.run_examples.should be_true
+        end
+      end
+      
+      describe "debug option not specified" do
+        it "should not cause ruby_debug to be required" do
+          @options.debug = false
+          @options.should_not_receive(:require_ruby_debug)
+          @options.run_examples.should be_true
+        end
+      end
+      
       describe "#load_class" do
         it "should raise error when not class name" do
           lambda do
@@ -307,6 +334,40 @@ module Spec
       end
 
       describe "#run_examples" do
+        describe "with global predicate matchers" do
+          it "defines global predicate matcher methods on ExampleMethods" do
+            Spec::Runner.configuration.stub!(:predicate_matchers).and_return({:this => :that?})
+            group = Class.new(::Spec::Example::ExampleGroupDouble).describe("Some Examples")
+            example = group.new(::Spec::Example::ExampleProxy.new)
+            
+            @options.run_examples
+            example.this
+          end
+          
+          after(:each) do
+            Spec::Example::ExampleMethods.class_eval "undef :this"
+          end
+        end
+        
+        describe "with a mock framework defined as a Symbol" do
+          it "includes Spec::Adapters::MockFramework" do
+            Spec::Runner.configuration.stub!(:mock_framework).and_return('spec/adapters/mock_frameworks/rspec')
+
+            Spec::Example::ExampleMethods.should_receive(:include).with(Spec::Adapters::MockFramework)
+
+            @options.run_examples
+          end
+        end
+        
+        describe "with a mock framework defined as a Module" do
+          it "includes the module in ExampleMethods" do
+            mod = Module.new
+            Spec::Runner.configuration.stub!(:mock_framework).and_return(mod)
+            Spec::Example::ExampleMethods.should_receive(:include).with(mod)
+            @options.run_examples
+          end
+        end
+        
         describe "when not given a custom runner" do
           it "should use the standard" do
             runner = ::Spec::Runner::ExampleGroupRunner.new(@options)
@@ -376,7 +437,7 @@ module Spec
           end
 
           describe "and the suite fails" do
-            before do
+            before(:each) do
               @example_group.should_receive(:run).and_return(false)
             end
 

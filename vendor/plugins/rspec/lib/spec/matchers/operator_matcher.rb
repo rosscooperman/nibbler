@@ -2,16 +2,19 @@ module Spec
   module Matchers
 
     class OperatorMatcher
-      @operator_registry = {}
+      class << self
+        def registry
+          @registry ||= {}
+        end
 
-      def self.register(klass, operator, matcher)
-        @operator_registry[klass] ||= {}
-        @operator_registry[klass][operator] = matcher
-      end
+        def register(klass, operator, matcher)
+          registry[klass] ||= {}
+          registry[klass][operator] = matcher
+        end
 
-      def self.get(klass, operator)
-        return @operator_registry[klass][operator] if @operator_registry[klass]
-        nil
+        def get(klass, operator)
+          registry[klass] && registry[klass][operator]
+        end
       end
 
       def initialize(actual)
@@ -21,11 +24,9 @@ module Spec
       def self.use_custom_matcher_or_delegate(operator)
         define_method(operator) do |expected|
           if matcher = OperatorMatcher.get(@actual.class, operator)
-            return @actual.send(matcher_method, matcher.new(expected))
+            @actual.send(::Spec::Matchers.last_should, matcher.new(expected))
           else
-            ::Spec::Matchers.last_matcher = self
-            @operator, @expected = operator, expected
-            __delegate_operator(@actual, operator, expected)
+            eval_match(@actual, operator, expected)
           end
         end
       end
@@ -41,14 +42,18 @@ module Spec
       def description
         "#{@operator} #{@expected.inspect}"
       end
+      
+    private
+      
+      def eval_match(actual, operator, expected)
+        ::Spec::Matchers.last_matcher = self
+        @operator, @expected = operator, expected
+        __delegate_operator(actual, operator, expected)
+      end
 
     end
 
     class PositiveOperatorMatcher < OperatorMatcher #:nodoc:
-      def matcher_method
-        :should
-      end
-
       def __delegate_operator(actual, operator, expected)
         return true if actual.__send__(operator, expected)
         if ['==','===', '=~'].include?(operator)
@@ -61,10 +66,6 @@ module Spec
     end
 
     class NegativeOperatorMatcher < OperatorMatcher #:nodoc:
-      def matcher_method
-        :should_not
-      end
-
       def __delegate_operator(actual, operator, expected)
         return true unless actual.__send__(operator, expected)
         return fail_with_message("expected not: #{operator} #{expected.inspect},\n         got: #{operator.gsub(/./, ' ')} #{actual.inspect}")

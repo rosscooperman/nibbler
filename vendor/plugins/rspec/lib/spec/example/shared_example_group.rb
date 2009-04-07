@@ -39,7 +39,7 @@ module Spec
         end
 
         def expanded_path(example_group)
-          File.expand_path(example_group.spec_path)
+          File.expand_path(example_group.location)
         end
       end
 
@@ -53,10 +53,6 @@ module Spec
 
       def included(mod) # :nodoc:
         mod.module_eval(&@example_group_block)
-      end
-
-      def each_ancestor_example_group_class(superclass_last=false)
-        yield self
       end
     end
   end
