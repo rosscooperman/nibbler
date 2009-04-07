@@ -8,8 +8,8 @@ Capistrano::Configuration.instance(:must_exist).load do
     set :now, Time.now
     set :formatted_time, now.strftime("%Y-%m-%d-%H:%M:%S")
     set :keep_dumps, 3
-    
-    class << self
+
+    module CapDbDumpHelpers
       def dump_path
         "#{dump_root_path}/#{database_name}_dump_#{formatted_time}.sql"
       end
@@ -55,6 +55,8 @@ Capistrano::Configuration.instance(:must_exist).load do
         { :db_dump => true }
       end
     end
+
+    extend CapDbDumpHelpers
     
     task :read_db_yml, tasks_matching_for_db_dump do
       run("cat #{shared_path}/config/database.yml") do |_, _, data|
@@ -102,7 +104,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       if all_files
         if database_files = all_files.select { |f| f =~ /#{database_name}/ }
           database_files.sort.reverse.each_with_index do |file, index|
-            yield file, index
+            yield "#{dump_root_path}/#{file}", index
           end
         end
       end
@@ -115,9 +117,9 @@ Capistrano::Configuration.instance(:must_exist).load do
     task :create_dump, tasks_matching_for_db_dump do
       ignore_sessions = sessions_table ? "--ignore-table=#{database_name}.sessions" : ""
       
-      command = <<-HERE
-        mysqldump -u #{database_username} -h #{database_host} #{password_field} -Q  --add-drop-table -O add-locks=FALSE --lock-tables=FALSE --single-transaction #{ignore_sessions} #{database_name} > #{dump_path}
-      HERE
+      command = "mysqldump -u #{database_username} -h #{database_host} #{password_field} -Q "
+      command << "--add-drop-table -O add-locks=FALSE --lock-tables=FALSE --single-transaction "
+      command << "#{ignore_sessions} #{database_name} > #{dump_path}"
 
       give_description "About to dump production DB"
 
@@ -126,9 +128,8 @@ Capistrano::Configuration.instance(:must_exist).load do
     end
     
     task :session_schema_dump, tasks_matching_for_db_dump do
-      command = <<-HERE
-        mysqldump -u #{database_username} -h #{database_host} #{password_field} -Q --add-drop-table --single-transaction --no-data #{database_name} sessions >> #{dump_path}
-      HERE
+      command = "mysqldump -u #{database_username} -h #{database_host} #{password_field} "
+      command << "-Q --add-drop-table --single-transaction --no-data #{database_name} sessions >> #{dump_path}"
 
       give_description "Dumping sessions table from db"
 
