@@ -8,6 +8,10 @@ RAILS_ROOT = "#{File.dirname(__FILE__)}/.."
 puts "** Copying database config from template"
 puts `cp #{RAILS_ROOT}/config/database.example.yml #{RAILS_ROOT}/config/database.yml`
 
+puts "** Copying jrails javascript files"
+
+puts `rake jrails:install:javascripts`
+
 puts "** Adding braided plugins and rails"
 
 puts "Run 'braid update' for each plugin. This is not done by this script automatically since it may not be what you want."
