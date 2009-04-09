@@ -35,6 +35,14 @@ vendor/plugins/annotate_models:
   revision: 4aee03d3b70d3e352a791186e2b39155cc5de366
   branch: master
   remote: braid/vendor/plugins/annotate-models
+vendor/plugins/rspec: 
+  squashed: true
+  url: git://github.com/dchelimsky/rspec.git
+  type: git
+  lock: fd09ebc7714b970d086e04f07c29c7cab60708a6
+  revision: fd09ebc7714b970d086e04f07c29c7cab60708a6
+  branch: master
+  remote: braid/vendor/plugins/rspec
 vendor/plugins/jrails: 
   squashed: true
   url: git://github.com/aaronchi/jrails.git
