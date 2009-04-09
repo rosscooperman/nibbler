@@ -1,4 +1,12 @@
 --- 
+vendor/plugins/rspec-rails: 
+  squashed: true
+  url: git://github.com/dchelimsky/rspec-rails.git
+  type: git
+  lock: 0fb1038e9ad032d92a445c76a42859f57d645d98
+  revision: 0fb1038e9ad032d92a445c76a42859f57d645d98
+  branch: master
+  remote: braid/vendor/plugins/rspec-rails
 vendor/plugins/cap_db_dump: 
   squashed: true
   url: git://github.com/smtlaissezfaire/cap_db_dump.git
