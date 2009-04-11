@@ -23,7 +23,7 @@ module SharedControllerBehavior
     end
   end
 
-protected
+private
 
   def app_host
     SETTINGS[:app_host]
