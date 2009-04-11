@@ -2,6 +2,8 @@
    def self.included(controller)
      controller.class_eval do
        include Oink::MemoryUsageLogger
+       include Oink::InstanceTypeCounter
+
        include ExceptionLoggable
        include AuthenticatedSystem
        include Authorization
