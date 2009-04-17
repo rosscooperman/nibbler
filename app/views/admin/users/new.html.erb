@@ -1,0 +1,10 @@
+<% @page_title = "Add a New User" %>
+<% users_breadcrumb(@page_title) %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "admin/shared/sidebar" %>
+<% end %>
+
+<div class="std_form">
+  <%= render :partial => "form" %>
+</div>

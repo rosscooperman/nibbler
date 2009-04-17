@@ -1,0 +1,4 @@
+<div class="pagination_nav">
+  <span>Viewing <%= queue.offset + 1 %>-<%= [queue.total_entries, queue.current_page * queue.per_page].min %> of <%= queue.total_entries %></span>
+  <%= will_paginate queue, :inner_window => 1 %>
+</div>

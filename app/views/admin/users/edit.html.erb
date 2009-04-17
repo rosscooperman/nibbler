@@ -1,0 +1,10 @@
+<% @page_title = "Edit User: <em>#{h(@user.username)}</em> #{object_updated_at}" %>
+<% users_breadcrumb("Edit User: #{@user.username}") %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "admin/shared/sidebar" %>
+<% end %>
+
+<div class="std_form">
+  <%= render :partial => "form" %>
+</div>

@@ -41,4 +41,12 @@ module SharedHelper
   def staging?
     SETTINGS[:staging]
   end
+  
+  def admin?
+    controller.controller_path.include? "admin/"
+  end
+  
+  def public?
+    !admin?
+  end
 end

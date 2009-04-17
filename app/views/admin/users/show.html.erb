@@ -1,0 +1,18 @@
+<% @page_title = "User: <em>#{h(@user.username)}</em> #{object_updated_at}" %>
+<% users_breadcrumb("User: #{@user.username}") %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "admin/shared/sidebar" %>
+<% end %>
+
+<h3>Reset password link:</h3>
+<p>
+  If a user has forgotten their password, click on the link to reset it.
+  <%= link_to admin_reset_password_url(:id => @user.id, :hash => @user.password_reset_hash), admin_reset_password_url(:id => @user.id, :hash => @user.password_reset_hash) %>
+</p>
+
+<h3>Quick Stats</h3>
+<dl>
+  <dt>Member Since</dt>
+  <dd><%= @user.created_at.to_s(:long_with_zone) %></dd>
+</dl>

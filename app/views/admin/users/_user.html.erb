@@ -1,0 +1,11 @@
+<% zebra_row do %>
+  <td><%= link_to h(user.username), admin_user_path(user) %></td>
+  <td><%=h user.email %></td>
+  <td><%= user.created_at.to_s(:admin) %></td>
+  <td class="controls">
+    <%= link_to 'Edit', edit_admin_user_path(user), :class => "edit" %>
+    <% unless current_user == user %>
+    <%= link_to 'Delete ', admin_user_path(user), :confirm => "Are you sure you want to delete #{user}?", :method => :delete, :class => "edit" %>
+    <% end %>
+  </td>
+<% end %>
