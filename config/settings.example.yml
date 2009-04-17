@@ -1,6 +1,6 @@
 development:
   app_host: "localhost:3000"
-  staging: false
+  staging: true
 
 production:
   app_host: "localhost:3000"

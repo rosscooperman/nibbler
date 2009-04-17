@@ -383,9 +383,9 @@ td.controls a {
 .cols { margin-bottom: 30px; }
 .col  { float: left; }
 
-.two    .col  { width: 49%; }
-.three  .col  { width: 33%; }
-.four   .col  { width: 23%; }
+.two    .col  { width: 48%; }
+.three  .col  { width: 32%; }
+.four   .col  { width: 22%; }
 
 .two .col,
 .four .col   { margin-right: 2%; }
@@ -394,6 +394,8 @@ td.controls a {
 
 .three .double  { width: 65%; }
 .four .triple   { width: 73%; }
+
+.last {margin-right: 0; !important; }
 
 /* form styles 
 ----------------------------------------------------------------------*/
