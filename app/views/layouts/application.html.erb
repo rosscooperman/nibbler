@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <%= "<meta name=\"robots\" content=\"noindex,nofollow\" />" if admin? -%>
+  <title>FOO MANCHU'S WEBSITE<%= " &mdash; " + @page_title unless @page_title.blank? %></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="/images/apple.png" />
+  <%= stylesheet_link_tag "reset-fonts-grids", "base", "nyroModal", "photoset", "shared" -%>
+  <% if admin? -%>
+    <%= render :partial => "layouts/head_admin" -%>
+    <%= render :partial => "layouts/page_top_admin" -%>
+  <% else -%>
+    <%= render :partial => "layouts/head_public" -%>
+  <% end -%>
+  <%= yield :head -%>
+</head>
+
+<% error_page = controller.controller_name == "static" ? true : false %>
+  <%= body_tag %>
+    <%= content_tag(:div, "Staging Server", :id => "staging") if staging? %>
+    <div id="header">
+      <div class="wrapper">
+        <% if admin? -%>
+          <%= render :partial => "layouts/admin_nav" %>
+        <% else -%>
+          <h1><%= link_to "FOO MANCHU", "/", :rel => "home", :title => "FOO MANCHU'S HOMEPAGE" %></h1>
+          <%= render :partial => "layouts/nav" %>
+          <%= render :partial => "shared/search" %>
+        <% end -%>
+      </div>
+    </div>
+    <%= @crumbs if admin? -%>
+    <%= flash_messages(:error, :notice) if admin? -%>
+    <div id="wrapper">
+      <%= flash_messages(:error, :notice) if !admin? -%>
+      <% if page_top = yield(:page_top) -%>
+        <div id="page_top">
+          <%= page_top -%>
+        </div>
+      <% end %>
+      <div id="content_wrap" class="<% if sidebar = yield(:sidebar) %>aux<% else %>wide<% end %>">
+        <div id="inner">
+          <div id="page_content">
+            <%= yield %>
+          </div>
+          <% if sidebar = yield(:sidebar) -%>
+            <div id="sidebar" class="col">
+              <%= sidebar -%>
+            </div>
+          <% end -%>
+        </div>
+      </div>
+      <% if bottom_div = yield(:bottom_div) -%>
+        <div id="bottom">
+          <%= bottom_div %>
+        </div>
+      <% end -%>
+    </div>
+    <div id="footer">
+      <div class="wrapper">
+      <% if admin? -%>
+        <%= build_main_menu %>
+        <li>&nbsp;//&nbsp;</li>
+        <%= build_right_menu %>
+      <% else -%>
+       <%= render :partial => "layouts/footer" %>
+      <% end -%>
+      </div>
+    </div>
+    <%= render :partial => "layouts/js_includes" -%>
+    <%= render :partial => "layouts/js_includes_admin" if admin? -%>
+    <%= yield :bottom -%>
+    <%= render :partial => "layouts/tracking" -%>
+    <%= git_version_html %>
+  </body>
+</html>
+

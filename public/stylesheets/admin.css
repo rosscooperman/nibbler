@@ -1,0 +1,476 @@
+body {
+  background-color: #D4D4D4;
+}
+
+a {
+  color: #3366cc;
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+#wrapper,
+#footer .wrapper,
+.breadcrumbs,
+#header .wrapper,
+.flash {
+  width: 80%;
+  text-align: left;
+}
+
+.flash { text-align: center; }
+
+/* skin 
+----------------------------------------------------------------------*/
+
+#header       { background: #3b3b3b     url(/images/admin/bg_header.png)        center  bottom  repeat-x;   }
+#wrapper      { background: #fff        url(/images/admin/bg_bottom_left.png)   left    bottom  no-repeat;  }
+#page_top     { background: #fff        url(/images/admin/bg_top_left.png)      left    top     no-repeat;  }
+#bottom       { background: transparent url(/images/admin/bg_bottom_right.png)  right   bottom  no-repeat;  }
+h2.page_title { background: transparent url(/images/admin/bg_top_right.png)     right   top     no-repeat;  }
+#content_wrap { background: #fff        url(/images/admin/bg_left.png)          left    top     repeat-y;   }
+#inner        { background: transparent url(/images/admin/bg_right.png)         right   top     repeat-y;   }
+
+/* Header
+----------------------------------------------------------------------*/
+
+#header {
+  color: #fff;
+  padding-bottom: 1px;
+  border-bottom: 1px solid #aaa;
+}
+
+#header .wrapper { position: relative; }
+
+#header h1 {
+  margin: 0;
+  padding: 20px 0 0;
+  height: 48px;
+}
+
+#header h1 a        { color: #eee; }
+#header h1 a:hover  { text-decoration: underline; }
+
+#header,
+.breadcrumbs {
+  margin-bottom: 1em;
+}
+
+.breadcrumbs a {
+  font-weight: bold;
+}
+
+.breadcrumbs img {
+  margin: 0 .5em;
+}
+
+/* gns_01
+----------------------------------------------------------------------------*/
+
+#gns_01 li,
+#gns_02 li,
+#gns_03 li,
+#gns_02 li a,
+#gns_03 li a,
+#gns_01 li a {
+  float: left;
+  display: block;
+}
+
+#gns_01 li {
+  padding: 0;
+}
+
+#gns_01 li,
+#gns_03 li {
+  font-weight: bold;
+  border-left: 1px solid #bbb;
+}
+
+#gns_01 li:last-child,
+#gns_03 li:last-child {
+  border-right: 1px solid #bbb;
+}
+
+#gns_01 li a,
+#gns_03 li a {
+  height: 25px;
+  padding: 5px 18px 0;
+  color: #5b5b5b;
+  text-shadow: #fff -1px -1px 1px;
+}
+
+#gns_01 li.active a,
+#gns_03 li.active a {
+  color: #fff;
+  background: url(/images/admin/bg_tab_active.png) center bottom repeat-x;
+  text-shadow: #333 -1px -1px 1px;
+}
+
+/* gns_02
+-----------------------------------------------------------------------------*/
+
+#gns_02 {
+  position: absolute;
+  top: 1em;
+  right: 0;
+}
+
+#gns_02 li {
+  color: #ddd;
+  margin-left: 0.5em;
+}
+
+#gns_02 li a {
+  color: #fff;
+  margin-right: 0.5em;
+}
+
+/* gns_03
+----------------------------------------------------------------------------------*/
+
+ul#gns_03 {
+  float: right;
+}
+
+/* foot_gns
+----------------------------------------------------------------------------------*/
+
+#footer {
+  color: #aaa;
+  margin: 1em 0.5em 3em;
+}
+
+#footer li {
+  display: inline;
+  margin-right: 30px;
+}
+
+#footer li a {
+  color: #7b7b7b;
+}
+
+#footer li.active a {
+  color: #3b3b3b;
+  font-weight: bold;
+}
+
+table.dataset       { width: 100%; }
+.dataset .controls  { text-align: right; }
+.dataset td         { padding: 0.4em; }
+.dataset .nested    { text-indent: 20px; }
+
+/* search
+----------------------------------------------------------------------------*/
+
+.submenu form {
+  float: right;
+  margin-top: 13px;
+}
+
+.submenu form span {
+  margin-left: 30px;
+  line-height: 25px;
+}
+
+.submenu form input {
+  margin-right: 10px;
+}
+
+/* action buttons - default action buttons have a white background - others have a gray background to match header
+-----------------------------------------------------------------------------------------*/
+
+.page_actions {
+  margin: 0 0 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid #e3e3e3;
+}
+
+.page_actions form {
+  float: right;
+}
+
+.page_actions form #search {
+  width: 20em;
+}
+
+.page_actions form .bn {
+  margin-left: 0.5em;
+}
+
+.page_actions a {
+  float: left;
+}
+
+.page_actions a,
+#sidebar .quick_add a {
+  display: inline-block;
+  padding-left: 21px;
+  background-position: left 1px;
+  background-repeat: no-repeat;
+}
+
+/* icons 
+----------------------------------------------------------------------*/
+
+.add_new        { background-image: url(/images/admin/add.gif); }
+.edit           { background-image: url(/images/admin/page_white_edit.gif); }
+.delete         { background-image: url(/images/admin/delete.gif); }
+.add_page       { background-image: url(/images/admin/note_add.gif); }
+.add_user       { background-image: url(/images/admin/user_add.gif); }
+.add_art        { background-image: url(/images/admin/photo_add.gif); }
+.add_date       { background-image: url(/images/admin/date_add.gif); }
+.add_gallery    { background-image: url(/images/admin/building_add.gif); }
+.add_exhibit    { background-image: url(/images/admin/image_add.gif); }
+
+/* page structures
+------------------------------------------------------------*/
+
+.aux #page_content,
+.aux #sidebar {
+  position: relative;
+  float: left;
+}
+
+#content_wrap {
+  width: 100%;
+  overflow: hidden;
+}
+
+#inner {
+  width: auto;
+  padding: 20px 2%;
+}
+
+.aux #inner {
+  float: right;
+  width: 72%;
+  padding: 20px 26% 20px 2%;
+}
+
+.aux #page_content {
+  width: 100%;
+}
+
+#sidebar {
+  width: 29%;
+  padding: 0 3% 2em;
+  margin-right: -35%;
+}
+
+#bottom {
+  width: 100%;
+  height: 16px;
+  border: 0;
+  clear: both;
+}
+
+/* page title
+----------------------------------------------------------------------------*/
+
+h2.page_title {
+  padding: 5px 20px 0;
+  margin: 0;
+  line-height: 2em;
+}
+
+h2.page_title em {
+  font-style: normal;
+  color: #6b6b6b;
+}
+
+h2.page_title span {
+  font-weight: normal;
+  font-style: italic;
+  color: #9b9b9b;
+  font-size: 75%;
+}
+
+/* sidebar 
+----------------------------------------------------------------------*/
+
+#sidebar h3 {
+  font-size: 116%;
+  line-height: 200%;
+  margin: 0;
+  padding: 0.25em 0.5em 0;
+  background-color: #777;
+  color: #eee;
+}
+
+.quick_add {
+/*   padding: 1em; */
+  border: 1px solid #eee;
+  border-top-color: #333;
+}
+
+.quick_add li {
+  padding: 0.25em 0.5em;
+  border-bottom: 1px solid #eee;
+}
+
+/* pagination nav
+----------------------------------------------------------------------------*/
+
+.pagination_nav {
+  margin-bottom: 1em;
+}
+
+.pagination_nav .submit {
+  margin: 0;
+}
+
+/* table styling
+-----------------------------------------------------------------------------------------*/
+
+table tr td {
+  vertical-align: top;
+}
+
+tr td.image {
+  width: 75px;
+  padding: 5px;
+  vertical-align: top;
+  background: #fff;
+  margin-right: 5px;
+}
+
+table {
+  margin-bottom: 1em;
+}
+
+thead th,
+table td {
+  padding: 0.5em;
+}
+
+thead th,
+thead th a {
+  color: #eee;
+}
+
+thead th {
+  font-weight: bold;
+  text-align: left;
+  background-color: #777;
+}
+
+thead th a {
+  display: inline-block;
+  padding-right: 15px;
+  background: url('/images/admin/down_arrow.gif') right center no-repeat;
+}
+
+td.controls {
+  width: 70px;
+}
+
+td.controls a {
+  display: block;
+  float: left;
+  width:  16px;
+  height: 16px;
+  margin: 0.25em 0 0 1em;
+  text-indent: 10000%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* 2, 3, 4 columns
+----------------------------------------------------------------------*/
+
+.cols { margin-bottom: 30px; }
+.col  { float: left; }
+
+.two    .col  { width: 49%; }
+.three  .col  { width: 33%; }
+.four   .col  { width: 23%; }
+
+.two .col,
+.four .col   { margin-right: 2%; }
+
+.three .col  { margin-right: 1.5%; }
+
+.three .double  { width: 65%; }
+.four .triple   { width: 73%; }
+
+/* form styles 
+----------------------------------------------------------------------*/
+
+.std_form dt        { font-weight: bold; }
+.std_form dd label  {
+  margin-right: 1em;
+  font-weight: normal;
+}
+
+.std_form dd {
+  padding: 5px;
+  background-color: #f6f6f6;
+}
+
+.std_form dd.buttons {
+  background-color: transparent;
+  padding: 10px;
+}
+
+.std_form dd.buttons * {
+  margin-top: 0;
+}
+
+.std_form input[type=text],
+.std_form input[type=password],
+.std_form input[type=textarea] {
+  width: 79%;
+}
+
+.std_form input[type=text],
+.std_form input[type=password],
+.std_form input[type=textarea],
+.std_form select,
+dd.text_editor {
+  font-size: 131%;
+  font-family: "Lucida Grande", arial;
+  color: #5b5b5b;
+}
+
+.std_form select {
+  width: 14em;
+}
+
+dd.text_editor {
+  padding-right: 20%;
+}
+/* clearfix
+----------------------------------------------------------------------*/
+
+.cols:after,
+.page_actions:after,
+#content_wrap:after,
+#inner:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+}
+
+.cols,
+.page_actions,
+#inner {
+  display: inline-block;
+}
+
+html[xmlns] .cols,
+html[xmlns] .page_actions,
+html[xmlns] #content_wrap.aux,
+html[xmlns] #inner {
+  display: block;
+}
+
+* html .cols,
+* html .page_actions,
+* html #content_wrap.aux,
+* html #inner {
+  height: 1%;
+}

@@ -1,0 +1,21 @@
+#staging {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 135px;
+  background: url(/images/shared/staging.png) no-repeat;
+  text-indent: -1000em;
+  z-index: 10000;
+}
+
+h2 { font: bold 153.9%/150% Helvetica; }
+h3 { font: bold 182% Helvetica; }
+
+#wrapper,
+#header .wrapper,
+#footer .wrapper,
+.breadcrumbs {
+  margin: 0 auto;
+  text-align: left;
+}

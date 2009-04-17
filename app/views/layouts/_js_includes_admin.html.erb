@@ -1,0 +1,8 @@
+<% unless flash[:highlight].nil? -%>
+  <script type="text/javascript">
+    function yellowFade() {
+      setTimeout("new Effect.Highlight('<%= flash[:highlight] %>');", 100); // 0.1 seconds
+    }
+    Event.observe(window, 'load', yellowFade, false);
+  </script>
+<% end -%>

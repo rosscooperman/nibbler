@@ -1,0 +1,537 @@
+body {
+  line-height: 1.538;
+  color: #5b5b5b;
+}
+
+a, input, select, textarea {
+  outline: none;
+}
+
+h1,h2,h3,h4,h5,h6,
+strong, strong *, * strong  { font-weight: bold; }
+em, em *, * em              { font-style: italic; }
+
+h1, h2, h3 { font-family: Helvetica, arial, sans-serif; }
+
+img { background-color: transparent; }
+
+h1        { font-size:  138.5%;   } /*18px*/
+h2        { font-size:  123.1%;   } /*16px*/
+h3        { font-size:  108%;     } /*14px*/
+h1,h2,h3  { margin:     1em 0;    } 
+
+abbr,acronym {
+  border-bottom: 1px dotted #000;
+  cursor: help;
+} 
+
+blockquote { margin: 1em; }
+
+caption {
+  margin-bottom:.5em;
+  text-align:center;
+}
+
+p,fieldset,table { margin-bottom:1em; }
+
+.inline { display: inline; }
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; }
+
+/* default table styles
+-------------------------------------------------------------------------*/
+
+table {
+  width: 100%;
+  border-collapse: collapse; 
+}
+
+th,td {
+  padding:  2px 2px 2px 5px;
+  vertical-align: top;
+}
+
+th {
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  background-color: #555;
+  border-bottom: 1px solid #333;
+}
+
+td {
+  border-bottom: 1px solid #eee;
+}
+
+/* Cycle classes
+--------------------------------------------------------------------------------*/
+
+tr.light    { background: #fff;     }
+tr.dark     { background: #f6f6f6;  }
+tr.current  { background: #dedede;  }
+
+/* list styles
+----------------------------------------------------------------------------------*/
+
+.disc,
+.decimal,
+.upper_roman,
+.lower_roman,
+.upper_alpha,
+.lower_alpha,
+.no_style {
+  margin: 1em;
+  margin-left: 2em;
+}   
+
+.disc         li { list-style-type: disc;        }
+.decimal      li { list-style-type: decimal;     }
+.upper_roman  li { list-style-type: upper-roman; }
+.lower_roman  li { list-style-type: lower-roman; }
+.upper_alpha  li { list-style-type: upper-alpha; }
+.lower_alpha  li { list-style-type: lower-alpha; }
+.no_style     li { list-style-type: none; }
+
+.disc li,
+.no_style li,
+.decimal li,
+.upper_roman li,
+.lower_roman li,
+.upper_alpha li,
+.lower_alpha li {
+  text-align: left !important;
+  margin-bottom: 5px;
+}
+
+/* forms
+--------------------------------------------------------------------------------------*/
+
+form label {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form textarea {
+  vertical-align: text-top;
+  height: 10em;
+}
+
+input.checkbox,
+input.radio {
+  position: relative;
+  top: -2px;
+  vertical-align: middle;
+  margin-right: 1px;
+}
+
+form dl {
+  margin-bottom: 0;
+}
+
+form dt,
+form li label,
+legend {
+  margin-bottom: 0;
+}
+
+form dd {
+  margin-bottom: 0.5em;
+}
+
+fieldset {
+  border: 0;
+  width: 100%;
+}
+
+/* Standard ul form styles
+-----------------------------------------------------------------------------------*/
+
+.std_form li,
+dl.std_form {
+  width: auto;
+}
+
+.std_form li {
+  padding: 5px;
+}
+
+.required span,
+.date_time span {
+  margin-left: 3px;
+  color: #B83F1D;
+}
+
+.std_form li.error {
+  padding: 9px;
+  background-color: #DE522A;
+  border: 1px solid #A73E20;
+}
+
+.std_form li.error label,
+.std_form li.error label span {
+  color: #fff;
+}
+
+.std_form p.instructions {
+  color: #535F62;
+  font-size: 85%;
+  line-height: 150%;
+}
+
+.submit {
+  margin: 1em 0;
+  padding-left: 10px;
+}
+
+.std_form li label {
+  display: block;
+}
+
+.std_form li.checkbox {
+  position: relative;
+  padding-top: 7px;
+}
+
+.std_form .submit,
+.std_form .left_form_indent,
+.std_form .password_recover {
+  margin-bottom: 0;
+}
+
+.std_form li.submit,
+.std_form p.submit,
+.std_form .left_form_indent,
+.std_form li.password_recover {
+  width: auto;
+  background-color: transparent !important;
+  border: none;
+}
+
+.std_form li input.text,
+.std_form li textarea {
+  width: 98%;
+}
+
+.std_form input.file {
+  width: 91%;
+}
+
+.std_form li.date_time select {
+  width: auto;
+}
+
+.std_form li.date_time dt,
+.std_form li.date_time dd {
+  display: inline;
+}
+
+.std_form .error p.error {
+  color: #38150B;
+  font-size: 93%;
+  line-height: 150%;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #F7D4CA;
+  border: 1px solid #A73E20;
+}
+
+.std_form .submit span {
+  color: #6B7A7E;
+  font-size: 12px;
+}
+
+.left_form_indent {
+  color: #6B7A7E;
+  font-size: 12px;
+}
+
+.std_form li.password_recover,
+.std_form li.create_account,
+p.create_account {
+  margin: 10px 0;
+  padding: 10px;
+  border-top: 1px dotted #ccc;
+}
+
+/* messaging
+---------------------------------------------------------------------------------*/
+
+.flash {
+  margin: 0 auto 1em;
+  padding: 1em 0;
+  border-width: 1px;
+  border-style: solid;
+  color: #2b2b2b;
+  font-weight: bold;
+  z-index: 1000;
+}
+
+.error {
+  border-color:     #ff0000;
+  background-color: #ffecec;
+}
+
+.notice {
+  border-color:     #FED600;
+  background-color: #FFFBE5;
+}
+
+.errorExplanation {
+  margin: -1em 0 1em;
+  padding: 0 1em 1em;
+}
+
+.errorExplanation h2,
+.errorExplanation p,
+dt p.error,
+dt span {
+  color: #930000;
+}
+
+.errorExplanation h2,
+.errorExplanation p {
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.errorExplanation h2 {
+  padding-left: 21px;
+  font-size: 123.1%;
+  background: url(/images/admin/exclamation.gif) left 3px no-repeat;
+}
+
+.errorExplanation p,
+.errorExplanation ul {
+  padding-left: 21px;
+}
+
+.errorExplanation li {
+  margin: 0 0 0 1em;
+  padding: 0;
+  list-style-type: disc; 
+  list-style-position: inside;
+}
+
+.fieldWithErrors,
+.fieldWithErrors *,
+dt p.error {
+  display: inline;
+}
+
+/* file uploader
+------------------------------------------------------*/
+
+#image_uploader,
+#profile_image_uploader {
+  clear: both;
+  height: auto;
+}
+
+#old_profile_image,
+#old_image,
+.image_mask {
+  width: 75px;
+  height: 75px;
+}
+
+#old_profile_image,
+#old_image {
+  position: relative;
+  height: 74px;
+  margin-top: -17px;
+  margin-left: 30%;
+  width: 50%;
+  padding: 5px;
+  border: 1px solid #ececec;
+  background-color: #fff;
+}
+
+#old_profile_image img,
+#old_image img {
+  width: 74px;
+  height: 74px;
+}
+
+.image_mask {
+  display: block;
+  overflow: hidden;
+}
+
+#old_profile_image .file_meta,
+#old_profile_image a,
+#old_image .file_meta,
+#old_image a {
+  position: absolute;
+  left: 80px;
+  width: 225px;
+  padding-left: 20px;
+}
+
+#old_profile_image a,
+#old_image a {
+  top: 25px;
+  display: block;
+  background: url("/images/trash.gif") 6px 4px no-repeat;
+}
+
+#old_profile_image .file_meta,
+#old_image .file_meta {
+  top: 45px;
+  font-size: 0.8em;
+  color: #666;
+}
+
+.hidden {
+  display: none; /* this is for all hidden fields that have a class "hidden" */
+}
+
+li.error .fieldWithErrors label,
+li.error .fieldWithErrors .fieldWithErrors {
+ display: inline-block;
+}
+
+li.error .fieldWithErrors .fieldWithErrors span {
+  color: #fff;
+}
+
+/* thumbnails 
+----------------------------------------------------------------------*/
+
+.thumbs li {
+  float: left;
+  width: 134px;
+  margin-left: 8px;
+}
+
+.thumbs li a {
+  display: block;
+  float: left;
+  width: 127px;
+  padding: 7px 0 0 7px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.thumbs li a:hover,
+.thumb:hover {
+  background-position: left bottom;
+}
+
+.thumbs li p {
+  clear: both;
+  margin-bottom: 5px;
+  text-align: center;
+  color: #909090;
+  font-size: 85%;
+  line-height: 1;
+}
+
+.col .thumbs {
+  margin-top: 10px;
+}
+
+.thumb {
+  display: block;
+  float: left;
+}
+
+/* slider
+----------------------------------------------------------------------*/
+
+.mask {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.masked_content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10000px;
+}
+
+.masked_content li {
+  float: left;
+}
+
+.magnify {
+  text-align: center;
+  opacity: 0.75;
+}
+
+.magnify span {
+  display: none;
+}
+
+/* pagination
+----------------------------------------------------------------------*/
+
+div.pagination {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin: 2em auto;
+  text-align: center;
+  color: #ccc;
+}
+
+.pagination span,
+.pagination a {
+  padding: 2px 4px;
+  border: 1px solid #fff;
+}
+
+.pagination .current {
+  color: #333;
+  border: 1px solid #eee;
+  background-color: #f6f6f6;
+}
+
+.pagination .prev_page,
+.pagination .next_page  { font-weight: bold; }
+
+.pagination .disabled   { color: #ddd; }
+.pagination a           { text-decoration: none; }
+.pagination a:hover     { text-decoration: underline; }
+
+/* clearfix
+----------------------------------------------------------------------*/
+
+.clearfix:after,
+#wrapper:after,
+.wrapper:after,
+#nav:after,
+.cols:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+}
+
+.clearfix,
+#wrapper,
+.wrapper,
+#nav,
+.cols {
+  display: inline-block;
+}
+
+html[xmlns] .clearfix,
+html[xmlns] #wrapper,
+html[xmlns] .wrapper,
+html[xmlns] #nav,
+html[xmlns] .cols {
+  display: block;
+}
+
+* html .clearfix,
+* html #wrapper,
+* html .wrapper,
+* html #nav,
+* html .cols {
+  height: 1%;
+}
