@@ -1,6 +1,7 @@
 body {
   line-height: 1.538;
   color: #5b5b5b;
+  text-align: center;
 }
 
 a, input, select, textarea {
@@ -322,64 +323,9 @@ dt p.error {
 /* file uploader
 ------------------------------------------------------*/
 
-#image_uploader,
-#profile_image_uploader {
-  clear: both;
-  height: auto;
-}
-
-#old_profile_image,
-#old_image,
-.image_mask {
-  width: 75px;
-  height: 75px;
-}
-
-#old_profile_image,
-#old_image {
-  position: relative;
-  height: 74px;
-  margin-top: -17px;
-  margin-left: 30%;
-  width: 50%;
-  padding: 5px;
-  border: 1px solid #ececec;
-  background-color: #fff;
-}
-
-#old_profile_image img,
-#old_image img {
-  width: 74px;
-  height: 74px;
-}
-
 .image_mask {
   display: block;
   overflow: hidden;
-}
-
-#old_profile_image .file_meta,
-#old_profile_image a,
-#old_image .file_meta,
-#old_image a {
-  position: absolute;
-  left: 80px;
-  width: 225px;
-  padding-left: 20px;
-}
-
-#old_profile_image a,
-#old_image a {
-  top: 25px;
-  display: block;
-  background: url("/images/trash.gif") 6px 4px no-repeat;
-}
-
-#old_profile_image .file_meta,
-#old_image .file_meta {
-  top: 45px;
-  font-size: 0.8em;
-  color: #666;
 }
 
 .hidden {
@@ -393,47 +339,6 @@ li.error .fieldWithErrors .fieldWithErrors {
 
 li.error .fieldWithErrors .fieldWithErrors span {
   color: #fff;
-}
-
-/* thumbnails 
-----------------------------------------------------------------------*/
-
-.thumbs li {
-  float: left;
-  width: 134px;
-  margin-left: 8px;
-}
-
-.thumbs li a {
-  display: block;
-  float: left;
-  width: 127px;
-  padding: 7px 0 0 7px;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-
-.thumbs li a:hover,
-.thumb:hover {
-  background-position: left bottom;
-}
-
-.thumbs li p {
-  clear: both;
-  margin-bottom: 5px;
-  text-align: center;
-  color: #909090;
-  font-size: 85%;
-  line-height: 1;
-}
-
-.col .thumbs {
-  margin-top: 10px;
-}
-
-.thumb {
-  display: block;
-  float: left;
 }
 
 /* slider
@@ -455,15 +360,6 @@ li.error .fieldWithErrors .fieldWithErrors span {
 
 .masked_content li {
   float: left;
-}
-
-.magnify {
-  text-align: center;
-  opacity: 0.75;
-}
-
-.magnify span {
-  display: none;
 }
 
 /* pagination
