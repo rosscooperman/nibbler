@@ -27,32 +27,8 @@ module Spec
       end
       
       describe "with an included module that is reopened" do
-        it "should have repoened methods" do
+        it "should have reopened methods" do
           method(:module_that_is_reopened_method).should_not be_nil
-        end
-      end
-
-      describe "#backtrace" do        
-        it "returns the backtrace from where the example was defined" do
-          example = ExampleGroup.dup.new ExampleProxy.new
-          example.backtrace.join("\n").should include("#{__FILE__}:#{__LINE__-1}")
-        end
-      end
-      
-      describe "#implementation_backtrace (deprecated)" do
-        before(:each) do
-          Kernel.stub!(:warn)
-        end
-
-        it "sends a deprecation warning" do
-          Kernel.should_receive(:warn).with(/#implementation_backtrace.*deprecated.*#backtrace instead/m)
-          example = ExampleGroup.dup.new ExampleProxy.new
-          example.implementation_backtrace
-        end
-        
-        it "returns the backtrace from where the example was defined" do
-          example = ExampleGroup.dup.new ExampleProxy.new
-          example.implementation_backtrace.join("\n").should include("#{__FILE__}:#{__LINE__-1}")
         end
       end
 
@@ -80,11 +56,26 @@ module Spec
             @example_group.run(@options).should be_true
           end
         end
+		
+        context "in an ExampleGroup using 'self' as an explicit subject" do
+          it "delegates matcher to the ExampleGroup" do
+            @example_group.describe(::Thing)
+            @example_group.subject { self }
+            @example_group.example { should == self }
+            @example_group.example { should eql(self) }
+            @example_group.example do
+              self.instance_eval("def method_ok?; true end")
+              should be_method_ok
+            end
+            @example_group.run(@options).should be_true
+          end
+        end
       end
 
       describe "#should_not" do
         before(:each) do
           @example_group = Class.new(ExampleGroupDouble)
+          @options = ::Spec::Runner::Options.new(StringIO.new, StringIO.new)
         end
 
         context "in an ExampleGroup with an implicit subject" do
@@ -92,7 +83,7 @@ module Spec
             @example_group.describe(::Thing)
             @example_group.example { should_not == ::Thing.new(:other) }
             @example_group.example { should_not eql(::Thing.new(:other)) }
-            @example_group.run(::Spec::Runner::Options.new(StringIO.new, StringIO.new)).should be_true
+            @example_group.run(@options).should be_true
           end
         end
         
@@ -102,7 +93,21 @@ module Spec
             @example_group.subject { ::Thing.new(:other) }
             @example_group.example { should_not == ::Thing.new(:default) }
             @example_group.example { should_not eql(::Thing.new(:default)) }
-            @example_group.run(::Spec::Runner::Options.new(StringIO.new, StringIO.new)).should be_true
+            @example_group.run(@options).should be_true
+          end
+        end
+		
+        context "in an ExampleGroup using 'self' as an explicit subject" do
+          it "delegates matcher to the ExampleGroup" do
+            @example_group.describe(::Thing)
+            @example_group.subject { self }
+            @example_group.example { should_not == ::Thing.new(:default) }
+            @example_group.example { should_not eql(::Thing.new(:default)) }
+            @example_group.example do
+              self.instance_eval("def method_ok?; false end")
+              should_not be_method_ok
+            end
+            @example_group.run(@options).should be_true
           end
         end
       end
@@ -120,6 +125,37 @@ module Spec
         example = ExampleGroupDouble.new ExampleProxy.new("name", :this => 'that') do; end
         example.set_instance_variables_from_hash({:@_options => {}})
         example.options[:this].should == 'that'
+      end
+    end
+    
+    describe "#description" do
+      it "returns the supplied description" do
+        example = ExampleGroupDouble.new ExampleProxy.new("name") do; end
+        example.description.should == "name"
+      end
+      it "returns the generated description if there is no description supplied" do
+        example = ExampleGroupDouble.new ExampleProxy.new do; end
+        Spec::Matchers.stub!(:generated_description).and_return('this message')
+        example.description.should == "this message"
+      end
+      it "raises if there is no supplied or generated description" do
+        example = ExampleGroupDouble.new ExampleProxy.new(nil, {}, "this backtrace") do; end
+        Spec::Matchers.stub!(:generated_description).and_return(nil)
+        lambda do
+          example.description
+        end.should raise_error(/No description supplied for example declared on this backtrace/)
+      end
+    end
+    
+    describe "#expect" do
+      it "aliases #should with #to on the proc" do
+        a = 3
+        expect { a += 1 }.to change{a}.from(3).to(4)
+      end
+
+      it "aliases #should_not with #to_not on the proc" do
+        a = 3
+        expect { nil }.to_not change{a}
       end
     end
 

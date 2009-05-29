@@ -26,14 +26,24 @@ module Spec
         end
       end
 
-      describe "#filtered_description" do
+      describe "#filtered_description (DEPRECATED)" do
+        before(:each) do
+          Spec.stub!(:deprecate)
+        end
+        
+        it "is deprecated" do
+          Spec.should_receive(:deprecate)
+          proxy.filtered_description(/(ignore)/)
+        end
+        
         it "builds the description from the group's nested_descriptions" do
           group.stub!(:nested_descriptions => ["ignore","the","description"])
-          proxy.filtered_description(/ignore/).should == "the description"
+          proxy.filtered_description(/(ignore)/).should == "the description"
         end
+        
         it "filters out description parts that match the supplied regexp" do
-          group.stub!(:nested_descriptions => ["ignore this one","the","description"])
-          proxy.filtered_description(/ignore/).should == "the description"
+          group.stub!(:nested_descriptions => ["ignore the","description"])
+          proxy.filtered_description(/(ignore )/).should == "the description"
         end
       end
       
@@ -45,9 +55,19 @@ module Spec
       end
       
       describe "#backtrace (deprecated - use #location)" do
+        before(:each) do
+          Spec.stub!(:deprecate)
+        end
+
         it "provides the location of the declaration of this group" do
-          group.stub!(:backtrace => "path/to/location:37")
+          group.stub!(:location => "path/to/location:37")
           proxy.backtrace.should == "path/to/location:37"
+        end
+        
+        it "warns deprecation" do
+          Spec.should_receive(:deprecate)
+          group.stub!(:location => "path/to/location:37")
+          proxy.backtrace
         end
       end
       
@@ -55,6 +75,30 @@ module Spec
         it "provides the location of the declaration of this group" do
           group.stub!(:location => "path/to/location:37")
           proxy.location.should  == "path/to/location:37"
+        end
+      end
+      
+      describe "#options" do
+        it "provides the options passed to the example group declaration" do
+          group.stub!(:options => {:a => 'b'})
+          proxy.options.should == {:a => 'b'}
+        end
+        
+        it "excludes :location" do
+          group.stub!(:options => {:location => 'b'})
+          proxy.options.should == {}
+        end
+        
+        it "excludes :scope" do
+          group.stub!(:options => {:scope => 'b'})
+          proxy.options.should == {}
+        end
+        
+        it "preserves the original hash" do
+          hash = {:a => 'b', :location => 'here', :scope => 'tiny'}
+          group.stub!(:options => hash)
+          proxy.options.should == {:a => 'b'}
+          hash.should == {:a => 'b', :location => 'here', :scope => 'tiny'}
         end
       end
       

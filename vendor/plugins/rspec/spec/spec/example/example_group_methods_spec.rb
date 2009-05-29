@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../spec_helper'
+  require File.dirname(__FILE__) + '/../../spec_helper'
 
 module Spec
   module Example
@@ -47,6 +47,14 @@ module Spec
                 @child_example_group.location.should =~ /#{__FILE__}:#{__LINE__ - 15}/
               end
             end
+            
+            describe "when creating an example group with no description" do
+              it "raises an ArgumentError" do
+                lambda do
+                  Class.new(ExampleGroupDouble).describe
+                end.should raise_error(Spec::Example::NoDescriptionError, /No description supplied for example group declared on #{__FILE__}:#{__LINE__ - 1}/)
+              end
+            end
 
             describe "when creating a SharedExampleGroup" do
               before(:each) do
@@ -79,6 +87,7 @@ module Spec
                 before(:all) do
                   @example_group = Class.new(ExampleGroupDouble).describe("bar")
                   @example_proxy = @example_group.__send__(method, "foo", {:this => :that}) {}
+                  @location = "#{__FILE__}:#{__LINE__ - 1}"
                 end
 
                 specify "with a description" do
@@ -89,12 +98,13 @@ module Spec
                   @example_proxy.options.should == {:this => :that}
                 end
 
-                specify "with a default backtrace" do
-                  @example_proxy.backtrace.should =~ /#{__FILE__}:#{__LINE__ - 12}/
+                specify "with a default backtrace (DEPRECATED)" do
+                  Spec.stub!(:deprecate)
+                  @example_proxy.backtrace.should =~ /#{@location}/
                 end
 
                 specify "with a default location" do
-                  @example_proxy.location.should =~ /#{__FILE__}:#{__LINE__ - 16}/
+                  @example_proxy.location.should =~ /#{@location}/
                 end
               end
             end
@@ -106,7 +116,8 @@ module Spec
                   @example_proxy = @example_group.__send__(method, "foo", {:this => :that}, "the location") {}
                 end
 
-                specify "with the supplied location as #backtrace" do
+                specify "with the supplied location as #backtrace (DEPRECATED)" do
+                  Spec.stub!(:deprecate)
                   @example_proxy.backtrace.should == "the location"
                 end
 
@@ -593,33 +604,6 @@ module Spec
           end
         end
 
-        describe "#backtrace" do        
-          it "returns the backtrace from where the example group was defined" do
-            example_group = Class.new(ExampleGroupDouble).describe("foo") do
-              example "bar" do; end
-            end
-            example_group.backtrace.join("\n").should include("#{__FILE__}:#{__LINE__-3}")
-          end
-        end
-
-        describe "#example_group_backtrace (deprecated)" do        
-          before(:each) do
-            Kernel.stub!(:warn)
-          end
-          it "sends a deprecation warning" do
-            example_group = Class.new(ExampleGroupDouble) {}
-            Kernel.should_receive(:warn).with(/#example_group_backtrace.*deprecated.*#backtrace instead/m)
-            example_group.example_group_backtrace
-          end
-
-          it "returns the backtrace from where the example group was defined" do
-            example_group = Class.new(ExampleGroupDouble).describe("foo") do
-              example "bar" do; end
-            end
-            example_group.example_group_backtrace.join("\n").should include("#{__FILE__}:#{__LINE__-3}")
-          end
-        end
-        
         describe "#before" do
           it "stores before(:each) blocks" do
             example_group = Class.new(ExampleGroupDouble) {}

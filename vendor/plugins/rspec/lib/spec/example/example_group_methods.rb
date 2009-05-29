@@ -4,33 +4,32 @@ module Spec
     module ExampleGroupMethods
       class << self
         attr_accessor :matcher_class
+
+        def build_description_from(*args)
+          text = args.inject("") do |description, arg|
+            description << " " unless (description == "" || arg.to_s =~ /^(\s|\.|#)/)
+            description << arg.to_s
+          end
+          text == "" ? nil : text
+        end
       end
 
       include Spec::Example::BeforeAndAfterHooks
       include Spec::Example::Subject::ExampleGroupMethods
       include Spec::Example::PredicateMatchers
+      include Spec::Example::ArgsAndOptions
 
-      attr_reader :options, :location
-      
+      attr_reader :location
+
+      def options # :nodoc:
+        @options ||= {}
+      end
+
       def inherited(klass) # :nodoc:
         super
         ExampleGroupFactory.register_example_group(klass)
       end
-      
-      # Provides the backtrace up to where this example_group was declared.
-      def backtrace
-        defined?(@backtrace) ? @backtrace : nil
-      end
 
-      # Deprecated - use +backtrace()+
-      def example_group_backtrace
-        Kernel.warn <<-WARNING
-ExampleGroupMethods#example_group_backtrace is deprecated and will be removed
-from a future version. Please use ExampleGroupMethods#backtrace instead.
-WARNING
-        backtrace
-      end
-      
       # Makes the describe/it syntax available from a class. For example:
       #
       #   class StackSpec < Spec::ExampleGroup
@@ -46,9 +45,10 @@ WARNING
       #   end
       #
       def describe(*args, &example_group_block)
+        raise Spec::Example::NoDescriptionError.new("example group", caller(0)[1]) if args.empty?
         if example_group_block
-          Spec::Example::set_location(args, caller(0)[1])
-          options = args.last
+          options = add_options(args)
+          set_location(options, caller(0)[1])
           if options[:shared]
             ExampleGroupFactory.create_shared_example_group(*args, &example_group_block)
           else
@@ -59,14 +59,14 @@ WARNING
         end
       end
       alias :context :describe
-      
+
       # Use this to pull in examples from shared example groups.
       def it_should_behave_like(*shared_example_groups)
         shared_example_groups.each do |group|
           include_shared_example_group(group)
         end
       end
-      
+
       # Creates an instance of the current example group class and adds it to
       # a collection of examples of the current example group.
       def example(description=nil, options={}, backtrace=nil, &implementation)
@@ -75,10 +75,9 @@ WARNING
         example_implementations[example_proxy] = implementation || pending_implementation
         example_proxy
       end
-      
+
       def pending_implementation
-        error = Spec::Example::NotYetImplementedError.new(caller)
-        lambda { raise(error) }
+        lambda { raise(Spec::Example::NotYetImplementedError) }
       end
 
       alias_method :it, :example
@@ -88,10 +87,10 @@ WARNING
       def xexample(description=nil, opts={}, &block)
         Kernel.warn("Example disabled: #{description}")
       end
-      
+
       alias_method :xit, :xexample
       alias_method :xspecify, :xexample
-      
+
       def run(run_options)
         examples = examples_to_run(run_options)
         notify(run_options.reporter) unless examples.empty?
@@ -101,51 +100,51 @@ WARNING
         define_methods_from_predicate_matchers
 
         success, before_all_instance_variables = run_before_all(run_options)
-        success, after_all_instance_variables  = execute_examples(success, before_all_instance_variables, examples, run_options)
+        success, after_all_instance_variables  = run_examples(success, before_all_instance_variables, examples, run_options)
         success                                = run_after_all(success, after_all_instance_variables, run_options)
       end
 
       def set_description(*args)
-        @description_args, @options = Spec::Example.args_and_options(*args)
+        @description_args, @options = args_and_options(*args)
         @backtrace = caller(1)
         @location = File.expand_path(options[:location]) if options[:location]
         self
       end
-      
-      def notify(listener) # :nodoc:
-        listener.add_example_group(ExampleGroupProxy.new(self))
+
+      def notify(reporter) # :nodoc:
+        reporter.example_group_started(ExampleGroupProxy.new(self))
       end
 
       def description
-        @description ||= build_description_from(*description_parts) || to_s
+        @description ||= ExampleGroupMethods.build_description_from(*description_parts) || to_s
       end
-      
+
       def described_type
         @described_type ||= description_parts.reverse.find {|part| part.is_a?(Module)}
       end
-      
+
       def described_class
         @described_class ||= Class === described_type ? described_type : nil
       end
-      
+
       def description_args
         @description_args ||= []
       end
-      
+
       def description_parts #:nodoc:
         @description_parts ||= example_group_hierarchy.inject([]) do |parts, example_group_class|
           [parts << example_group_class.description_args].flatten
         end
       end
-      
+
       def example_proxies # :nodoc:
         @example_proxies ||= []
       end
-      
+
       def example_implementations # :nodoc:
         @example_implementations ||= {}
       end
-            
+
       def examples(run_options=nil) #:nodoc:
         (run_options && run_options.reverse) ? example_proxies.reverse : example_proxies
       end
@@ -157,15 +156,15 @@ WARNING
       def example_group_hierarchy
         @example_group_hierarchy ||= ExampleGroupHierarchy.new(self)
       end
-      
+
       def nested_descriptions
         example_group_hierarchy.nested_descriptions
       end
-      
+
       def include_constants_in(mod)
         include mod if (Spec::Ruby.version.to_f >= 1.9) & (Module === mod) & !(Class === mod)
       end
-      
+
     private
 
       def subclass(*args, &example_group_block)
@@ -198,49 +197,49 @@ WARNING
         end
       end
 
-      def execute_examples(success, instance_variables, examples, run_options)
+      def run_examples(success, instance_variables, examples, run_options)
         return [success, instance_variables] unless success
 
         after_all_instance_variables = instance_variables
-        
+
         examples.each do |example|
           example_group_instance = new(example, &example_implementations[example])
           success &= example_group_instance.execute(run_options, instance_variables)
           after_all_instance_variables = example_group_instance.instance_variable_hash
         end
-        
+
         return [success, after_all_instance_variables]
       end
-      
+
       def run_after_all(success, instance_variables, run_options)
         return success if example_group_hierarchy.after_all_parts.empty?
         example_proxy = ExampleProxy.new("after(:all)")
         after_all = new(example_proxy)
         after_all.set_instance_variables_from_hash(instance_variables)
         example_group_hierarchy.run_after_all(after_all)
-        return success
+        success
       rescue Exception => e
         run_options.reporter.example_failed(example_proxy, e)
-        return false
+        false
       end
-      
+
       def examples_to_run(run_options)
-        return example_proxies unless specified_examples?(run_options)
-        example_proxies.reject do |example|
+        return example_proxies unless examples_were_specified?(run_options)
+        example_proxies.reject do |proxy|
           matcher = ExampleGroupMethods.matcher_class.
-            new(description.to_s, example.description)
+            new(description.to_s, proxy.description)
           !matcher.matches?(run_options.examples)
         end
       end
 
-      def specified_examples?(run_options)
+      def examples_were_specified?(run_options)
         !run_options.examples.empty?
       end
 
       def method_added(name) # :nodoc:
         example(name.to_s, {}, caller(0)[1]) {__send__ name.to_s} if example_method?(name.to_s)
       end
-      
+
       def example_method?(method_name)
         should_method?(method_name)
       end
@@ -256,20 +255,11 @@ WARNING
         when SharedExampleGroup
           include shared_example_group
         else
-          example_group = SharedExampleGroup.find(shared_example_group)
-          unless example_group
+          unless example_group = SharedExampleGroup.find(shared_example_group)
             raise RuntimeError.new("Shared Example Group '#{shared_example_group}' can not be found")
           end
           include(example_group)
         end
-      end
-
-      def build_description_from(*args)
-        text = args.inject("") do |description, arg|
-          description << " " unless (description == "" || arg.to_s =~ /^(\s|\.|#)/)
-          description << arg.to_s
-        end
-        text == "" ? nil : text
       end
     end
 

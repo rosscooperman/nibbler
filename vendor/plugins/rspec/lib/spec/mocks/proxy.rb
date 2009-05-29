@@ -56,9 +56,9 @@ module Spec
         @expectations.last
       end
 
-      def add_stub(expected_from, sym, opts={})
+      def add_stub(expected_from, sym, opts={}, &implementation)
         __add sym
-        @stubs.unshift MessageExpectation.new(@error_generator, @expectation_ordering, expected_from, sym, nil, :any, opts)
+        @stubs.unshift MessageExpectation.new(@error_generator, @expectation_ordering, expected_from, sym, nil, :any, opts, &implementation)
         @stubs.first
       end
       
@@ -213,6 +213,7 @@ module Spec
       end
 
       def find_matching_expectation(sym, *args)
+        @expectations.find {|expectation| expectation.matches(sym, args) && !expectation.called_max_times?} || 
         @expectations.find {|expectation| expectation.matches(sym, args)}
       end
 

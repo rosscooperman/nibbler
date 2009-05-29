@@ -1,10 +1,10 @@
 module Spec
   module Example
     module ExampleMethods
-      
+
       extend  Spec::Example::ModuleReopeningFix
       include Spec::Example::Subject::ExampleMethods
-      
+
       def violated(message="")
         raise Spec::Expectations::ExpectationNotMetError.new(message)
       end
@@ -18,18 +18,21 @@ module Spec
       #   description
       #   => "should start with a balance of 0"
       def description
-        @_proxy.description || ::Spec::Matchers.generated_description || "NO NAME"
+        if description = @_proxy.description || ::Spec::Matchers.generated_description
+          description
+        else
+          raise Spec::Example::NoDescriptionError.new("example", @_proxy.location)
+        end
       end
-      
+
       def options # :nodoc:
         @_proxy.options
       end
 
       def execute(run_options, instance_variables) # :nodoc:
-        puts caller unless caller(0)[1] =~ /example_group_methods/
         run_options.reporter.example_started(@_proxy)
         set_instance_variables_from_hash(instance_variables)
-        
+
         execution_error = nil
         Timeout.timeout(run_options.timeout) do
           begin
@@ -47,6 +50,20 @@ module Spec
 
         run_options.reporter.example_finished(@_proxy.update(description), execution_error)
         success = execution_error.nil? || ExamplePendingError === execution_error
+      end
+
+      module BlockAliases
+        alias_method :to,     :should
+        alias_method :to_not, :should_not
+      end
+
+      # Extends the submitted block with aliases to and to_not
+      # for should and should_not. Allows expectations like this:
+      #
+      #   expect { this_block }.to change{this.expression}.from(old_value).to(new_value)
+      #   expect { this_block }.to raise_error
+      def expect(&block)
+        block.extend BlockAliases
       end
 
       def eval_each_fail_fast(blocks) # :nodoc:
@@ -81,20 +98,6 @@ module Spec
         end
       end
 
-      # Provides the backtrace up to where this example was declared.
-      def backtrace
-        @_backtrace
-      end
-      
-      # Deprecated - use +backtrace()+
-      def implementation_backtrace
-        Kernel.warn <<-WARNING
-ExampleMethods#implementation_backtrace is deprecated and will be removed
-from a future version. Please use ExampleMethods#backtrace instead.
-WARNING
-        backtrace
-      end
-      
       # Run all the before(:each) blocks for this example
       def run_before_each
         example_group_hierarchy.run_before_each(self)
@@ -112,26 +115,26 @@ WARNING
       end
 
     private
-    
+
       include Matchers
       include Pending
-      
-      def before_each_example # :nodoc:
+
+      def before_each_example
         setup_mocks_for_rspec
         run_before_each
       end
 
-      def after_each_example # :nodoc:
+      def after_each_example
         run_after_each
         verify_mocks_for_rspec
       ensure
         teardown_mocks_for_rspec
       end
 
-      def described_class # :nodoc:
+      def described_class
         self.class.described_class
       end
-      
+
       def description_args
         self.class.description_args
       end
@@ -139,7 +142,7 @@ WARNING
       def example_group_hierarchy
         self.class.example_group_hierarchy
       end
-      
+
     end
   end
 end

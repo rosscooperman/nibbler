@@ -1,4 +1,44 @@
-= Upgrade to rspec-1.2.1
+= Upgrade to rspec-1.2.3-1.2.6
+
+== What's Changed
+
+=== Matcher DSL
+
+Use Spec::Matchers.define instead of Spec::Matchers.create (which is now
+deprecated).
+
+=== Explicit Predicate Matchers are deprecated
+
+With the addition of the new Matcher DSL the old, confusing, and
+almost-nobody-uses-it explicit predicate matcher functionality's days are now
+numbered.
+
+If you're not familiar with this feature, don't worry about it. If you have anything
+that looks like this:
+
+    predicate_matchers[:swim] = :can_swim?
+  
+Or this
+
+    config.predicate_matchers[:swim] = :can_swim?
+  
+Change it to this:
+
+    Spec::Matchers.define :swim do
+      match do |potential_swimmer|
+        potential_swimmer.can_swim?
+      end
+    end
+
+== Custom Formatters
+
+If you have an custom formatter, the <tt>add_example_group</tt> method has
+been changed to <tt>example_group_started</tt>, and kept as an alias so your
+formatters will still work. Though not yet, <tt>add_example_group</tt> will be
+deprecated in a future minor release, and removed in a future major release,
+so we recommend you make this change now.
+
+= Upgrade to rspec-1.2.2
 
 == What's Changed
 
@@ -99,7 +139,7 @@ We'll still support the simple_matcher method, so never fear if you're using
 that, but we recommend that you start developing your new matchers with this
 new syntax.
 
-    Spec::Matchers.create do :be_a_multiple_of |smaller|
+    Spec::Matchers.create :be_a_multiple_of do |smaller|
       match do |bigger|
         bigger % smaller == 0
       end
@@ -107,4 +147,4 @@ new syntax.
 
     9.should be_a_multiple_of(3)
 
-See <tt>features/matchers/create_matcher.feature</tt> for more examples
+See <tt>features/matchers/define_matcher.feature</tt> for more examples

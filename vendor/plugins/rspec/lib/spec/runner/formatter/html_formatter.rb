@@ -1,11 +1,13 @@
 require 'erb'
 require 'spec/runner/formatter/base_text_formatter'
+require 'spec/runner/formatter/no_op_method_missing'
 
 module Spec
   module Runner
     module Formatter
       class HtmlFormatter < BaseTextFormatter
         include ERB::Util # for the #h method
+        include NOOPMethodMissing
         
         def initialize(options, output)
           super
@@ -14,10 +16,6 @@ module Spec
           @header_red = nil
         end
         
-        def method_missing(sym, *args)
-          # no-op
-        end
-
         # The number of the currently running example_group
         def example_group_number
           @example_group_number
@@ -36,7 +34,7 @@ module Spec
           @output.flush
         end
 
-        def add_example_group(example_group)
+        def example_group_started(example_group)
           super
           @example_group_red = false
           @example_group_number += 1
@@ -85,7 +83,7 @@ module Spec
           @output.flush
         end
 
-        def example_pending(example, message, pending_caller)
+        def example_pending(example, message, deprecated_pending_location=nil)
           @output.puts "    <script type=\"text/javascript\">makeYellow('rspec-header');</script>" unless @header_red
           @output.puts "    <script type=\"text/javascript\">makeYellow('example_group_#{example_group_number}');</script>" unless @example_group_red
           move_progress

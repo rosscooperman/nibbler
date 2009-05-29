@@ -13,7 +13,7 @@ Hoe.new('rspec', Spec::VERSION::STRING) do |p|
   p.description = "Behaviour Driven Development for Ruby."
   p.rubyforge_name = 'rspec'
   p.developer('RSpec Development Team', 'rspec-devel@rubyforge.org')
-  p.extra_dev_deps = [["cucumber",">= 0.1.13"]]
+  p.extra_dev_deps = [["cucumber",">= 0.2.2"]]
   p.remote_rdoc_dir = "rspec/#{Spec::VERSION::STRING}"
   p.rspec_options = ['--options', 'spec/spec.opts']
   p.history_file = 'History.rdoc'
@@ -57,7 +57,7 @@ namespace :spec do
     t.spec_opts = ['--options', 'spec/spec.opts']
     t.rcov = true
     t.rcov_dir = 'coverage'
-    t.rcov_opts = ['--exclude', "kernel,load-diff-lcs\.rb,instance_exec\.rb,lib/spec.rb,lib/spec/runner.rb,spec/spec,bin/spec,examples,/gems,/Library/Ruby,\.autotest,#{ENV['GEM_HOME']}"]
+    t.rcov_opts = ['--exclude', "kernel,load-diff-lcs\.rb,instance_exec\.rb,lib/spec.rb,lib/spec/runner.rb,^spec/*,bin/spec,examples,/gems,/Library/Ruby,\.autotest,#{ENV['GEM_HOME']}"]
   end
 end
 
@@ -104,7 +104,7 @@ task :verify_committed do
 end
 
 namespace :update do
-  desc "update the manfest"
+  desc "update the manifest"
   task :manifest do
     system %q[touch Manifest.txt; rake check_manifest | grep -v "(in " | patch]
   end
