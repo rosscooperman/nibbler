@@ -52,6 +52,12 @@ module ModelMatchers
     end
   end
   
+  def have_upload(upload_association_name)
+    return simple_matcher("have an upload with association name '#{upload_association_name}'") do |model|
+      model.respond_to?(upload_association_name)
+    end
+  end
+  
   def validate_inclusion_of(attribute, options)
     simple_matcher("validate inclusion of #{attribute} in #{options[:in].inspect}") do |model|
       model.send("#{attribute}=", "YARGLE BARGLE")

@@ -1,4 +1,4 @@
-unless defined?(SETTINGS)
+unless defined?(SETTINGS) || RAILS_ENV == "test"
   settings_yml = File.join(RAILS_ROOT, 'config', 'settings.yml')
   unless File.exists?(settings_yml)
     raise RuntimeError, "Unable to find \"config/settings.yml\" file."
