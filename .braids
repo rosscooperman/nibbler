@@ -69,6 +69,13 @@ vendor/plugins/jrails:
   revision: b490fa1a6d81e39d3a8d99f9cce8b57c3397b7d7
   branch: master
   remote: braid/vendor/plugins/jrails
+vendor/rails: 
+  squashed: true
+  url: git://github.com/rails/rails.git
+  type: git
+  revision: 3cb89257b4d7bd706c642e0838909ed13019f557
+  branch: 2-3-stable
+  remote: braid/vendor/rails
 vendor/plugins/truncate_table: 
   squashed: true
   url: git://github.com/smtlaissezfaire/truncate_table.git
