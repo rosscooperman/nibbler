@@ -9,7 +9,7 @@ sign_out:
 forgot_password:
   success: "We have emailed you a link to reset your password."
   problem:
-    error: "We're sorry, but we don't have that username or email address on file. <a href=\"/signup\" class=\"nyroModal\">Join Social Designer</a> to become a member."
+    error: "We're sorry, but we don't have that username or email address on file."
 
 reset_password:
   success: "Your password was updated successfully and we've confirmed your email address."
