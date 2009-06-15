@@ -69,9 +69,10 @@ end
 class ActionView::Helpers::FormBuilder
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::AssetTagHelper
-
+  include ActionView::Helpers::JavaScriptHelper
+  
   if !defined?(FORM_FIELDS)
-    FORM_FIELDS = %w[date_select datetime_select] + ActionView::Helpers::FormHelper.instance_methods - %w[label_for hidden_field radio_button form_for fields_for]
+    FORM_FIELDS = %w[date_select datetime_select time_select] + ActionView::Helpers::FormHelper.instance_methods - %w[label_for hidden_field radio_button form_for fields_for]
     
     FORM_FIELDS.each do |selector|
       src = <<-SRC
@@ -209,7 +210,7 @@ class ActionView::Helpers::FormBuilder
   end
 
   def excluded_options(options = {})
-    options.except(:include_blank, :height, :width, :rows, :cols, :size, :end_year, :start_year, :order, :onchange)
+    options.except(:include_blank, :height, :width, :rows, :cols, :size, :end_year, :start_year, :order, :onchange, :twelve_hour)
   end
 
   def dl_widgeditor(method, options = {})
@@ -281,8 +282,18 @@ class ActionView::Helpers::FormBuilder
   end
   
   def dl_fckeditor(method, options = {})
-    options[:toolbarSet] = 'MMH'
-    dd_content = @template.fckeditor_textarea(@object_name, method, options.except(:required, :text))
+    dd_content = <<-HTML
+      <script type="text/javascript">
+        <!--
+        oFCKeditor = new FCKeditor('#{@object_name}[#{method}]');
+
+        oFCKeditor.Config['ToolbarStartExpanded'] = true;
+        oFCKeditor.ToolbarSet = 'Basic';
+        oFCKeditor.Value = '#{escape_javascript(@object.send(method))}';
+        oFCKeditor.Create();
+        //-->
+      </script>
+    HTML
 
     @template.content_tag(:dt, label_for(method, excluded_options(options).except(:toolbarSet))) + 
     @template.content_tag(:dd, dd_content)
