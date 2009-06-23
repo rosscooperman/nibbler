@@ -294,9 +294,17 @@ class ActionView::Helpers::FormBuilder
         //-->
       </script>
     HTML
+    
+    css = initialize_css_classes(options)
+    if errors_on_field?(object, method)
+      css << ["error"]
 
-    @template.content_tag(:dt, label_for(method, excluded_options(options).except(:toolbarSet))) + 
-    @template.content_tag(:dd, dd_content)
+      @template.content_tag(:dt, label_for(method, excluded_options(options).except(:toolbarSet)) + span_errors_for(object, method)) + 
+      @template.content_tag(:dd, dd_content, :class => css.join(' '))
+    else
+      @template.content_tag(:dt, label_for(method, excluded_options(options).except(:toolbarSet))) + 
+      @template.content_tag(:dd, dd_content, :class => css.join(' '))
+    end
   end
   
   def dl_create_or_update_button(create_cancel_url = nil, update_cancel_url = nil, create_text = nil, update_text = nil)
