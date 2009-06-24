@@ -177,9 +177,11 @@ class ActionView::Helpers::FormBuilder
       
       div_content =   @template.content_tag(:span, image_tag(image_link), :class => "image_mask") + "<span class='file_meta'>"
       div_content +=  "File size is: " + @template.send(:h, @template.number_to_human_size(object.send(name).size)).to_s + "</span> "
-      div_content +=  @template.link_to_function "Delete or Change Picture" + " ", <<-JS
+      div_content += @template.link_to_function " Delete or Change Movie ", <<-JS
         $('div#old_#{name}').hide();
-        $('<input type="file" id="#{@object_name}_#{name}_uploaded_data" name="#{@object_name}[#{name}_uploaded_data]"  size="#{size}"/>').appendTo('li\##{name}_uploader');
+        fileField = $('<input>').attr("type","file").attr("id","#{@object_name}_#{name}_uploaded_data").attr("name","#{@object_name}[#{name}_uploaded_data]").attr("size","#{size}").attr('onchange', "if(new RegExp(/^(\s)*?$/).test($('input:file##{@object_name}_#{name}_uploaded_data').val()) == false) $('input:file##{@object_name}_#{name}_uploaded_data').siblings('input:hidden').remove()");
+        hiddenField = $('<input>').attr("type","hidden").attr("id","#{@object_name}_#{name}_uploaded_data").attr("name","#{@object_name}[#{name}_uploaded_data]").attr("value","");
+        $('##{name}_uploader').append(fileField).append(hiddenField);
       JS
       @template.content_tag(:div, div_content, :id => "old_#{name}")
     else  
@@ -249,9 +251,11 @@ class ActionView::Helpers::FormBuilder
       size = options[:size] ? options[:size] : 20
       div_content =   @template.content_tag(:span, image_tag(image_link), :class => "image_mask") + "<span class='file_meta'>"
       div_content +=  "File size is: " + @template.send(:h, @template.number_to_human_size(object.send(name).size)).to_s + "</span> "
-      div_content +=  @template.link_to_function "Delete or Change Picture" + " ", <<-JS
+      div_content += @template.link_to_function " Delete or Change Movie ", <<-JS
         $('div#old_#{name}').hide();
-        $('<input type="file" id="#{@object_name}_#{name}_uploaded_data" name="#{@object_name}[#{name}_uploaded_data]"  size="#{size}"/>').appendTo('dd\##{name}_uploader');
+        fileField = $('<input>').attr("type","file").attr("id","#{@object_name}_#{name}_uploaded_data").attr("name","#{@object_name}[#{name}_uploaded_data]").attr("size","#{size}").attr('onchange', "if(new RegExp(/^(\s)*?$/).test($('input:file##{@object_name}_#{name}_uploaded_data').val()) == false) $('input:file##{@object_name}_#{name}_uploaded_data').siblings('input:hidden').remove()");
+        hiddenField = $('<input>').attr("type","hidden").attr("id","#{@object_name}_#{name}_uploaded_data").attr("name","#{@object_name}[#{name}_uploaded_data]").attr("value","");
+        $('##{name}_uploader').append(fileField).append(hiddenField);
       JS
       @template.content_tag('div', div_content, :id => "old_#{name}")
     else  
