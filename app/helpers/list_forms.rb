@@ -2,7 +2,7 @@ module LabeledFormHelper
   # Copied from Rails 2.0's #label
   def label_for(object_name, method, options = {})
     tag = ActionView::Helpers::InstanceTag.new(object_name, method, self, options.delete(:object))
-    tag.to_label_tag(options.delete(:text), options)
+    tag.to_label_tag(options.delete(:text), options.except(:rows, :cols))
   end
 
   # Creates a label tag.
@@ -212,7 +212,7 @@ class ActionView::Helpers::FormBuilder
   end
 
   def excluded_options(options = {})
-    options.except(:include_blank, :height, :width, :rows, :cols, :size, :end_year, :start_year, :order, :onchange, :twelve_hour)
+    options.except(:include_blank, :height, :width, :size, :end_year, :start_year, :order, :onchange, :twelve_hour)
   end
 
   def dl_widgeditor(method, options = {})
