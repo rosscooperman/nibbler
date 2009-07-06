@@ -1,4 +1,11 @@
 --- 
+vendor/plugins/factory_girl: 
+  squashed: true
+  url: git://github.com/thoughtbot/factory_girl.git
+  type: git
+  revision: 1c8b36a0077c8f119c44cf418f64fe5a5215f7e4
+  branch: master
+  remote: braid/vendor/plugins/factory-girl
 vendor/plugins/rspec-rails: 
   squashed: true
   type: git
