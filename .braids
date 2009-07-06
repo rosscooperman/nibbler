@@ -69,6 +69,13 @@ vendor/plugins/make_resourceful:
   revision: 0ccf1ce132c9b58dab4ba9eaf81dc3c36a76ff75
   branch: master
   remote: braid/vendor/plugins/make-resourceful
+vendor/rails: 
+  squashed: true
+  url: git://github.com/rails/rails.git
+  type: git
+  revision: 6673001a5e14ef2d342a03ae16f1da481bc01084
+  branch: 2-3-stable
+  remote: braid/vendor/rails
 vendor/plugins/truncate_table: 
   squashed: true
   type: git
