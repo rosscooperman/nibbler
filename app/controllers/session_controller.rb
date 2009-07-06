@@ -6,7 +6,7 @@ class SessionController < ApplicationController
 
   def new
     respond_to do |format|
-      format.html { render :layout => "application" }
+      format.html
     end
   end
 
@@ -15,7 +15,6 @@ class SessionController < ApplicationController
 
     if logged_in?
       remember_me
-      clear_anonymous_cookie_hash
       redirect_back_or_default(root_path)
     else
       flash_message(:sign_in, :problem)
@@ -47,9 +46,9 @@ class SessionController < ApplicationController
     if request.post?
       if @user.update_attributes(params[:user])
         flash_message(:reset_password, :success)
-        redirect_to root_url
+        redirect_to root_url and return false
       else
-        render :action => 'reset_password'
+        render :action => 'reset_password' and return false
       end
     end
   end
