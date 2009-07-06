@@ -24,4 +24,9 @@ public/404.html
 public/422.html
 public/500.html
 
+# rcov
+coverage
+
+# tags
 /TAGS
+tags
