@@ -20,9 +20,8 @@ Spec::Runner.configure do |config|
   config.include SpecHelpers
   config.include SpecHelpers::ControllerHelpers, :type => :controller
 
-  %w[model].each do |matcher|
-    require File.expand_path(File.dirname(__FILE__) + "/matchers/#{matcher}_matchers")
-    config.include "#{matcher}_matchers".camelize.constantize
+  Dir.glob(File.join(File.dirname(__FILE__), "matchers", "*_matchers.rb")).each do |matcher|
+    require matcher
+    config.include File.basename(matcher, ".rb").camelize.constantize
   end
 end
-
