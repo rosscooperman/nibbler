@@ -46,6 +46,8 @@ files:
 - tests/00test.rb
 has_rdoc: true
 homepage: http://rubyforge.org/projects/ruwiki/
+licenses: []
+
 post_install_message: 
 rdoc_options: 
 - --title
@@ -70,7 +72,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
 requirements: []
 
 rubyforge_project: ruwiki
-rubygems_version: 1.3.1
+rubygems_version: 1.3.4
 signing_key: 
 specification_version: 1
 summary: Provides a list of changes that represent the difference between two sequenced collections.
