@@ -83,6 +83,13 @@ vendor/rails:
   revision: 6673001a5e14ef2d342a03ae16f1da481bc01084
   branch: 2-3-stable
   remote: braid/vendor/rails
+vendor/gems/thoughtbot-factory_girl-1: 
+  squashed: true
+  url: git://github.com/thoughtbot/factory_girl.git
+  type: git
+  revision: 1c8b36a0077c8f119c44cf418f64fe5a5215f7e4
+  branch: master
+  remote: braid/vendor/gems/thoughtbot-factory-girl-1
 vendor/plugins/acts_as_sluggable: 
   squashed: true
   url: git://github.com/eastmedia/acts_as_slugable.git
