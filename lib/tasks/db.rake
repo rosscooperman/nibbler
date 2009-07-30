@@ -1,4 +1,3 @@
-
 namespace :db do
   desc "Recreate the database running drop, and then recreate"
   task :recreate => [:drop, :create]
@@ -23,13 +22,15 @@ namespace :db do
 
 private
   
-  DATABASE_DUMP_PREFIX = ""
-  
   def latest_database_dump
     database_dumps.sort.last
   end
   
   def database_dumps
-    Dir.glob("#{RAILS_ROOT}/#{DATABASE_DUMP_PREFIX}*")
+    Dir.glob("#{RAILS_ROOT}/#{database_dump_prefix}*")
+  end
+  
+  def database_dump_prefix
+    raise "Must set database dump file name prefix (e.g. 'flavorpill' for 'flavorpill_production_dump_2009-07-29-14:42:04.sql')"
   end
 end
