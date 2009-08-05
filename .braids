@@ -69,6 +69,13 @@ vendor/plugins/make_resourceful:
   revision: 0ccf1ce132c9b58dab4ba9eaf81dc3c36a76ff75
   branch: master
   remote: braid/vendor/plugins/make-resourceful
+vendor/plugins/fast_remote_cache: 
+  squashed: true
+  url: git://github.com/37signals/fast_remote_cache.git
+  type: git
+  revision: 6dc16b790ad3e5cc20b11e429f69b12e24e53cd1
+  branch: master
+  remote: braid/vendor/plugins/fast-remote-cache
 vendor/rails: 
   squashed: true
   url: git://github.com/rails/rails.git
