@@ -12,7 +12,7 @@ set :repository,            'git@github.com:eastmedia/REPOS_URL.git'
 set :scm,                   'git'
 set :deploy_via,            :remote_cache
 set :git_shallow_clone,     1
-set :git_enable_submodules, 1
+set :git_enable_submodules, false
 set :rails_env,             'production'
 
 # comment out if it gives you trouble. newest net/ssh needs this set.
