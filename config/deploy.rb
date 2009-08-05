@@ -10,7 +10,7 @@ set :keep_releases, 5
 default_run_options[:pty] = true
 set :repository,            'git@github.com:eastmedia/REPOS_URL.git'
 set :scm,                   'git'
-set :deploy_via,            :remote_cache
+set :deploy_via,            :fast_remote_cache
 set :git_shallow_clone,     1
 set :git_enable_submodules, false
 set :rails_env,             'production'
