@@ -29,6 +29,10 @@ module SharedHelper
   def app_host
     SETTINGS[:app_host]
   end
+  
+  def git_version_html
+    @git_version_html ||= "<!-- git master:#{git_version} -->"
+  end
 
   def staging?
     SETTINGS[:staging]
