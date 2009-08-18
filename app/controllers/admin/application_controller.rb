@@ -8,8 +8,6 @@ class Admin::ApplicationController < ActionController::Base
 
   attr_accessor :current_tab
   
-  layout "application"
-  
 protected
   def ensure_is_admin
     unless current_user && current_user.admin?

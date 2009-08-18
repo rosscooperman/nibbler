@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <title>Design 'Cause &mdash; <%= @page_header.blank? ?  @page_title : @page_header %></title>
+  <%= stylesheet_link_tag "reset-fonts", "base", "nyroModal", "public", :media => :all %>
+  <%= javascript_include_tag "jquery", "jquery-ui", "uicore", "uiautocomplete", "application" %>
+
+  <%= yield :head %>
+  
+  <!--[if lt IE 7]>
+    <%= stylesheet_link_tag "public_ie", :media => :all %>
+  <![endif]-->
+  
+</head>
+<%= body_tag %>
+<%= flash_messages(:error, :notice) %>
+  <div id="login_form">
+    <%= yield %>
+  </div>
+  <%= render :partial => "layouts/tracking" %>
+  <%= git_version_html %>
+</body>
+</html>
