@@ -69,13 +69,44 @@ module Admin::ApplicationHelper
   end
   
   def build_main_menu
-    menu =  [[:pages,     'Pages',      admin_pages_path]]
+    menu = []
+    menu << {:tab => :pages,          :text => 'Pages',         :url => admin_pages_path}
+    menu << {:tab => :pages,          :text => 'Pages',         :url => admin_pages_path,
+             :subtabs => [{:tab => :pages,          :text => 'Pages',         :url => admin_pages_path},
+                          {:tab => :pages,          :text => 'Pages',         :url => admin_pages_path}]}
 
-    build_menu(*menu)
+    build_tiered_menu(menu)
   end
   
-  def help_content(&block)
-    content_for :sidebar, &block
+  def build_tiered_menu(items)
+    out = ""
+    li_elements = []
+    items.each do |item|
+      li_elements << build_li_for(item)
+    end
+    out += content_tag(:ul, li_elements, :id => "gns_01")
+    out
+  end
+  
+  def build_li_for(item)
+      li_class = @current_tab == item[:tab] ? "active" : ""
+      li_content = link_to(item[:text], item[:url])
+      if item.has_key? :subtabs
+        subtab_li_elements = []
+        item[:subtabs].each do |subtab_item|
+          subtab_li_elements << build_li_for(subtab_item)
+        end
+        li_content += content_tag('ul', subtab_li_elements)
+      end
+      content_tag(:li, li_content, :class => li_class)
+  end
+  
+  def section_links(section)
+    section_links = ""
+    section.links.each do |l|
+      section_links += content_tag(:li, link_to(l.text, send(l.url), :class => l.class))
+    end
+    section_links
   end
   
   def build_right_menu
@@ -83,7 +114,11 @@ module Admin::ApplicationHelper
       [:users, 'Users', admin_users_path]
     )
   end
-           
+  
+  def help_content(&block)
+    content_for :sidebar, &block
+  end
+  
   def build_menu(*items)
     items.map do |item|
       if !item[3] || current_user.send(item[3])
