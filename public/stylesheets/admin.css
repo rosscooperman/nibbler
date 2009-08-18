@@ -701,6 +701,55 @@ dd.text_editor {
   padding-right: 20%;
 }
 
+/* session layout 
+----------------------------------------------------------------------*/
+
+#session {
+  background: #d4d4d4;
+}
+
+#session .std_form {
+  padding: 0;
+}
+
+#session #wrapper {
+  width: 500px;
+  margin-top: 50px;
+  padding: 0;
+}
+
+#session #page_content,
+#session #inner {
+  background-image: url(/images/admin/bg_session.png);
+}
+
+#session #wrapper #page_content {
+  padding-bottom: 50px;
+  min-height: 100px;
+  background-position: 0 bottom;
+}
+
+#session #inner {
+  text-align: left;
+  width: 350px;
+  min-height: 200px;
+  padding: 140px 75px 0;
+}
+
+#session label {
+  color: #555;
+}
+
+#session label,
+#session input {
+  font-size: 108%;
+}
+
+#session input[type=text],
+#session input[type=password] {
+  width: 95%;
+  font-size: 116%;
+}
 
 /* clearfix
 ----------------------------------------------------------------------*/
