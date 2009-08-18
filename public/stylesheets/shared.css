@@ -1,6 +1,6 @@
 #staging {
   position: fixed;
-  top: 0;
+  bottom: 10px;
   left: 0;
   width: 30px;
   height: 135px;

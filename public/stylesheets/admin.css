@@ -1,71 +1,192 @@
 body {
-  background-color: #D4D4D4;
+  font-size: 12px;
+  line-height: 1.538;
+  color: #000;
+  background-color: #bfbfbf;
+  font-family: "helvetica neue", helvetica, arial, sans-serif;
+  text-align: center;
 }
 
-a {
+a,
+a.go_to_page span {
   color: #3366cc;
   text-decoration: none;
 }
 
 a:hover { text-decoration: underline; }
 
-#wrapper,
 #footer .wrapper,
-.breadcrumbs,
+#breadcrumbs,
 #header .wrapper,
-.flash {
-  width: 80%;
+#wrapper {
+  padding: 0 20px;
   text-align: left;
+}
+
+#page_content .flash {
+  width: auto;
 }
 
 .flash { text-align: center; }
 
+#inner {
+  min-height: 500px;
+}
+
+/* page structures
+------------------------------------------------------------*/
+
+.aux #page_content,
+#sidebar {
+  position: relative;
+  float: left;
+}
+
+#main {
+  float: right;
+  margin-left: -260px;
+  width: 100%;
+}
+
+#content_wrap {
+  margin-left: 260px;
+  padding-bottom: 16px;
+}
+
+.aux #page_content {
+  width: 100%;
+}
+
+#sidebar {
+  width: 260px;
+  background-color: red;
+}
+
+#bottom {
+  width: 100%;
+  height: 16px;
+  border: 0;
+  clear: both;
+  display: none;
+}
+
+#page_top {
+  margin-left: 260px;
+}
+
+#inner {
+  padding-right: 2px;
+}
+
+#inner > .content {
+  padding: 20px;
+}
+
 /* skin 
 ----------------------------------------------------------------------*/
 
-#header       { background: #3b3b3b     url(/images/admin/bg_header.png)        center  bottom  repeat-x;   }
-#wrapper      { background: #fff        url(/images/admin/bg_bottom_left.png)   left    bottom  no-repeat;  }
-#page_top     { background: #fff        url(/images/admin/bg_top_left.png)      left    top     no-repeat;  }
-#bottom       { background: transparent url(/images/admin/bg_bottom_right.png)  right   bottom  no-repeat;  }
-h2.page_title { background: transparent url(/images/admin/bg_top_right.png)     right   top     no-repeat;  }
-#content_wrap { background: #fff        url(/images/admin/bg_left.png)          left    top     repeat-y;   }
-#inner        { background: transparent url(/images/admin/bg_right.png)         right   top     repeat-y;   }
+#header       { background: #333      url(/images/admin/bg_header.png)            center  bottom  repeat-x;   }
+#wrapper      { background: #bfbfbf   url(/images/admin/bg_wrapper.png)           1px    0       repeat-y;   }
+h2.page_title { background:           url(/images/admin/bg_top_right.png)         right   top     no-repeat;  }
+#content_wrap { background:           url(/images/admin/bg_bot_right.png)         right   bottom  no-repeat;  }
+#main         { background: #bfbfbf   url(/images/admin/bg_bot_left.png)          left    bottom  no-repeat;  }
+#page_top     { background: #fff      url(/images/admin/bg_top_left.png)          0       0       repeat-x;   }
+#sidebar      { background: #fff      url(/images/admin/bg_top_left_sidebar.png)  0       0       no-repeat;  }
+#page_content { background: #fff      url(/images/admin/bg_page_content.png)      right   0       repeat-y;   }
 
 /* Header
 ----------------------------------------------------------------------*/
 
 #header {
   color: #fff;
-  padding-bottom: 1px;
-  border-bottom: 1px solid #aaa;
+  margin-bottom: 1em;
+  height: 110px;
 }
 
 #header .wrapper { position: relative; }
 
 #header h1 {
   margin: 0;
-  padding: 20px 0 0;
-  height: 48px;
+  padding: 15px 0 0;
+  height: 53px;
+  font-size: 161.6%;
 }
 
-#header h1 a        { color: #eee; }
-#header h1 a:hover  { text-decoration: underline; }
-
-#header,
-.breadcrumbs {
-  margin-bottom: 1em;
+#header h1 a  {
+  display: block;
+  width: 222px;
+  height: 50px;
+  background-image: url(/images/admin/logo_header.png);
+  text-indent: -9999em;
 }
 
-.breadcrumbs a {
+#breadcrumbs {
+  margin: 0 auto 1em;
+  text-align: left;
+}
+
+#breadcrumbs a {
   font-weight: bold;
 }
 
-.breadcrumbs img {
+#breadcrumbs img {
   margin: 0 .5em;
+}
+
+#breadcrumbs li {
+  display: inline;
 }
 
 /* gns_01
 ----------------------------------------------------------------------------*/
+
+#gns_01,
+#gns_01 li {
+  position: relative;
+}
+
+ul#gns_01 ul {
+ width: 180px; /* Sub Menu Width */
+ display: none;
+ position: absolute;
+ top: 37px;
+ left: 0;
+ z-index: 9999;
+}
+
+ul#gns_01 ul ul,ul#gns_01 ul ul ul { top: 0; left: 100%; }
+
+ul#gns_01 ul li {
+  margin: 0;
+  padding: 0 1em;
+  background: url(/images/admin/bg_dropdown.png) 0 center no-repeat;
+}
+
+ul#gns_01 ul li,
+ul#gns_01 ul li a {
+  display: block;
+  float: none;
+}
+
+ul#gns_01 ul li a {
+  height: auto;
+  padding: 5px;
+  border-top:     1px solid #fff;
+  border-bottom:  1px solid #d5d5d5;
+}
+
+ul#gns_01 ul li:first-child {
+  padding-top: 1px;
+  background-position: 0 0;
+}
+
+ul#gns_01 ul li:last-child  {
+  padding-bottom: 9px;
+  background-position: 0 bottom; 
+}
+
+ul#gns_01 ul li:first-child a { border-top: 0; }
+ul#gns_01 ul li:last-child  a { border-bottom: 0; }
 
 #gns_01 li,
 #gns_02 li,
@@ -79,33 +200,33 @@ h2.page_title { background: transparent url(/images/admin/bg_top_right.png)     
 
 #gns_01 li {
   padding: 0;
+  margin-bottom: 5px;
 }
 
 #gns_01 li,
 #gns_03 li {
   font-weight: bold;
-  border-left: 1px solid #bbb;
-}
-
-#gns_01 li:last-child,
-#gns_03 li:last-child {
-  border-right: 1px solid #bbb;
+  padding-left: 4px;
 }
 
 #gns_01 li a,
 #gns_03 li a {
-  height: 25px;
-  padding: 5px 18px 0;
-  color: #5b5b5b;
-  text-shadow: #fff -1px -1px 1px;
+  height: 29px;
+  padding: 7px 10px 0 6px;
+  color: #666;
+  text-shadow: #fff 0 1px 1px;
+  margin-bottom: 2px;
 }
 
 #gns_01 li.active a,
 #gns_03 li.active a {
-  color: #fff;
-  background: url(/images/admin/bg_tab_active.png) center bottom repeat-x;
-  text-shadow: #333 -1px -1px 1px;
+  color: #000;
 }
+
+/* Hover Function - Do Not Move */
+ul#gns_01 li:hover ul,
+#footer ul#gns_01 li:hover ul  { display: none; }
+ul#gns_01 li:hover ul,ul#gns_01 ul li:hover ul,ul#gns_01 ul ul li:hover ul,ul#gns_01 li.iehover ul,ul#gns_01 ul li.iehover ul,ul#gns_01 ul ul li.iehover ul { display: block; }
 
 /* gns_02
 -----------------------------------------------------------------------------*/
@@ -113,7 +234,7 @@ h2.page_title { background: transparent url(/images/admin/bg_top_right.png)     
 #gns_02 {
   position: absolute;
   top: 1em;
-  right: 0;
+  right: 20px;
 }
 
 #gns_02 li {
@@ -133,12 +254,21 @@ ul#gns_03 {
   float: right;
 }
 
+#gns_01 ul li,
+#gns_01 ul li a {
+  margin-bottom: 0;
+}
+
+#gns_01 ul li {
+/*   background-color: #fff; */
+}
+
 /* foot_gns
 ----------------------------------------------------------------------------------*/
 
 #footer {
   color: #aaa;
-  margin: 1em 0.5em 3em;
+  margin: 0.5em 0;
 }
 
 #footer li {
@@ -147,7 +277,7 @@ ul#gns_03 {
 }
 
 #footer li a {
-  color: #7b7b7b;
+  color: #5a5a5a;
 }
 
 #footer li.active a {
@@ -155,10 +285,15 @@ ul#gns_03 {
   font-weight: bold;
 }
 
-table.dataset       { width: 100%; }
+table.dataset       { width: 100%; border-top: 1px solid #fff; margin-top: 1px;}
 .dataset .controls  { text-align: right; }
 .dataset td         { padding: 0.4em; }
 .dataset .nested    { text-indent: 20px; }
+
+#footer #gns_01 a {
+  display: inline;
+  padding: 0;
+}
 
 /* search
 ----------------------------------------------------------------------------*/
@@ -180,98 +315,149 @@ table.dataset       { width: 100%; }
 /* action buttons - default action buttons have a white background - others have a gray background to match header
 -----------------------------------------------------------------------------------------*/
 
-.page_actions {
-  margin: 0 0 1em;
-  padding-bottom: 0.5em;
-  border-bottom: 2px solid #e3e3e3;
+.page_actions{
+  padding-top: 2px;
 }
 
-.page_actions form {
-  float: right;
+.page_actions .action {
+  float: left;
+}
+
+.breadcrumbs,
+.page_actions .action,
+.pagination_nav,
+.page_actions .filter_list {
+  padding: 0.5em 25px;
+}
+
+.page_actions,
+.page_actions .filter_list {
+  background-image: url(/images/admin/bg_page_actions.png);
+  background-color: #f0f0f0;
+  background-repeat: repeat-x;
+}
+
+.page_actions {
+  border-bottom: 1px solid #d5d5d5;
+  background-position:  center top;
+}
+
+.page_actions {
+  position: relative;
+  z-index: 1000;
+  overflow: visible;
+}
+
+.page_actions .top_right {
+  position: absolute;
+  top: -26px;
+  right: 10px;
+}
+
+.page_actions form select {
+  max-width: 150px;
 }
 
 .page_actions form #search {
-  width: 20em;
+  width: 15em;
 }
 
 .page_actions form .bn {
   margin-left: 0.5em;
 }
 
-.page_actions a {
+.page_actions a.icon {
   float: left;
 }
 
-.page_actions a,
+.page_actions a.icon,
 #sidebar .quick_add a {
   display: inline-block;
   padding-left: 21px;
   background-position: left 1px;
   background-repeat: no-repeat;
+  font-size: 93%;
+  font-weight: bold;
+  color: #555;
+  line-height: 1.7;
 }
 
+.filters strong,
+.filters form {
+  float: left;
+  display: block;
+}
+
+.page_actions .filter_list {
+  clear: both;
+  background-position:  center top;
+  text-shadow: #fff 0 1px 1px;
+}
+
+.page_actions .filter_list ul {
+  display: inline;
+}
+
+.page_actions .filter_list li {
+  display: inline-block;
+  margin-left: 0.5em;
+}
+
+.page_actions .filter_list a {
+  color: #555;
+  
+}
+
+.page_actions .filter_list strong { color: #999; font-weight: normal; }
+
+.page_actions .filter_list li.active a {
+  color: #111;
+  font-weight: bold;
+}
+
+label span.remaining {
+  color: #777;
+  font-weight: normal;
+}
 /* icons 
 ----------------------------------------------------------------------*/
 
-.add_new        { background-image: url(/images/admin/add.gif); }
-.edit           { background-image: url(/images/admin/page_white_edit.gif); }
-.delete         { background-image: url(/images/admin/delete.gif); }
-.add_page       { background-image: url(/images/admin/note_add.gif); }
-.add_user       { background-image: url(/images/admin/user_add.gif); }
-.add_art        { background-image: url(/images/admin/photo_add.gif); }
-.add_date       { background-image: url(/images/admin/date_add.gif); }
-.add_gallery    { background-image: url(/images/admin/building_add.gif); }
-.add_exhibit    { background-image: url(/images/admin/image_add.gif); }
-
-/* page structures
-------------------------------------------------------------*/
-
-.aux #page_content,
-.aux #sidebar {
-  position: relative;
-  float: left;
+.icon,
+.button {
+  margin-right: 1em;
 }
 
-#content_wrap {
-  width: 100%;
-  overflow: hidden;
-}
-
-#inner {
-  width: auto;
-  padding: 20px 2%;
-}
-
-.aux #inner {
-  float: right;
-  width: 72%;
-  padding: 20px 26% 20px 2%;
-}
-
-.aux #page_content {
-  width: 100%;
-}
-
-#sidebar {
-  width: 29%;
-  padding: 0 3% 2em;
-  margin-right: -35%;
-}
-
-#bottom {
-  width: 100%;
+.button {
+  display: inline-block;
+  width:  16px;
   height: 16px;
-  border: 0;
-  clear: both;
+  text-indent: -9999em;
 }
+
+.add_new        { background-image: url(/images/admin/icons/add.gif); }
+.edit           { background-image: url(/images/admin/icons/page_white_edit.gif); }
+.delete         { background-image: url(/images/admin/icons/delete.gif); }
+.add_page       { background-image: url(/images/admin/icons/note_add.gif); }
+.add_user       { background-image: url(/images/admin/icons/user_add.gif); }
+.add_art        { background-image: url(/images/admin/icons/photo_add.gif); }
+.add_date       { background-image: url(/images/admin/icons/date_add.gif); }
+.add_gallery    { background-image: url(/images/admin/icons/building_add.gif); }
+.add_exhibit    { background-image: url(/images/admin/icons/image_add.gif); }
+.download       { background-image: url(/images/admin/download.png); }
+.money          { background-image: url(/images/admin/icons/money.gif); }
+.sync           { background-image: url(/images/admin/icons/arrow_refresh_small.gif); }
 
 /* page title
 ----------------------------------------------------------------------------*/
 
 h2.page_title {
-  padding: 5px 20px 0;
   margin: 0;
-  line-height: 2em;
+  padding: 7px 24px 2px;
+  font-size: 123.1%;
+  line-height: 1.7em;
+  text-shadow: #fff 0 1px 1px;
+  letter-spacing: 0.05em;
+  color: #999;
 }
 
 h2.page_title em {
@@ -289,42 +475,95 @@ h2.page_title span {
 /* sidebar 
 ----------------------------------------------------------------------*/
 
-#sidebar h3 {
-  font-size: 116%;
-  line-height: 200%;
-  margin: 0;
-  padding: 0.25em 0.5em 0;
-  background-color: #777;
-  color: #eee;
-}
-
 .quick_add {
-/*   padding: 1em; */
-  border: 1px solid #eee;
-  border-top-color: #333;
+  padding: 5px 15px;
 }
 
 .quick_add li {
-  padding: 0.25em 0.5em;
-  border-bottom: 1px solid #eee;
+  padding: 5px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.quick_add li:first-child { border-top: 0; }
+.quick_add li:last-child { border-bottom: 0; }
+
+.quick_add li a {
+  color: #555;
+  font-weight: bold;
 }
 
 /* pagination nav
 ----------------------------------------------------------------------------*/
 
 .pagination_nav {
-  margin-bottom: 1em;
+  float: right;
+  position: relative;
+  padding-left: 2em;
+/*   border-left: 1px solid #aaa; */
+  background: url(/images/admin/bg_pattern.png);
 }
 
-.pagination_nav .submit {
-  margin: 0;
+.bottom .pagination_nav {
+  background: #fff;
 }
+
+.pagination_nav form {
+  position: static;
+}
+
+a.go_to_page {
+  font-weight: bold;
+}
+
+div.go_to_page {
+  position: absolute;
+  top:    20px;
+  right:  10px;
+  width: 140px;
+  height: 50px;
+  background: url(/images/admin/bg_go_to_page.png) 0 0 no-repeat;
+  text-align: center;
+}
+
+/* pagination
+----------------------------------------------------------------------*/
+
+div.pagination {
+  display: inline;
+  margin: 0 1em;
+  text-align: center;
+}
+
+.pagination span,
+.pagination a {
+  padding: 2px;
+}
+
+.pagination .current {
+  color: #fff;
+  background-color: #111;
+}
+
+.pagination .prev_page,
+.pagination .next_page  { font-weight: bold; }
+
+.pagination .disabled   { color: #aaa; font-weight: normal; }
+.pagination a           { text-decoration: none; color: #333;}
+.pagination a:hover     { text-decoration: underline; }
+
+
 
 /* table styling
 -----------------------------------------------------------------------------------------*/
 
+table {
+  margin-bottom: 1em;
+}
+
 table tr td {
-  vertical-align: top;
+  vertical-align: middle;
+/*  font-size: 93%;*/
 }
 
 tr td.image {
@@ -335,30 +574,41 @@ tr td.image {
   margin-right: 5px;
 }
 
-table {
-  margin-bottom: 1em;
+td:first-child,
+th:first-child {
+  font-weight: bold;
+  padding-left: 25px;
 }
 
 thead th,
 table td {
   padding: 0.5em;
+  vertical-align: middle;
+  overflow: hidden;
 }
 
 thead th,
 thead th a {
-  color: #eee;
+  color: #000;
 }
 
 thead th {
+  padding: 1em 0.5em 1.5em;
   font-weight: bold;
   text-align: left;
-  background-color: #777;
+  background: #f2f2f2 url(/images/admin/thead.png) 0 bottom repeat-x;
+  text-transform: uppercase;
+  white-space:nowrap;
 }
 
 thead th a {
   display: inline-block;
   padding-right: 15px;
   background: url('/images/admin/down_arrow.gif') right center no-repeat;
+}
+
+table tr:hover {
+  background-color: #DFEDFF;
 }
 
 td.controls {
@@ -375,6 +625,13 @@ td.controls a {
   background-position: 0 0;
   background-repeat: no-repeat;
   overflow: hidden;
+}
+
+td strong {
+/*   display: block; */
+/*   color: #999; */
+/*   font-size: 93%; */
+/*   line-height: 1; */
 }
 
 /* 2, 3, 4 columns
@@ -400,15 +657,15 @@ td.controls a {
 /* form styles 
 ----------------------------------------------------------------------*/
 
+.std_form {
+  padding: 25px;
+/*   background-color: #eee; */
+}
+
 .std_form dt        { font-weight: bold; }
 .std_form dd label  {
   margin-right: 1em;
   font-weight: normal;
-}
-
-.std_form dd {
-  padding: 5px;
-  background-color: #f6f6f6;
 }
 
 .std_form dd.buttons {
@@ -422,8 +679,8 @@ td.controls a {
 
 .std_form input[type=text],
 .std_form input[type=password],
-.std_form input[type=textarea] {
-  width: 79%;
+.std_form textarea {
+  width: 50%;
 }
 
 .std_form input[type=text],
@@ -437,12 +694,14 @@ dd.text_editor {
 }
 
 .std_form select {
-  width: 14em;
+/*  width: 14em;*/
 }
 
 dd.text_editor {
   padding-right: 20%;
 }
+
+
 /* clearfix
 ----------------------------------------------------------------------*/
 
@@ -476,3 +735,5 @@ html[xmlns] #inner {
 * html #inner {
   height: 1%;
 }
+
+
