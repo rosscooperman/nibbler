@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
   include ControllerAuthentication
 
-  layout 'application'
+  layout 'session'
   skip_before_filter :login_required
 
   def new

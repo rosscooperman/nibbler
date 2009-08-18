@@ -1,6 +1,6 @@
-<% @page_title = "You are now logged out. Be good." %>
+<% @page_title = "You are now signed out." %>
 
-<h2 class="header"><%= @page_title %></h2>
+<%= content_tag(:h1, @page_title) %>
 
 <div id="signin_form" class="sign">
   <% form_for :session, :url => session_path do |f| -%>

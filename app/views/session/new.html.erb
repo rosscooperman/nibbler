@@ -1,7 +1,7 @@
 <% @page_title  = "Member Sign In" %>
 <% @signin_message = "Have an account already? Let's get to it." %>
 
-<h2 class="header"><%= @page_title %></h2>
+<%= content_tag(:h1, @page_title) %>
 
 <div id="signin_form" class="sign">
   <% form_for :session, :url => session_path do |f| -%>
