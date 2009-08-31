@@ -7,6 +7,9 @@
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
   <title>Fresh Application &mdash; <%= @page_header.blank? ?  @page_title : @page_header %></title>
   <%= stylesheet_link_tag "reset-fonts", "base", "nyroModal", "admin", :media => :all %>
+  <!--[if IE]>
+    <%= stylesheet_link_tag 'admin_ie' %>
+  <![endif]-->
   <%= yield :head %>
   
 </head>
