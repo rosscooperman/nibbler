@@ -10,10 +10,6 @@
   font-size: 116%;
 }
 
-#session .submit {
-  padding: 0;
-}
-
 #session .submit input {
   width: auto;
 }
