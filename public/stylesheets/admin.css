@@ -693,10 +693,6 @@ dd.text_editor {
   color: #5b5b5b;
 }
 
-.std_form select {
-/*  width: 14em;*/
-}
-
 dd.text_editor {
   padding-right: 20%;
 }
@@ -704,19 +700,22 @@ dd.text_editor {
 /* session layout 
 ----------------------------------------------------------------------*/
 
-#session .std_form {
-  padding: 0;
+#session {
+  background-color: #eee;
 }
 
 #session #wrapper {
   width: 500px;
   margin-top: 50px;
   padding: 0;
+  overflow: hidden;
+  min-width: 1px;
 }
 
 #session #page_content,
 #session #inner {
   background-image: url(/images/admin/bg_session.png);
+  min-height: 1px;
 }
 
 #session #wrapper #page_content {
@@ -727,19 +726,8 @@ dd.text_editor {
 
 #session #inner {
   text-align: left;
-  width: 350px;
-  min-height: 200px;
-  padding: 0 75px 0;
-}
-
-#session h1 {
-  height: 95px;
-  padding-top: 55px;
-  margin: 0;
-  color: #fff;
-  text-shadow: #42484B 0 -1px -1px;
-  letter-spacing: .05em;
-  font-size: 167%;
+  width: 450px;
+  padding: 125px 25px 0;
 }
 
 #session label {
