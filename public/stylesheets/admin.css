@@ -23,6 +23,14 @@ a:hover { text-decoration: underline; }
   text-align: left;
 }
 
+#wrapper,
+#header .wrapper,
+#footer .wrapper {
+  min-width: 920px;
+  width: auto !important;
+  width: 920px;
+}
+
 #page_content .flash {
   width: auto;
 }
@@ -31,7 +39,28 @@ a:hover { text-decoration: underline; }
 
 #inner {
   min-height: 500px;
+  height: auto !important;
+  height: 500px;
 }
+
+a, input, select, textarea {
+  outline: none;
+}
+
+h1,h2,h3,h4,h5,h6,
+strong, strong *, * strong  { font-weight: bold; }
+em, em *, * em              { font-style: italic; }
+
+h1, h2, h3 { font-family: Helvetica, arial, sans-serif; }
+
+img { background-color: transparent; }
+
+h1        { font-size:  138.5%;   } /*18px*/
+h2        { font-size:  123.1%;   } /*16px*/
+h3        { font-size:  108%;     } /*14px*/
+h1,h2,h3  { margin:     1em 0;    } 
+
+p,fieldset,table { margin-bottom:1em; }
 
 /* page structures
 ------------------------------------------------------------*/
