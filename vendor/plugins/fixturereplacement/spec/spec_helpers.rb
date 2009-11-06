@@ -1,34 +1,13 @@
 module SpecHelperFunctions
-  # We need this just so that the tests don't fail
-  # when we are running the tests outside of a real rails project.
-  # Otherwise, the tests would fail with a file not found error,
-  # since db/example_data.rb is no where to be found
-  def swap_out_require!
-    Kernel.module_eval do
-      
-      # Thanks, Jay Fields:
-      # http://blog.jayfields.com/2006/12/ruby-alias-method-alternative.html
-      require_method = instance_method(:require)
-
-      define_method(:require) do |string|
-        unless string == "/db/example_data.rb"
-          require_method.bind(self).call(string)
-        end
-      end
-    end
-  end
-  
   def setup_database_connection
-    
     require 'rubygems'
     require 'sqlite3'
     require 'active_record'
-    require 'active_support'
     
     ActiveRecord::Base.establish_connection :adapter => 'sqlite3', :database  => ':memory:'
     ActiveRecord::Migration.verbose = false
 
-    ActiveRecord::Schema.define do  
+    ActiveRecord::Schema.define do
       create_table :users, :force => true do |t|
         t.column  :key,       :string
         t.column  :other_key, :string
@@ -79,10 +58,34 @@ module SpecHelperFunctions
         t.column :subscriber_id, :integer
         t.column :subscription_id, :integer
       end
+      
+      create_table :events do |t|
+        t.column :created_at, :datetime
+        t.column :updated_at, :datetime
+      end
+      
+      create_table :schedules do |t|
+        t.integer :event_id
+      end
+      
+      create_table :posts do |t|
+        t.timestamps
+      end
+      
+      create_table :comments do |t|
+        t.integer :post_id
+        t.timestamps
+      end
     end
-  end  
+    
+    def use_module(&block)
+      mod = Module.new
+      mod.extend(FixtureReplacement::ClassMethods)
+      mod.instance_eval(&block)
+
+      obj = Object.new
+      obj.extend mod
+      obj
+    end
+  end
 end
-
-
-
-

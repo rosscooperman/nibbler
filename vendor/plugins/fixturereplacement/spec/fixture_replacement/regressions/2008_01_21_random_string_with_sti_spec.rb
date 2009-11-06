@@ -43,51 +43,28 @@
 # 	
 require File.dirname(__FILE__) + "/../../spec_helper"
 
-module FixtureReplacementControllerHelper2
-  def setup_fixtures
-    @module = Module.new do
-      class << self
-        include FixtureReplacement::ClassMethods
-      end
-      
-      attributes_for :user do |u|
-        u.key = "foo"
-        u.username = random_string
-      end
-      
-      attributes_for :player, :class => Player, :from => :user
-
-    private
-    
-      def random_string
-        String.random(55)
-      end
-    end
-
-    FixtureReplacementController::ClassFactory.stub!(:fixture_replacement_module).and_return @module
-    FixtureReplacementController::MethodGenerator.generate_methods
-    self.class.send :include, @module
-  end
-end
-
-module FixtureReplacementController
-  
-  describe "String.random" do
-    include FixtureReplacementControllerHelper2
-    
+module FixtureReplacement
+  describe "random_string" do
     before :each do
-      setup_fixtures
+      @obj = use_module do
+        attributes_for :user do |u|
+          u.key = "foo"
+          u.username = random_string(55)
+        end
+
+        attributes_for :player, :class => Player, :from => :user
+      end
     end
     
     it "should have a different string for each instance in the base class" do
-      user1 = create_user
-      user2 = create_user
+      user1 = @obj.create_user
+      user2 = @obj.create_user
       user1.username.should_not == user2.username
     end
     
     it "should have a different string for each instance in the inherited class (with STI)" do
-      player1 = create_player
-      player2 = create_player
+      player1 = @obj.create_player
+      player2 = @obj.create_player
       player1.username.should_not == player2.username
     end
   end
