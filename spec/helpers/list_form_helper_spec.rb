@@ -4,18 +4,10 @@ module ListFormHelpers
   def setup_helper!
     @output_buffer = ""
     helper.output_buffer = @output_buffer
-
-    # for mocking with rspec's mocking framework
-    helper.stubs(:spec_mocks_mock_path).returns "/foo/bar"
-    helper.stubs(:spec_mocks_mock_url).returns "http://example.com/foo/bar"
-    helper.stubs(:spec_mocks_mocks_path).returns "/foo/bar"
-    helper.stubs(:spec_mocks_mocks_url).returns "http://example.com/foo/bar"
-
-    # for mocking with Mocha
-    helper.stubs(:mocha_mocks_path).returns "/foo/bar"
-    helper.stubs(:mocha_mock_path).returns "/foo/bar"
-    helper.stubs(:mocha_mocks_url).returns "http://example.com/foo/bar"
-    helper.stubs(:mocha_mock_url).returns "http://example.com/foo/bar"
+    helper.stub!(:spec_mocks_mock_path).and_return "/foo/bar"
+    helper.stub!(:spec_mocks_mock_url).and_return "http://example.com/foo/bar"
+    helper.stub!(:spec_mocks_mocks_path).and_return "/foo/bar"
+    helper.stub!(:spec_mocks_mocks_url).and_return "http://example.com/foo/bar"
 
     @controller = Class.new do
       attr_reader :url_for_options
@@ -49,7 +41,7 @@ describe "list forms" do
       before(:each) do
         @obj = mock('ar object', :new_record? => false, :id => 17)
         setup_helper!
-        helper.stubs(:create_cancel_url).returns "create/cancel/url"
+        helper.stub!(:create_cancel_url).and_return "create/cancel/url"
       end
 
       it "should produce a dt" do
@@ -69,7 +61,7 @@ describe "list forms" do
       end
 
       it "should create a submit button with the text 'Create' when it's a new record" do
-        @obj.stubs(:new_record?).returns true
+        @obj.stub!(:new_record?).and_return true
 
         out = using_form_for do |f|
           f.dl_create_or_update_button
@@ -79,7 +71,7 @@ describe "list forms" do
       end
 
       it "should use optional create text" do
-        @obj.stubs(:new_record?).returns true
+        @obj.stub!(:new_record?).and_return true
 
         out = using_form_for do |f|
           f.dl_create_or_update_button(nil, nil, "Create Text")
@@ -89,7 +81,7 @@ describe "list forms" do
       end
 
       it "should use the default text of 'Update' when a saved record" do
-        @obj.stubs(:new_record?).returns false
+        @obj.stub!(:new_record?).and_return false
 
         out = using_form_for do |f|
           f.dl_create_or_update_button
@@ -99,7 +91,7 @@ describe "list forms" do
       end
 
       it "should allow the update text to be specified" do
-        @obj.stubs(:new_record?).returns false
+        @obj.stub!(:new_record?).and_return false
 
         out = using_form_for do |f|
           f.dl_create_or_update_button(nil, nil, nil, "Update Text")
@@ -109,7 +101,7 @@ describe "list forms" do
       end
 
       it "should add the Cancel link" do
-        @obj.stubs(:new_record?).returns true
+        @obj.stub!(:new_record?).and_return true
 
         out = using_form_for do |f|
           f.dl_create_or_update_button
@@ -120,7 +112,7 @@ describe "list forms" do
 
       it "should add the the create link with the create_cancel_url when the object is a new record" do
         pending 'todo'
-        @obj.stubs(:new_record?).returns true
+        @obj.stub!(:new_record?).and_return true
 
         out = using_form_for do |f|
           f.dl_create_or_update_button
@@ -131,7 +123,7 @@ describe "list forms" do
 
       it "should add the the create link with the update_cancel_url when the object is saved" do
         pending 'todo'
-        @obj.stubs(:new_record?).returns false
+        @obj.stub!(:new_record?).and_return false
 
         out = using_form_for do |f|
           f.dl_create_or_update_button
@@ -141,7 +133,7 @@ describe "list forms" do
       end
 
       it "should add 'or' between Create and Cancel" do
-        @obj.stubs(:new_record?).returns true
+        @obj.stub!(:new_record?).and_return true
 
         out = using_form_for do |f|
           f.dl_create_or_update_button
@@ -157,7 +149,7 @@ describe "list forms" do
       before(:each) do
         @obj = mock('ar object', :new_record? => false, :id => 17)
         setup_helper!
-        helper.stubs(:create_cancel_url).returns "create/cancel/url"
+        helper.stub!(:create_cancel_url).and_return "create/cancel/url"
       end
 
       it "should include a li" do
@@ -169,7 +161,7 @@ describe "list forms" do
       end
 
       it "should include the Create and Cancel buttons for a new record" do
-        @obj.stubs(:new_record?).returns true
+        @obj.stub!(:new_record?).and_return true
 
         out = using_form_for do |f|
           f.ul_create_or_update_button
