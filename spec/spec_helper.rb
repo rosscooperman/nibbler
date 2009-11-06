@@ -6,9 +6,9 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'spec'
 require 'spec/rails'
 require 'faker'
-require 'factory_girl'
 
 require File.expand_path(File.dirname(__FILE__) + "/rspec_extensions")
+
 require File.dirname(__FILE__) + "/spec_helpers"
 
 Spec::Runner.configure do |config|
