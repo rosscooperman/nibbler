@@ -1,7 +1,7 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: foo_dev
+  database: eastmedia_dev
   username: root
   password:
   host: localhost
@@ -9,15 +9,7 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  database: foo_test
+  database: eastmedia_test
   username: root
   password:
-  host: localhost
-
-production:
-  adapter: mysql
-  encoding: utf8
-  database: foo_production
-  username: root
-  password: 
   host: localhost
