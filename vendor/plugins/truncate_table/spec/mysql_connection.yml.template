@@ -1,7 +1,0 @@
-adapter: mysql
-encoding: utf8
-database: truncate_table_spec
-username: root
-password:
-host: localhost
-
