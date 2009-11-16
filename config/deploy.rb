@@ -21,13 +21,15 @@ ssh_options[:paranoid] = false
 # This will execute the Git revision parsing on the *remote* server rather than locally
 set :real_revision, lambda { source.query_revision(revision) { |cmd| capture(cmd) } }
 
+set  :application,          "APP_NAME"
+
+
 desc "Production deploys"
 task :production do
   set  :user,                 "deploy"
   set  :password,             "PASSWORD"
 
   set  :branch,               "master"
-  set  :application,          "APP_NAME"
   set  :deploy_to,            "/var/www/apps/#{application}"
   set  :deployment,           "production"
   set  :production_domain,    "EXAMPLE.COM"
@@ -44,7 +46,6 @@ task :staging do
   set  :password,             "PASSWORD"
 
   set  :branch,               "staging"
-  set  :application,          "APP_NAME_staging"
   set  :deploy_to,            "/var/www/apps/#{application}"
   set  :deployment,           "staging"
   set  :staging_domain,       "EXAMPLE.COM"
