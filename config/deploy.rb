@@ -73,6 +73,7 @@ after   "deploy",                 *common_after_deploy_tasks
 after   "deploy:migrations",      *common_after_deploy_tasks
 after   "deploy:long",            *common_after_deploy_tasks
 after   "deploy:update_code",     "deploy:symlink_configs"
+after   "deploy:setup",           "deploy:setup_directory_permissions", "deploy:setup_shared_directories"
 
 # =============================================================================
 
@@ -140,6 +141,14 @@ namespace :deploy do
       `git tag #{deployment}.#{time}`
       `git push --tags`
     end
+  end
+
+  task :setup_directory_permissions do
+    sudo "chown -R #{user}:#{user} #{deploy_to}"
+  end
+
+  task :setup_shared_directories do
+    run "mkdir -p #{shared_path}/config"
   end
 end
 
