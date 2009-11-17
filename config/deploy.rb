@@ -1,6 +1,6 @@
 
 # require 'eycap/recipes'
-# require 'config/recipes/railsmachine'
+require 'railsmachine/recipes'
 $LOAD_PATH.unshift File.dirname(__FILE__) + "/../vendor/plugins"
 require "cap_db_dump/lib/cap_db_dump/recipes"
 
