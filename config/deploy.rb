@@ -62,7 +62,6 @@ after   "deploy:symlink_configs", "deploy:symlink_app_configs", "deploy:update_r
 
 common_after_deploy_tasks = [
 #   "deploy:index_sphinx",
-  "deploy:generate_static_pages",
   "deploy:tag",
   "deploy:campfire_announce_after",
   "deploy:email_notify",
