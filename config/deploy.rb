@@ -95,36 +95,36 @@ namespace :deploy do
       cd #{current_path} && RAILS_ENV=production rake ts:in
     CMD
   end
-  
+
   task :symlink_app_configs, :roles => :app, :except => {:no_symlink => true} do
     run <<-CMD
-    ln -nsf #{shared_path}/config/settings.yml           #{release_path}/config/settings.yml && 
-    ln -nsf #{shared_path}/config/production.sphinx.conf #{release_path}/config/production.sphinx.conf && 
+    ln -nsf #{shared_path}/config/settings.yml           #{release_path}/config/settings.yml &&
+    ln -nsf #{shared_path}/config/production.sphinx.conf #{release_path}/config/production.sphinx.conf &&
     ln -nfs #{shared_path}/public/assets                 #{release_path}/public/assets
     CMD
   end
-  
+
   task :campfire_announce_before do
     set :campfire_message, "About to deploy #{application} #{deployment.upcase} from r#{real_revision} by #{ENV['USER']}."
     campfire.announce
   end
-  
+
   task :campfire_announce_after do
     set :campfire_message, "Completed deploying #{application} #{deployment.upcase} from r#{real_revision} by #{ENV['USER']} to http://#{domain}"
     campfire.announce
   end
-  
+
   task :update_revisions_log, :roles => :app, :except => { :no_release => true } do
     run "(test -e #{deploy_to}/revisions.log || (touch #{deploy_to}/revisions.log && chmod 666 #{deploy_to}/revisions.log)) && " +
     "echo `date +\"%Y-%m-%d %H:%M:%S\"` $USER #{real_revision} #{File.basename(release_path)} >> #{deploy_to}/revisions.log;"
   end
-  
+
   desc "Send email notification of deployment"
   task :email_notify, :roles => :app do
     require 'action_mailer' unless defined?(ActionMailer)
     require 'config/recipes/mailer'
     require 'app/mailers/deploy_mailer'
-    
+
     run "#{current_path}/script/runner -e production 'DeployMailer.deliver_deployment_notification(\"#{deployment}\", \"#{domain}\")'"
     puts "Deploy notification for #{deployment.upcase} sent"
   end
