@@ -21,7 +21,7 @@ module SharedHelper
     body << " class=\"#{@body_class}\"" if @body_class
     body << ">"
   end
-  
+
   def tab(text, url, id = nil)
     if @force_active_tab && @force_active_tab == text
       active_css_class  = 'active'
@@ -30,7 +30,7 @@ module SharedHelper
     end
     content_tag(:li, link_to(content_tag(:span, text), url, :class => "tab"), :class => "tab #{active_css_class}", :id => id)
   end
-  
+
   def tab_link(text, url, id = nil)
     if @force_active_tab && @force_active_tab == text
       active_css_class  = 'active'
@@ -49,9 +49,9 @@ module SharedHelper
   def app_host
     SETTINGS[:app_host]
   end
-  
+
   def git_version_html
-    @git_version_html ||= "<!-- git master:#{git_version} -->"
+    GitRevision.revision_html
   end
 
   def staging?
