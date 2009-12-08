@@ -1,26 +1,24 @@
 #!/usr/bin/env ruby
 # A small script to import a production gzip'ed dump
 
-require File.dirname(__FILE__) + "/../config/environment"
+require "yaml"
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 
 class DatabaseLoader
-  PRODUCTION_DB_USERNAME = "FIXME"
-  PRODUCTION_DB_HOST     = "%"
-
   attr_reader :db_dump_filename
-  
+
   def initialize(filename, run_migrations=false)
     @db_dump_filename = filename.dup
     @run_migrations = run_migrations ? true : false
   end
-  
+
   def load
     gunzip
-    substitute
     import
+    redefine_views
     run_migrations
   end
-  
+
   def gunzip
     if needs_unziping?
       puts "* Gunzip'ing #{db_dump_filename}"
@@ -29,39 +27,27 @@ class DatabaseLoader
     end
   end
 
-  def substitute
-    puts "* Substituting in #{new_username_at_host}"
-    contents = File.read(db_dump_filename)
-    contents.gsub!('DEFINER=`#{PRODUCTION_DB_USERNAME}`@`#{PRODUCTION_DB_HOST}` SQL SECURITY DEFINER',
-                   "DEFINER=#{new_username_at_host} SQL SECURITY DEFINER")
-    File.open(db_dump_filename, "w") do |f|
-      f.write(contents)
-    end
-  end
-  
   def import
     puts "* Importing db dump #{db_dump_filename} to #{database_name}"
-
-    cmd = "mysql -u root #{database_name} < #{db_dump_filename}"
-    puts "** Executing: #{cmd}"
-    `#{cmd}`
+    %x(mysql -u root #{database_name} < #{db_dump_filename})
   end
-  
+
   def run_migrations
     if should_run_migrations?
       puts "* Running migrations"
-      puts `RAILS_ENV=#{rails_env} rake db:migrate`
+      puts `rake db:migrate`
     end
   end
 
-private
-  
-  def should_run_migrations?
-    @run_migrations == true
+  def redefine_views
+    puts "* Redefining views under the current database user"
+    ViewRedefiner.redefine_views!
   end
 
-  def new_username_at_host
-    "#{database_username}@#{database_host}"
+private
+
+  def should_run_migrations?
+    @run_migrations == true
   end
 
   def needs_unziping?
@@ -71,21 +57,17 @@ private
   def database_name
     @database_name ||= config["database"]
   end
-  
+
   def database_username
     config["username"]
   end
-  
+
   def database_host
     config["host"]
   end
-  
-  def config
-    yaml_config[rails_env]
-  end
 
-  def rails_env
-    RAILS_ENV
+  def config
+    yaml_config[RAILS_ENV]
   end
 
   def yaml_config
@@ -94,6 +76,59 @@ private
 
   def db_dump_contents(&blk)
     File.open(db_dump_filename, "r+", &blk)
+  end
+end
+
+class ViewRedefiner
+  def self.redefine_views!
+    new.redefine_views
+  end
+
+  def redefine_views
+    views.each do |view|
+      redefine_view(view)
+    end
+  end
+
+  def redefine_view(view)
+    definition = get_view_definition(view)
+    definition.gsub!(/ALGORITHM.*DEFINER=.*SQL SECURITY DEFINER\s+/, "")
+    drop_view(view)
+    create_view(definition)
+  end
+
+  # [{"collation_connection"=>"utf8_general_ci",
+  #   "character_set_client"=>"utf8",
+  #   "Create View"=>
+  #    "CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `causes_index` AS (select `causes`.`id` AS `id`,`causes`.`name` AS `name`,`categories`.`name` AS `category_name`,`causes`.`website` AS `website`,if((`causes`.`display_on_homepage` = 1),_utf8'Yes',_utf8'No') AS `homepage_bool`,`causes`.`image_id` AS `image_id`,`causes`.`slug` AS `slug` from (`causes` left join `categories` on((`causes`.`category_id` = `categories`.`id`))))",
+  #   "View"=>"causes_index"}]
+  def get_view_definition(view_name)
+    execute_returning_hash("SHOW CREATE TABLE `#{view_name}`").first["Create View"]
+  end
+
+  def drop_view(view_name)
+    execute "DROP VIEW `#{view_name}`"
+  end
+
+  def create_view(definition)
+    execute definition
+  end
+
+  def views
+    show_views.map { |x| x.to_a.last.last }
+  end
+
+  def show_views
+    execute_returning_hash("SHOW FULL TABLES WHERE table_type = 'view'")
+  end
+
+  def execute_returning_hash(stmt)
+    execute(stmt).all_hashes.dup
+  end
+
+  def execute(stmt)
+    puts "* Executing sql: #{stmt}"
+    ActiveRecord::Base.connection.execute(stmt)
   end
 end
 
