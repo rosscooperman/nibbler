@@ -4,7 +4,6 @@ module SharedControllerBehavior
       include Oink::MemoryUsageLogger
       include Oink::InstanceTypeCounter
 
-      include ExceptionLoggable
       include AuthenticatedSystem
       include Authorization
       include FlashMessages
