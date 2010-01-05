@@ -1,32 +1,20 @@
-CAP DB DUMP
-=========
+= CAP DB DUMP
 
 Capistrano recipes for backing your production database and transferring it to
 your local machine.
 
 
-INSTALLATION
-============
+== INSTALLATION
 
 Install the plugin in vendor/plugins:
 
   # FROM RAILS_ROOT
   git submodule add git://github.com/smtlaissezfaire/cap_db_dump.git vendor/plugins/cap_db_dump
-  
+
 Or without submodules:
 
   # FROM RAILS_ROOT
-  cd vendor/plugins
-  git clone git://github.com/smtlaissezfaire/cap_db_dump.git
-  cd cap_db_dump
-  rm -rf .git
-  cd ../../.. # to RAILS_ROOT
-  
-
-Add these line to your config/deploy.rb file:
-
-$LOAD_PATH.unshift File.dirname(__FILE__) + "/../vendor/plugins"
-require "cap_db_dump/lib/cap_db_dump/recipes"
+  ruby script/plugin install git://github.com/smtlaissezfaire/cap_db_dump.git
 
 Finally, add the :db_dump => true flag on the server where you'd like the mysqldump to run:
 
@@ -37,8 +25,7 @@ Finally, add the :db_dump => true flag on the server where you'd like the mysqld
   end
 
 
-USAGE
-=====
+== USAGE
 
   Create a dump:
 
@@ -48,13 +35,11 @@ USAGE
 
     cap database:dump_and_transfer
 
-  Cleanup old dumps (only the last 3 are preserved):
+== Contributors:
 
-    cap database:cleanup
+  Conor Hunt (conorh)
 
-
-COPYRIGHT
-=========
+== COPYRIGHT
 
 Copyright (c) 2008 Scott Taylor / Eastmedia <scott@eastmedia.com>
-Released under the MIT license
+Released under the MIT + GPL licenses
