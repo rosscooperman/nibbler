@@ -5,7 +5,6 @@ require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_
 require 'spec/autorun'
 require 'spec/rails'
 
-require 'faker'
 require File.expand_path(File.dirname(__FILE__) + "/fixtures/settings")
 require File.expand_path(File.dirname(__FILE__) + "/rspec_extensions")
 require File.expand_path(File.dirname(__FILE__) + "/spec_helpers")
