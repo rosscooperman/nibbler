@@ -48,14 +48,11 @@ task :staging do
   role :db,                   staging_domain, :primary => true, :db_dump => true
 end
 
-before  "deploy",                 "deploy:campfire_announce_before"
-before  "deploy:migrations",      "deploy:campfire_announce_before"
 after   "deploy:symlink_configs", "deploy:symlink_app_configs", "deploy:update_revisions_log"
 
 common_after_deploy_tasks = [
 #   "deploy:index_sphinx",
   "deploy:tag",
-  "deploy:campfire_announce_after",
   "deploy:email_notify",
   "deploy:cleanup"
 ]
@@ -67,18 +64,6 @@ after   "deploy:update_code",     "deploy:symlink_configs"
 after   "deploy:setup",           "deploy:setup_directory_permissions", "deploy:setup_shared_directories"
 
 # =============================================================================
-
-namespace :campfire do
-  desc "Announce message to Campfire"
-  task :announce do
-    require 'tinder'
-    campfire  = Tinder::Campfire.new 'eastmedia', :ssl => true
-    campfire.login 'bot-em@eastmedia.com', 'potatoface'
-    room = campfire.find_room_by_name "ROOM_NAME"
-    room.speak campfire_message
-    set :campfire_message, "None"
-  end
-end
 
 namespace :deploy do
   task :index_sphinx, :roles => :app, :except => {:no_symlink => true} do
@@ -93,16 +78,6 @@ namespace :deploy do
     ln -nsf #{shared_path}/config/production.sphinx.conf #{release_path}/config/production.sphinx.conf &&
     ln -nfs #{shared_path}/public/assets                 #{release_path}/public/assets
     CMD
-  end
-
-  task :campfire_announce_before do
-    set :campfire_message, "About to deploy #{application} #{deployment.upcase} from r#{real_revision} by #{ENV['USER']}."
-    campfire.announce
-  end
-
-  task :campfire_announce_after do
-    set :campfire_message, "Completed deploying #{application} #{deployment.upcase} from r#{real_revision} by #{ENV['USER']} to http://#{domain}"
-    campfire.announce
   end
 
   task :update_revisions_log, :roles => :app, :except => { :no_release => true } do
