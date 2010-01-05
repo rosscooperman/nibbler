@@ -1,24 +1,21 @@
 # require 'eycap/recipes'
 require 'railsmachine/recipes'
 
-set :keep_releases, 5
-
-default_run_options[:pty] = true
-set :repository,            'git@github.com:eastmedia/REPOS_URL.git'
-set :scm,                   'git'
+set :application,           "APP_NAME"
+set :repository,            "git@github.com:eastmedia/REPOS_URL.git"
+set :scm,                   "git"
 set :deploy_via,            :fast_remote_cache
 set :git_shallow_clone,     1
 set :git_enable_submodules, false
-set :rails_env,             'production'
+set :rails_env,             "production"
+set :keep_releases,         5
 
 # comment out if it gives you trouble. newest net/ssh needs this set.
-ssh_options[:paranoid] = false
+ssh_options[:paranoid]    = false
+default_run_options[:pty] = true
 
 # This will execute the Git revision parsing on the *remote* server rather than locally
 set :real_revision, lambda { source.query_revision(revision) { |cmd| capture(cmd) } }
-
-set  :application,          "APP_NAME"
-
 
 desc "Production deploys"
 task :production do
