@@ -3,14 +3,14 @@
 <ul class="std_form">
   <%= f.ul_text_field :email, :text => "Email Address" %>
   <%= f.ul_password_field :password %>
-  
+
   <li class="submit">
     <%= submit_tag 'Sign In', :class => "bn" %>
-    <span> or <strong><%= link_to "Join &rarr;", "new_user_path" %></strong></span>
+    <span> or <strong><%= link_to "Join &rarr;", new_user_path %></strong></span>
   </li>
 
   <li class="password_recover">
-    Forgot your password? 
+    Forgot your password?
     <%= link_to 'Retrieve it &rarr;', forgot_password_path %>
   </li>
 </ul>

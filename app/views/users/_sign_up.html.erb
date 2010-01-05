@@ -1,17 +1,10 @@
 <div class="std_form">
   <p>Fill this out and you're good to go.</p>
   <ul>
-    <%= f.ul_text_field :name, :text => "Your Name", :required => true %>
-    <%= f.ul_text_field :email, :text => "Email Address", :required => true %>
+    <%= f.ul_text_field     :username, :required => true %>
+    <%= f.ul_text_field     :email, :text => "Email Address", :required => true %>
     <%= f.ul_password_field :password, :required => true %>
     <%= f.ul_password_field :password_confirmation, :required => true %>
-
-    <%= f.ul_select :gender, User::GENDERS, :include_blank => true %>
-
-    <%= f.ul_date_select :date_of_birth, :start_year => 1920, :end_year => Date.today.year,
-                          :text => "Date of Birth", :include_blank => true, :order => [:month, :day, :year] %>
-
-    <%= f.ul_check_box :subscribe_to_newsletter, :text => "Subscribe to Newsletter", :class => "checkbox" %>
   </ul>
   <p>You can rest easy – all info will remain private</p>
 </div>
