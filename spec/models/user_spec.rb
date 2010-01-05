@@ -26,4 +26,15 @@ describe User do
       @user.should validate_presence_of(field)
     end
   end
+
+  describe "validations + associations" do
+    it { @user.should have_valid_associations }
+    it { @user.should validate_presence_of(:username) }
+    it { @user.should validate_presence_of(:email) }
+
+    it "should not be valid with an invalid email address" do
+      @user.email = "adfasdfad@asdfasdf"
+      @user.should have(1).error_on(:email)
+    end
+  end
 end

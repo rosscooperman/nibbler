@@ -17,5 +17,9 @@
 class User < ActiveRecord::Base
   include Authenticated
 
+  validates_presence_of :username
+  validates_presence_of :email
+  validates_format_of   :email, :with => Format::EMAIL
+
   defaults :time_zone => "Eastern Time (US & Canada)"
 end
