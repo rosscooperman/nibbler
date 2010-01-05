@@ -1,4 +1,4 @@
-require 'spec/matchers/extensions/instance_exec'
+require 'spec/extensions/instance_exec'
 require 'spec/matchers/pretty'
 require 'spec/matchers/matcher'
 require 'spec/matchers/operator_matcher'
@@ -12,13 +12,14 @@ require 'spec/matchers/equal'
 require 'spec/matchers/errors'
 require 'spec/matchers/exist'
 require 'spec/matchers/generated_descriptions'
+require 'spec/matchers/have_received'
 require 'spec/matchers/has'
 require 'spec/matchers/have'
 require 'spec/matchers/include'
 require 'spec/matchers/match'
 require 'spec/matchers/match_array'
 require 'spec/matchers/method_missing'
-require 'spec/matchers/raise_error'
+require 'spec/matchers/raise_exception'
 require 'spec/matchers/respond_to'
 require 'spec/matchers/satisfy'
 require 'spec/matchers/simple_matcher'
@@ -108,7 +109,7 @@ module Spec
   #
   # You can create such a matcher like so:
   #
-  #   Spec::Matchers.create :be_in_zone do |zone|
+  #   Spec::Matchers.define :be_in_zone do |zone|
   #     match do |player|
   #       player.in_zone?(zone)
   #     end
@@ -118,7 +119,7 @@ module Spec
   # with logical default messages for failures. You can override the failure
   # messages and the generated description as follows:
   #
-  #   Spec::Matchers.create :be_in_zone do |zone|
+  #   Spec::Matchers.define :be_in_zone do |zone|
   #     match do |player|
   #       player.in_zone?(zone)
   #     end

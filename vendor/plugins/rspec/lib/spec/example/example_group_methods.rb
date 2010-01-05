@@ -165,6 +165,13 @@ module Spec
         include mod if (Spec::Ruby.version.to_f >= 1.9) & (Module === mod) & !(Class === mod)
       end
 
+      def let(name, &block)
+        define_method name do
+          @assignments ||= {}
+          @assignments[name] ||= instance_eval(&block)
+        end
+      end
+
     private
 
       def subclass(*args, &example_group_block)
@@ -225,10 +232,18 @@ module Spec
 
       def examples_to_run(run_options)
         return example_proxies unless examples_were_specified?(run_options)
-        example_proxies.reject do |proxy|
-          matcher = ExampleGroupMethods.matcher_class.
-            new(description.to_s, proxy.description)
-          !matcher.matches?(run_options.examples)
+        if run_options.line_number_requested?
+          if location =~ /:#{run_options.example_line}:?/
+            example_proxies
+          else
+            example_proxies.select {|proxy| proxy.location =~ /:#{run_options.example_line}:?/}
+          end
+        else
+          example_proxies.reject do |proxy|
+            matcher = ExampleGroupMethods.matcher_class.
+              new(description.to_s, proxy.description)
+            !matcher.matches?(run_options.examples)
+          end
         end
       end
 

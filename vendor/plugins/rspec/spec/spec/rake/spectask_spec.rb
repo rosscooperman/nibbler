@@ -1,57 +1,57 @@
-require File.dirname(__FILE__) + '/../../spec_helper.rb'
-require File.dirname(__FILE__) + '/../../../lib/spec/rake/spectask.rb'
+require 'spec_helper'
+require 'spec/rake/spectask'
 
 module Spec
   module Rake
 
-    describe SpecTask do
-
-      class MockTask
-        class << self
-          attr_accessor :last_instance, :last_cmd
-        end
-
-        def self.tasks
-          @tasks ||= {}
-        end
-        
-        def self.reset_tasks
-          @tasks = {}
-        end
-        
-        def self.task(name)
-          tasks[name]
-        end
-        
-        def self.register_task(name, block)
-          tasks[name] = block
-        end
-
-        def initialize(name, &block)
-          MockTask.register_task(name, block)
-          MockTask.last_instance = block
-        end
-        
-        def self.create_task(name, &block)
-          new(name, &block)
-        end
+    class MockTask
+      class << self
+        attr_accessor :last_instance, :last_cmd
       end
 
-      class SpecTask
-        def task(name, &block)
-          MockTask.create_task(name, &block)
-        end
-
-        def system(cmd)
-          MockTask.last_cmd = cmd
-          true
-        end
-
-        def default_ruby_path
-          RUBY
-        end
+      def self.tasks
+        @tasks ||= {}
       end
       
+      def self.reset_tasks
+        @tasks = {}
+      end
+      
+      def self.task(name)
+        tasks[name]
+      end
+      
+      def self.register_task(name, block)
+        tasks[name] = block
+      end
+
+      def initialize(name, &block)
+        MockTask.register_task(name, block)
+        MockTask.last_instance = block
+      end
+      
+      def self.create_task(name, &block)
+        new(name, &block)
+      end
+    end
+
+    class SpecTask
+      def task(name, &block)
+        MockTask.create_task(name, &block)
+      end
+
+      def system(cmd)
+        MockTask.last_cmd = cmd
+        true
+      end
+
+      def default_ruby_path
+        RUBY
+      end
+    end
+    
+    describe SpecTask do
+
       before(:each) do
         MockTask.reset_tasks
       end
@@ -99,7 +99,21 @@ module Spec
         lambda {MockTask.last_instance.call}.should_not raise_error
       end
       
-      context "with the rspec option" do
+      context "with ENV['SPEC'] set" do
+        before(:each) do
+          @orig_env_spec = ENV['SPEC']
+          ENV['SPEC'] = 'foo.rb'
+        end
+        after(:each) do
+          ENV['SPEC'] = @orig_env_spec
+        end
+        it "should use the provided file list" do
+          task = SpecTask.new
+          task.spec_file_list.should == ["foo.rb"]
+        end
+      end
+      
+      context "with the rcov option" do
         
         it "should create a clobber_rcov task" do
           MockTask.stub!(:create_task)
@@ -123,6 +137,12 @@ module Spec
           MockTask.stub!(:create_task)
           MockTask.should_receive(:create_task).with(:rcov => :clobber_rcov)
           SpecTask.new(:rcov) {|t| t.rcov = true}
+        end
+        
+        it "creates an rcov options list" do
+          MockTask.stub!(:create_task)
+          task = SpecTask.new(:rcov) {|t| t.rcov = true, t.rcov_opts = ['a','b']}
+          task.rcov_option_list.should == "a b"
         end
       end
     end

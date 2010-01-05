@@ -1,5 +1,5 @@
-require File.dirname(__FILE__) + '/../../spec_helper'
-require File.dirname(__FILE__) + '/resources/custom_example_group_runner'
+require 'spec_helper'
+require 'spec/runner/resources/custom_example_group_runner'
 
 module Spec
   module Runner
@@ -106,6 +106,12 @@ module Spec
       describe "#backtrace_tweaker" do
         it "should default to QuietBacktraceTweaker" do
           @options.backtrace_tweaker.class.should == QuietBacktraceTweaker
+        end
+
+        it "adds custom ignored backtrace patterns" do
+          Spec::Runner.configuration.stub!(:ignored_backtrace_patterns).and_return([/custom_pattern/])
+          @options.run_examples
+          @options.backtrace_tweaker.ignored_patterns.should include(/custom_pattern/)
         end
       end
 
@@ -257,6 +263,13 @@ module Spec
         it "returns a Reporter" do
           @options.reporter.should be_instance_of(Reporter)
           @options.reporter.options.should === @options
+        end
+      end
+
+      describe "#drb_port" do
+        it "returns a number" do
+          @options.drb_port = "400"
+          @options.drb_port.should == 400
         end
       end
 
@@ -526,6 +539,14 @@ module Spec
             @options.run_examples
             success_result.should be_true
           end
+        end
+      end
+
+      describe "#add_dir_from_project_root_to_load_path" do
+        it "handles nil gracefully" do
+          load_path = double().as_null_object
+          @options.stub(:project_root).and_return(nil)
+          @options.add_dir_from_project_root_to_load_path(nil,load_path)
         end
       end
     end
