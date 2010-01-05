@@ -1,113 +1,113 @@
 --- 
-vendor/plugins/active_record_defaults: 
-  squashed: true
-  url: git://github.com/aussiegeek/active_record_defaults.git
-  type: git
-  revision: b7e1977743e9e4462c55849c3e2b26c51be8bf28
-  branch: master
-  remote: braid/vendor/plugins/active-record-defaults
-vendor/plugins/exception_logger: 
-  squashed: true
-  url: git://github.com/defunkt/exception_logger.git
-  type: git
-  revision: a65c036f338a8089c5414b845e04c1124b4ac520
-  branch: master
-  remote: braid/vendor/plugins/exception-logger
-vendor/plugins/cap_db_dump: 
-  squashed: true
-  type: git
-  url: git://github.com/smtlaissezfaire/cap_db_dump.git
-  revision: a5138d14ed8b89028a6be190f34171241ef9506b
-  branch: master
-  remote: braid/vendor/plugins/cap-db-dump
 vendor/plugins/rspec-rails: 
   squashed: true
   url: git://github.com/dchelimsky/rspec-rails.git
   type: git
-  revision: df3ace2f22bcc6df5bdb357ea2b8e4e3d5ef953b
+  revision: 8eabeb5aaf39c0b27d9e19bd3599d6d314f64cfe
   branch: master
   remote: braid/vendor/plugins/rspec-rails
 vendor/plugins/annotate_models: 
   squashed: true
-  type: git
   url: git://github.com/ctran/annotate_models.git
+  type: git
   revision: 952013efedbdd483a2e22ebe938789a16c86be24
   branch: master
   remote: braid/vendor/plugins/annotate-models
-vendor/plugins/rspec: 
+vendor/plugins/cap_db_dump: 
+  squashed: true
+  url: git://github.com/smtlaissezfaire/cap_db_dump.git
+  type: git
+  revision: a5138d14ed8b89028a6be190f34171241ef9506b
+  branch: master
+  remote: braid/vendor/plugins/cap-db-dump
+vendor/plugins/exception_logger: 
   squashed: true
   type: git
+  url: git://github.com/defunkt/exception_logger.git
+  revision: a65c036f338a8089c5414b845e04c1124b4ac520
+  branch: master
+  remote: braid/vendor/plugins/exception-logger
+vendor/plugins/active_record_defaults: 
+  squashed: true
+  type: git
+  url: git://github.com/aussiegeek/active_record_defaults.git
+  revision: b7e1977743e9e4462c55849c3e2b26c51be8bf28
+  branch: master
+  remote: braid/vendor/plugins/active-record-defaults
+vendor/plugins/rspec: 
+  squashed: true
   url: git://github.com/dchelimsky/rspec.git
+  type: git
   revision: 386e3347ed7cecbb2ea3095909b93ac8c97bb638
   branch: master
   remote: braid/vendor/plugins/rspec
-vendor/plugins/make_resourceful: 
-  squashed: true
-  type: git
-  url: git://github.com/hcatlin/make_resourceful.git
-  revision: 0ccf1ce132c9b58dab4ba9eaf81dc3c36a76ff75
-  branch: master
-  remote: braid/vendor/plugins/make-resourceful
-vendor/plugins/oink: 
-  squashed: true
-  type: git
-  url: git://github.com/noahd1/oink.git
-  revision: 83bc8bffba69e761520120979f55320579fc6a52
-  branch: master
-  remote: braid/vendor/plugins/oink
-vendor/plugins/jrails: 
-  squashed: true
-  type: git
-  url: git://github.com/aaronchi/jrails.git
-  revision: b490fa1a6d81e39d3a8d99f9cce8b57c3397b7d7
-  branch: master
-  remote: braid/vendor/plugins/jrails
 vendor/plugins/fixturereplacement: 
   squashed: true
-  type: git
   url: git://github.com/smtlaissezfaire/fixturereplacement.git
+  type: git
   revision: 3dbb7dabd579ff66e078b256df98edb712b2bc53
   branch: master
   remote: braid/vendor/plugins/fixturereplacement
-vendor/rails: 
+vendor/plugins/jrails: 
   squashed: true
+  url: git://github.com/aaronchi/jrails.git
   type: git
-  url: git://github.com/rails/rails.git
-  revision: 6673001a5e14ef2d342a03ae16f1da481bc01084
-  branch: 2-3-stable
-  remote: braid/vendor/rails
+  revision: b490fa1a6d81e39d3a8d99f9cce8b57c3397b7d7
+  branch: master
+  remote: braid/vendor/plugins/jrails
+vendor/plugins/oink: 
+  squashed: true
+  url: git://github.com/noahd1/oink.git
+  type: git
+  revision: 83bc8bffba69e761520120979f55320579fc6a52
+  branch: master
+  remote: braid/vendor/plugins/oink
+vendor/plugins/make_resourceful: 
+  squashed: true
+  url: git://github.com/hcatlin/make_resourceful.git
+  type: git
+  revision: 0ccf1ce132c9b58dab4ba9eaf81dc3c36a76ff75
+  branch: master
+  remote: braid/vendor/plugins/make-resourceful
 vendor/plugins/fast_remote_cache: 
   squashed: true
-  type: git
   url: git://github.com/37signals/fast_remote_cache.git
+  type: git
   revision: 6dc16b790ad3e5cc20b11e429f69b12e24e53cd1
   branch: master
   remote: braid/vendor/plugins/fast-remote-cache
+vendor/rails: 
+  squashed: true
+  url: git://github.com/rails/rails.git
+  type: git
+  revision: 6673001a5e14ef2d342a03ae16f1da481bc01084
+  branch: 2-3-stable
+  remote: braid/vendor/rails
 vendor/plugins/acts_as_sluggable: 
   squashed: true
-  url: git://github.com/eastmedia/acts_as_slugable.git
   type: git
+  url: git://github.com/eastmedia/acts_as_slugable.git
   revision: c9cd4f99d7960d1a49fe33ffa6258960a5bad77d
   branch: master
   remote: braid/vendor/plugins/acts-as-sluggable
-vendor/plugins/hodel_3000_compliant_logger: 
-  squashed: true
-  url: git://github.com/topfunky/hodel_3000_compliant_logger.git
-  type: git
-  revision: 9b09c9288dd3af7d00c4b652871d34a8b0811b34
-  branch: master
-  remote: braid/vendor/plugins/hodel-3000-compliant-logger
-vendor/plugins/country_select: 
-  squashed: true
-  url: git://github.com/rails/country_select.git
-  type: git
-  revision: d3b5d8656df3defc1653aafe1a9bb5f0164c1741
-  branch: master
-  remote: braid/vendor/plugins/country-select
 vendor/plugins/rspec-on-rails-matchers: 
   squashed: true
-  url: git://github.com/joshknowles/rspec-on-rails-matchers.git
   type: git
+  url: git://github.com/joshknowles/rspec-on-rails-matchers.git
   revision: cfda85023be7b8bc9fd8ecda9b251d85399fb76e
   branch: master
   remote: braid/vendor/plugins/rspec-on-rails-matchers
+vendor/plugins/country_select: 
+  squashed: true
+  type: git
+  url: git://github.com/rails/country_select.git
+  revision: d3b5d8656df3defc1653aafe1a9bb5f0164c1741
+  branch: master
+  remote: braid/vendor/plugins/country-select
+vendor/plugins/hodel_3000_compliant_logger: 
+  squashed: true
+  type: git
+  url: git://github.com/topfunky/hodel_3000_compliant_logger.git
+  revision: 9b09c9288dd3af7d00c4b652871d34a8b0811b34
+  branch: master
+  remote: braid/vendor/plugins/hodel-3000-compliant-logger

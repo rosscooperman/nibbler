@@ -4,9 +4,10 @@ module Spec # :nodoc:
       unless defined? MAJOR
         MAJOR  = 1
         MINOR  = 2
-        TINY   = 7
-
-        STRING = [MAJOR, MINOR, TINY].compact.join('.')
+        TINY   = 9
+        PRE    = nil
+      
+        STRING = [MAJOR, MINOR, TINY, PRE].compact.join('.')
 
         SUMMARY = "rspec-rails #{STRING}"
       end
