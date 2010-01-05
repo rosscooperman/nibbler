@@ -34,6 +34,13 @@ vendor/plugins/rspec:
   revision: 386e3347ed7cecbb2ea3095909b93ac8c97bb638
   branch: master
   remote: braid/vendor/plugins/rspec
+vendor/plugins/hoptoad_notifier: 
+  squashed: true
+  url: git://github.com/thoughtbot/hoptoad_notifier.git
+  type: git
+  revision: 0e68e717b02e504ee5f2424998f56dd087c2de9a
+  branch: master
+  remote: braid/vendor/plugins/hoptoad-notifier
 vendor/plugins/jrails: 
   squashed: true
   type: git
