@@ -51,7 +51,6 @@ end
 after   "deploy:symlink_configs", "deploy:symlink_app_configs", "deploy:update_revisions_log"
 
 common_after_deploy_tasks = [
-#   "deploy:index_sphinx",
   "deploy:tag",
   "deploy:email_notify",
   "deploy:cleanup"
@@ -66,16 +65,9 @@ after   "deploy:setup",           "deploy:setup_directory_permissions", "deploy:
 # =============================================================================
 
 namespace :deploy do
-  task :index_sphinx, :roles => :app, :except => {:no_symlink => true} do
-    run <<-CMD
-      cd #{current_path} && RAILS_ENV=production rake ts:in
-    CMD
-  end
-
   task :symlink_app_configs, :roles => :app, :except => {:no_symlink => true} do
     run <<-CMD
     ln -nsf #{shared_path}/config/settings.yml           #{release_path}/config/settings.yml &&
-    ln -nsf #{shared_path}/config/production.sphinx.conf #{release_path}/config/production.sphinx.conf &&
     ln -nfs #{shared_path}/public/assets                 #{release_path}/public/assets
     CMD
   end
