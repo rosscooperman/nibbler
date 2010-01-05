@@ -83,6 +83,13 @@ vendor/rails:
   revision: 6673001a5e14ef2d342a03ae16f1da481bc01084
   branch: 2-3-stable
   remote: braid/vendor/rails
+vendor/plugins/slugify: 
+  squashed: true
+  url: git@github.com:smtlaissezfaire/slugify.git
+  type: git
+  revision: 3bbeb12aa00a7e15b5181080eff2df217febc6a6
+  branch: master
+  remote: braid/vendor/plugins/slugify
 vendor/plugins/rspec-on-rails-matchers: 
   squashed: true
   type: git
