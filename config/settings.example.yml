@@ -1,10 +1,11 @@
 development:
   app_host: "localhost:3000"
+  staging: false
+
+staging:
+  app_host: "localhost:3000"
   staging: true
 
 production:
   app_host: "localhost:3000"
-  http_basic_auth:
-    user: foo
-    password: bar
   staging: false
