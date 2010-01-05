@@ -1,9 +1,5 @@
-
 # require 'eycap/recipes'
 require 'railsmachine/recipes'
-$LOAD_PATH.unshift File.dirname(__FILE__) + "/../vendor/plugins"
-require "cap_db_dump/lib/cap_db_dump/recipes"
-
 
 set :keep_releases, 5
 
