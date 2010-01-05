@@ -18,12 +18,11 @@ while still keeping your controllers trim and readable.
  
 Rails
 
-  $ ruby script/plugin install http://svn.hamptoncatlin.com/make_resourceful/trunk
-  $ mv vendor/plugins/trunk vendor/plugins/make_resourceful
+  $ ruby script/plugin install git://github.com/hcatlin/make_resourceful.git
 
-Subversion
+Git
 
-  $ svn co http://svn.hamptoncatlin.com/make_resourceful/trunk make_resourceful
+  $ git clone git://github.com/hcatlin/make_resourceful.git
 
 == Use it!
 
@@ -69,7 +68,7 @@ Yes.
 === What about paging?
 
   def current_objects
-    @current_object ||= current_model.find(:all,
+    @current_objects ||= current_model.find(:all,
       :order => "created_at DESC", :page => {:current => params[:page], :size => 10 } )
   end
 
