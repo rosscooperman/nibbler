@@ -28,7 +28,6 @@ describe User do
   end
 
   describe "validations + associations" do
-    it { @user.should have_valid_associations }
     it { @user.should validate_presence_of(:username) }
     it { @user.should validate_presence_of(:email) }
 
