@@ -27,7 +27,7 @@ class Spec::Rails::Example::ControllerExampleGroup
     controller.stub!(:current_user).and_return(@current_user)
     session[:user] = @current_user
   end
-  
+
   def disable_authorization
     controller.methods.grep(/^restriction_[0-9]+$/).map(&:to_sym).each do |restriction|
       controller.stub!(restriction).and_return(true)
@@ -39,7 +39,7 @@ class Spec::Rails::Example::ControllerExampleGroup
     get *args
     request.env.delete('HTTP_X_FORWARDED_PROTO')
   end
-  
+
   def xhr_with_ssl(*args)
     request.env['HTTP_X_FORWARDED_PROTO'] = 'https'
     xhr *args
@@ -61,7 +61,7 @@ class Spec::Rails::Example::ControllerExampleGroup
   end
 end
 
-class Spec::Rails::Example::RailsExampleGroup
+module ExampleHelpers
   def setup_mailer
     ActionMailer::Base.delivery_method = :test
     ActionMailer::Base.perform_deliveries = true
