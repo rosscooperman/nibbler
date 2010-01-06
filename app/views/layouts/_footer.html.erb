@@ -1,4 +1,4 @@
-<%= tab_link 'home',                  root_path, :title => "Return to the Home Page" %>&nbsp;/&nbsp;
-<%= tab_link 'contact us',            "contact_path"              , :title => "Contact Us"%>
+<%= tab_link 'home',       root_path,                   :title => "Return to the Home Page" %>&nbsp;/&nbsp;
+<%= tab_link 'contact us', new_contact_submission_path, :title => "Contact Us" %>
 
 <p class="copyright">&copy; <%= Time.now.year %> <%= link_to "Company Name", root_path, :title => "Company Name" %> / All Rights Reserved.</p>
