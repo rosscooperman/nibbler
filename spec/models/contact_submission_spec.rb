@@ -21,6 +21,14 @@ describe ContactSubmission do
       @contact_submission.should have(1).error_on(:email)
     end
   end
+
+  describe "creation" do
+    it "should send the email" do
+      submission = new_contact_submission
+      ContactSubmissionMailer.should_receive(:create_submission).with(submission)
+      submission.save!
+    end
+  end
 end
 
 # == Schema Information

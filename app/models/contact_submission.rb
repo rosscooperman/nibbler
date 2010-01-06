@@ -17,4 +17,12 @@ class ContactSubmission < ActiveRecord::Base
   validates_presence_of :subject
   validates_presence_of :body
   validates_format_of   :email, :with => Format::EMAIL
+
+  after_save :send_email
+
+private
+
+  def send_email
+    ContactSubmissionMailer.create_submission(self)
+  end
 end
