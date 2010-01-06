@@ -8,7 +8,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :contact_submissions
   map.resources :users
-  map.resource :session, :controller => "session"
+
+  map.resource  :session, :controller => "session"
   map.with_options :controller => 'session' do |m|
     m.sign_in             'signin',                   :action => 'new'
     m.sign_out            'signout',                  :action => 'destroy'
