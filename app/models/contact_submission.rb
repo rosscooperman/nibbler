@@ -12,6 +12,9 @@
 #
 
 class ContactSubmission < ActiveRecord::Base
-  validates_presence_of :name, :email, :subject, :body
+  validates_presence_of :name
+  validates_presence_of :email
+  validates_presence_of :subject
+  validates_presence_of :body
   validates_format_of   :email, :with => Format::EMAIL
 end
