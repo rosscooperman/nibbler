@@ -32,7 +32,9 @@ Rails::Initializer.run do |config|
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
   # Add additional load paths for your own custom dirs
-  # config.load_paths += %W( #{RAILS_ROOT}/extras )
+  config.load_paths += [
+    File.join(RAILS_ROOT, "app", "mailers"),
+  ]
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
@@ -68,3 +70,5 @@ Rails::Initializer.run do |config|
   require RAILS_ROOT + "/vendor/plugins/hodel_3000_compliant_logger/lib/hodel_3000_compliant_logger"
   config.logger = Hodel3000CompliantLogger.new(config.log_path)
 end
+
+ActionMailer::Base.template_root = File.join(RAILS_ROOT, "app", "emails")
