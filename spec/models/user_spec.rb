@@ -36,4 +36,15 @@ describe User do
       @user.should have(1).error_on(:email)
     end
   end
+
+  describe "mailers" do
+    before do
+      @user = new_user
+    end
+
+    it "should be able to send the password reset email" do
+      UserMailer.should_receive(:deliver_password_reset_link).with(@user)
+      @user.send_password_reset_email
+    end
+  end
 end

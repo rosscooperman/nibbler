@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
   validates_format_of   :email, :with => Format::EMAIL
 
   defaults :time_zone => "Eastern Time (US & Canada)"
+
+  def send_password_reset_email
+    UserMailer.deliver_password_reset_link(self)
+  end
 end
