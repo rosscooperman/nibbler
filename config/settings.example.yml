@@ -1,11 +1,17 @@
 development:
   app_host: "localhost:3000"
   staging: false
+  email:
+    contact_submission_recipient: "example@example.com"
 
 staging:
   app_host: "localhost:3000"
   staging: true
+  email:
+    contact_submission_recipient: "example@example.com"
 
 production:
   app_host: "localhost:3000"
   staging: false
+  email:
+    contact_submission_recipient: "example@example.com"
