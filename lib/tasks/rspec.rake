@@ -56,8 +56,9 @@ task :stats => "spec:statsetup"
 
 desc "Run all specs in spec directory (excluding plugin specs)"
 Spec::Rake::SpecTask.new(:spec => spec_prereq) do |t|
-  t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
+  t.spec_opts  = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
   t.spec_files = FileList['spec/**/*_spec.rb']
+  t.libs       = $LOAD_PATH
 end
 
 namespace :spec do
@@ -69,39 +70,45 @@ namespace :spec do
     t.rcov_opts = lambda do
       IO.readlines("#{RAILS_ROOT}/spec/rcov.opts").map {|l| l.chomp.split " "}.flatten
     end
+    t.libs = $LOAD_PATH
   end
 
   desc "Print Specdoc for all specs (excluding plugin specs)"
   Spec::Rake::SpecTask.new(:doc) do |t|
-    t.spec_opts = ["--format", "specdoc", "--dry-run"]
+    t.spec_opts  = ["--format", "specdoc", "--dry-run"]
     t.spec_files = FileList['spec/**/*_spec.rb']
+    t.libs       = $LOAD_PATH
   end
 
   desc "Print Specdoc for all plugin examples"
   Spec::Rake::SpecTask.new(:plugin_doc) do |t|
-    t.spec_opts = ["--format", "specdoc", "--dry-run"]
+    t.spec_opts  = ["--format", "specdoc", "--dry-run"]
     t.spec_files = FileList['vendor/plugins/**/spec/**/*_spec.rb'].exclude('vendor/plugins/rspec/*')
+    t.libs       = $LOAD_PATH
   end
 
   [:models, :controllers, :views, :helpers, :lib, :integration].each do |sub|
     desc "Run the code examples in spec/#{sub}"
     Spec::Rake::SpecTask.new(sub => spec_prereq) do |t|
-      t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
+      t.spec_opts  = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
       t.spec_files = FileList["spec/#{sub}/**/*_spec.rb"]
+      t.libs       = $LOAD_PATH
     end
   end
 
   desc "Run the code examples in vendor/plugins (except RSpec's own)"
   Spec::Rake::SpecTask.new(:plugins => spec_prereq) do |t|
-    t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
+    t.spec_opts  = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
     t.spec_files = FileList['vendor/plugins/**/spec/**/*_spec.rb'].exclude('vendor/plugins/rspec/*').exclude("vendor/plugins/rspec-rails/*")
+    t.libs       = $LOAD_PATH
   end
 
   namespace :plugins do
     desc "Runs the examples for rspec_on_rails"
     Spec::Rake::SpecTask.new(:rspec_on_rails) do |t|
-      t.spec_opts = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
+      t.spec_opts  = ['--options', "\"#{RAILS_ROOT}/spec/spec.opts\""]
       t.spec_files = FileList['vendor/plugins/rspec-rails/spec/**/*_spec.rb']
+      t.libs       = $LOAD_PATH
     end
   end
 
