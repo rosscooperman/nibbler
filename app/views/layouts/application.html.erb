@@ -60,7 +60,8 @@
       </div>
     </div>
     <%= render :partial => "layouts/js_includes" -%>
-    <%= yield :bottom -%>
+    <%= yield :bottom %>
+    <%= git_version_html %>
   </body>
 </html>
 
