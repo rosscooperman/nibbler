@@ -46,5 +46,10 @@ describe User do
       UserMailer.should_receive(:deliver_password_reset_link).with(@user)
       @user.send_password_reset_email
     end
+
+    it "should send the welcome email on creation" do
+      UserMailer.should_receive(:deliver_signup).with(@user)
+      @user.save!
+    end
   end
 end

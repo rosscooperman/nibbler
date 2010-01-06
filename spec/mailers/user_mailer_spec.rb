@@ -18,4 +18,14 @@ describe UserMailer do
 
     UserMailer.create_password_reset_link(@user, @expected.date).encoded.should == @expected.encoded
   end
+
+  it "should send an email when signing up" do
+    @expected.subject = "Welcome"
+    @expected.from    = SETTINGS[:email][:from]
+    @expected.to      = "bob.fixture@example.com"
+    @expected.body    = read_fixture(:user, :signup)
+    @expected.date    = Time.now.utc
+
+    UserMailer.create_signup(@user, @expected.date).encoded.should == @expected.encoded
+  end
 end
