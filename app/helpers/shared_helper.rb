@@ -1,14 +1,13 @@
 module SharedHelper
   def flash_messages(*names)
-    output = ""
-    names.each do |name|
-      if content = flash[name]
-  output << content_tag(:p, content, :class => "flash #{name}", :id => "flash_#{name}")
-  # output << javascript_tag(visual_effect(:fade, "flash_#{name}", :duration => 30))
-  flash.discard(name)
+    returning String.new do |output|
+      names.each do |name|
+        if content = flash[name]
+          output << content_tag(:p, content, :class => "flash #{name}", :id => "flash_#{name}")
+          flash.discard(name)
+        end
       end
     end
-    output
   end
 
   def strip_ampersands(string)
