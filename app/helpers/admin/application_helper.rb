@@ -142,17 +142,4 @@ module Admin::ApplicationHelper
     concat(capture(&block), block.binding)
     concat(paginator, block.binding)
   end
-
-  def sluggable_form_for(name, options={ }, &blk)
-    var = instance_variable_get("@#{name}")
-    html_method = var.new_record? ? :post : :put
-
-    options[:html] ||= { }
-    options[:html][:method] = html_method
-
-    url_method = controller.class.to_s.include?("Admin::") ? "admin_#{name}_path" : "#{name}_path"
-    options[:url] = self.__send__(url_method, var.slug)
-
-    form_for(name, var, options, &blk)
-  end
 end
