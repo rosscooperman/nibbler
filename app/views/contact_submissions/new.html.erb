@@ -7,8 +7,8 @@
     <p class="large_description">Have a question or some feedback about the site?</p>
     <div class="std_form">
       <ul>
-        <%= f.ul_text_field :name,    :required => true, :value => (logged_in? ? current_user.name : '') %>
-        <%= f.ul_text_field :email,   :required => true, :value => (logged_in? ? current_user.email : '') %>
+        <%= f.ul_text_field :name,    :required => true %>
+        <%= f.ul_text_field :email,   :required => true %>
         <%= f.ul_text_field :subject, :required => true %>
         <%= f.ul_text_area  :body,    :required => true, :text => "How can we help?" %>
         <li class="submit"><%= submit_tag "Send Message" %></li>
