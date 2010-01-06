@@ -1,4 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+  map.namespace :admin do |admin|
+    admin.resources :users
+    admin.resources :pages
+
+    admin.root :controller => "users", :action => "index"
+  end
+
   map.resources :contact_submissions
   map.resources :users
   map.resource :session, :controller => "session"

@@ -1,29 +1,12 @@
 <% @page_title = "Users"%>
-<% users_breadcrumb %>
 
 <% actions do %>
   <%= link_to "Add a New User", new_admin_user_path, :class => "add_user" %>
-  <form id="dealer_search" method="get"><%= text_field_tag 'search', params[:search], :class => 'search' %><%= submit_tag "Search", :class => "bn" %></form>
 <% end %>
 
 <% content_for :sidebar do %>
   <%= render :partial => "admin/shared/sidebar" %>
 <% end %>
 
-<%= render :partial => "admin/shared/paginator", :locals => { :queue => @users } %>
-
-<table class="dataset">
-  <thead>
-    <tr>
-      <th><%= link_to 'Username', admin_users_path(sort_param('users', 'users.username')) %></th>
-      <th><%= link_to 'Email', admin_users_path(sort_param('users', 'users.email')) %></th>
-      <th><%= link_to 'Joined', admin_users_path(sort_param('users', 'users.created_at')) %></th>
-      <th>&nbsp;</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render @users %>
-  </tbody>
-</table>
-
-<%= render :partial => "admin/shared/paginator", :locals => { :queue => @users } %>
+<%#= render :partial => "admin/shared/paginator", :locals => { :queue => @users } %>
+<%#= render :partial => "admin/shared/paginator", :locals => { :queue => @users } %>

@@ -68,37 +68,14 @@ module Admin::ApplicationHelper
     end
   end
 
+  include MenuBuilderHelpers
+
   def build_main_menu
-    menu = []
-    menu << {:tab => :pages,          :text => 'Pages',         :url => admin_pages_path}
-    menu << {:tab => :pages,          :text => 'Pages',         :url => admin_pages_path,
-             :subtabs => [{:tab => :pages,          :text => 'Pages',         :url => admin_pages_path},
-                          {:tab => :pages,          :text => 'Pages',         :url => admin_pages_path}]}
+    menu = [
+      [:pages, "Pages", admin_pages_path]
+    ]
 
     build_tiered_menu(menu)
-  end
-
-  def build_tiered_menu(items)
-    out = ""
-    li_elements = []
-    items.each do |item|
-      li_elements << build_li_for(item)
-    end
-    out += content_tag(:ul, li_elements, :id => "gns_01")
-    out
-  end
-
-  def build_li_for(item)
-      li_class = @current_tab == item[:tab] ? "active" : ""
-      li_content = link_to(item[:text], item[:url])
-      if item.has_key? :subtabs
-        subtab_li_elements = []
-        item[:subtabs].each do |subtab_item|
-          subtab_li_elements << build_li_for(subtab_item)
-        end
-        li_content += content_tag('ul', subtab_li_elements)
-      end
-      content_tag(:li, li_content, :class => li_class)
   end
 
   def section_links(section)
