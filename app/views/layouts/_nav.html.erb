@@ -1,14 +1,4 @@
 <ul id="nav">
-  <%= tab "Home", root_path, "home_link" %>
-  <%# for dropdown menu - use css from social designer or marlborough gallery %>
-  <li id="foo_tab" class="tab nav_tab <%= 'active' if @force_active_tab == 'Foo' %>">
-    <%= link_to 'Foo', "foo_path", :class => "tab" %>
-    <div style="display: none">
-      <ol>
-        <li><%= link_to "Man", "#" %></li>
-        <li><%= link_to "Chu", "#" %>
-      </ol>
-    </div>
-  </li>
-  <%= tab "Contact",    "contact_path" %>
+  <%= link_to "Home",    root_path %>
+  <%= link_to "Contact", new_contact_submissions_path %>
 </ul>
