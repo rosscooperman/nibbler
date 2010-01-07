@@ -7,8 +7,6 @@ class Admin::ApplicationController < ActionController::Base
 
   filter_parameter_logging :password
 
-  attr_accessor :current_tab
-
 private
 
   def admin_login_required
