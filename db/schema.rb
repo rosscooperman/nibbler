@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(:version => 20100106080109) do
     t.string   "salt",                      :limit => 40
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
+    t.string   "time_zone"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "time_zone"
   end
 
 end

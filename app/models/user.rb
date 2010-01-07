@@ -9,9 +9,9 @@
 #  salt                      :string(40)
 #  remember_token            :string(255)
 #  remember_token_expires_at :datetime
+#  time_zone                 :string(255)
 #  created_at                :datetime
 #  updated_at                :datetime
-#  time_zone                 :string(255)
 #
 
 class User < ActiveRecord::Base
