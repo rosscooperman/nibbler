@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :remember_token
       t.datetime :remember_token_expires_at
       t.string   :time_zone
+      t.string   :type
       t.timestamps
     end
 

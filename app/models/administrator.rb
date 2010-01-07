@@ -15,22 +15,5 @@
 #  updated_at                :datetime
 #
 
-class User < ActiveRecord::Base
-  include Authenticated
-
-  validates_presence_of :username
-  validates_presence_of :email
-  validates_format_of   :email, :with => Format::EMAIL
-
-  defaults :time_zone => "Eastern Time (US & Canada)"
-
-  after_create :send_welcome_email
-
-  def send_welcome_email
-    UserMailer.deliver_signup(self)
-  end
-
-  def send_password_reset_email
-    UserMailer.deliver_password_reset_link(self)
-  end
+class Administrator < User
 end
