@@ -3,7 +3,8 @@ after "deploy:symlink_configs", "deploy:symlink_app_configs", "deploy:update_rev
 common_after_deploy_tasks = [
   "deploy:tag",
   "deploy:email_notify",
-  "deploy:cleanup"
+  "deploy:cleanup",
+  "data:create_example_admin"
 ]
 
 after   "deploy",                 *common_after_deploy_tasks

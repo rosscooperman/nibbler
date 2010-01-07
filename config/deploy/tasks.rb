@@ -93,3 +93,12 @@ namespace :performance do
     stream "rails_stat #{shared_path}/log/production.log"
   end
 end
+
+namespace :data do
+  desc "Create the example admin (in staging, only)"
+  task :create_example_admin do
+    if deployment == "staging"
+      run "cd #{current_path} && RAILS_ENV=#{rails_env} rake data:create_example_admin"
+    end
+  end
+end

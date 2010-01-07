@@ -15,6 +15,13 @@ module FixtureReplacement
     u.password_confirmation = pw
   end
 
+  attributes_for :example_admin, :class => Administrator do |admin|
+    admin.username              = "admin"
+    admin.email                 = "admin@example.com"
+    admin.password              = "password"
+    admin.password_confirmation = "password"
+  end
+
   def random_email
     "#{random_string}@#{random_string}.com"
   end
