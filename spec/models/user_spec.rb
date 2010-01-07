@@ -36,6 +36,16 @@ describe User do
       @user.save!
     end
   end
+
+  describe "types" do
+    before do
+      @user = User.new
+    end
+
+    it "should not be an admin?" do
+      @user.should_not be_an_admin
+    end
+  end
 end
 
 

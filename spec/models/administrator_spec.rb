@@ -8,6 +8,16 @@ describe Administrator do
   it "should have a type column" do
     Administrator.column_names.should include("type")
   end
+
+  describe "types" do
+    before do
+      @admin = Administrator.new
+    end
+
+    it "should be an admin?" do
+      @admin.should be_an_admin
+    end
+  end
 end
 # == Schema Information
 #

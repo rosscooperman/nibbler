@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
 
   after_create :send_welcome_email
 
+  def admin?
+    false
+  end
+
   def send_welcome_email
     UserMailer.deliver_signup(self)
   end
