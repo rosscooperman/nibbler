@@ -5,8 +5,6 @@ class Admin::ApplicationController < ActionController::Base
   before_filter :login_from_cookie
   before_filter :admin_login_required
 
-  filter_parameter_logging :password
-
 private
 
   def admin_login_required
