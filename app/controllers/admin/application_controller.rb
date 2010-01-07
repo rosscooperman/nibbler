@@ -1,7 +1,7 @@
 class Admin::ApplicationController < ActionController::Base
   include SharedControllerBehavior
 
-  before_filter :login_required unless RAILS_ENV == 'test'
+  before_filter :login_required
   before_filter :login_from_cookie
 
   filter_parameter_logging :password
