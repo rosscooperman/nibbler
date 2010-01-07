@@ -10,6 +10,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :time_zone
       t.timestamps
     end
+
+    add_index :users, :email
   end
 
   def self.down
