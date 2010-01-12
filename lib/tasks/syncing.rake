@@ -14,7 +14,7 @@ namespace :sync do
     desc <<-DESC
       Sync #{static_dir} to local environment
 
-      You'll need to add a 'spotio' entry to your
+      You'll need to add a '#{PRODUCTION_SLICE_TO_SYNC_FROM}' entry to your
       ssh_config (and have ssh access to the server)
       for these tasks to work
     DESC
