@@ -1,6 +1,8 @@
 class Admin::ApplicationController < ActionController::Base
   include SharedControllerBehavior
 
+  layout 'admin'
+
   before_filter :login_required
   before_filter :login_from_cookie
   before_filter :admin_login_required
