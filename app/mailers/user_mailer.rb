@@ -2,10 +2,10 @@ class UserMailer < ActionMailer::Base
   helper :shared
 
   def signup(user, sent_on = Time.now.utc)
-    from      SETTINGS[:email][:from]
+    from        SETTINGS[:email][:from]
     recipients  user.email
-    subject   "Welcome"
-    sent_on   sent_on
+    subject     "Welcome"
+    sent_on     sent_on
 
     body      :user => user
   end
