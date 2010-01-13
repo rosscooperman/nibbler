@@ -27,7 +27,6 @@
       <%= build_main_menu %>
 
       <ul id="gns_02">
-        <li>Welcome back, <strong><%= current_user.name %></strong> |</li>
         <li><%= link_to 'Public Site', root_path %> |</li>
         <li><%= link_to 'Sign out', session_path, :method => :delete %></li>
       </ul>
