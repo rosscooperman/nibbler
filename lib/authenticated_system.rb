@@ -54,10 +54,6 @@ protected
   #   skip_before_filter :login_required
   #
   def login_required
-    authenticate_with_http_basic do |username, password|
-      self.current_user = User.authenticate(username, password)
-    end
-
     logged_in? && authorized? ? true : access_denied
   end
   
