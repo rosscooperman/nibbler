@@ -1,3 +1,15 @@
+require "spec_helper"
+
+describe Page do
+  describe "validations + associations" do
+    before do
+      @page = Page.new
+    end
+
+    it { @page.should validate_presence_of(:title) }
+  end
+end
+
 # == Schema Information
 #
 # Table name: pages
@@ -10,6 +22,3 @@
 #  updated_at :datetime
 #
 
-class Page < ActiveRecord::Base
-  validates_presence_of :title
-end

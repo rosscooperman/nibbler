@@ -22,7 +22,9 @@ module FixtureReplacement
     admin.password_confirmation = "password"
   end
 
-  attributes_for :page
+  attributes_for :page do |page|
+    page.title = random_string
+  end
 
   def random_email
     "#{random_string}@#{random_string}.com"
