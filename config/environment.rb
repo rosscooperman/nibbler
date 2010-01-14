@@ -30,6 +30,7 @@ Rails::Initializer.run do |config|
   config.load_paths += [
     File.join(RAILS_ROOT, "app", "mailers"),
     File.join(RAILS_ROOT, "app", "indexes"),
+    File.join(RAILS_ROOT, "app", "conductors"),
   ]
 
   # Force all environments to use the same logger level
