@@ -3,6 +3,7 @@ require 'list_forms'
 module Admin::ApplicationHelper
   include SharedHelper
   include MenuBuilderHelpers
+  include FckEditorHelpers
 
   def action(*args)
     content_tag(:span, link_to(*args))
