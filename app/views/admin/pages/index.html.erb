@@ -1,0 +1,11 @@
+<% @page_title = "Pages" %>
+
+<% actions do %>
+  <%= shared_paginator_for :pages %>
+<% end %>
+
+<%= render :partial => "admin/shared/index_table", :locals => {:index => @index, :queue => @pages} %>
+
+<div class="bottom">
+  <%= shared_paginator_for :pages %>
+</div>

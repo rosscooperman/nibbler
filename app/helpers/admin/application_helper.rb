@@ -16,6 +16,10 @@ module Admin::ApplicationHelper
     concat(content_tag(:tr, capture(&block), :class => cycle('light', 'dark')), block.binding)
   end
 
+  def zebra_row_for(object, &block)
+    content_tag_for(:tr, object, {:class => cycle('light', 'dark')}, &block)
+  end
+
   def build_main_menu
     menu = [
       [:pages, "Pages", admin_pages_path]
@@ -30,11 +34,7 @@ module Admin::ApplicationHelper
     )
   end
 
-  def shared_paginator_for(name, &block)
-    paginator = render :partial => "admin/shared/paginator", :locals => { :paginator => instance_variable_get("@#{name}") }
-
-    concat(paginator, block.binding)
-    concat(capture(&block), block.binding)
-    concat(paginator, block.binding)
+  def shared_paginator_for(name)
+    render :partial => "admin/shared/paginator", :locals => { :paginator => instance_variable_get("@#{name}") }
   end
 end
