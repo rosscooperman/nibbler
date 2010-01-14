@@ -1,0 +1,19 @@
+<% index.columns.each do |column| %>
+  <% column_title = column.title %>
+
+  <% if column.sortable? %>
+    <% if @index.ascending? %>
+      <th class="sorted buttonSortAsc">
+        <%= link_to column_title, @index.params.merge(:sort => column.column_name, :direction => "desc") %>
+      </th>
+    <% else %>
+      <th class="sorted buttonSortDesc">
+        <%= link_to column_title, @index.params.merge(:sort => column.column_name, :direction => "asc")  %>
+      </th>
+    <% end %>
+  <% else %>
+    <th>
+      <%= column_title %>
+    </th>
+  <% end %>
+<% end %>
