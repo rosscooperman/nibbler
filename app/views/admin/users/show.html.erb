@@ -4,7 +4,7 @@
   <%= render :partial => "admin/shared/sidebar" %>
 <% end %>
 
-<%= render @user %>
+<%= render :partial => "user", :locals => {:user => @user} %>
 
 <h3>Quick Stats</h3>
 <dl>
