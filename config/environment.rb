@@ -69,3 +69,4 @@ Rails::Initializer.run do |config|
 end
 
 ActionMailer::Base.template_root = File.join(RAILS_ROOT, "app", "emails")
+EagerLoader.load
