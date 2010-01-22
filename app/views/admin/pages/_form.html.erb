@@ -4,15 +4,12 @@
 <% form_for :page, @page, :url => (@page.new_record? ? admin_pages_path : admin_page_path(@page)), :html => {:method => (@page.new_record? ? :post : :put), :multipart => true} do |f| -%>
 <div class="std_form">
   <ul>
-    <%= f.ul_text_field :header, :instructions => '"Header" is only used for the flexible promo space on the homepage.' %>
+    <%= f.ul_text_field :title %>
 
     <li class="">
       <label for="page_body">Body</label>
       <%= fckeditor_textarea :page, :body, @page.body %>
     </li>
-
-    <%= f.ul_text_field :featured_competition_url, :text => "Featured Competition URL" if @page.title == "Homepage" %>
-    <%= f.ul_file_uploader :featured_competition_image if @page.title == "Homepage" %>
 
     <%= f.ul_create_or_update_button(admin_pages_path, admin_pages_path) %>
   </ul>
