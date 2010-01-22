@@ -23,7 +23,9 @@ namespace :deploy do
 
   desc "Generate the static error pages: 404, etc."
   task :generate_static_pages, :roles => :app, :except => { :no_release => true } do
-    run "cd #{current_path} && RAILS_ENV=#{rails_env} rake static_templates:generate"
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} rake static_templates:generate" do |_, _, data|
+      print data
+    end
   end
 
   desc "Tag a deployment with the date, time, and environment.  In utc."
