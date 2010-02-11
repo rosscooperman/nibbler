@@ -13,7 +13,7 @@ puts `cp #{RAILS_ROOT}/config/settings.example.yml #{RAILS_ROOT}/config/settings
 
 puts "** Copying jrails javascript files"
 
-puts `rake jrails:install:javascripts`
+puts `rake jrails:js:install`
 
 puts "** Adding braided plugins and rails"
 
