@@ -3,9 +3,6 @@ require 'railsmachine/recipes'
 
 set :application,           "APP_NAME"
 set :repository,            "git@github.com:eastmedia/REPOS_URL.git"
-set :scm,                   "git"
-set :git_shallow_clone,     1
-set :git_enable_submodules, false
 set :rails_env,             "production"
 set :keep_releases,         5
 
