@@ -44,4 +44,8 @@ module SharedHelper
   def public?
     !admin?
   end
+  
+  def company_name
+    "Change the company name in Shared_helper"
+  end
 end
