@@ -312,9 +312,6 @@ div.pagination {
 ----------------------------------------------------------------------*/
 
 .clearfix:after,
-#wrapper:after,
-.wrapper:after,
-#nav:after,
 .cols:after {
   content: ".";
   display: block;
@@ -324,25 +321,16 @@ div.pagination {
 }
 
 .clearfix,
-#wrapper,
-.wrapper,
-#nav,
 .cols {
   display: inline-block;
 }
 
 html[xmlns] .clearfix,
-html[xmlns] #wrapper,
-html[xmlns] .wrapper,
-html[xmlns] #nav,
 html[xmlns] .cols {
   display: block;
 }
 
 * html .clearfix,
-* html #wrapper,
-* html .wrapper,
-* html #nav,
 * html .cols {
   height: 1%;
 }
