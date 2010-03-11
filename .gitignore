@@ -30,3 +30,7 @@ coverage
 # tags
 /TAGS
 tags
+
+# db dumps created by cap production db:dump_and_transfer
+*.sql
+*.sql.gz
