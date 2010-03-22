@@ -22,8 +22,14 @@ module MenuBuilderHelpers
   def build_li_for(item)
     tab, text, url, subtabs = item
 
+    if url.is_a?(Array)
+      url, html_options = url[0], url[1]
+    else
+      html_options = {}
+    end
+
     li_class = @current_tab == tab ? "active" : ""
-    li_content = link_to(text, url)
+    li_content = link_to(text, url, html_options)
 
     subtab_li_elements = []
 
