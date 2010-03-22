@@ -1,12 +1,4 @@
 module MenuBuilderHelpers
-  def build_menu(*items)
-    items.map do |item|
-      if !item[3] || current_user.send(item[3])
-        %Q{<li#{ ' class="active"' if @current_tab == item[0] }>#{link_to(item[1], item[2])}</li>}
-      end
-    end.join
-  end
-
   def build_tiered_menu(items)
     li_elements = []
 
@@ -18,6 +10,8 @@ module MenuBuilderHelpers
       out << content_tag(:ul, li_elements, :class => "nav_01")
     end
   end
+
+  alias_method :build_menu, :build_tiered_menu
 
   def build_li_for(item)
     tab, text, url, subtabs = item
