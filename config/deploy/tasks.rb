@@ -17,7 +17,7 @@ namespace :deploy do
     require 'config/recipes/mailer'
     require 'app/mailers/deploy_mailer'
 
-    run "#{current_path}/script/runner -e production 'DeployMailer.deliver_deployment_notification(\"#{deployment}\", \"#{domain}\")'"
+    run "#{current_path}/script/runner -e #{rails_env} 'DeployMailer.deliver_deployment_notification(\"#{deployment}\", \"#{domain}\")'"
     puts "Deploy notification for #{deployment.upcase} sent"
   end
 
@@ -50,7 +50,7 @@ namespace :remote do
   desc "Remote console"
   task :console, :roles => :db, :only => { :primary => true } do
     input = ''
-    run "cd #{current_path} && ./script/console production" do |channel, stream, data|
+    run "cd #{current_path} && ./script/console #{rails_env}" do |channel, stream, data|
       next if data.chomp == input.chomp || data.chomp == ''
       print data
       channel.send_data(input = $stdin.gets) if data =~ /^(>|\?)>/
