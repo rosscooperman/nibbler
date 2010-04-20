@@ -28,14 +28,17 @@ class DatabaseLoader
   end
 
   def import
-    puts "* Importing db dump #{db_dump_filename} to #{database_name}"
-    %x(mysql -u root #{database_name} < #{db_dump_filename})
+    cmd = "mysql #{mysql_options} #{database_name} < #{db_dump_filename}"
+
+    puts "* Importing db dump #{db_dump_filename} to #{database_name}: "
+    puts "** Executing: #{cmd}"
+    `#{cmd}`
   end
 
   def run_migrations
     if should_run_migrations?
       puts "* Running migrations"
-      puts `rake db:migrate`
+      puts `RAILS_ENV=#{RAILS_ENV} rake db:migrate`
     end
   end
 
@@ -46,6 +49,21 @@ class DatabaseLoader
 
 private
 
+  def mysql_options
+    options = {
+      "-u" => database_username,
+      "-h" => database_host
+    }
+
+    if !database_password.blank?
+      options["-p"] = database_password
+    end
+
+    options.map do |key, value|
+      "#{key} '#{value}'"
+    end.join(" ")
+  end
+
   def should_run_migrations?
     @run_migrations == true
   end
@@ -54,8 +72,12 @@ private
     db_dump_filename.include?(".gz")
   end
 
+  def database_password
+    config["password"]
+  end
+
   def database_name
-    @database_name ||= config["database"]
+    config["database"]
   end
 
   def database_username
@@ -67,7 +89,7 @@ private
   end
 
   def config
-    yaml_config[RAILS_ENV]
+    @config ||= yaml_config[RAILS_ENV]
   end
 
   def yaml_config
