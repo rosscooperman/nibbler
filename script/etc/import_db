@@ -60,7 +60,7 @@ private
     end
 
     options.map do |key, value|
-      "#{key} '#{value}'"
+      "#{key}'#{value}'"
     end.join(" ")
   end
 
