@@ -8,8 +8,8 @@ set :scm_command,    "git"
 set(:revision_log)   { "#{deploy_to}/revisions.log" }
 set(:version_file)   { "#{current_path}/REVISION" }
 set :migrate_target, :current
-set :release_name,   'current'
 set :releases,       ['current']
+set(:release_path)   { File.join(releases_path, "current") }
 set(:releases_path)  { File.join(deploy_to) }
 
 namespace :deploy do
@@ -112,7 +112,7 @@ namespace :deploy do
   task :set_version_file, :except => { :no_release => true } do
     run [
       "cd #{current_path}",
-      "#{scm_command} rev-list origin/#{branch} | head -n 1 > #{version_file}"
+      "#{scm_command} rev-list HEAD | head -n 1 > #{version_file}"
     ].join(" && ")
   end
 
@@ -120,8 +120,9 @@ namespace :deploy do
     run "echo `date +\"%Y-%m-%d %H:%M:%S\"` $USER $(cat #{version_file}) >> #{deploy_to}/revisions.log"
   end
 
-  desc "Do nothing (since we have no releases directory)"
+  desc "Run git gc"
   task :cleanup do
+    run "cd #{current_path} && git gc"
   end
 
   desc <<-DESC
