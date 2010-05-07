@@ -4,8 +4,8 @@
 <% form_for :page, @page, :url => (@page.new_record? ? admin_pages_path : admin_page_path(@page)), :html => {:method => (@page.new_record? ? :post : :put), :multipart => true} do |f| -%>
 <div class="std_form">
   <ul>
+    <%= f.ul_text_field :slug %>
     <%= f.ul_text_field :title %>
-
     <li class="">
       <label for="page_body">Body</label>
       <%= fckeditor_textarea :page, :body, @page.body %>

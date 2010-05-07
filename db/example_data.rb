@@ -24,6 +24,8 @@ module FixtureReplacement
 
   attributes_for :page do |page|
     page.title = random_string
+    page.slug  = random_string
+    page.body  = random_string
   end
 
   def random_email

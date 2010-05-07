@@ -1,0 +1,13 @@
+<% @page_title = "Page: <em>#{h(@page.title)}</em>" %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => "admin/shared/sidebar" %>
+<% end %>
+
+<%= render :partial => "page", :locals => {:page => @page} %>
+
+<h3>Quick Stats</h3>
+<dl>
+  <dt>Created</dt>
+  <dd><%= @page.created_at.to_s(:long_with_zone) %></dd>
+</dl>

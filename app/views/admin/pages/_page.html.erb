@@ -1,0 +1,8 @@
+<% zebra_row do %>
+  <td>title: <%=h page.title %></td>
+  <td>slug: <%=h page.slug  %></td>
+  <td><%= page.body %></td>
+  <td class="controls">
+    <%= link_to 'Edit', edit_admin_page_path(page), :class => "edit" %>
+  </td>
+<% end %>

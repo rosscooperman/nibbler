@@ -6,8 +6,9 @@ ActionController::Routing::Routes.draw do |map|
     admin.root :controller => "users", :action => "index"
   end
 
-  map.resources :contact_submissions
   map.resources :users
+  map.resources :pages
+  map.resources :contact_submissions
 
   map.resource  :session, :controller => "session"
   map.with_options :controller => 'session' do |m|

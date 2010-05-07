@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(:version => 20100113232233) do
 
   create_table "pages", :force => true do |t|
     t.string   "title"
-    t.string   "header"
-    t.string   "body"
+    t.string   "slug"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -2,8 +2,8 @@ class CreatePages < ActiveRecord::Migration
   def self.up
     create_table :pages do |t|
       t.string :title
-      t.string :header
-      t.string :body
+      t.string :slug
+      t.text   :body
       t.timestamps
     end
   end
