@@ -6,6 +6,7 @@ task :production do
   set  :branch,               "master"
   set  :deploy_to,            "/var/www/apps/#{application}"
   set  :deployment,           "production"
+  set  :rails_env,            "production"
   set  :production_domain,    "EXAMPLE.COM"
 
   set  :domain,               production_domain
@@ -22,6 +23,7 @@ task :staging do
   set  :branch,               "staging"
   set  :deploy_to,            "/var/www/apps/#{application}"
   set  :deployment,           "staging"
+  set  :rails_env,            "staging"
   set  :staging_domain,       "EXAMPLE.COM"
 
   set  :domain,               staging_domain
