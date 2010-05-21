@@ -6,11 +6,6 @@ namespace :deploy do
     CMD
   end
 
-  task :update_revisions_log, :roles => :app, :except => { :no_release => true } do
-    run "(test -e #{deploy_to}/revisions.log || (touch #{deploy_to}/revisions.log && chmod 666 #{deploy_to}/revisions.log)) && " +
-    "echo `date +\"%Y-%m-%d %H:%M:%S\"` $USER #{real_revision} #{File.basename(release_path)} >> #{deploy_to}/revisions.log;"
-  end
-
   desc "Send email notification of deployment"
   task :email_notify, :roles => :app do
     require 'action_mailer' unless defined?(ActionMailer)

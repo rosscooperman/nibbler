@@ -1,4 +1,4 @@
-after "deploy:symlink_configs", "deploy:symlink_app_configs", "deploy:update_revisions_log"
+after "deploy:symlink_configs", "deploy:symlink_app_configs"
 
 common_after_deploy_tasks = [
   "deploy:tag",
