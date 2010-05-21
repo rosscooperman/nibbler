@@ -4,7 +4,6 @@ require 'railsmachine/recipes'
 set :application,           "APP_NAME"
 set :repository,            "git@github.com:eastmedia/REPOS_URL.git"
 set :rails_env,             "production"
-set :keep_releases,         5
 
 # comment out if it gives you trouble. newest net/ssh needs this set.
 ssh_options[:paranoid]    = false
