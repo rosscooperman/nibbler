@@ -21,9 +21,10 @@
   <%= content_tag(:div, "Staging Server", :id => "staging") if staging? %>
   <div id="header">
     <div class="wrapper">
-      <h1><%= link_to 'Fresh Application', '/admin' %></h1>
-
-      <%= build_main_menu %>
+      <h1><%= link_to company_name, '/admin' %></h1>
+      <ul class="nav nav_01">
+        <%= build_main_menu %>
+      </ul>
 
       <ul class="nav_02">
         <li>Hi, <%= content_tag :strong, current_user.username %> |</li>
