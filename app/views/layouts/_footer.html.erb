@@ -1,11 +1,16 @@
-<%= link_to "home",       root_path,                   :title => "Return to the Home Page" %>&nbsp;/&nbsp;
-<%= link_to "contact us", new_contact_submission_path, :title => "Contact Us" %>&nbsp;/&nbsp;
+<ul>
+  <%= content_tag :li, (link_to "home", root_path, :title => "Return to the #{company_name} Home Page", :rel => "#{company_name} Home Page") %>
+  <%= content_tag :li, (link_to "contact us", new_contact_submission_path, :title => "Contact Us #{company_name}", :rel => "#{company_name} Contact Page") %>
 
-<% if logged_in? %>
-  <%= link_to "log out", session_path, :method => :delete %>
-<% else %>
-  <%= link_to "sign up", new_user_path %>&nbsp;/&nbsp;
-  <%= link_to "log in", new_session_path %>
-<% end %>
+  <% if logged_in? %>
+    <%= content_tag :li, (link_to "sign out", session_path, :title => "Sign Out of your #{company_name} account", :rel => "Sign Out Page", :method => :delete) %>
+  <% else %>
+    <%= content_tag :li, (link_to "sign up", new_user_path, :title => "Sign up for an account with #{company_name}", :rel => "Sign Up Page") %>
+    <%= content_tag :li, (link_to "sign in", new_session_path, :title => "Sign in to your account with #{company_name}", :rel => "Sign In") %>
+  <% end %>
+</ul>
 
-<p class="copyright">&copy; <%= Time.now.year %> <%= link_to "Company Name", root_path, :title => "Company Name" %> / All Rights Reserved.</p>
+<p class="copyright">&copy; 
+  <%= Time.now.year %> <%= link_to company_name, root_path, :title => "Return to the #{company_name} Home Page", :rel => "#{company_name} Home Page" %>
+   | All Rights Reserved.
+</p>
