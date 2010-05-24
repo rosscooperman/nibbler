@@ -1,17 +1,11 @@
 module MenuBuilderHelpers
-  def build_tiered_menu(items)
-    li_elements = []
-
+  def build_menu(items)
     returning "" do |out|
       items.each do |item|
-        li_elements << build_li_for(item)
+        out << build_li_for(item)
       end
-
-      out << content_tag(:ul, li_elements, :class => "nav nav_01")
     end
   end
-
-  alias_method :build_menu, :build_tiered_menu
 
   def build_li_for(item)
     tab, text, url, subtabs = item

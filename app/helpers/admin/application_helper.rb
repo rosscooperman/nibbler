@@ -22,17 +22,15 @@ module Admin::ApplicationHelper
   end
 
   def build_main_menu
-    menu = [
+    build_menu([
       [:pages, "Pages", admin_pages_path]
-    ]
-
-    build_tiered_menu(menu)
+    ])
   end
 
   def build_right_menu
-    build_menu (
+    build_menu([
       [:users, 'Users', admin_users_path]
-    )
+    ])
   end
 
   def shared_paginator_for(name)
