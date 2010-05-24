@@ -1127,7 +1127,6 @@ dd.text_editor {
 .cols:after,
 #wrapper:after,
 .wrapper:after,
-#nav:after,
 .page_actions:after,
 #content_wrap:after,
 #inner:after {
@@ -1141,7 +1140,6 @@ dd.text_editor {
 .cols,
 #wrapper,
 .wrapper,
-#nav,
 .page_actions,
 #inner {
   display: inline-block;
@@ -1150,7 +1148,6 @@ dd.text_editor {
 html[xmlns] .cols,
 html[xmlns] #wrapper,
 html[xmlns] .wrapper,
-html[xmlns] #nav,
 html[xmlns] .page_actions,
 html[xmlns] #content_wrap.aux,
 html[xmlns] #inner {
@@ -1160,7 +1157,6 @@ html[xmlns] #inner {
 * html .cols,
 * html #wrapper,
 * html .wrapper,
-* html #nav,
 * html .page_actions,
 * html #content_wrap.aux,
 * html #inner {
