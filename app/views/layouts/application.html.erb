@@ -9,7 +9,7 @@
   <meta name="author" content="<%= company_name %> www.<%= company_name %>.com" />
   <meta name="classification" content="" />
   <meta name="revisit-after" content="15 days" />
-  <meta name="copyright" content="Copyright (c) 2010 <%= company_name %>" />
+  <meta name="copyright" content="Copyright (c) <%= Time.now.year %> <%= company_name %>" />
   <meta name="distribution" content="global" />
   <meta name="language" content="en" />
   <meta name="robots" content="index,follow" />
@@ -45,7 +45,7 @@
       <%#= render :partial => "shared/search" %>
     </div>
   </div>
-  
+
   <div id="wrapper">
     <%= flash_messages(:error, :notice) -%>
     <% if page_top = yield(:page_top) -%>
