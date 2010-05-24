@@ -7,7 +7,7 @@ module MenuBuilderHelpers
         li_elements << build_li_for(item)
       end
 
-      out << content_tag(:ul, li_elements, :class => "nav_01")
+      out << content_tag(:ul, li_elements, :class => "nav nav_01")
     end
   end
 
