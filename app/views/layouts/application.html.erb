@@ -4,6 +4,22 @@
 <head>
   <title><%= company_name %><%= " &mdash; " + @page_title unless @page_title.blank? %></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content=""/>
+  <meta name="keywords" content="<%= company_name %>" />
+  <meta name="author" content="<%= company_name %> www.<%= company_name %>.com" />
+  <meta name="classification" content="" />
+  <meta name="revisit-after" content="15 days" />
+  <meta name="copyright" content="Copyright (c) 2010 <%= company_name %>" />
+  <meta name="distribution" content="global" />
+  <meta name="language" content="en" />
+  <meta name="robots" content="index,follow" />
+  <meta name="generator" content="<%= company_name %>" />
+  <meta name="rating" content="General" />
+  <meta name="DC.title" content="<%= company_name %>" />
+  <meta name="geo.position" content="lat / long" />
+  <meta name="ICBM" content="lat / long" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="/images/icon_apple_public.png" type="image/x-icon" />
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
   <%= stylesheet_link_tag "reset-fonts", "base", "nyroModal", "public", :cache => true -%>
   <!--[if IE]>
@@ -18,16 +34,18 @@
   <%= yield :head -%>
 </head>
 
-<%= body_tag %>
+<% sidebar = yield(:sidebar) %>
+
+<%= body_tag(sidebar) %>
   <%= content_tag(:div, "Staging Server", :id => "staging") if staging? %>
   <div id="header">
     <div class="wrapper">
-      <p><%= link_to "Fresh Application Home", "/", :rel => "home", :title => "Fresh Application Home" %></p>
-      <%#= render :partial => "layouts/nav" %>
+      <p><%= link_to company_name, root_path, :rel => "#{company_name} home page", :title => company_name %></p>
+      <%= render :partial => "layouts/nav" %>
       <%#= render :partial => "shared/search" %>
     </div>
   </div>
-  <div id="wrapper" class="<% if sidebar = yield(:sidebar) %>aux<% else %>wide<% end %>">
+  <div id="wrapper">
     <%= flash_messages(:error, :notice) -%>
     <% if page_top = yield(:page_top) -%>
       <div id="page_top">
