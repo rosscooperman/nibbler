@@ -45,6 +45,7 @@
       <%#= render :partial => "shared/search" %>
     </div>
   </div>
+  
   <div id="wrapper">
     <%= flash_messages(:error, :notice) -%>
     <% if page_top = yield(:page_top) -%>
@@ -53,23 +54,19 @@
       </div>
     <% end %>
     <div id="content_wrap">
-      <div id="inner">
-        <div id="page_content">
+      <div id="page_content">
+        <div id="inner">
           <%= yield %>
         </div>
-        <% if sidebar = yield(:sidebar) -%>
-          <div id="sidebar" class="col">
-            <%= sidebar -%>
-          </div>
-        <% end -%>
       </div>
+      <% if sidebar -%>
+      <ul id="sidebar">
+        <%= sidebar -%>
+      </ul>
+      <% end -%>
     </div>
-    <% if bottom_div = yield(:bottom_div) -%>
-      <div id="bottom">
-        <%= bottom_div %>
-      </div>
-    <% end -%>
   </div>
+
   <div id="footer">
     <div class="wrapper">
      <%= render :partial => "layouts/footer" %>

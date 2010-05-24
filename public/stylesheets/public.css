@@ -4,6 +4,43 @@
   width: 960px;
 }
 
+#inner {
+  min-height: 500px;
+}
+
+/* layouts 
+----------------------------------------------------------------------*/
+
+#header,
+#footer { background-color: #ddd; }
+
+#header .wrapper,
+#footer .wrapper { background-color: #ececec; }
+
+#sidebar { background-color: #aaa;}
+
+/* sidebar
+----------------------------------------------------------------------*/
+
+.aux #page_content,
+#sidebar {
+  position: relative;
+  float: left;
+}
+
+.aux #content_wrap {
+  margin-right: 320px;
+}
+
+#page_content {
+  width: 100%;
+}
+
+#sidebar {
+  width: 320px;
+  margin-right: -320px;
+}
+
 /* clearfix
 ----------------------------------------------------------------------*/
 
