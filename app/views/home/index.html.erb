@@ -1,0 +1,8 @@
+<% @page_title = "This sets the browser window page title" %>
+
+<%= content_tag :h1, @page_title %>
+<p>This layout is in home/index.html.erb</p>
+
+<% content_for :sidebar do  %>
+  <p>This is a right sidebar</p>
+<% end %>
