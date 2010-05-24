@@ -1,7 +1,9 @@
 <% @page_title = "Users"%>
 
 <% actions do %>
-  <%= link_to "Add a New User", new_admin_user_path, :class => "add_user" %>
+  <div class="action">
+    <%= link_to "Add a New User", new_admin_user_path, :class => "icon add_user" %>
+  </div>
 <% end %>
 
 <% content_for :sidebar do %>
