@@ -8,7 +8,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
   <%= stylesheet_link_tag "reset-fonts", "base", "nyroModal", "admin" -%>
   <!--[if IE]>
-    <%= stylesheet_link_tag 'admin_ie' %>
+    <%#= stylesheet_link_tag 'admin_ie' %>
   <![endif]-->
 
   <% if @wants_fckeditor %>
@@ -25,12 +25,13 @@
 
       <%= build_main_menu %>
 
-      <ul id="gns_02">
+      <ul class="nav_02">
+        <li>Hi, <%= content_tag :strong, current_user.username %> |</li>
         <li><%= link_to 'Public Site', root_path %> |</li>
         <li><%= link_to 'Sign out', session_path, :method => :delete %></li>
       </ul>
 
-      <ul id="gns_03">
+      <ul class="nav nav_03">
         <%= build_right_menu %>
       </ul>
     </div>
