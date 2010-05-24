@@ -14,10 +14,13 @@ module SharedHelper
     (string || "").gsub(/&amp;/xim, '&')
   end
 
-  def body_tag
+  def body_tag(sidebar = false)
     body = "<body"
     body << " id=\"#{@body_id || controller.controller_name}\""
-    body << " class=\"#{@body_class}\"" if @body_class
+    body << " class=\""
+    body << "#{@body_class}" if @body_class
+    body << " aux" if sidebar
+    body << "\""
     body << ">"
   end
 
