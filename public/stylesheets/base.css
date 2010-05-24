@@ -22,7 +22,7 @@ img { background-color: transparent; }
 h1        { font-size:  138.5%;   } /*18px*/
 h2        { font-size:  123.1%;   } /*16px*/
 h3        { font-size:  108%;     } /*14px*/
-h1,h2,h3  { margin:     1em 0;    } 
+h1,h2,h3  { margin:     1.5em 0 1em;    } 
 
 abbr,acronym {
   border-bottom: 1px dotted #000;
@@ -54,12 +54,10 @@ p,fieldset,table { margin-bottom:1em; }
   z-index: 10000;
 }
 
-h2 { font: bold 153.9%/150% Helvetica; }
-h3 { font: bold 182% Helvetica; }
-
 #wrapper,
 #header .wrapper,
 #footer .wrapper,
+#navigation .wrapper,
 .breadcrumbs {
   margin: 0 auto;
   text-align: left;
@@ -80,10 +78,6 @@ th,td {
 
 th {
   font-weight: bold;
-  text-align: center;
-  color: #fff;
-  background-color: #555;
-  border-bottom: 1px solid #333;
 }
 
 td {
@@ -94,7 +88,8 @@ td {
 --------------------------------------------------------------------------------*/
 
 tr.light    { background: #fff;     }
-tr.dark     { background: #f6f6f6;  }
+tr.dark,
+li.dark     { background: #f6f6f6;  }
 tr.current  { background: #dedede;  }
 
 /* list styles
@@ -130,6 +125,21 @@ tr.current  { background: #dedede;  }
   margin-bottom: 5px;
 }
 
+/* overrides for managed content */
+
+.managed ul,
+.managed ol {
+  margin: 1em;
+  margin-left: 2em;
+}
+
+.managed li {
+  margin-bottom: 1em;
+}
+
+.managed ul li { list-style-type: disc; }
+.managed ol li { list-style-type: decimal; }
+
 /* forms
 --------------------------------------------------------------------------------------*/
 
@@ -143,6 +153,8 @@ form textarea {
   height: 10em;
 }
 
+.checkbox input,
+.radio input,
 input.checkbox,
 input.radio {
   position: relative;
@@ -167,7 +179,41 @@ form dd {
 
 fieldset {
   border: 0;
-  width: 100%;
+/*   width: 100%; */
+}
+
+/* buttons
+--------------------------------------------------------------------------------------*/
+
+.bn_gold {
+  display: block;
+  margin-top: 25px;
+  padding-left: 56px;
+  background: url(/images/bn_gold.png) no-repeat left top;
+  color: #4f2a00;
+  font-size: 123.1%;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #ffad2b;
+  border-right: 1px solid #dbad66;
+}
+
+a.bn_gold {
+  width: 160px;
+  height: 37px;
+  padding-top: 10px;
+}
+
+a.bn_gold:hover {
+  color: #4f2a00;
+}
+
+input.bn_gold {
+/*   width: 225px; */
+  height: 47px;
+  border: 1px solid #c37700;
+  text-align: left;
+  cursor: pointer;
+  padding-right: 25px;
 }
 
 /* Standard ul form styles
@@ -178,32 +224,27 @@ dl.std_form {
   width: auto;
 }
 
-.std_form li {
-  padding: 5px;
+.std_form .required span,
+.error {
+  color: #930000;
 }
 
-.required span,
-.date_time span {
-  margin-left: 3px;
-  color: #B83F1D;
+.std_form span.error {
+  white-space:nowrap;
 }
 
-.std_form li.error {
-  padding: 9px;
-  background-color: #DE522A;
-  border: 1px solid #A73E20;
-}
-
-.std_form li.error label,
-.std_form li.error label span {
-  color: #fff;
-}
-
-.std_form p.instructions {
-  color: #535F62;
-  font-size: 85%;
+.std_form p.instructions,
+.std_form span.error {
+  font-size: 93%;
   line-height: 150%;
 }
+
+.std_form p.error {
+  display: inline;
+}
+
+.std_form p.instructions  { color: #535F62; }
+.std_form p.error         { color: #ff3333; }
 
 .submit {
   margin: 1em 0;
@@ -219,33 +260,30 @@ dl.std_form {
 .flash {
   margin: 0 auto 1em;
   padding: 1em 0;
-  border-width: 1px;
-  border-style: solid;
-  color: #2b2b2b;
   font-weight: bold;
   z-index: 1000;
 }
 
-.error {
-  border-color:     #ff0000;
+.flash,
+div.errorExplanation {
+  border-width: 1px;
+  border-style: solid;
+  color: #2b2b2b;
+}
+
+div.error,
+.errorExplanation {
+  border-color:     #930000;
   background-color: #ffecec;
 }
 
-.notice {
+div.notice {
   border-color:     #FED600;
   background-color: #FFFBE5;
 }
 
-.errorExplanation {
-  margin: -1em 0 1em;
-  padding: 0 1em 1em;
-}
-
-.errorExplanation h2,
-.errorExplanation p,
-dt p.error,
-dt span {
-  color: #930000;
+div.errorExplanation {
+  padding-bottom: 1em;
 }
 
 .errorExplanation h2,
@@ -255,14 +293,21 @@ dt span {
 }
 
 .errorExplanation h2 {
-  padding-left: 21px;
-  font-size: 123.1%;
-  background: url(/images/admin/exclamation.gif) left 3px no-repeat;
+  margin: 0 0 0.5em;
+  padding: 0.5em 0 0.5em 40px;
+  font-size: 108%;
+  color: #fff;
+  background: #930000 url(/images/error_explanation.png) 10px 6px no-repeat;
+  font-weight: normal;
 }
 
-.errorExplanation p,
 .errorExplanation ul {
-  padding-left: 21px;
+  padding-left: 25px;
+  color: #500000;
+}
+
+.errorExplanation p {
+  display: none;
 }
 
 .errorExplanation li {
@@ -270,12 +315,17 @@ dt span {
   padding: 0;
   list-style-type: disc; 
   list-style-position: inside;
+  line-height: 1.4em;
 }
 
 .fieldWithErrors,
 .fieldWithErrors *,
 dt p.error {
   display: inline;
+}
+
+.fieldWithErrors option {
+  display: block;
 }
 
 /* pagination
@@ -308,10 +358,45 @@ div.pagination {
 .pagination a           { text-decoration: none; }
 .pagination a:hover     { text-decoration: underline; }
 
+/* 2, 3, 4 columns
+----------------------------------------------------------------------*/
+
+.cols { margin-bottom: 30px; }
+.col  { float: left; }
+
+.two    .col  { width: 470px; }
+.three  .col  { width: 320px; }
+.four   .col  { width: 225px; }
+
+.inner_content .two    .col  { width: 440px; }
+
+.two .col,
+.four .col   { margin-right: 20px; }
+
+.three .col             { margin-right: 0; }
+
+.three .double  { width: 640px; }
+.four .triple   { width: 735px; }
+.four .double   { width: 465px; }
+
+ /* .aux page_content is 580 wide */
+
+.aux .two   .col { width: 280px; }
+/* .aux .three .col { width: 224px; } */
+/* .aux .four  .col { width: 168px; } */
+
+/* .aux .three .double  { width: 478px; } */
+/* .aux .four .triple   { width: 544px; } */
+
+.cols .last { margin-right: 0; }
+
 /* clearfix
 ----------------------------------------------------------------------*/
 
 .clearfix:after,
+#wrapper:after,
+.wrapper:after,
+#nav:after,
 .cols:after {
   content: ".";
   display: block;
@@ -321,16 +406,25 @@ div.pagination {
 }
 
 .clearfix,
+#wrapper,
+.wrapper,
+#nav,
 .cols {
   display: inline-block;
 }
 
 html[xmlns] .clearfix,
+html[xmlns] #wrapper,
+html[xmlns] .wrapper,
+html[xmlns] #nav,
 html[xmlns] .cols {
   display: block;
 }
 
 * html .clearfix,
+* html #wrapper,
+* html .wrapper,
+* html #nav,
 * html .cols {
   height: 1%;
 }
