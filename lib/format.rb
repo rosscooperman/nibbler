@@ -31,10 +31,7 @@ module RFC822
 end
 
 module Format
-  # EMAIL = /^[-\w.+]+@([-a-z0-9]+\.)+[-a-z0-9]{2,6}$/i
-  # EMAIL = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   EMAIL = /\A([\w\.\-\+]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   USERNAME = /\A\w+\Z/i
-  # EMAIL = RFC822::EmailAddress
   WEB = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?[\/\?].*)?$/ix
 end
