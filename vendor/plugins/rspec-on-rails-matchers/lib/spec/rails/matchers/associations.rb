@@ -28,6 +28,26 @@ module Spec
           model.reflect_on_all_associations(:has_and_belongs_to_many).find { |a| a.name == association }
         end
       end
+
+      class HaveValidAssociationMatcher
+        def matches?(model)
+          @failed_association = nil
+          @model_class = model.class
+
+          model.class.reflect_on_all_associations.each do |assoc|
+            model.send(assoc.name) rescue @failed_association = assoc.name
+          end
+          !@failed_association
+        end
+
+        def failure_message
+          "invalid or nonexistent association \"#{@failed_association}\" on #{@model_class}"
+        end
+      end
+
+      def have_valid_associations
+        HaveValidAssociationMatcher.new
+      end
     end
   end
 end

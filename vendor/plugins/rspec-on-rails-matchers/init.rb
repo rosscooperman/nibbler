@@ -1,3 +1,4 @@
+require 'spec/matchers/simple_matcher'
 require 'spec/rails/matchers/observers'
 require 'spec/rails/matchers/associations'
 require 'spec/rails/matchers/validations'
