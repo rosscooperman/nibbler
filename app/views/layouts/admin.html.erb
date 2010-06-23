@@ -17,7 +17,7 @@
   <%= content_tag(:div, "Staging Server", :id => "staging") if staging? %>
   <div id="header">
     <div class="wrapper">
-      <h1><%= link_to company_name, admin_path %></h1>
+      <h1><%= link_to company_name, admin_root_path %></h1>
       <ul class="nav nav_01">
         <%= build_main_menu %>
       </ul>
