@@ -2,7 +2,7 @@
 # A small script to import a production gzip'ed dump
 
 require "yaml"
-require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+require File.expand_path(File.dirname(__FILE__) + "/../../config/environment")
 
 class DatabaseLoader
   attr_reader :db_dump_filename
