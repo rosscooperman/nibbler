@@ -20,6 +20,9 @@ namespace :db do
     sh("script/import_db #{latest_database_dump}")
   end
 
+  desc "drop, create, migrate, and seed"
+  task :reboot => [:drop, :create, :migrate, :seed]
+
 private
   
   def latest_database_dump
