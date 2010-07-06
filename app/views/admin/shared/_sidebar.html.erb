@@ -2,3 +2,13 @@
   <li><%= link_to "Add a New Page", new_admin_page_path, :class => "add_page" %></li>
   <li><%= link_to "Add a New User", new_admin_user_path, :class => "add_user" %></li>
 </ul>
+
+<h3><%= link_to "Textile Reference", "http://redcloth.org/textile" %></h3>
+<ul class="textile_instructions">
+  <li><strong>h1. header</strong><%=content_tag :span, (h content_tag :h1,     "header"        ), :class => "markup" %></li>
+  <li><strong>*bold*    </strong><%=content_tag :span, (h content_tag :strong, "bold"          ), :class => "markup" %></li>
+  <li><strong>_italics_ </strong><%=content_tag :span, (h content_tag :em,     "italics"       ), :class => "markup" %></li>
+  <li><strong>* list    </strong><%=content_tag :span, (h content_tag :li,     "UnorderedList" ), :class => "markup" %></li>
+  <li><strong># list    </strong><%=content_tag :span, (h content_tag :li,     "Ordered List"  ), :class => "markup" %></li>
+  <li><strong>_link     </strong><%=content_tag :span, (h content_tag :li,     "Ordered List"  ), :class => "markup" %></li>
+</ul>
