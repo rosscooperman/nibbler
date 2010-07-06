@@ -15,16 +15,6 @@ Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
-  # See Rails::Configuration for more options.
-
-  # Skip frameworks you're not going to use. To use Rails without a database
-  # you must remove the Active Record framework.
-  config.frameworks -= [ :active_resource ]
-
-  # Only load the plugins named here, in the order given. By default, all plugins
-  # in vendor/plugins are loaded in alphabetical order.
-  # :all can be used as a placeholder for all plugins not explicitly named
-  # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
   # Add additional load paths for your own custom dirs
   config.load_paths += [
@@ -33,10 +23,27 @@ Rails::Initializer.run do |config|
     File.join(RAILS_ROOT, "app", "conductors"),
   ]
 
-  # Make Time.zone default to the specified zone, and make Active Record store time values
-  # in the database in UTC, and return them converted to the specified local zone.
-  # Run "rake -D time" for a list of tasks for finding time zone names. Uncomment to use default local time.
+  # Specify gems that this application depends on and have them installed with rake gems:install
+  # config.gem "colored"
+
+  # Only load the plugins named here, in the order given (default is alphabetical).
+  # :all can be used as a placeholder for all plugins not explicitly named
+  # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
+
+  # Skip frameworks you're not going to use. To use Rails without a database,
+  # you must remove the Active Record framework.
+  config.frameworks -= [ :active_resource ]
+
+  # Activate observers that should always be running
+  # config.active_record.observers = :cacher, :garbage_collector
+
+  # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+  # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
+
+  # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+  # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+  # config.i18n.default_locale = :de
 
   # Your secret key for verifying cookie session data integrity.
   # If you change this key, all old sessions will become invalid!
@@ -56,9 +63,6 @@ Rails::Initializer.run do |config|
   # This is necessary if your schema can't be completely dumped by the schema dumper,
   # like if you have constraints or database-specific column types
   # config.active_record.schema_format = :sql
-
-  # Activate observers that should always be running
-  # config.active_record.observers = :cacher, :garbage_collector
 
   require RAILS_ROOT + "/vendor/plugins/hodel_3000_compliant_logger/lib/hodel_3000_compliant_logger"
   config.logger = Hodel3000CompliantLogger.new(config.log_path)
