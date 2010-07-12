@@ -6,6 +6,9 @@ set :repository,            "git@github.com:eastmedia/REPOS_URL.git"
 
 # comment out if it gives you trouble. newest net/ssh needs this set.
 ssh_options[:paranoid]    = false
+
+# Don't source ~/.bashrc (assuming PermitUserEnvironment yes)
+# See: http://weblog.jamisbuck.org/2007/10/14/capistrano-2-1
 default_run_options[:pty] = true
 
 # This will execute the Git revision parsing on the *remote* server rather than locally
