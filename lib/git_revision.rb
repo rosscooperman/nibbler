@@ -12,14 +12,23 @@ module GitRevision
   end
 
   def branch_name
-    `git branch`.split("\n").detect { |b| b =~ /^\*/ }.gsub(/\*/, "").strip
+    `#{git_path} branch`.split("\n").detect { |b| b =~ /^\*/ }.gsub(/\*/, "").strip
   rescue
     "UNKNOWN"
   end
 
   def version
-    `git rev-list HEAD | head -n 1`.strip
+    `#{git_path} rev-list HEAD | head -n 1`.strip
   rescue
     "UNKNOWN"
+  end
+
+private
+
+  def git_path
+    @git_path ||= begin
+      git_path = `which git`.strip
+      git_path.empty? ? "/usr/local/bin/git" : git_path
+    end
   end
 end
