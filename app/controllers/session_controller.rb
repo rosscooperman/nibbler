@@ -66,21 +66,6 @@ class SessionController < ApplicationController
     end
   end
 
-  # For EngineYard monitoring purposes. See http://forum.engineyard.com/forums/6/topics/21
-  def health_check
-    unless ActiveRecord::Base.count_by_sql("SELECT COUNT(*) FROM schema_migrations") > 1
-      raise "Schema table not working"
-    end
-
-    unless File.exists?(File.join(RAILS_ROOT, "config", "database.yml"))
-      raise "database.yml doesn't exist!"
-    end
-
-    render :text => "OK", :layout => false
-  rescue Exception => e
-    render :text => "Error: #{e}", :layout => false
-  end
-
 private
 
   def verify_reset_password_hash

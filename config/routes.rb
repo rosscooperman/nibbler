@@ -21,6 +21,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => "home"
 
+  map.with_options :controller => "health_check" do |m|
+    m.connect "health_check/check", :action => "health_check"
+    m.connect "health_check/ok",    :action => "ok"
+    m.connect "health_check/error", :action => "error"
+  end
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
