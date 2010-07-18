@@ -1,5 +1,4 @@
 <% zebra_row do %>
-  <td><%= link_to h(user.username), admin_user_path(user) %></td>
   <td><%=h user.email %></td>
   <td><%= user.created_at.to_s(:admin) %></td>
   <td class="controls">

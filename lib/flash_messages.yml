@@ -1,7 +1,7 @@
 sign_in:
   success: "You signed in successfully."
   problem:
-    error: "Your username, email or password is incorrect. Please try again."
+    error: "Your email or password is incorrect. Please try again."
 
 sign_out:
   success: "You are now signed out. Be good."
@@ -9,7 +9,7 @@ sign_out:
 forgot_password:
   success: "We have emailed you a link to reset your password."
   problem:
-    error: "We're sorry, but we don't have that username or email address on file."
+    error: "We're sorry, but we don't have that email address on file."
 
 reset_password:
   success: "Your password was updated successfully and we've confirmed your email address."

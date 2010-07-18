@@ -6,7 +6,6 @@ describe User do
   end
 
   describe "validations + associations" do
-    it { @user.should validate_presence_of(:username) }
     it { @user.should validate_presence_of(:email) }
     it { @user.should validate_presence_of(:password) }
     it { @user.should validate_presence_of(:password_confirmation) }

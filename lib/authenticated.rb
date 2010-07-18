@@ -1,6 +1,6 @@
 require 'digest/sha1'
 module Authenticated
-  
+
   module ClassMethods
     # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
     def authenticate_by_auth_hash(id, hash)
@@ -12,39 +12,37 @@ module Authenticated
       u = find(:first, :conditions => ["UPPER(email) = UPPER(?)", email]) # need to get the salt
       u && u.authenticated?(password) ? u : nil
     end
-    
+
     # Encrypts some data with the salt.
     def encrypt(password, salt)
       Digest::SHA1.hexdigest("--#{salt}--#{password}--")
     end
   end
-  
+
   def self.included(base)
     base.extend ClassMethods
-    
+
     base.class_eval do
       # Virtual attribute for the unencrypted password
       attr_accessor :password
       attr_accessor :current_password
 
-      validates_presence_of     :username
-      validates_uniqueness_of   :username, :case_sensitive => false
       validates_presence_of     :email
       validates_uniqueness_of   :email, :case_sensitive => false
       # validates_presence_of     :email_confirmation
-#      validates_confirmation_of :email
+      # validates_confirmation_of :email
       validates_length_of       :email,    :within => 3..100
       validates_presence_of     :password,                    :if => :password_required?
       validates_presence_of     :password_confirmation,       :if => :password_required?
       validates_length_of       :password, :within => 6..40,  :if => :password_required?
       validates_confirmation_of :password,                    :if => :password_required?
-#      validates_acceptance_of   :terms_of_service
+      # validates_acceptance_of   :terms_of_service
       before_save :encrypt_password
     end
   end
-  
+
   def remember_token?
-    remember_token_expires_at && Time.now.utc < remember_token_expires_at 
+    remember_token_expires_at && Time.now.utc < remember_token_expires_at
   end
 
   # These create and unset the fields required for remembering users between browser closes
@@ -67,7 +65,7 @@ module Authenticated
     self.remember_token            = nil
     save(false)
   end
-  
+
   # Encrypts the password with the user salt
   def encrypt(password)
     self.class.encrypt(password, salt)
@@ -82,16 +80,16 @@ module Authenticated
   end
 
 protected
-  
-  # before save 
+
+  # before save
   def encrypt_password
     return if password.blank?
     self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--") if new_record?
     self.crypted_password = encrypt(password)
   end
-  
+
   def password_required?
     crypted_password.blank? || !password.blank?
   end
-  
+
 end

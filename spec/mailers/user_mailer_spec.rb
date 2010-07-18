@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UserMailer do
   before(:each) do
     setup_mailer
-    @user = new_user(:username => "bob_fixture", :email => "bob.fixture@example.com")
+    @user = new_user(:email => "bob.fixture@example.com")
   end
 
   it "should send mails for password reset link" do
