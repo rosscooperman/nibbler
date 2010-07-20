@@ -729,15 +729,45 @@ a.go_to_page {
   font-weight: bold;
 }
 
+div.go_to_page,
+div.go_to_page input {
+  position: absolute;
+  
+}
+
 div.go_to_page {
   position: absolute;
-  top:    20px;
+  top:    30px;
   right:  10px;
-  width: 140px;
+  width: 150px;
   height: 50px;
-  background: url(/images/admin/bg_go_to_page.png) 0 0 no-repeat;
   text-align: center;
   z-index: 9999;
+  background: #000;
+  -moz-box-shadow: 0 0 5px #000;
+  -webkit-box-shadow: 0 0 5px #000;
+}
+
+div.go_to_page input {
+  position: absolute;
+  top: 10px;
+}
+
+div.go_to_page input.text {
+  left: 10px;
+  height: 26px;
+  line-height: 26px;
+}
+
+div.go_to_page input.submit {
+  right: 10px;
+}
+
+div.go_to_page input[type=submit] {
+  margin: 0;
+  border-radius:          0;
+  -moz-border-radius:     0;
+  -webkit-border-radius:  0;
 }
 
 /* pagination
@@ -756,15 +786,24 @@ div.pagination {
 
 .pagination .current {
   color: #fff;
-  background-color: #111;
+  background-color: #3366CC;
+  border-color: #2255CC;
 }
 
 .pagination .prev_page,
 .pagination .next_page  { font-weight: bold; }
 
-.pagination .disabled   { color: #aaa; font-weight: normal; }
+.pagination .disabled   { color: #888; font-weight: normal; }
 .pagination a           { text-decoration: none; color: #333;}
 .pagination a:hover     { text-decoration: underline; }
+
+.pagination span, .pagination a {
+  border-radius:          3px;
+  -moz-border-radius:     3px;
+  -webkit-border-radius:  3px;
+  border-color: #a3a3a3;
+  background-color: #c3c3c3;
+}
 
 /* table styling
 -----------------------------------------------------------------------------------------*/
@@ -1019,10 +1058,35 @@ dd.text_editor {
 }
 
 input[type=file] {
-/*   margin: 1em 0; */
   padding: 1em;
   border: 1px solid #ddd;
   background-color: #f5f5f5;
+}
+
+input[type=submit] {
+  margin-right: 0.5em;
+  padding: 0.5em 2em;
+  box-shadow:         0 0 5px #555;
+  -moz-box-shadow:    0 0 5px #555;
+  -webkit-box-shadow: 0 0 5px #555;
+  border-radius:          20px;
+  -moz-border-radius:     20px;
+  -webkit-border-radius:  20px;
+  cursor: pointer;
+  color: #fff;
+  border: 0px solid #fff;
+  background: #5E7185 url(/images/admin/submit.png) center center repeat-x;
+  font-weight: bold;
+  font-size: 108%;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 -1px 0 #000;
+}
+
+input[type=submit]:hover {
+  box-shadow:         0 0 5px #000;
+  -moz-box-shadow:    0 0 5px #000;
+  -webkit-box-shadow: 0 0 5px #000;
 }
 
 dd.text_editor {
