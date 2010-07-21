@@ -20,7 +20,8 @@
       
       // for pagination
       $("a.go_to_page").click(function() {
-        $(this).siblings('div.go_to_page').toggle();
+        $(this).toggle();
+        $('div.go_to_page').toggleClass('display');
       });
 
 
