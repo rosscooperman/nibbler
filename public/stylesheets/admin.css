@@ -101,6 +101,8 @@ p,fieldset,table { margin-bottom:1em; }
   min-height: 34px;
 }
 
+#inner { min-height: 500px; }
+
 #inner > .content {
   padding: 20px;
 }
@@ -673,6 +675,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1em;
+  border-top: 1px solid #fff;
 }
 
 table.dataset td          { padding: 5px; }
