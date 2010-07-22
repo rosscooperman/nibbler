@@ -1,13 +1,21 @@
 <% @page_title = "Users"%>
 
+<%# you must follow this markup for the admin to look right -%>
+
 <% actions do %>
+  <%# pagination goes here if you have it -%>
+  <%#= render :partial => "admin/shared/paginator", :locals => { :queue => @users } %>
   <div class="action">
     <%= link_to "Add a New User", new_admin_user_path, :class => "icon add_user" %>
   </div>
 <% end %>
 
+<%# this is what a sub nav looks like -%>
+<%# content_for :sub_nav do %>
+  <%#= content_tag :li, (link_to "Subnav item 1", ""), :class => "active" %>
+  <%#= content_tag :li, (link_to "Subnav item 2", "") %>
+<%# end %>
+
 <% content_for :sidebar do %>
   <%= render :partial => "admin/shared/sidebar" %>
 <% end %>
-
-<%#= render :partial => "admin/shared/paginator", :locals => { :queue => @users } %>
