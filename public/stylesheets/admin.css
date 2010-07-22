@@ -1120,26 +1120,16 @@ td.asset_image span span:before {
   display: none!important;
 }
 
-/* questions and answers
+/* show page
 ----------------------------------------------------------------------*/
 
-.question {
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
+div.show {
+  padding: 20px;
 }
 
-.question > li {
-  margin-left: 100px;
-}
+dl.show dt { font-weight: bold; }
+dl.show dd { margin-bottom: 15px; }
 
-.question .remove_question {
-  float: left;
-  margin: 0;
-  }
-
-.question .remove_question a {
-  color: red;
-}
 
 /* admin modal for instructions 
 ----------------------------------------------------------------------*/
