@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta name="robots" content="noindex,nofollow" />
-  <title><%= company_name %><%= " &mdash; " + @page_title unless @page_title.blank? %></title>
+  <title><%= @page_title + " &mdash; " unless @page_title.blank? %><%= company_name %></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
   <%= stylesheet_link_tag "reset-fonts", "base", "nyroModal", "admin" -%>
@@ -17,15 +17,16 @@
   <%= content_tag(:div, "Staging Server", :id => "staging") if staging? %>
   <div id="header">
     <div class="wrapper">
-      <h1><%= link_to company_name, admin_root_path %></h1>
-      <ul class="nav nav_01">
-        <%= build_main_menu %>
-      </ul>
-
       <ul class="nav_02">
-        <li>Hi, <%= content_tag :strong, current_user.username %> |</li>
+        <li>Hi, <%= content_tag :strong, current_user.email %> |</li>
         <li><%= link_to 'Public Site', root_path %> |</li>
         <li><%= link_to 'Sign out', session_path, :method => :delete %></li>
+      </ul>
+      
+      <p><%= link_to company_name, admin_root_path %></p>
+      
+      <ul class="nav nav_01">
+        <%= build_main_menu %>
       </ul>
 
       <ul class="nav nav_03">
@@ -38,14 +39,16 @@
   <div id="wrapper" class="<% if sidebar = yield(:sidebar) %>aux<% else %>wide<% end %>">
     <div id="main">
       <div id="page_top">
-         <%= content_tag(:h2, @page_title, :class => "page_title") %>
-         <div class="submenu">
-           <%= yield :submenu %>
-         </div>
+        <%= content_tag(:h1, @page_title, :class => "page_title") %>
       </div>
       <div id="content_wrap">
         <div id="page_content">
           <div id="inner">
+            <% if sub_nav = yield(:sub_nav) %>
+            <ul class="sub_nav">
+              <%= sub_nav %>
+            </ul>
+            <% end %>
             <%= yield %>
           </div>
         </div>
@@ -70,6 +73,7 @@
   <%= render :partial => "layouts/js_includes" -%>
   <%= render :partial => "layouts/js_includes_admin" -%>
   <%= yield :bottom %>
+  <%#= render :partial => "shared/analytics" %>
   <%= git_version_html %>
 </body>
 </html>
