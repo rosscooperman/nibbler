@@ -7,6 +7,10 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+  
+  def index
+    #@users = User.find(:all, :order => "ASC").paginate :per_page => 20, :page => params[:page]
+  end
 
   def new
     respond_to do |format|
