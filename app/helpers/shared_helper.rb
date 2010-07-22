@@ -52,8 +52,4 @@ module SharedHelper
     "Change the company name in Shared_helper"
   end
   
-  def textile_instruction(textile_tag, html_tag, text)
-    span_body = h String.new(content_tag(html_tag, text))
-    "<li><strong>#{textile_tag} #{text}</strong><span class='markup'>#{span_body}</span></li>"
-  end
 end
