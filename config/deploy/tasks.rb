@@ -38,6 +38,15 @@ namespace :deploy do
   task :setup_shared_directories do
     run "mkdir -p #{shared_path}/config"
   end
+
+  task :delete_compressed_assets do
+    files = [
+      "#{current_path}/public/javascripts/all.js",
+      "#{current_path}/public/stylesheets/all.css"
+    ].join(" ")
+
+    run "rm -rf #{files}"
+  end
 end
 
 namespace :remote do
