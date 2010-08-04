@@ -75,7 +75,7 @@ class ActionView::Helpers::FormBuilder
     FORM_FIELDS = %w[date_select datetime_select time_select] + ActionView::Helpers::FormHelper.instance_methods - %w[label_for hidden_field radio_button form_for fields_for]
 
     FORM_FIELDS.each do |selector|
-      src = <<-SRC
+      class_eval <<-SRC, __FILE__, __LINE__
         def dl_#{selector}(method, options = {})
           css = initialize_css_classes(options)
           if errors_on_field?(object, method)
@@ -89,7 +89,6 @@ class ActionView::Helpers::FormBuilder
           end
         end
       SRC
-      class_eval src, __FILE__, __LINE__
     end
 
     # Similar to the dl_x form helpers but uses SPAN instead of DL/DT/DD
@@ -105,7 +104,7 @@ class ActionView::Helpers::FormBuilder
     end
 
     FORM_FIELDS.each do |selector|
-      src = <<-SRC
+      class_eval <<-SRC, __FILE__, __LINE__
         def ul_#{selector}(method, options = {})
           output = ""
           css = initialize_css_classes(options)
@@ -116,12 +115,11 @@ class ActionView::Helpers::FormBuilder
           end
 
           output += label_for(method, excluded_options(options))
-          output += #{selector}(method, options.except(:required))
+          output += #{selector}(method, options.except(:required, :text))
           output += instructions(options)
           @template.content_tag(:li, output, :class => css.join(" "))
         end
       SRC
-      class_eval src, __FILE__, __LINE__
     end
   end
 
