@@ -59,6 +59,14 @@ namespace :remote do
       channel.send_data(input = $stdin.gets) if data =~ /^(>|\?)>/
     end
   end
+
+  task :reboot do
+    if rails_env == "staging"
+      run "cd #{current_path} && RAILS_ENV=#{rails_env} rake db:reboot"
+    else
+      warn "Skipping reboot task.  This isn't staging!!!"
+    end
+  end
 end
 
 namespace :db do
