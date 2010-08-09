@@ -9,11 +9,11 @@ module Admin::ApplicationHelper
   end
 
   def actions(&block)
-    concat(content_tag(:div, capture(&block), :class => "page_actions"), block.binding)
+    concat(content_tag(:div, capture(&block), :class => "page_actions"))
   end
 
   def zebra_row(&block)
-    concat(content_tag(:tr, capture(&block), :class => cycle('light', 'dark')), block.binding)
+    concat(content_tag(:tr, capture(&block), :class => cycle('light', 'dark')))
   end
 
   def zebra_row_for(object, &block)
