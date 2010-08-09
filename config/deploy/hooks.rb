@@ -3,7 +3,7 @@ after "deploy:symlink", "deploy:symlink_app_configs"
 common_after_deploy_tasks = [
   "deploy:delete_compressed_assets",
   "deploy:tag",
-  "deploy:email_notify",
+#  "deploy:email_notify",
   "data:create_example_admin"
 ]
 
