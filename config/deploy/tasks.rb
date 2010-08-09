@@ -1,7 +1,8 @@
 namespace :deploy do
   task :symlink_app_configs, :roles => :app, :except => {:no_symlink => true} do
     run [
-      "ln -nsf #{shared_path}/config/settings.yml           #{release_path}/config/settings.yml"
+      "ln -nsf #{shared_path}/config/database.yml #{release_path}/config/database.yml",
+      "ln -nsf #{shared_path}/config/settings.yml #{release_path}/config/settings.yml"
     ].join(" && ")
   end
 
