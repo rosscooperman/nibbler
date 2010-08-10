@@ -4,10 +4,17 @@
   <%= render :partial => "admin/shared/sidebar" %>
 <% end %>
 
-<%= render :partial => "page", :locals => {:page => @page} %>
-
 <h3>Quick Stats</h3>
 <dl>
+  <dt>Title</dt>
+  <dd><%= @page.title %></dd>
+
+  <dt>Slug</dt>
+  <dd><%= @page.slug %></dd>
+
+  <dt>Body</dt>
+  <dd><%= @page.body %></dd>
+
   <dt>Created</dt>
   <dd><%= @page.created_at.to_s(:long_with_zone) %></dd>
 </dl>
