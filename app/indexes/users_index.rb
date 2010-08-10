@@ -12,7 +12,7 @@ class UsersIndex < IndexView::Base
   }
 
   def target_class
-    User
+    UserView
   end
 
   def default_sort_term
