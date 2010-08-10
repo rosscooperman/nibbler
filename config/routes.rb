@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.resources :users
+    admin.resources :administrators
     admin.resources :pages
 
     admin.root :controller => "users", :action => "index"

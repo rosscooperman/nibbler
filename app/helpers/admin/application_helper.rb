@@ -28,7 +28,8 @@ module Admin::ApplicationHelper
 
   def build_right_menu
     build_menu([
-      [:users, 'Users', admin_users_path]
+      [:users, 'Users',   admin_users_path],
+      [:admins, 'Admins', admin_administrators_path]
     ])
   end
 
