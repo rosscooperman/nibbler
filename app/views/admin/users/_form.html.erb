@@ -5,15 +5,15 @@
     <%= f.dl_text_field :email, :required => true %>
 
     <% unless f.object.new_record? %>
-    <dt id="change_password_link">
-      <%= link_to_function "Change Password", "$('#change_password').toggle();$('#change_password_link').toggle()" %>
-    </dt>
+      <dt id="change_password_link">
+        <%= link_to_function "Change Password", "$('#change_password').toggle(); $('#change_password_link').toggle()" %>
+      </dt>
     <% end %>
   </dl>
 
   <dl id="change_password"<% unless f.object.new_record? %> style="display:none"<% end %>>
-    <%= f.dl_password_field :password, :required => true %>
-    <%= f.dl_password_field :password_confirmation, :text => 'Confirm password', :required => true %>
+    <%= f.dl_password_field :password %>
+    <%= f.dl_password_field :password_confirmation, :text => 'Confirm password' %>
   </dl>
 
   <dl>

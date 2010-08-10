@@ -4,7 +4,7 @@
 
 <% actions do %>
   <%# pagination goes here if you have it -%>
-  <%#= shared_paginator_for :users %>
+  <%= shared_paginator_for :users %>
   <div class="action">
     <%= link_to "Add a New User", new_admin_user_path, :class => "icon add_user" %>
   </div>
@@ -16,4 +16,6 @@
   <%#= content_tag :li, (link_to "Subnav item 2", "") %>
 <%# end %>
 
-<%#= shared_paginator_for :users %>
+<%= render :partial => "admin/shared/index_table", :locals => {:index => @index, :queue => @users } %>
+
+<%= shared_paginator_for :users %>
