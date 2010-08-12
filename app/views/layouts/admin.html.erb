@@ -22,9 +22,9 @@
         <li><%= link_to 'Public Site', root_path %> |</li>
         <li><%= link_to 'Sign out', session_path, :method => :delete %></li>
       </ul>
-      
+
       <p><%= link_to company_name, admin_root_path %></p>
-      
+
       <ul class="nav nav_01">
         <%= build_main_menu %>
       </ul>
@@ -70,7 +70,6 @@
       <%= build_right_menu %>
     </div>
   </div>
-  <%= render :partial => "layouts/js_includes" -%>
   <%= render :partial => "layouts/js_includes_admin" -%>
   <%= yield :bottom %>
   <%#= render :partial => "shared/analytics" %>
