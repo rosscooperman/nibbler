@@ -43,6 +43,7 @@ namespace :deploy do
   task :delete_compressed_assets do
     files = [
       "#{current_path}/public/javascripts/all.js",
+      "#{current_path}/public/javascripts/admin_all.js",
       "#{current_path}/public/stylesheets/all.css"
     ].join(" ")
 
