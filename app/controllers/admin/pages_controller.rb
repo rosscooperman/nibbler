@@ -4,7 +4,7 @@ class Admin::PagesController < Admin::ApplicationController
   make_resourceful do
     actions :all
 
-    response_for(:update) do
+    response_for :create, :update do
       redirect_to admin_pages_path
     end
   end
@@ -13,5 +13,4 @@ class Admin::PagesController < Admin::ApplicationController
     @index = PagesIndex.new(params)
     @pages = @index.paginate
   end
-
 end
