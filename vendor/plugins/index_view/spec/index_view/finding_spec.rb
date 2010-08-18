@@ -40,7 +40,7 @@ module IndexView
       MockView.find(:all)
     end
 
-    it "should in the sql conditions" do
+    it "should pass in the sql conditions" do
       view = MockView.new({:index => {:bar => "baz"}})
 
       User.should_receive(:find).with(:all, hash_including(:conditions => "(bar = 'baz')"))
@@ -55,6 +55,83 @@ module IndexView
     it "should use the correct id when finding by id" do
       User.should_receive(:find).with(2)
       MockView.find(2)
+    end
+
+    it "should find with all + default actions" do
+      User.should_receive(:find).with(:all, {:order => "foo DESC", :from => "users_index", :conditions => ""}).and_return nil
+      MockView.all
+    end
+
+    it "should call find :first with .first" do
+      User.should_receive(:find).with(:first, {:order => "foo DESC", :from => "users_index", :conditions => ""}).and_return nil
+      MockView.first
+    end
+  end
+
+  class SearchableView < IndexView::Base
+    column :first_name, :searchable => true
+
+    def target_class
+      User
+    end
+
+    def sort_term
+      :first_name
+    end
+
+    def sort_direction
+      "DESC"
+    end
+  end
+
+  describe "searching" do
+    before do
+      @params = {}
+      @controller = mock 'controller', :params => @params
+    end
+
+    it "should find an exact match against a searchable column" do
+      user = User.new
+      user.first_name = "scott"
+      user.save!
+
+      @params[:search] = "scott"
+
+      view = SearchableView.new(@params)
+      view.find(:all).should == [user]
+    end
+
+    it "should not find a user who doesn't match" do
+      user = User.new
+      user.first_name = "stephen"
+      user.save!
+
+      @params[:search] = "scott"
+
+      view = SearchableView.new(@params)
+      view.find(:all).should == []
+    end
+
+    it "should find a user who matches a like" do
+      user = User.new
+      user.first_name = "scott"
+      user.save!
+
+      @params[:search] = "cot"
+
+      view = SearchableView.new(@params)
+      view.find(:all).should == [user]
+    end
+
+    it "should replace spaces with %'s" do
+      user = User.new
+      user.first_name = "scott      A"
+      user.save!
+
+      @params[:search] = "scott A"
+
+      view = SearchableView.new(@params)
+      view.find(:all).should == [user]
     end
   end
 end

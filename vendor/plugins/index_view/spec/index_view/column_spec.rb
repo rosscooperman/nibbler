@@ -11,21 +11,33 @@ module IndexView
     end
 
     it "should allow a link method as a lambda" do
-      link_method = lambda {
+      Kernel.stub!(:warn)
+
+      link = lambda {
         some_url
       }
 
-      column = Column.new(:foo, :link => link_method)
-      column.link_method.should == link_method
+      column = Column.new(:foo, :link => link)
+      column.link.should == link
+    end
+
+    it "should raise a deprecation warning if receiving a :link key" do
+      Kernel.should_receive(:warn)
+      Column.new(:foo, :link => lambda {})
+    end
+
+    it "should allow a link method as a block" do
+      link = lambda {
+        some_url
+      }
+
+      column = Column.new(:foo, &link)
+      column.link.should == link
     end
 
     it "should allow keys to be auto-symbolized" do
-      link_method = lambda {
-        some_url
-      }
-
-      column = Column.new(:foo, "link" => link_method)
-      column.link_method.should == link_method
+      column = Column.new(:foo, "title" => "foo")
+      column.title.should == "foo"
     end
 
     it "should raise an error if an invalid key is given" do
@@ -42,7 +54,9 @@ module IndexView
 
     describe "url" do
       before(:each) do
-        @column = Column.new(:foo, :link => lambda { some_link_url })
+        @column = Column.new(:foo) do
+          some_link_url
+        end
       end
 
       it "should evaluate the url in the environment given (not the one it's defined in)" do
@@ -65,10 +79,12 @@ module IndexView
 
       it 'should pass in the object given to the column value' do
         obj = Object.new
-        a_lambda = lambda { |obj| obj }
 
-        @column = Column.new(:foo, :link => a_lambda)
-        @column.column_value(self, obj).should == obj
+        column = Column.new(:foo) do
+          obj
+        end
+
+        column.column_value(self, obj).should == obj
       end
     end
 
@@ -101,16 +117,16 @@ module IndexView
         Column.new(:foo_bar, :title => "FOO BAR").title.should == "FOO BAR"
       end
     end
-    
+
     describe "searchable?" do
       it "should be true when passed :searchable => true" do
         Column.new(:foo_bar, :searchable => true).should be_searchable
       end
-      
+
       it "should be false when passed :searchable => false" do
         Column.new(:foo_bar, :searchable => false).should_not be_searchable
       end
-      
+
       it "should be false by default" do
         Column.new(:foo_bar).should_not be_searchable
       end

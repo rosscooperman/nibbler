@@ -13,7 +13,7 @@ module IndexView
       column.column_name.should equal(:foo)
     end
   end
-  
+
   describe Base do
     describe "defaults" do
       def new_mock_class
@@ -80,8 +80,41 @@ module IndexView
         end
       end
 
-      describe "pagination" do
+      describe "default_sort_term" do
+        it "should raise a NotImplementedError by default" do
+          model = new_index(User)
 
+          lambda {
+            model.default_sort_term
+          }.should raise_error(NotImplementedError, "default_sort_term must be defined")
+        end
+
+        it "should sort by the default column" do
+          scott = User.new(:first_name => "Scott", :last_name => "Taylor")
+          bar = User.new(:first_name => "Foo",   :last_name => "Bar")
+
+          scott.save!
+          bar.save!
+
+          klass = Class.new(IndexView::Base) do
+            def default_sort_term
+              :last_name
+            end
+
+            def default_sort_direction
+              IndexView::Base::ASC
+            end
+
+            def target_class
+              User
+            end
+          end
+
+          klass.new.find(:all).should == [bar, scott]
+        end
+      end
+
+      describe "pagination" do
         before(:each) do
           ar_class = Class.new(ActiveRecord::Base) do
             set_table_name :submissions
@@ -140,13 +173,13 @@ module IndexView
         end
       end
     end
-    
+
     describe "sorts" do
       class UserIndex < IndexView::Base; end
-      
+
       it "should raise an error if the sort is = 'foo'" do
         @index = UserIndex.new({ :direction => "foo" })
-        
+
         lambda {
           @index.sort_direction
         }.should raise_error(IndexView::InvalidSort, "FOO is not a valid sort direction")
@@ -161,7 +194,7 @@ module IndexView
         @index = UserIndex.new({ :direction => "desc" })
         @index.sort_direction.should == :DESC
       end
-      
+
       it "should have ASC as the opposite sort order of DESC" do
         @index = UserIndex.new({ :direction => "DESC" })
         @index.opposite_sort_direction.should == :ASC
