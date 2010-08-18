@@ -1,6 +1,6 @@
 class AdminstratorsIndex < IndexView::Base
   column :email
-  column :edit, :link => lambda { |admin|
+  column :edit do |admin|
     returning String.new do |text|
       text << link_to("Edit", edit_admin_administrator_path(admin))
       text << "&nbsp;"
@@ -9,7 +9,7 @@ class AdminstratorsIndex < IndexView::Base
         text << link_to("Remove", admin_administrator_path(admin), :method => :delete)
       end
     end
-  }
+  end
 
   def target_class
     Administrator

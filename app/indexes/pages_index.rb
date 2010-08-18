@@ -1,9 +1,11 @@
 class PagesIndex < IndexView::Base
-  column :title,
-         :sortable => true,
-         :link => lambda { |page| index_title(page) }
-  column :actions,
-         :link => lambda { |page| index_actions(page) }
+  column :title, :sortable => true do |page|
+    index_title(page)
+  end
+
+  column :actions do |page|
+    index_actions(page)
+  end
 
   def target_class
     Page
