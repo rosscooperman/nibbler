@@ -60,8 +60,10 @@ class SessionController < ApplicationController
         flash_message(:forgot_password, :success)
         redirect_to new_session_url and return false
       else
-        flash_message(:forgot_password, :problem)
-        redirect_to forgot_password_url and return false
+        if request.post?
+          flash_message(:forgot_password, :problem)
+          redirect_to forgot_password_url and return false
+        end
       end
     end
   end
