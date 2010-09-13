@@ -5,13 +5,13 @@ protected
   def logged_in?
     current_user != :false
   end
-  
+
   # Accesses the current user from the session.
   def current_user
     @current_user ||= (session[:user] && User.find_by_id(session[:user])) || :false
     @current_user
   end
-  
+
   # Store the given user in the session.
   def current_user=(new_user)
     if new_user.nil? || new_user.is_a?(Symbol)
@@ -22,7 +22,7 @@ protected
       @current_user = new_user
     end
   end
-  
+
   # Check if the user is authorized.
   #
   # Override this method in your controllers if you want to restrict access
@@ -56,7 +56,7 @@ protected
   def login_required
     logged_in? && authorized? ? true : access_denied
   end
-  
+
   # Redirect as appropriate when an access request fails.
   #
   # The default action is to redirect to the login screen.
@@ -71,22 +71,30 @@ protected
         store_location
         redirect_to sign_in_path
       end
+
       accepts.xml do
         headers["Status"]           = "Unauthorized"
         headers["WWW-Authenticate"] = %(Basic realm="Web Password")
         render :text => "Could't authenticate you", :status => '401 Unauthorized'
       end
+
+      accepts.json do
+        render :json => {
+          :success => false,
+          :errors  => "Must be logged in."
+        }
+      end
     end
     false
-  end  
-  
+  end
+
   # Store the URI of the current request in the session.
   #
   # We can return to this location by calling #redirect_back_or_default.
   def store_location
     session[:return_to] = "http://#{request.host}:#{request.port}#{request.request_uri}"
   end
-  
+
   # Redirect to the URI stored by the most recent store_location call or
   # to the passed default.
   def redirect_back_or_default(default)
@@ -96,7 +104,7 @@ protected
     end
     session[:return_to] = nil
   end
-  
+
   # Inclusion hook to make #current_user and #logged_in?
   # available as ActionView helper methods.
   def self.included(base)
