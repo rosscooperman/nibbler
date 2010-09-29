@@ -17,7 +17,7 @@ Rails::Initializer.run do |config|
   # -- all .rb files in that directory are automatically loaded.
 
   # Add additional load paths for your own custom dirs
-  config.load_paths += [
+  config.autoload_paths += [
     File.join(RAILS_ROOT, "app", "mailers"),
     File.join(RAILS_ROOT, "app", "indexes"),
     File.join(RAILS_ROOT, "app", "conductors"),
