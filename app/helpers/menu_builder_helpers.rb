@@ -1,6 +1,6 @@
 module MenuBuilderHelpers
   def build_menu(items)
-    returning "" do |out|
+    String.new.tap do |out|
       items.each do |item|
         out << build_li_for(item)
       end

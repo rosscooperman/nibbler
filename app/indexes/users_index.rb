@@ -1,7 +1,7 @@
 class UsersIndex < IndexView::Base
   column :email
   column :edit do |admin|
-    returning String.new do |text|
+    String.new.tap do |text|
       text << link_to("Edit", edit_admin_user_path(admin))
       text << "&nbsp;"
 

@@ -4,7 +4,7 @@ module Admin::PagesHelper
   end
 
   def index_actions(page)
-    returning String.new do |out|
+    String.new.tap do |out|
       out << link_to("Edit",    edit_admin_page_path(page), :class => "button edit")
       out << link_to("Destroy", admin_page_path(page),
                                 :class => "button delete",
