@@ -53,29 +53,14 @@ describe FixtureReplacement do
   end
 
   describe "rails_root" do
-    def use_rails_root(rails_root, &block)
-      silence_warnings do
-        Object.const_set(:RAILS_ROOT, rails_root)
+    if Rails::VERSION::MAJOR <= 2
+      it "should be the RAILS_ROOT constant" do
+        FR.rails_root.should == RAILS_ROOT
       end
-      block.call
-    ensure
-      Object.send :remove_const, :RAILS_ROOT
-    end
-
-    it "should be the RAILS_ROOT constant if given" do
-      use_rails_root "/rails/root" do
-        FR.rails_root.should == "/rails/root"
+    else
+      it "should be the Rails.root.to_s constant" do
+        FR.rails_root.should == Rails.root.to_s
       end
-    end
-
-    it "should use the correct RAILS_ROOT" do
-      use_rails_root "/foo/bar" do
-        FR.rails_root.should == "/foo/bar"
-      end
-    end
-
-    it "should be '.' if not defined" do
-      FR.rails_root.should == "."
     end
   end
 

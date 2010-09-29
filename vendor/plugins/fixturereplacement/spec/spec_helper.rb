@@ -1,8 +1,11 @@
-require File.dirname(__FILE__) + "/spec_helpers"
-include SpecHelperFunctions
-setup_database_connection
+# This has to be here because bundler does stupid
+# ass things with the $LOAD_PATH - it doesn't respect
+# the environment it is required in, and decides to use it's
+# own concept of the $LOAD_PATH.
+require "spec/adapters/mock_frameworks/rspec"
+require "spec/runner/formatter/progress_bar_formatter"
 
-require File.dirname(__FILE__) + "/../lib/fixture_replacement"
+require File.dirname(__FILE__) + "/spec_helpers"
 require File.dirname(__FILE__) + "/fixture_replacement/fixtures/classes"
 
 Spec::Runner.configure do |config|
