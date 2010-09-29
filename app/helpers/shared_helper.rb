@@ -1,6 +1,6 @@
 module SharedHelper
   def flash_messages(*names)
-    returning String.new do |output|
+    String.new.tap do |output|
       names.each do |name|
         if content = flash[name]
           output << content_tag(:p, content, :class => "flash #{name}", :id => "flash_#{name}")
@@ -47,9 +47,9 @@ module SharedHelper
   def public?
     !admin?
   end
-  
+
   def company_name
     "Change the company name in Shared_helper"
   end
-  
+
 end
