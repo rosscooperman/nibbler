@@ -19,8 +19,7 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   config.autoload_paths += [
     File.join(RAILS_ROOT, "app", "mailers"),
-    File.join(RAILS_ROOT, "app", "indexes"),
-    File.join(RAILS_ROOT, "app", "conductors"),
+    File.join(RAILS_ROOT, "app", "indexes")
   ]
 
   # Specify gems that this application depends on and have them installed with rake gems:install
