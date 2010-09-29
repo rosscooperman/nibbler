@@ -2,7 +2,8 @@
 
 <% form_for :user, @user, :url => (@user.new_record? ? admin_users_path : admin_user_path(@user)), :html => {:method => (@user.new_record? ? :post : :put)} do |f| -%>
   <dl>
-    <%= f.dl_text_field :email, :required => true %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
 
     <% unless f.object.new_record? %>
       <dt id="change_password_link">
@@ -12,11 +13,14 @@
   </dl>
 
   <dl id="change_password"<% unless f.object.new_record? %> style="display:none"<% end %>>
-    <%= f.dl_password_field :password %>
-    <%= f.dl_password_field :password_confirmation, :text => 'Confirm password' %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
   </dl>
 
   <dl>
-    <%= f.dl_create_or_update_button(admin_users_path, admin_users_path) %>
+    <%= f.submit "Save" %>
   </dl>
 <% end -%>

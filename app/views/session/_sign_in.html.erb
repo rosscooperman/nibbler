@@ -1,8 +1,12 @@
 <%#= content_tag(:p, @signin_message) if @signin_message %>
 
 <ul class="std_form">
-  <%= f.ul_text_field :email, :text => "Email Address" %>
-  <%= f.ul_password_field :password %>
+
+  <%= f.label :email, "Email Address" %>
+  <%= f.text_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
 
   <li class="submit">
     <%= submit_tag 'Sign In', :class => "bn" %>

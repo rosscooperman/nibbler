@@ -1,5 +1,3 @@
-require 'list_forms'
-
 module Admin::ApplicationHelper
   include SharedHelper
   include MenuBuilderHelpers

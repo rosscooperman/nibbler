@@ -2,7 +2,11 @@
 
 <% form_for [:admin, @administrator] do |f| %>
   <%= render :partial => "form", :locals => { :f => f } %>
-  <%= f.dl_password_field :password %>
-  <%= f.dl_password_field :password_confirmation %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
   <%= f.submit "Create it!" %>
 <% end %>

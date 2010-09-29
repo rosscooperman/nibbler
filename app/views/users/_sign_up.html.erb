@@ -1,9 +1,12 @@
 <div class="std_form">
   <p>Fill this out and you're good to go.</p>
-  <ul>
-    <%= f.ul_text_field     :email, :text => "Email Address", :required => true %>
-    <%= f.ul_password_field :password, :required => true %>
-    <%= f.ul_password_field :password_confirmation, :required => true %>
-  </ul>
+    <%= f.label :email "Email Address" %>
+    <%= f.text_field :email %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :required => true %>
   <p>You can rest easy – all info will remain private</p>
 </div>
