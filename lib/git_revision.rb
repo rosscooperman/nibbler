@@ -2,7 +2,7 @@ module GitRevision
   extend self
 
   def revision_html
-    @git_version_html ||= "<!-- branch: #{branch_name}, revision: #{version}, host: #{hostname} -->"
+    @git_version_html ||= "<!-- branch: #{branch_name}, revision: #{version}, host: #{hostname} -->".html_safe
   end
 
   def hostname
