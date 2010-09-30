@@ -4,6 +4,7 @@
 <head>
   <meta name="robots" content="noindex,nofollow" />
   <title><%= @page_title + " &mdash; " unless @page_title.blank? %><%= company_name %></title>
+  <%= csrf_meta_tag %>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
   <%= stylesheet_link_tag "reset-fonts", "base", "nyroModal", "admin" -%>
