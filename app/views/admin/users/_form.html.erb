@@ -1,6 +1,6 @@
 <%= error_messages_for :user, :header => false %>
 
-<%= form_for @user, :url => (@user.new_record? ? admin_users_path : admin_user_path(@user)), :html => {:method => (@user.new_record? ? :post : :put)} do |f| -%>
+<%= form_for @user, :url => (@user.new_record? ? admin_users_path : admin_user_path(@user)) do |f| -%>
   <dl>
     <%= f.label :email %>
     <%= f.text_field :email %>

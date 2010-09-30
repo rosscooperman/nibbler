@@ -1,5 +1,5 @@
 <%= error_messages_for :page, :header => false %>
-<%= form_for :page :url => (@page.new_record? ? admin_pages_path : admin_page_path(@page)), :html => {:method => (@page.new_record? ? :post : :put), :multipart => true} do |f| -%>
+<%= form_for @page, :url => (@page.new_record? ? admin_pages_path : admin_page_path(@page)) do |f| -%>
 <div class="std_form">
     <%= f.label :slug %>
     <%= f.text_field :slug %>
