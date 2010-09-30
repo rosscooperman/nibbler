@@ -6,3 +6,4 @@
   get Hodel 3000 logger working
   remove /scripts
   remove README
+  Get Rspec running and passing
