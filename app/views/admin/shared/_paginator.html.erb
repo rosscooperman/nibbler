@@ -4,7 +4,7 @@
     <%= will_paginate paginator, :inner_window => 1 -%>
     <%= link_to_function "Go to Page", :class => "go_to_page" %>
     <div class="go_to_page">
-      <% form_tag request.path, :method => :get do %>
+      <%= form_tag request.path, :method => :get do %>
         <%= text_field_tag "page", '', :size => 4 %>
         <%= hidden_field_tag "sort", @sort if @sort %>
         <%= submit_tag "Go" %>

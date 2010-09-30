@@ -1,6 +1,6 @@
 <% @page_title = "Create an admin" %>
 
-<% form_for [:admin, @administrator] do |f| %>
+<%= form_for [:admin, @administrator] do |f| %>
   <%= render :partial => "form", :locals => { :f => f } %>
 
   <%= f.label :password %>

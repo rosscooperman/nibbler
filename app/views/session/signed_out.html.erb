@@ -3,7 +3,7 @@
 <%= content_tag(:h1, @page_title) %>
 
 <div id="signin_form" class="sign">
-  <% form_for :session, :url => session_path do |f| -%>
+  <%= form_for :session, :url => session_path do |f| -%>
     <%= render :partial => "sign_in", :locals => {:f => f} %>
   <% end -%>
 </div>
