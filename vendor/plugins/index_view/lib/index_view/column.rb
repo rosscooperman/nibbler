@@ -13,7 +13,7 @@ module IndexView
     attr_reader :column_name, :link
 
     def column_value(context, object)
-      context.instance_exec(object, &link)
+      context.instance_exec(object, &link).html_safe
     end
 
     def column_value?
