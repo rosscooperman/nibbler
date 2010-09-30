@@ -2,6 +2,5 @@
   get finds inline with Rails 3 syntax
   get routing inline with Rails 3 syntax
   get Hodel 3000 logger working
-  get Rakefile inline with Rails 3 syntax
   remove /scripts
   remove README
