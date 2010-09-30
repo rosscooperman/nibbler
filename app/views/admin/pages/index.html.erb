@@ -1,6 +1,6 @@
 <% @page_title = "Pages" %>
 
-<% actions do %>
+<%= actions do %>
   <%= shared_paginator_for :pages %>
   <div class="action">
     <%= link_to "Add a New Page", new_admin_page_path, :class => "icon add_page" %>

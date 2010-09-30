@@ -1,5 +1,5 @@
 <% queue.each do |item| %>
-  <% zebra_row_for(item) do %>
+  <%= zebra_row_for(item) do %>
     <% index.columns.each do |column| %>
       <% if column.column_value? %>
         <td><%= column.column_value(self, item) %></td>

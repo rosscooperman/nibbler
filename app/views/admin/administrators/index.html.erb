@@ -1,6 +1,6 @@
 <% @page_title = "Admins" %>
 
-<% actions do %>
+<%= actions do %>
   <%= shared_paginator_for :administrators %>
   <div class="action">
     <%= link_to "Add a New Admin", new_admin_administrator_path, :class => "icon add_admin" %>
