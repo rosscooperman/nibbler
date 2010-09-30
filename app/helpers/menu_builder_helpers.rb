@@ -4,7 +4,7 @@ module MenuBuilderHelpers
       items.each do |item|
         out << build_li_for(item)
       end
-    end
+    end.html_safe
   end
 
   def build_li_for(item)
