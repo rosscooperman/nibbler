@@ -1,90 +1,34 @@
-FreshRailsApp::Application.routes.draw do |map|
-  map.namespace :admin do |admin|
-    admin.resources :users
-    admin.resources :administrators
-    admin.resources :pages
+# For more Rails 3 Routing info: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/
+# or generate see auto-generated routes.rb file in a test application
+FreshRailsApp::Application.routes.draw do
 
-    admin.root :controller => "users", :action => "index"
+  # Admin Section
+  namespace :admin do
+    resources :users
+    resources :administrators
+    resources :pages
+
+    root :to => "users#index"
   end
 
-  map.resources :users
-  map.resources :pages
-  map.resources :contact_submissions
+  resources :users
+  resources :pages
+  resources :contact_submissions
+  resource  :session, :controller => "session" # Rails expects "sessions"
 
-  map.resource  :session, :controller => "session"
-  map.with_options :controller => 'session' do |m|
-    m.sign_in             'signin',                   :action => 'new'
-    m.sign_out            'signout',                  :action => 'destroy'
-    m.signed_out          'signed_out',               :action => 'signed_out'
-    m.reset_password      'reset_password/:id/:hash', :action => 'reset_password'
-    m.forgot_password     'forgot_password',          :action => 'forgot_password'
-  end
+  # short-hand for: match  'sign_out', :to => "session#destroy"
+  match  'sign_out'                 => "session#destroy"
+  match  "signed_out"               => "session#signed_out"
+  match  "reset_password/:id/:hash" => 'session#reset_password'
+  match  'forgot_password'          => 'session#forgot_password'
+  match  'sign_in'                  => "session#new"
 
-  map.root :controller => "home"
+  root :to => "home#index"
 
-  map.with_options :controller => "health_check" do |m|
-    m.connect "health_check/check", :action => "health_check"
-    m.connect "health_check/ok",    :action => "ok"
-    m.connect "health_check/error", :action => "error"
-  end
-
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => "welcome#index"
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  #TODO : Do we need health_check any more?
+  # map.with_options :controller => "health_check" do |m|
+  #   m.connect "health_check/check", :action => "health_check"
+  #   m.connect "health_check/ok",    :action => "ok"
+  #   m.connect "health_check/error", :action => "error"
+  # end
 end

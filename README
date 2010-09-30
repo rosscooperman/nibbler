@@ -1,6 +1,5 @@
 == TODO:
   get finds inline with Rails 3 syntax
-  get routing inline with Rails 3 syntax
   get Hodel 3000 logger working
   remove /scripts
   remove README
