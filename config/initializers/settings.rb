@@ -1,10 +1,10 @@
-unless defined?(SETTINGS) || RAILS_ENV == "test"
-  settings_yml = File.join(RAILS_ROOT, 'config', 'settings.yml')
+unless defined?(SETTINGS) || Rails.env == "test"
+  settings_yml = File.join(Rails.root, 'config', 'settings.yml')
   unless File.exists?(settings_yml)
     raise RuntimeError, "Unable to find \"config/settings.yml\" file."
   end
 
-  SETTINGS = YAML.load_file(settings_yml).recursively_symbolize_keys[RAILS_ENV.to_sym]
+  SETTINGS = YAML.load_file(settings_yml).recursively_symbolize_keys[Rails.env.to_sym]
 
   unless SETTINGS.key?(:app_host)
     raise RuntimeError, "SETTINGS requires :app_host key"
