@@ -16,6 +16,8 @@ FreshRailsApp::Application.routes.draw do
   resources :contact_submissions
   resource  :session, :controller => "session" # Rails expects "sessions"
 
+  root :to => "home#index"
+
   # short-hand for: match  'sign_out', :to => "session#destroy"
   match  'sign_out'                 => "session#destroy"
   match  "signed_out"               => "session#signed_out"
@@ -23,12 +25,8 @@ FreshRailsApp::Application.routes.draw do
   match  'forgot_password'          => 'session#forgot_password'
   match  'sign_in'                  => "session#new"
 
-  root :to => "home#index"
-
-  #TODO : Do we need health_check any more?
-  # map.with_options :controller => "health_check" do |m|
-  #   m.connect "health_check/check", :action => "health_check"
-  #   m.connect "health_check/ok",    :action => "ok"
-  #   m.connect "health_check/error", :action => "error"
-  # end
+  # Health Check
+  match "health_check/check" => "health_check#health_check"
+  match "health_check/ok"    => "health_check#ok"
+  match "health_check/error" => "health_check#error"
 end
