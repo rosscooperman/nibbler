@@ -1,4 +1,7 @@
 == TODO:
+  Resolve bugs in admin forms
+  Fix Indexes plugin
+  Fix ActionMailer Syntax
   get finds inline with Rails 3 syntax
   get Hodel 3000 logger working
   remove /scripts
