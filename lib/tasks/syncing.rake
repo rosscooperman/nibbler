@@ -5,7 +5,7 @@ namespace :sync do
   
   # Fill in the APP_NAME, or change the path of the app on the server
   SHARED_PATH = '/var/www/apps/APP_NAME/current/public'
-  LOCAL_SHARED_PATH = RAILS_ROOT + "/public"
+  LOCAL_SHARED_PATH = Rails.root + "/public"
   
   # This is the list of dirs inside public that you'll sync
   static_dirs = [:assets]
