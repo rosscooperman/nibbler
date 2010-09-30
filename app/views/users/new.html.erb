@@ -3,7 +3,7 @@
 <h2 class="header"><%= @page_title %></h2>
 
 <div id="signup_form" class="sign">
-  <% form_for :user, @user, :url => users_path, :html => { :method => :post } do |f| -%>
+  <%= form_for :user, :url => users_path, :html => { :method => :post } do |f| -%>
     <%= render :partial => "sign_up", :locals => {:f => f} %>
 
     <p class="submit"><%= submit_tag 'Join', :class => "bn" %></p>

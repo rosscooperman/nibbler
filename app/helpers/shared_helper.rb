@@ -7,7 +7,7 @@ module SharedHelper
           flash.discard(name)
         end
       end
-    end
+    end.html_safe
   end
 
   def strip_ampersands(string)
@@ -22,6 +22,7 @@ module SharedHelper
     body << " aux" if sidebar
     body << "\""
     body << ">"
+    body.html_safe
   end
 
   def app_url(path)

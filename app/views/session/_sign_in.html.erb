@@ -10,11 +10,11 @@
 
   <li class="submit">
     <%= submit_tag 'Sign In', :class => "bn" %>
-    <span> or <strong><%= link_to "Join &rarr;", new_user_path %></strong></span>
+    <span> or <strong><%= link_to "Join &rarr;".html_safe, new_user_path %></strong></span>
   </li>
 
   <li class="password_recover">
     Forgot your password?
-    <%= link_to 'Retrieve it &rarr;', forgot_password_path %>
+    <%= link_to 'Retrieve it &rarr;'.html_safe, forgot_password_path %>
   </li>
 </ul>
