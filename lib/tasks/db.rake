@@ -30,7 +30,7 @@ private
   end
 
   def database_dumps
-    Dir.glob("#{RAILS_ROOT}/#{database_dump_prefix}*")
+    Dir.glob("#{Rails.root}/#{database_dump_prefix}*")
   end
 
   def database_dump_prefix

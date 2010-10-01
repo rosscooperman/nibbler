@@ -23,6 +23,6 @@ module EagerLoader
 private
 
   def require_model(model_name)
-    require_dependency File.join(RAILS_ROOT, "app", "models", model_name)
+    require_dependency File.join(Rails.root, "app", "models", model_name)
   end
 end

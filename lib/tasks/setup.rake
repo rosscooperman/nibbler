@@ -2,7 +2,7 @@
 task :setup_project do
   def mkdir(dir)
     puts "* Creating dir #{dir}"
-    sh "mkdir -p #{RAILS_ROOT}/#{dir}"
+    sh "mkdir -p #{Rails.root}/#{dir}"
   end
 
   def cp(source, directory)

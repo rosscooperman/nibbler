@@ -16,7 +16,7 @@ class HealthCheckController < ApplicationController
       raise "Schema table not working"
     end
 
-    unless File.exists?(File.join(RAILS_ROOT, "config", "database.yml"))
+    unless File.exists?(File.join(Rails.root, "config", "database.yml"))
       raise "database.yml doesn't exist!"
     end
 
