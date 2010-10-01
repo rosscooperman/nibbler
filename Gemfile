@@ -28,4 +28,5 @@ gem "jquery-rails"
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'ruby-debug'
+  gem "rspec-rails", ">= 2.0.0.beta.22"
 end
