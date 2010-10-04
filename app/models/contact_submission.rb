@@ -23,6 +23,6 @@ class ContactSubmission < ActiveRecord::Base
 private
 
   def send_email
-    ContactSubmissionMailer.create_submission(self)
+    ContactSubmissionMailer.submission(self).deliver
   end
 end

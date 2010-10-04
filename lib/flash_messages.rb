@@ -25,6 +25,6 @@ protected
   end
 
   def flash_messages_from_yaml
-    @flash_messages_from_yaml ||= YAML.load_file(File.join(RAILS.root, "lib", "flash_messages.yml")).recursively_symbolize_keys
+    @flash_messages_from_yaml ||= YAML.load_file(File.join(Rails.root, "lib", "flash_messages.yml")).recursively_symbolize_keys
   end
 end
