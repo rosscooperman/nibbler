@@ -7,10 +7,8 @@ require 'rspec/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 require File.expand_path(File.dirname(__FILE__) + "/fixtures/settings")
-
-# TODO: fix problem with uninitialized constant Spec::Rails::Example::ModelExampleGroup and ControllerExampleGroup
-# require File.expand_path(File.dirname(__FILE__) + "/rspec_extensions")
-# require File.expand_path(File.dirname(__FILE__) + "/spec_helpers")
+require File.expand_path(File.dirname(__FILE__) + "/rspec_extensions")
+require File.expand_path(File.dirname(__FILE__) + "/spec_helpers")
 
 RSpec.configure do |config|
   # == Mock Framework

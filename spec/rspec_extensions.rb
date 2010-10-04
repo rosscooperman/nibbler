@@ -7,7 +7,7 @@ def be_authorization_denied
   redirect_to("/403")
 end
 
-class Spec::Rails::Example::ControllerExampleGroup
+module RSpec::Rails::ControllerExampleGroup
   def params_from_url(method, url)
     ensure_that_routes_are_loaded
     @request.env['REQUEST_METHOD'] = method.to_s.upcase
@@ -82,15 +82,16 @@ module ExampleHelpers
   private :read_fixture
 end
 
-ActionController::TestUploadedFile.class_eval do
-  # Shortcut for ActionController::TestUploadedFile.new(Test::Unit::TestCase.fixture_path + path, type). Example:
-  #   post :change_avatar, :avatar => fixture_file_upload('/files/spongebob.png', 'image/png')
-  def fixture_file_upload(path, mime_type = nil)
-    ActionController::TestUploadedFile.new(
-      Spec::Rails::EvalContext.respond_to?(:fixture_path) ? Spec::Rails::EvalContext.fixture_path + path : path, mime_type
-    )
-  end
-end
+# FIXME:
+# ActionController::TestUploadedFile.class_eval do
+#   # Shortcut for ActionController::TestUploadedFile.new(Test::Unit::TestCase.fixture_path + path, type). Example:
+#   #   post :change_avatar, :avatar => fixture_file_upload('/files/spongebob.png', 'image/png')
+#   def fixture_file_upload(path, mime_type = nil)
+#     ActionController::TestUploadedFile.new(
+#       Spec::Rails::EvalContext.respond_to?(:fixture_path) ? Spec::Rails::EvalContext.fixture_path + path : path, mime_type
+#     )
+#   end
+# end
 
 ActionController::TestRequest.class_eval do
   def query_string

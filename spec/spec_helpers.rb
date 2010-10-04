@@ -31,14 +31,15 @@ module SpecHelpers
   end
 end
 
-module Spec
-  module Rails
-    module Example
-      class IndexExampleGroup < ModelExampleGroup
-      end
-    end
-  end
-end
-
-Spec::Example::ExampleGroupFactory.register(:index, Spec::Rails::Example::IndexExampleGroup)
-
+# FIXME : put this into the correct namespace
+# module Spec
+#   module Rails
+#     module Example
+#       class IndexExampleGroup < ModelExampleGroup
+#       end
+#     end
+#   end
+# end
+#
+# Spec::Example::ExampleGroupFactory.register(:index, Spec::Rails::Example::IndexExampleGroup)
+#
