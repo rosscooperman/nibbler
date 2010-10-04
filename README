@@ -4,6 +4,5 @@
   Fix ActionMailer Syntax
   get finds inline with Rails 3 syntax
   get Hodel 3000 logger working
-  remove /scripts
   remove README
   Get Rspec running and passing
