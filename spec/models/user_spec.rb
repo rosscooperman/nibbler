@@ -22,12 +22,12 @@ describe User do
     end
 
     it "should be able to send the password reset email" do
-      UserMailer.should_receive(:deliver_password_reset_link).with(@user)
+      UserMailer.should_receive(:password_reset_link).with(@user)
       @user.send_password_reset_email
     end
 
     it "should send the welcome email on creation" do
-      UserMailer.should_receive(:deliver_signup).with(@user)
+      UserMailer.should_receive(:signup).with(@user)
       @user.save!
     end
   end
