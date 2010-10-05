@@ -2,6 +2,5 @@
   Resolve bugs in admin forms
   Fix Indexes plugin
   Fix ActionMailer Syntax
-  get finds inline with Rails 3 syntax
   remove README
   Get Rspec running and passing
