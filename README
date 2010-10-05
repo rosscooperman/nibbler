@@ -1,6 +1,5 @@
 == TODO:
   Resolve bugs in admin forms
   Fix Indexes plugin
-  Fix ActionMailer Syntax
   remove README
   Get Rspec running and passing
