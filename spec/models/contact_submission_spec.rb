@@ -25,7 +25,7 @@ describe ContactSubmission do
   describe "creation" do
     it "should send the email" do
       submission = new_contact_submission
-      ContactSubmissionMailer.should_receive(:create_submission).with(submission)
+      ContactSubmissionMailer.should_receive(:submission).with(submission)
       submission.save!
     end
   end
