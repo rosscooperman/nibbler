@@ -19,15 +19,16 @@ describe User do
   describe "mailers" do
     before do
       @user = new_user
+      @mock_message = mock_model("Message", :deliver => true)
     end
 
     it "should be able to send the password reset email" do
-      UserMailer.should_receive(:password_reset_link).with(@user)
+      UserMailer.should_receive(:password_reset_link).with(@user).and_return(@mock_message)
       @user.send_password_reset_email
     end
 
     it "should send the welcome email on creation" do
-      UserMailer.should_receive(:signup).with(@user)
+      UserMailer.should_receive(:signup).with(@user).and_return(@mock_message)
       @user.save!
     end
   end

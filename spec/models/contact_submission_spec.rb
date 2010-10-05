@@ -25,7 +25,8 @@ describe ContactSubmission do
   describe "creation" do
     it "should send the email" do
       submission = new_contact_submission
-      ContactSubmissionMailer.should_receive(:submission).with(submission)
+      mock_message = mock_model("Message", :deliver => true)
+      ContactSubmissionMailer.should_receive(:submission).with(submission).and_return(mock_message)
       submission.save!
     end
   end
