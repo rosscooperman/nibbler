@@ -21,7 +21,7 @@ FreshRailsApp::Application.routes.draw do
   # short-hand for: match  'sign_out', :to => "session#destroy"
   match  'sign_out'                 => "session#destroy"
   match  "signed_out"               => "session#signed_out"
-  match  "reset_password/:id/:hash" => 'session#reset_password'
+  match  "reset_password/:id/:hash" => 'session#reset_password', :as => "reset_password"
   match  'forgot_password'          => 'session#forgot_password'
   match  'sign_in'                  => "session#new"
 
