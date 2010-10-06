@@ -16,7 +16,7 @@ describe UserMailer do
     @expected.body    = read_fixture(:user, :password_reset_link)
     @expected.date    = Time.now.utc
 
-    UserMailer.password_reset_link(@user, @expected.date).encoded.should == @expected.encoded
+    UserMailer.password_reset_link(@user, @expected.date).should == @expected
   end
 
   it "should send an email when signing up" do
@@ -26,6 +26,6 @@ describe UserMailer do
     @expected.body    = read_fixture(:user, :signup)
     @expected.date    = Time.now.utc
 
-    UserMailer.signup(@user, @expected.date).encoded.should == @expected.encoded
+    UserMailer.signup(@user, @expected.date).should == @expected
   end
 end

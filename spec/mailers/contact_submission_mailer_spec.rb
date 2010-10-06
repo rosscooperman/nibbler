@@ -24,7 +24,7 @@ describe ContactSubmissionMailer do
     @expected.reply_to = "scott@railsnewbie.com"
     @expected.date     = now
 
-    email = ContactSubmissionMailer.submission(@submission, now).encoded
-    email.should == @expected.encoded
+
+    ContactSubmissionMailer.submission(@submission, now).should == @expected
   end
 end
