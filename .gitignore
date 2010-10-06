@@ -35,6 +35,9 @@ coverage
 /TAGS
 tags
 
+# bundled gems
+vendor/cache
+
 # db dumps created by cap production db:dump_and_transfer
 *.sql
 *.sql.gz
