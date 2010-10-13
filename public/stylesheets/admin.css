@@ -368,6 +368,10 @@ div.search form {
   padding-left: 10px;
 }
 
+.search form input[type=submit].bn {
+  padding: 3px 2em;
+}
+
 .search form #search {
   width: 15em;
 }

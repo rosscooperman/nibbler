@@ -41,6 +41,11 @@
     <div id="main">
       <div id="page_top">
         <%= content_tag(:h1, @page_title, :class => "page_title") %>
+        <% if search = yield(:search) %>
+          <div class="search">
+            <%= search %>
+          </div>
+        <% end %>
       </div>
       <div id="content_wrap">
         <div id="page_content">
