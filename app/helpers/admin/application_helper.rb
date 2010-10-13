@@ -7,7 +7,7 @@ module Admin::ApplicationHelper
   end
 
   def actions(&block)
-    concat(content_tag(:div, capture(&block), :class => "page_actions"))
+    content_tag(:div, capture(&block), :class => "page_actions")
   end
 
   def zebra_row(&block)
