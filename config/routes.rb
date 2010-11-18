@@ -1,7 +1,6 @@
 # For more Rails 3 Routing info: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/
 # or generate see auto-generated routes.rb file in a test application
 FreshRailsApp::Application.routes.draw do
-
   # Admin Section
   namespace :admin do
     resources :users
@@ -19,11 +18,11 @@ FreshRailsApp::Application.routes.draw do
   root :to => "home#index"
 
   # short-hand for: match  'sign_out', :to => "session#destroy"
-  match  'sign_out'                 => "session#destroy"
+  match  "sign_out"                 => "session#destroy"
   match  "signed_out"               => "session#signed_out"
-  match  "reset_password/:id/:hash" => 'session#reset_password', :as => "reset_password"
-  match  'forgot_password'          => 'session#forgot_password'
-  match  'sign_in'                  => "session#new"
+  match  "reset_password/:id/:hash" => "session#reset_password", :as => "reset_password"
+  match  "forgot_password"          => "session#forgot_password"
+  match  "sign_in"                  => "session#new"
 
   # Health Check
   match "health_check/check" => "health_check#health_check"
