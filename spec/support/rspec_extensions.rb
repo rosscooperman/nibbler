@@ -73,7 +73,7 @@ module ExampleHelpers
   end
 
   def read_fixture(mailer, action)
-    fixture_path = "#{File.dirname(__FILE__)}/fixtures/#{mailer}_mailer/#{action}"
+    fixture_path = "#{File.dirname(__FILE__)}/../fixtures/#{mailer}_mailer/#{action}"
     IO.readlines(fixture_path)
   rescue Errno::ENOENT => e
     raise "Could not find fixture in #{fixture_path}"

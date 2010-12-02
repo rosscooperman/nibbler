@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.3'
 gem 'mysql', '2.8.1'
 gem "jquery-rails"
 gem 'will_paginate', '>=3.0.pre'
@@ -27,5 +27,7 @@ gem 'will_paginate', '>=3.0.pre'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'ruby-debug'
-  gem "rspec-rails", ">= 2.0.0.beta.22"
+
+  gem "rspec",       ">= 2.0.0"
+  gem "rspec-rails", ">= 2.0.0"
 end
