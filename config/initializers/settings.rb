@@ -1,8 +1,8 @@
 unless defined?(SETTINGS)
   if Rails.env.test?
-    settings_yml = File.join(RAILS_ROOT, 'spec', 'fixtures', 'settings.yml')
+    settings_yml = File.join(Rails.root.to_s, 'spec', 'fixtures', 'settings.yml')
   else
-    settings_yml = File.join(RAILS_ROOT, 'config', 'settings.yml')
+    settings_yml = File.join(Rails.root.to_s, 'config', 'settings.yml')
   end
 
   unless File.exists?(settings_yml)
