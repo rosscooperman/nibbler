@@ -1,0 +1,6 @@
+test:
+  app_host: "localhost:3000"
+  staging: false
+  email:
+    from: "example@example.com"
+    contact_submission_recipient: "example@example.com"

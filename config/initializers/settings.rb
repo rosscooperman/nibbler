@@ -1,7 +1,12 @@
-unless defined?(SETTINGS) || Rails.env == "test"
-  settings_yml = File.join(Rails.root, 'config', 'settings.yml')
+unless defined?(SETTINGS)
+  if Rails.env.test?
+    settings_yml = File.join(RAILS_ROOT, 'spec', 'fixtures', 'settings.yml')
+  else
+    settings_yml = File.join(RAILS_ROOT, 'config', 'settings.yml')
+  end
+
   unless File.exists?(settings_yml)
-    raise RuntimeError, "Unable to find \"config/settings.yml\" file."
+    raise RuntimeError, "Unable to find \"#{settings_yml}\" file."
   end
 
   SETTINGS = YAML.load_file(settings_yml).recursively_symbolize_keys[Rails.env.to_sym]
