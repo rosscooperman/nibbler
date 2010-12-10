@@ -24,6 +24,12 @@ FreshRailsApp::Application.routes.draw do
   match  "forgot_password"          => "session#forgot_password"
   match  "sign_in"                  => "session#new"
 
+  # Error Pages
+  match "static/403"
+  match "static/404"
+  match "static/422"
+  match "static/500"
+
   # Health Check
   match "health_check/check" => "health_check#health_check"
   match "health_check/ok"    => "health_check#ok"
