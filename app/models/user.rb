@@ -29,10 +29,10 @@ class User < ActiveRecord::Base
   end
 
   def send_welcome_email
-    UserMailer.signup(self).deliver
+    UserMailer.delay.signup(self)
   end
 
   def send_password_reset_email
-    UserMailer.password_reset_link(self).deliver
+    UserMailer.delay.password_reset_link(self)
   end
 end

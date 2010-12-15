@@ -6,6 +6,7 @@ gem 'rails', '3.0.3'
 gem 'mysql', '2.8.1'
 gem "jquery-rails"
 gem 'will_paginate', '>=3.0.pre'
+gem "delayed_job"
 
 # Use unicorn as the web server
 # gem 'unicorn'

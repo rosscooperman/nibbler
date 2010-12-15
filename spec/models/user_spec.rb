@@ -23,12 +23,18 @@ describe User do
     end
 
     it "should be able to send the password reset email" do
-      UserMailer.should_receive(:password_reset_link).with(@user).and_return(@mock_message)
+      a_delayed_job = nil
+      UserMailer.should_receive(:delay).and_return(a_delayed_job)
+      a_delayed_job.should_receive(:password_reset_link).with(@user).and_return(@mock_message)
+
       @user.send_password_reset_email
     end
 
     it "should send the welcome email on creation" do
-      UserMailer.should_receive(:signup).with(@user).and_return(@mock_message)
+      a_delayed_job = nil
+      UserMailer.should_receive(:delay).and_return(a_delayed_job)
+      a_delayed_job.should_receive(:signup).with(@user).and_return(@mock_message)
+
       @user.save!
     end
   end
