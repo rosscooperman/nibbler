@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   make_resourceful do
-    actions(:all)
+    actions :create
 
-    response_for(:create) do
+    response_for :create do
       self.current_user = @user
       redirect_to root_path
     end
