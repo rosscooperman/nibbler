@@ -23,7 +23,7 @@ describe User do
     end
 
     it "should be able to send the password reset email" do
-      a_delayed_job = nil
+      a_delayed_job = mock("delayed job")
       UserMailer.should_receive(:delay).and_return(a_delayed_job)
       a_delayed_job.should_receive(:password_reset_link).with(@user).and_return(@mock_message)
 
@@ -31,7 +31,7 @@ describe User do
     end
 
     it "should send the welcome email on creation" do
-      a_delayed_job = nil
+      a_delayed_job = mock("delayed job")
       UserMailer.should_receive(:delay).and_return(a_delayed_job)
       a_delayed_job.should_receive(:signup).with(@user).and_return(@mock_message)
 
