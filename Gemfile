@@ -7,6 +7,7 @@ gem 'mysql', '2.8.1'
 gem "jquery-rails"
 gem 'will_paginate', '>=3.0.pre'
 gem "delayed_job"
+gem "RedCloth"
 
 # Use unicorn as the web server
 # gem 'unicorn'
