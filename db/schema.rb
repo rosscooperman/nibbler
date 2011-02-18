@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(:version => 20101215164504) do
 
   create_table "pages", :force => true do |t|
     t.string   "title"
-    t.string   "header"
-    t.string   "body"
+    t.string   "slug"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -63,10 +63,6 @@ ActiveRecord::Schema.define(:version => 20101215164504) do
     t.datetime "remember_token_expires_at"
     t.string   "time_zone"
     t.string   "type"
-    t.string   "message_one"
-    t.string   "message_two"
-    t.string   "message_three"
-    t.string   "device_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,10 +75,6 @@ ActiveRecord::Schema.define(:version => 20101215164504) do
     t.datetime "remember_token_expires_at"
     t.string   "time_zone"
     t.string   "type"
-    t.string   "message_one"
-    t.string   "message_two"
-    t.string   "message_three"
-    t.string   "device_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

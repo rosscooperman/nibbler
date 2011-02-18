@@ -4,8 +4,8 @@
 #
 #  id         :integer(4)      not null, primary key
 #  title      :string(255)
-#  header     :string(255)
-#  body       :string(255)
+#  slug       :string(255)
+#  body       :text
 #  created_at :datetime
 #  updated_at :datetime
 #

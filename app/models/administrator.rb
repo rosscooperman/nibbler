@@ -10,10 +10,6 @@
 #  remember_token_expires_at :datetime
 #  time_zone                 :string(255)
 #  type                      :string(255)
-#  message_one               :string(255)
-#  message_two               :string(255)
-#  message_three             :string(255)
-#  device_token              :string(255)
 #  created_at                :datetime
 #  updated_at                :datetime
 #
