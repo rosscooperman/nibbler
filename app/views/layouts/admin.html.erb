@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta name="robots" content="noindex,nofollow" />
-  <title><%= @page_title + " &mdash; " unless @page_title.blank? %><%= company_name %></title>
+  <title><% unless @page_title.blank? %><%= @page_title %> &mdash; <% end %><%= company_name %></title>
   <%= csrf_meta_tag %>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
@@ -41,6 +41,11 @@
     <div id="main">
       <div id="page_top">
         <%= content_tag(:h1, @page_title, :class => "page_title") %>
+        <% if search = yield(:search) %>
+          <div class="search">
+            <%= search %>
+          </div>
+        <% end %>
       </div>
       <div id="content_wrap">
         <div id="page_content">

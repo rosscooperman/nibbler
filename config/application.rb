@@ -1,5 +1,6 @@
 require File.expand_path('../boot', __FILE__)
-require File.expand_path('../', "vendor/plugins/hodel_3000_compliant_logger/lib/hodel_3000_compliant_logger/lib")
+$LOAD_PATH.push File.expand_path(File.dirname(__FILE__) + "/../vendor/plugins/hodel_3000_compliant_logger/lib")
+require "hodel_3000_compliant_logger"
 
 # Require these peice-meal to exclude certain frameworks
 require "active_record/railtie"

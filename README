@@ -1,3 +1,7 @@
-== TODO:
-  remove README
-  Get Rspec running and passing
+
+Get going the first time:
+
+- cp config/database.example.yml config/database.yml
+- cp config/settings.example.yml config/settings.yml
+- Edit those two files appropriately
+- rake db:reboot

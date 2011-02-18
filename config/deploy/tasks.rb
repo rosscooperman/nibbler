@@ -117,3 +117,22 @@ namespace :data do
     end
   end
 end
+
+# If you end up deploying on a non-EC2 EY slice - EY prefers to use
+# monit to manage the DJ daemon. Ask their support
+namespace :dj do
+  desc "Restart delayed_job"
+  task :start, :role => :app, :only => {:dj => true} do
+    run "cd #{current_path} && script/dj_runner start -- #{deployment}"
+  end
+
+  desc "Restart delayed_job"
+  task :restart, :role => :app, :only => {:dj => true} do
+    run "cd #{current_path} && script/dj_runner restart -- #{deployment}"
+  end
+
+  desc "Restart delayed_job"
+  task :stop, :role => :app, :only => {:dj => true} do
+    run "cd #{current_path} && script/dj_runner stop -- #{deployment}"
+  end
+end

@@ -1,12 +1,15 @@
 class UsersIndex < IndexView::Base
   column :email
-  column :edit do |admin|
+  column :actions do |admin|
     String.new.tap do |text|
-      text << link_to("Edit", edit_admin_user_path(admin))
-      text << "&nbsp;"
+      text << link_to("Edit", edit_admin_user_path(admin), :class => "button edit")
 
       unless current_user == admin
-        text << link_to("Remove", admin_user_path(admin), :method => :delete)
+        text << link_to("Remove", admin_user_path(admin), {
+                          :method => :delete,
+                          :class => "button delete",
+                          :confirm => "Are you sure you want to delete this user?  You'll lose *everything* associated with him!"
+                       })
       end
     end
   end
