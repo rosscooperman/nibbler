@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
+
     respond_to do |format|
       format.html { render :layout => "application" }
     end
