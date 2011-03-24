@@ -1,4 +1,5 @@
 after "deploy:symlink", "deploy:symlink_app_configs"
+after "deploy:symlink", "deploy:install_gems"
 
 common_after_deploy_tasks = [
   "deploy:delete_compressed_assets",

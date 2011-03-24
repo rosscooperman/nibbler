@@ -49,6 +49,10 @@ namespace :deploy do
 
     run "rm -rf #{files}"
   end
+
+  task :install_gems do
+    run "cd #{current_path} && bundle install --without development test"
+  end
 end
 
 namespace :remote do
