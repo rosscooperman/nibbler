@@ -145,7 +145,13 @@ class ViewRedefiner
   end
 
   def execute_returning_hash(stmt)
-    execute(stmt).all_hashes.dup
+    all_hashes = []
+
+    execute(stmt).each_hash do |hash|
+      all_hashes << hash
+    end
+
+    all_hashes
   end
 
   def execute(stmt)
