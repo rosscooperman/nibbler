@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'rails', '3.0.7'
 gem 'mysql', '2.8.1'
-gem "jquery-rails"
+gem 'jquery-rails', ">= 0.2.7"
 gem 'will_paginate', '>=3.0.pre'
 gem "delayed_job"
 gem "RedCloth"
