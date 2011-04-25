@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.7'
 gem 'mysql', '2.8.1'
 gem "jquery-rails"
 gem 'will_paginate', '>=3.0.pre'
