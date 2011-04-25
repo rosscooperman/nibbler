@@ -17,7 +17,6 @@ module FreshRailsApp
 
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += [
-      File.join(Rails.root, "app", "mailers"),
       File.join(Rails.root, "app", "indexes"),
       File.join(Rails.root, "lib")
     ]
