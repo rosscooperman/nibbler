@@ -2,12 +2,7 @@ require File.expand_path('../boot', __FILE__)
 $LOAD_PATH.push File.expand_path(File.dirname(__FILE__) + "/../vendor/plugins/hodel_3000_compliant_logger/lib")
 require "hodel_3000_compliant_logger"
 
-# Require these peice-meal to exclude certain frameworks
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "rails/test_unit/railtie"
-# require "active_resource/railtie"
+require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
