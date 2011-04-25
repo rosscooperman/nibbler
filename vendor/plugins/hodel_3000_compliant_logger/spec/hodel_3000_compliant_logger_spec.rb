@@ -9,12 +9,13 @@ describe Hodel3000CompliantLogger do
 	before :each do
 		@out = StringIO.new
 		@log = Hodel3000CompliantLogger.new(@out)
+    Socket.stub(:gethostname).and_return('hostname.domain')
 	end
 
 	it "should log stuff in a syslog-like format so that Eric Hodel's Rails Analyzer Tools can parse it" do
 		msg = "Yo ho hello there!"
 		@log.info(msg)
-		@out.string.should match(/^\w{3} \d{2} \d{2}:\d{2}:\d{2} \w+ rails\[\d+\]: #{msg}\n$/)
+		@out.string.should match(/^\w{3} \d{2} \d{2}:\d{2}:\d{2} hostname rails\[\d+\]: #{msg}\n$/)
 	end
 	
 	it "should handle an Exception object used as an argument in Logger#error, rather than blow chunks" do
