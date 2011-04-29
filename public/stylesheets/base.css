@@ -2,7 +2,6 @@
 ----------------------------------------------------------------------*/
 
 body {
-  line-height: 1.538;
   color: #5b5b5b;
   text-align: center;
 }
@@ -15,14 +14,7 @@ h1,h2,h3,h4,h5,h6,
 strong, strong *, * strong  { font-weight: bold; }
 em, em *, * em              { font-style: italic; }
 
-h1, h2, h3 { font-family: Helvetica, arial, sans-serif; }
-
 img { background-color: transparent; }
-
-h1        { font-size:  138.5%;   } /*18px*/
-h2        { font-size:  123.1%;   } /*16px*/
-h3        { font-size:  108%;     } /*14px*/
-h1,h2,h3  { margin:     1.5em 0 1em;    } 
 
 abbr,acronym {
   border-bottom: 1px dotted #000;
@@ -180,40 +172,6 @@ form dd {
 fieldset {
   border: 0;
 /*   width: 100%; */
-}
-
-/* buttons
---------------------------------------------------------------------------------------*/
-
-.bn_gold {
-  display: block;
-  margin-top: 25px;
-  padding-left: 56px;
-  background: url(/images/bn_gold.png) no-repeat left top;
-  color: #4f2a00;
-  font-size: 123.1%;
-  text-decoration: none;
-  text-shadow: 0 1px 0 #ffad2b;
-  border-right: 1px solid #dbad66;
-}
-
-a.bn_gold {
-  width: 160px;
-  height: 37px;
-  padding-top: 10px;
-}
-
-a.bn_gold:hover {
-  color: #4f2a00;
-}
-
-input.bn_gold {
-/*   width: 225px; */
-  height: 47px;
-  border: 1px solid #c37700;
-  text-align: left;
-  cursor: pointer;
-  padding-right: 25px;
 }
 
 /* Standard ul form styles
