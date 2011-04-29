@@ -39,23 +39,24 @@
 
 <% sidebar = yield(:sidebar) %>
 
-<%= body_tag(sidebar) %>
+<%= body_tag %>
   <%= content_tag(:div, "Staging Server", :id => "staging") if staging? %>
-  <div id="header">
-    <div class="wrapper">
-      <p><%= link_to company_name, root_path, :rel => "#{company_name} home page", :title => company_name %></p>
+  <header id="header">
+    <nav class="wrapper" id="nav">
+      <%= home_link company_name, root_path, { :class => "home_link"}, { 
+            :rel => "#{company_name} home page", 
+            :title => company_name } 
+            %>
       <%= render :partial => "layouts/nav" %>
-      <%#= render :partial => "shared/search" %>
-    </div>
-  </div>
+    </nav>
+  </header>
+
+  <% if page_top = yield(:page_top) -%>
+    <%= page_top -%>
+  <% end %>
 
   <div id="wrapper">
     <%= flash_messages(:error, :notice) -%>
-    <% if page_top = yield(:page_top) -%>
-      <div id="page_top">
-        <%= page_top -%>
-      </div>
-    <% end %>
     <div id="content_wrap">
       <div id="page_content">
         <div id="inner">
@@ -63,21 +64,26 @@
         </div>
       </div>
       <% if sidebar -%>
-      <ul id="sidebar">
+      <aside id="sidebar">
         <%= sidebar -%>
-      </ul>
+      </aside>
       <% end -%>
     </div>
   </div>
 
-  <div id="footer">
+  <footer id="footer">
     <div class="wrapper">
+      <p class="home_link">
+        <%= home_link company_name, root_path, { :class => "home_link"}, { 
+              :rel => "#{company_name} home page", 
+              :title => company_name } 
+              %>
+      </p>
      <%= render :partial => "layouts/footer" %>
     </div>
-  </div>
+  </footer>
   <%= render :partial => "layouts/js_includes" -%>
   <%= yield :bottom %>
   <%= git_version_html %>
 </body>
 </html>
-
