@@ -18,10 +18,9 @@ module SharedHelper
     body = "<body"
     body << " id=\"#{@body_id || controller.controller_name}\""
     body << " class=\""
+    body << "aux " unless content_for(:sidebar).blank?
     body << "#{@body_class}" if @body_class
-    body << " aux" if sidebar
-    body << "\""
-    body << ">"
+    body << "\">"
     body.html_safe
   end
 
