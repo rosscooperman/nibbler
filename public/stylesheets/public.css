@@ -1,3 +1,10 @@
+body { 
+  color: #111;
+  font-size:    16px;
+  line-height:  1.5em;
+  font-family: "Georgia", "Times New Roman", "Times", serif;
+}
+
 #wrapper,
 #header .wrapper,
 #footer .wrapper {
@@ -6,6 +13,15 @@
 
 #inner {
   min-height: 500px;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 /* layouts 
@@ -41,41 +57,53 @@
   margin-right: -320px;
 }
 
+/* 2, 3, 4 columns
+----------------------------------------------------------------------*/
+
+.cols { margin-bottom: 1.5em; }
+
+.col  {
+  display: inline;
+  float: left;
+  margin: 0 10px;
+  background-color: #eee;
+}
+
+.two    .col  { width: 460px; }
+.three  .col  { width: 300px; }
+.four   .col  { width: 220px; }
+
+.three .double  { width: 640px; }
+.four .triple   { width: 735px; }
+.four .double   { width: 400px; }
+
 /* clearfix
 ----------------------------------------------------------------------*/
 
+.clearfix:before,
+.clearfix:after,
+#wrapper:before,
+#wrapper:after,
+#nav:after,
+#nav:before,
+.cols:after,
+.cols:before,
+#content_wrap:after,
+#content_wrap:before {
+  content: "\0020"; 
+  display: block; 
+  height: 0; 
+  visibility: hidden;
+}
+
 .clearfix:after,
 #wrapper:after,
-.wrapper:after,
 #nav:after,
-.cols:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  height: 0;
-}
+.cols:after,
+#content_wrap:after { clear: both; }
 
 .clearfix,
 #wrapper,
-.wrapper,
 #nav,
-.cols {
-  display: inline-block;
-}
-
-html[xmlns] .clearfix,
-html[xmlns] #wrapper,
-html[xmlns] .wrapper,
-html[xmlns] #nav,
-html[xmlns] .cols {
-  display: block;
-}
-
-* html .clearfix,
-* html #wrapper,
-* html .wrapper,
-* html #nav,
-* html .cols {
-  height: 1%;
-}
+.cols,
+#content_wrap { zoom: 1; }
