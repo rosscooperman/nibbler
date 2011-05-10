@@ -35,11 +35,15 @@ a:hover { text-decoration: underline; }
   min-width: 920px;
 }
 
-#page_content .flash { width: auto; }
-.flash { text-align: center; }
-a, input, select, textarea { outline: none; }
+/* setups and resets
+------------------------------------------------------------*/
 
-h1,h2,h3,h4,h5,h6,
+ul, ol {
+  margin: 0;
+  list-style: none;
+}
+
+h1,h2,h3
 strong, strong *, * strong  { font-weight: bold; }
 em, em *, * em              { font-style: italic; }
 
@@ -47,12 +51,11 @@ h1, h2, h3 { font-family: Helvetica, arial, sans-serif; }
 
 img { background-color: transparent; }
 
-h1        { font-size:  138.5%;   } /*18px*/
-h2        { font-size:  123.1%;   } /*16px*/
-h3        { font-size:  108%;     } /*14px*/
-h1,h2,h3  { margin:     1em 0;    }
+h1        { font-size:  18px;   }
+h2        { font-size:  16px;   }
+h3        { font-size:  14px;   }
 
-p,fieldset,table { margin-bottom:1em; }
+p,fieldset,table { margin-bottom:10px; }
 
 /* page structures
 ------------------------------------------------------------*/
@@ -288,7 +291,7 @@ ul.nav_01 li:hover ul,ul.nav_01 ul li:hover ul,ul.nav_01 ul ul li:hover ul,ul.na
   margin-bottom: 0;
 }
 
-/* Sub nav 
+/* Sub nav
 ----------------------------------------------------------------------*/
 
 .sub_nav {
@@ -310,7 +313,7 @@ ul.nav_01 li:hover ul,ul.nav_01 ul li:hover ul,ul.nav_01 ul ul li:hover ul,ul.na
 }
 
 .sub_nav li {
-  padding-left: 7px; 
+  padding-left: 7px;
   text-shadow: 0 1px 0 rgba(255,255,255,0.4);
 }
 
@@ -368,16 +371,12 @@ div.search form {
   padding-left: 10px;
 }
 
-.search form input[type=submit].bn {
-  padding: 3px 2em;
-}
-
 .search form #search {
-  width: 15em;
+  width: 175px;
 }
 
 .page_actions form .bn {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .search form span {
@@ -386,7 +385,7 @@ div.search form {
 }
 
 .search form input {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 /* action buttons
@@ -428,7 +427,7 @@ h2.inner_content {
   line-height: 26px;
   text-shadow:  0 1px 0 #fff;
   letter-spacing: 1px;
-  color: #333;
+  color: #555;
   font-weight: normal;
   border-bottom: 1px solid #b3b3b3;
 }
@@ -437,6 +436,10 @@ h1.page_title,
 h2.inner_content {
   font-size: 14px;
   text-transform: uppercase;
+}
+
+h1.page_title {
+  font-weight: bold;
 }
 
 h2.inner_content {
@@ -486,20 +489,21 @@ p.inner_content {
 ----------------------------------------------------------------------*/
 
 .icon,
-.button {
+a.button {
   margin-right: 15px;
 }
 
-.button {
+a.button {
   display: inline-block;
   width:  16px;
   height: 16px;
   text-indent: -9999em;
+  padding: 0;
 }
 
 .add            { background-image: url(/images/admin/icons/add.gif); }
 .edit           { background-image: url(/images/admin/icons/page_white_edit.gif); }
-.delete         { background-image: url(/images/admin/icons/delete.gif); }
+a.delete         { background-image: url(/images/admin/icons/delete.gif); }
 .cancel         { background-image: url(/images/admin/icons/cancel.gif); }
 .add_page       { background-image: url(/images/admin/icons/note_add.gif); }
 .add_user       { background-image: url(/images/admin/icons/user_add.gif); }
@@ -668,7 +672,7 @@ div.pagination {
 .pagination .prev_page,
 .pagination .next_page  { font-weight: normal; }
 
-.pagination .current { 
+.pagination .current {
   background-color: #444;
   color: #fff;
   border-radius:          3px;
@@ -680,13 +684,13 @@ div.pagination {
 .pagination .disabled   { color: #aaa; }
 
 .pagination_nav a {
-  text-decoration: none; 
-  color: #222; 
+  text-decoration: none;
+  color: #222;
 }
 
 .pagination_nav a:hover { text-decoration: underline; }
 
-/* Go to page in pagination 
+/* Go to page in pagination
 ----------------------------------------------------------------------*/
 
 div.go_to_page { display: none; }
@@ -703,7 +707,7 @@ div.go_to_page input[type=submit] {
   -moz-border-radius:     3px;
   -webkit-border-radius:  3px;
 }
- 
+
 /* table styling
 -----------------------------------------------------------------------------------------*/
 
@@ -847,30 +851,30 @@ fieldset {
 /* text area with js toggle open / close
 ----------------------------------------------------------------------*/
 
-.std_form .text_area {
+.form .text_area {
   padding: 0.5em 0;
   border-bottom: 1px solid #ddd;
   margin: 1px 0;
 }
 
-.std_form .text_area label {
+.form .text_area label {
   padding-left: 2em;
   background: url(/images/admin/bg_arrow.png) 10px 7px no-repeat;
 }
 
-.std_form .text_area.open label { background-position: 10px -43px; }
-.std_form .text_area.open { background-color: #ffffcc; }
-.std_form .text_area textarea { margin: 0.5em 2em; }
+.form .text_area.open label { background-position: 10px -43px; }
+.form .text_area.open { background-color: #ffffcc; }
+.form .text_area textarea { margin: 0.5em 2em; }
 
 /* Standard ul form styles
 ----------------------------------------------------------------------*/
 
-.std_form li,
-dl.std_form {
+.form li,
+dl.form {
   width: auto;
 }
 
-.std_form li {
+.form li {
   margin-bottom: 1em;
 }
 
@@ -880,41 +884,41 @@ dl.std_form {
   color: #B83F1D;
 }
 
-.std_form p.instructions {
+.form p.instructions {
   color: #222;
   font-size: 93%;
 }
 
-.std_form p.instructions .special { color: blue; }
+.form p.instructions .special { color: blue; }
 
 .submit { margin: 1em 0; }
-.std_form li label { display: block; }
-.std_form { padding: 25px; }
-.std_form dd.buttons * { margin-top: 0; }
+.form li label { display: block; }
+.form { padding: 25px; }
+.form dd.buttons * { margin-top: 0; }
 
-.std_form dt        { font-weight: bold; }
-.std_form dd label  {
+.form dt        { font-weight: bold; }
+.form dd label  {
   margin-right: 1em;
   font-weight: normal;
 }
 
-.std_form dd.buttons {
+.form dd.buttons {
   background-color: transparent;
   margin-top: 2em;
 }
 
-.std_form input[type=text],
-.std_form input[type=password],
-.std_form textarea {
+.form input[type=text],
+.form input[type=password],
+.form textarea {
   padding: 5px;
   border: 1px solid #777;
   width: 70%;
   background-color: #fdfdfd;
 }
 
-.std_form input[type=text]:focus,
-.std_form input[type=password]:focus,
-.std_form textarea:focus {
+.form input[type=text]:focus,
+.form input[type=password]:focus,
+.form textarea:focus {
   border-color: #fff;
   background-color: #fff;
   box-shadow:         0 0 5px #00203e;
@@ -922,10 +926,10 @@ dl.std_form {
   -webkit-box-shadow: 0 0 5px #00203e;
 }
 
-.std_form input[type=text],
-.std_form input[type=password],
-.std_form textarea,
-.std_form select,
+.form input[type=text],
+.form input[type=password],
+.form textarea,
+.form select,
 dd.text_editor {
   font-size: 108%;
   font-family: "Lucida Grande", arial;
@@ -939,41 +943,43 @@ input[type=file] {
 }
 
 input[type=submit] {
-  margin-right: 0.5em;
-  padding: 0.5em 2em;
-  box-shadow:         0 0 5px #555;
-  -moz-box-shadow:    0 0 5px #555;
-  -webkit-box-shadow: 0 0 5px #555;
-  border-radius:          20px;
-  -moz-border-radius:     20px;
-  -webkit-border-radius:  20px;
-  cursor: pointer;
-  color: #fff;
-  border: 0px solid #fff;
-  background: #5E7185 url(/images/admin/submit.png) center center repeat-x;
-  font-weight: bold;
-  font-size: 108%;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-shadow: 0 -1px 0 #000;
+  padding: 4px 8px;
+  border: 1px solid #aaa;
+  border-radius:          4px;
+  -moz-border-radius:     4px;
+  -webkit-border-radius:  4px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  color: #555;
+  text-decoration: none!important;
+  box-shadow:         inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 1px 0 #fffs;
+  -moz-box-shadow:    inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 1px 0 #fffs;
+  -webkit-box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 1px 0 #fffs;
+  background:                                            #ddd;
+  background: -moz-linear-gradient(-90deg,               #ddd,     #bbb) ;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ddd), to(#bbb));
+  text-shadow: 0 1px 0 #ddd;
+  font-family: "helvetica neue";
 }
 
 input[type=submit]:hover {
-  box-shadow:         0 0 5px #000;
-  -moz-box-shadow:    0 0 5px #000;
-  -webkit-box-shadow: 0 0 5px #000;
+  box-shadow:         0 0 2px #998;
+  -moz-box-shadow:    0 0 2px #998;
+  -webkit-box-shadow: 0 0 2px #998;
 }
 
 dd.text_editor { padding-right: 20%; }
 .content .two .col { width: 280px; }
 .hidden { display: none; }
-.std_form li.checkbox * { display: inline; }
+.form li.checkbox * { display: inline; }
 
 /* session layout
 ----------------------------------------------------------------------*/
 
 #session { background-color: #222; }
-#session .std_form { padding: 0 25px; }
+#session .form { padding: 0 25px; }
 
 #session h1 {
   font-weight: normal;
@@ -1043,8 +1049,8 @@ dd.text_editor { padding-right: 20%; }
   margin-top: 2em;
 }
 
-#forgot_pwd .std_form,
-#reset_pwd .std_form {
+#forgot_pwd .form,
+#reset_pwd .form {
   padding-top: 0;
 }
 
@@ -1135,12 +1141,8 @@ dl.show dt { font-weight: bold; }
 dl.show dd { margin-bottom: 15px; }
 
 
-/* admin modal for instructions 
+/* admin modal for instructions
 ----------------------------------------------------------------------*/
-
-div#nyroModalContent.w_scrollbars {
-  overflow: auto;
-}
 
 .modal_instructions {
   padding: 50px;
@@ -1166,6 +1168,36 @@ div#nyroModalContent.w_scrollbars {
 .instructions ul li { list-style: circle; }
 .instructions ol li { list-style: decimal; }
 
+/* pagination
+----------------------------------------------------------------------*/
+
+div.pagination {
+  clear: both;
+  width: 100%;
+  margin: 1em auto;
+  text-align: center;
+  color: #ccc;
+}
+
+.pagination span,
+.pagination a {
+  padding: 2px 4px;
+  border: 1px solid #fff;
+}
+
+.pagination .current {
+  color: #333;
+  border: 1px solid #eee;
+  background-color: #f6f6f6;
+}
+
+.pagination .prev_page,
+.pagination .next_page  { font-weight: bold; }
+
+.pagination .disabled   { color: #ddd; }
+.pagination a           { text-decoration: none; }
+.pagination a:hover     { text-decoration: underline; }
+
 /* clearfix
 ----------------------------------------------------------------------*/
 
@@ -1181,33 +1213,4 @@ div#nyroModalContent.w_scrollbars {
   clear: both;
   visibility: hidden;
   height: 0;
-}
-
-.cols,
-#wrapper,
-.wrapper,
-.page_actions,
-#nav,
-#inner {
-  display: inline-block;
-}
-
-html[xmlns] .cols,
-html[xmlns] #wrapper,
-html[xmlns] .wrapper,
-html[xmlns] .page_actions,
-html[xmlns] #content_wrap.aux,
-html[xmlns] #nav,
-html[xmlns] #inner {
-  display: block;
-}
-
-* html .cols,
-* html #wrapper,
-* html .wrapper,
-* html .page_actions,
-* html #content_wrap.aux,
-* html #nav,
-* html #inner {
-  height: 1%;
 }
