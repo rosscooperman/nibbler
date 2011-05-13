@@ -11,9 +11,6 @@ var bindToExternalLinks = function() {
 
 $('document').ready(function() {
   bindToExternalLinks();
-  $.nyroModalSettings({
-    galleryLinks: ''
-  });
 
   // for pagination
   $("a.go_to_page").click(function() {
