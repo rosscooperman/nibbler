@@ -1,19 +1,11 @@
 source 'http://rubygems.org'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'rails', '3.0.7'
+gem 'rails', '3.1.1'
 gem 'mysql', '2.8.1'
 gem 'jquery-rails', ">= 0.2.7"
 gem 'will_paginate', '>=3.0.pre'
 gem "delayed_job"
 gem "RedCloth"
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug'
@@ -28,8 +20,9 @@ gem "RedCloth"
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'ruby-debug'
-
+  gem 'ruby-debug',   :platforms => :ruby_18
+  gem 'ruby-debug19', :platforms => :ruby_19
+  
   gem "rspec",       ">= 2.0.0"
   gem "rspec-rails", ">= 2.0.0"
   gem "rspec-on-rails-matchers", ">=1.0.0"
