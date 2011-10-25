@@ -46,6 +46,6 @@ module FreshRailsApp
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    config.logger = Hodel3000CompliantLogger.new(config.paths.log.paths.first)
+    config.logger = Hodel3000CompliantLogger.new(config.paths["log"].first)
   end
 end

@@ -2,7 +2,7 @@
 #
 # Table name: user_view
 #
-#  id                        :integer(4)      default(0), not null, primary key
+#  id                        :integer(4)      default(0), not null
 #  email                     :string(255)
 #  crypted_password          :string(40)
 #  salt                      :string(40)

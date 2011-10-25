@@ -13,18 +13,19 @@ describe ContactSubmissionMailer do
   end
 
   def now
-    @now ||= Time.now.utc
+    @now ||= Time.now
   end
 
   it "should send an email for a contact submission" do
-    @expected.subject  = "My Subject"
-    @expected.from     = "Scott Taylor <#{SETTINGS[:email][:contact_submission_recipient]}>"
-    @expected.to       = SETTINGS[:email][:contact_submission_recipient]
-    @expected.body     = read_fixture(:contact_submission, :simple_submission)
-    @expected.reply_to = "scott@railsnewbie.com"
-    @expected.date     = now
+    # Send the email, then test that it got queued
+    email = ContactSubmissionMailer.submission(@submission, now).deliver
+    ActionMailer::Base.deliveries.should_not be_empty
 
-
-    ContactSubmissionMailer.submission(@submission, now).should == @expected
+    # Test the body of the sent email contains what we expect it to
+    email.from.should == [SETTINGS[:email][:contact_submission_recipient]]
+    email.to.should == [SETTINGS[:email][:contact_submission_recipient]]
+    email.body.should == read_fixture(:contact_submission, :simple_submission).join
+    email.reply_to.should == ["scott@railsnewbie.com"]
+    email.date.should == DateTime.parse(now.to_s)
   end
 end
