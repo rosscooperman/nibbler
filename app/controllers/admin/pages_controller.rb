@@ -9,6 +9,15 @@ class Admin::PagesController < Admin::ApplicationController
   def new
     @page = Page.new
   end
+  
+  def create
+    @page = Page.new(params[:page])
+    if @page.save
+      redirect_to admin_pages_path, :notice => 'Page created successfully'
+    else
+      render :new
+    end
+  end
 
   # make_resourceful do
   #   actions :all

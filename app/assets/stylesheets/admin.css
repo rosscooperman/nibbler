@@ -841,13 +841,9 @@ input.radio {
   margin-right: 1px;
 }
 
-form dl { margin-bottom: 0; }
+form .input { margin-bottom: 0; }
 
-form dt,
-form li label,
-legend { margin-bottom: 0; }
-
-form dd { margin-bottom: 0.5em; }
+form .input input { margin-bottom: 0.5em; }
 
 fieldset {
   border: 0;
@@ -884,10 +880,17 @@ dl.form {
   margin-bottom: 1em;
 }
 
-.required span,
-.date_time span,
-#image_uploader label span {
+.input label {
+  display: inline;
+}
+
+.input input {
+  display: block;
+}
+
+label.required abbr {
   color: #B83F1D;
+  border: 0;
 }
 
 .form p.instructions {
@@ -899,7 +902,7 @@ dl.form {
 
 .submit { margin: 1em 0; }
 .form li label { display: block; }
-.form { padding: 25px; }
+form { padding: 25px; }
 .form dd.buttons * { margin-top: 0; }
 
 .form dt        { font-weight: bold; }
@@ -913,18 +916,26 @@ dl.form {
   margin-top: 2em;
 }
 
-.form input[type=text],
-.form input[type=password],
-.form textarea {
+.input span.error {
+  background-color: #FFECEC;
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;  
+}
+
+.input input[type=text],
+.input input[type=password],
+.input textarea {
   padding: 5px;
   border: 1px solid #777;
   width: 70%;
   background-color: #fdfdfd;
 }
 
-.form input[type=text]:focus,
-.form input[type=password]:focus,
-.form textarea:focus {
+.input input[type=text]:focus,
+.input input[type=password]:focus,
+.input textarea:focus {
   border-color: #fff;
   background-color: #fff;
   box-shadow:         0 0 5px #00203e;
@@ -932,11 +943,11 @@ dl.form {
   -webkit-box-shadow: 0 0 5px #00203e;
 }
 
-.form input[type=text],
-.form input[type=password],
-.form textarea,
-.form select,
-dd.text_editor {
+.input input[type=text],
+.input input[type=password],
+.input textarea,
+.input select,
+div.text_editor {
   font-size: 108%;
   font-family: "Lucida Grande", arial;
   color: #5b5b5b;
@@ -976,7 +987,7 @@ input[type=submit]:hover {
   -webkit-box-shadow: 0 0 2px #998;
 }
 
-dd.text_editor { padding-right: 20%; }
+div.text_editor { padding-right: 20%; }
 .content .two .col { width: 280px; }
 .hidden { display: none; }
 .form li.checkbox * { display: inline; }

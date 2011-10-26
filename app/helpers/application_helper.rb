@@ -39,6 +39,11 @@ module ApplicationHelper
   end
   
   def errors_for(object, options = {})
-    render :partial => "layouts/errors", :object => object if object.errors.count > 0
+    options = {
+      :header => true
+    }.merge(options)
+    options[:object] = object
+    
+    render :partial => "layouts/errors", :object => options if object.errors.count > 0
   end
 end

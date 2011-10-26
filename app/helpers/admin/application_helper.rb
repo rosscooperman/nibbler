@@ -15,7 +15,6 @@ module Admin::ApplicationHelper
   end
 
   def zebra_row_for(object, &block)
-    debugger; 1
     content_tag_for(:tr, object, :hrm, {:class => cycle('light', 'dark')}, &block)
   end
 

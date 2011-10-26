@@ -8,6 +8,7 @@ gem 'will_paginate', '>=3.0.pre'
 gem 'delayed_job'
 gem 'RedCloth'
 gem 'oink'
+gem 'simple_form'
 
 group :assets do
   gem 'sass-rails'

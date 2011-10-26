@@ -135,6 +135,9 @@ GEM
       sass (>= 3.1.4)
       sprockets (~> 2.0.0)
       tilt (~> 1.3.2)
+    simple_form (1.5.2)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -167,5 +170,6 @@ DEPENDENCIES
   ruby-debug
   ruby-debug19
   sass-rails
+  simple_form
   uglifier
   will_paginate (>= 3.0.pre)
