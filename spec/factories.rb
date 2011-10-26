@@ -1,21 +1,28 @@
 require 'support/spec_helpers'
-include SpecHelpers
+
+
 
 FactoryGirl.define do
 
+  sequence :email do |n|
+    "person#{n}@example.com"
+  end
+
+  sequence :random_string do |n|
+    ('a'..'z').to_a.shuffle.join
+  end
+
   factory :contact_submission do
-    name    random_string
-    email   random_email
-    subject random_string
-    body    random_string
+    name    { FactoryGirl.generate(:random_string) }
+    email   { FactoryGirl.generate(:email) }
+    subject { FactoryGirl.generate(:random_string) }
+    body    { FactoryGirl.generate(:random_string) }
   end
 
   factory :user do
-    pw = random_string
-
-    email    random_email
-    password pw
-    password pw
+    email                 { FactoryGirl.generate(:email) }
+    password              { FactoryGirl.generate(:random_string) }
+    password_confirmation { |user| user.password }
   end
 
   factory :example_admin, :class => Administrator do
@@ -25,8 +32,9 @@ FactoryGirl.define do
   end
 
   factory :page do
-    title random_string
-    slug  random_string
-    body  random_string
+    title { FactoryGirl.generate(:random_string) }
+    slug  { FactoryGirl.generate(:random_string) }
+    body  { FactoryGirl.generate(:random_string) }
   end
+
 end

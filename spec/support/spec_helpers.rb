@@ -6,6 +6,8 @@ module SpecHelpers
   end
 
   def random_string(min = 10, flex = 10)
+    print("MURDER SHE WROTE")
+    print(Faker::Lorem)
     Faker::Lorem::words(min + rand(flex)).join(" ").capitalize
   end
 

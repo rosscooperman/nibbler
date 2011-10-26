@@ -3,13 +3,13 @@ require 'spec_helper'
 describe UserMailer do
   before(:each) do
     setup_mailer
-    @user = new_user(:email => "bob.fixture@example.com")
+    @user = FactoryGirl.build(:user, :email => "bob.fixture@example.com")
   end
 
   it "should send mails for password reset link" do
     @user.stub!(:password_reset_hash).and_return("75d86eb0bb16832e8af11f6042139736c04945be")
     @user.stub!(:id).and_return("123")
-    
+
     # Send the email, then test that it got queued
     email = UserMailer.password_reset_link(@user, @expected.date).deliver
     ActionMailer::Base.deliveries.should_not be_empty

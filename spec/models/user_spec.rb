@@ -34,7 +34,7 @@ describe User do
 
   describe "mailers" do
     before do
-      @user = new_user
+      @user = FactoryGirl.build(:user)
       @mock_message = mock_model("Message", :deliver => true)
     end
 
