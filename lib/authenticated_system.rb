@@ -92,7 +92,7 @@ protected
   #
   # We can return to this location by calling #redirect_back_or_default.
   def store_location
-    session[:return_to] = "http://#{request.host}:#{request.port}#{request.request_uri}"
+    session[:return_to] = "http://#{request.host}:#{request.port}#{request.url}"
   end
 
   # Redirect to the URI stored by the most recent store_location call or

@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :salt,             :limit => 40
       t.string   :remember_token
       t.datetime :remember_token_expires_at
-      t.string   :time_zone
+      t.string   :time_zone, :default => "Eastern Time (US & Canada)"
       t.string   :type
       t.timestamps
     end

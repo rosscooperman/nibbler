@@ -15,7 +15,8 @@ module Admin::ApplicationHelper
   end
 
   def zebra_row_for(object, &block)
-    content_tag_for(:tr, object, {:class => cycle('light', 'dark')}, &block)
+    debugger; 1
+    content_tag_for(:tr, object, :hrm, {:class => cycle('light', 'dark')}, &block)
   end
 
   def build_main_menu
@@ -33,5 +34,5 @@ module Admin::ApplicationHelper
 
   def shared_paginator_for(name)
     render :partial => "admin/shared/paginator", :locals => { :paginator => instance_variable_get("@#{name}") }
-  end
+  end  
 end

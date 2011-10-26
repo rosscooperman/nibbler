@@ -8,12 +8,17 @@
 #  salt                      :string(40)
 #  remember_token            :string(255)
 #  remember_token_expires_at :datetime
-#  time_zone                 :string(255)
+#  time_zone                 :string(255)     default("Eastern Time (US & Canada)")
 #  type                      :string(255)
 #  created_at                :datetime
 #  updated_at                :datetime
 #
 
 class UserView < ActiveRecord::Base
+
+  def self.primary_key
+    :id
+  end
+  
   set_table_name "user_view"
 end

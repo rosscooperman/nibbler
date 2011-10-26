@@ -37,4 +37,8 @@ module ApplicationHelper
 
     content_tag(:p, link_to(text, url, link_attributes), li_attributes)
   end
+  
+  def errors_for(object, options = {})
+    render :partial => "layouts/errors", :object => object if object.errors.count > 0
+  end
 end

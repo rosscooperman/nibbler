@@ -1,9 +1,6 @@
 module SharedControllerBehavior
   def self.included(controller)
     controller.class_eval do
-      include Oink::MemoryUsageLogger
-      include Oink::InstanceTypeCounter
-
       include AuthenticatedSystem
       include Authorization
       include FlashMessages

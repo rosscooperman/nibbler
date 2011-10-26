@@ -1,18 +1,16 @@
 class UsersController < ApplicationController
-  make_resourceful do
-    actions :create
-
-    response_for :create do
-      self.current_user = @user
-      redirect_to root_path
-    end
-  end
-
+  
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html { render :layout => "application" }
+  end
+  
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      self.current_user = @user
+      redirect_to root_path, :notice => 'You have successfully signed up'
+    else
+      render :new
     end
   end
 end
