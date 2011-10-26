@@ -23,4 +23,6 @@ group :development, :test do
   gem "rspec",       ">= 2.0.0"
   gem "rspec-rails", ">= 2.0.0"
   gem "rspec-on-rails-matchers", ">=1.0.0"
+  
+  gem 'annotate'
 end

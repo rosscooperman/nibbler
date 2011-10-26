@@ -26,6 +26,5 @@ describe ContactSubmissionMailer do
     email.to.should == [SETTINGS[:email][:contact_submission_recipient]]
     email.body.should == read_fixture(:contact_submission, :simple_submission).join
     email.reply_to.should == ["scott@railsnewbie.com"]
-    email.date.should == DateTime.parse(now.to_s)
   end
 end

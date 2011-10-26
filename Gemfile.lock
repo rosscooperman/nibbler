@@ -30,6 +30,7 @@ GEM
       activesupport (= 3.1.1)
     activesupport (3.1.1)
       multi_json (~> 1.0)
+    annotate (2.4.0)
     archive-tar-minitar (0.5.2)
     arel (2.2.1)
     builder (3.0.0)
@@ -158,6 +159,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  annotate
   coffee-rails
   delayed_job
   jquery-rails
