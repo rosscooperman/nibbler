@@ -1,6 +1,2 @@
 <% @page_title = "Edit admin #{@administrator.email}" %>
-
-<%= form_for [:admin, @administrator] do |f| %>
-  <%= render :partial => "form", :locals => { :f => f } %>
-  <%= f.submit "Update it" %>
-<% end %>
+<%= render :partial => "form" %>

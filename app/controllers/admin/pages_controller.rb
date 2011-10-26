@@ -18,13 +18,26 @@ class Admin::PagesController < Admin::ApplicationController
       render :new
     end
   end
-
-  # make_resourceful do
-  #   actions :all
-  # 
-  #   response_for :create, :update do
-  #     redirect_to admin_pages_path
-  #   end
-  # end
-
+  
+  def edit
+    @page = Page.find(params[:id])
+  end
+  
+  def update
+    @page = Page.find(params[:id])
+    if @page.update_attributes(params[:page])
+      redirect_to admin_pages_path, :notice => 'Page updated successfully'
+    else
+      render :edit
+    end
+  end
+  
+  def destroy
+    @page = Page.find(params[:id])
+    if @page.destroy
+      redirect_to admin_pages_path, :notice => 'Page deleted successfully'
+    else
+      redirect_to admin_pages_path, :alert => 'Page could not be deleted'
+    end
+  end
 end

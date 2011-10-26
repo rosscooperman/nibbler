@@ -841,9 +841,7 @@ input.radio {
   margin-right: 1px;
 }
 
-form .input { margin-bottom: 0; }
-
-form .input input { margin-bottom: 0.5em; }
+.input { margin-bottom: 0.5em; }
 
 fieldset {
   border: 0;
@@ -884,7 +882,8 @@ dl.form {
   display: inline;
 }
 
-.input input {
+.input input,
+.input textarea {
   display: block;
 }
 

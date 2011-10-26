@@ -2,23 +2,11 @@
 
 <h2 class="header"><%= @page_title %></h2>
 
-<fieldset class="page_content">
-  <%= form_for @contact_submission do |f| %>
-    <p class="large_description">Have a question or some feedback about the site?</p>
-    <div class="std_form">
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-
-        <%= f.label :subject %>
-        <%= f.text_field :subject %>
-
-        <%= f.label :body %>
-        <%= f.text_area :body %>
-
-        <%= submit_tag "Send Message" %>
-    </div>
-  <% end %>
-</fieldset>
+<p class="large_description">Have a question or some feedback about the site?</p>
+<%= simple_form_for @contact_submission do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :subject %>
+  <%= f.input :body %>
+  <%= f.button :submit, :value => 'Send Message' %>
+<% end %>
