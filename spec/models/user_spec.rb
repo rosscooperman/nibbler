@@ -18,7 +18,7 @@ require "spec_helper"
 
 describe User do
   before do
-    @user = User.new
+    @user = FactoryGirl.build(:user)
   end
 
   describe "validations + associations" do

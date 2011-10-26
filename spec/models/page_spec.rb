@@ -3,7 +3,7 @@ require "spec_helper"
 describe Page do
   describe "validations + associations" do
     before do
-      @page = Page.new
+      @page = FactoryGirl.build(:page)
     end
 
     it { @page.should validate_presence_of(:title) }

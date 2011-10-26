@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ContactSubmissionMailer do
   before do
-    @submission = new_contact_submission({
+    @submission = FactoryGirl.build(:contact_submission, {
       :name    => "Scott Taylor",
       :subject => "My Subject",
       :email   => "scott@railsnewbie.com",

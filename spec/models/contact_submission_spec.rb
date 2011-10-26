@@ -3,7 +3,7 @@ require "spec_helper"
 describe ContactSubmission do
   describe "validations" do
     before(:each) do
-      @contact_submission = ContactSubmission.new
+      @contact_submission = FactoryGirl.build(:contact_submission)
     end
 
     it { @contact_submission.should validate_presence_of(:name) }
@@ -24,7 +24,7 @@ describe ContactSubmission do
 
   describe "creation" do
     it "should send the email" do
-      submission = new_contact_submission
+      submission = FactoryGirl.build(:contact_submission)
       mock_message = mock_model("Message", :deliver => true)
       ContactSubmissionMailer.should_receive(:submission).with(submission).and_return(mock_message)
       submission.save!
