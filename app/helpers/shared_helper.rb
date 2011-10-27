@@ -16,9 +16,8 @@ module SharedHelper
 
   def body_tag(sidebar = false)
     body = "<body"
-    body << " id=\"#{@body_id || controller.controller_name}\""
-    body << " class=\""
-    body << "aux " unless content_for(:sidebar).blank?
+    body << " class=\"#{@body_id || controller.controller_name}"
+    body << " aux" unless content_for(:sidebar).blank?
     body << "#{@body_class}" if @body_class
     body << "\">"
     body.html_safe

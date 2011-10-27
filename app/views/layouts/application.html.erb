@@ -1,47 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>
-    <% unless @page_title.blank? %>
-      <%= @page_title %> &mdash;
-    <% end %>
-    <%= company_name %>
-  </title>
+  <title><% unless @page_title.blank? %><%= @page_title %> &mdash; <% end %><%= company_name %></title>
+  <%= csrf_meta_tags %>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="description" content=""/>
   <meta name="keywords" content="<%= company_name %>" />
   <meta name="author" content="<%= company_name %> www.<%= company_name %>.com" />
-  <meta name="classification" content="" />
-  <meta name="revisit-after" content="15 days" />
-  <meta name="copyright" content="Copyright (c) <%= Time.now.year %> <%= company_name %>" />
-  <meta name="distribution" content="global" />
-  <meta name="language" content="en" />
-  <meta name="robots" content="index,follow" />
-  <meta name="generator" content="<%= company_name %>" />
-  <meta name="rating" content="General" />
-  <meta name="DC.title" content="<%= company_name %>" />
-  <meta name="geo.position" content="lat / long" />
-  <meta name="ICBM" content="lat / long" />
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="apple-touch-icon" href="icon_apple_public.png" type="image/x-icon" />
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  
+
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  
+
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <!--[if IE]>
-    <%#= stylesheet_link_tag 'public_ie' %>
-  <![endif]-->
-  <!--[if IE 7]>
-    <%#= stylesheet_link_tag 'public_ie7' %>
-  <![endif]-->
-  <!--[if lt IE 7]>
-    <%#= stylesheet_link_tag 'public_ie6' %>
-  <![endif]-->
+
   <%= yield :head -%>
 </head>
 
@@ -49,44 +23,37 @@
 
 <%= body_tag %>
   <%= content_tag(:div, "Staging Server", :id => "staging") if staging? %>
-  <header id="header">
-    <nav class="wrapper" id="nav">
-      <%= home_link company_name, root_path, { :class => "home_link"}, { 
-            :rel => "#{company_name} home page", 
-            :title => company_name } 
+  <header>
+    <div class="inner">
+      <nav>
+        <%= home_link company_name, root_path, { :class => "home_link"}, {
+            :rel => "#{company_name} home page",
+            :title => company_name }
             %>
-      <%= render :partial => "layouts/nav" %>
-    </nav>
+        <%= render :partial => "layouts/nav" %>
+      </nav>
+    </div>
   </header>
 
   <% if page_top = yield(:page_top) -%>
     <%= page_top -%>
   <% end %>
 
-  <div id="wrapper">
+  <div class="content">
     <%= flash_messages(:error, :notice) -%>
-    <div id="content_wrap">
-      <div id="page_content">
-        <div id="inner">
-          <%= yield %>
-        </div>
-      </div>
+    <div class="inner">
+      <%= yield %>
+
       <% if sidebar -%>
-      <aside id="sidebar">
+      <aside>
         <%= sidebar -%>
       </aside>
       <% end -%>
     </div>
   </div>
 
-  <footer id="footer">
-    <div class="wrapper">
-      <p class="home_link">
-        <%= home_link company_name, root_path, { :class => "home_link"}, { 
-              :rel => "#{company_name} home page", 
-              :title => company_name } 
-              %>
-      </p>
+  <footer>
+    <div class="inner">
      <%= render :partial => "layouts/footer" %>
     </div>
   </footer>
