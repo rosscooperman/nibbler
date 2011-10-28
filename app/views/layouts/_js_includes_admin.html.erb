@@ -1,7 +1,1 @@
 <%= javascript_include_tag "admin_application" %>
-
-<% unless flash[:highlight].nil? -%>
-  <script type="text/javascript">
-    Event.observe(window, 'load', yellowFade, false);
-  </script>
-<% end %>
