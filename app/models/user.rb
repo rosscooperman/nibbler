@@ -17,6 +17,8 @@
 class User < ActiveRecord::Base
   include Authenticated
 
+  has_many :active_admin_comments, :as => :author, :class_name => "ActiveAdmin::Comment"
+
   validates_presence_of :email
   validates_format_of   :email, :with => Format::EMAIL
 

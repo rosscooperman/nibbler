@@ -1,6 +1,0 @@
-<%= simple_form_for [:admin, @user] do |f| %>
-  <%= f.input :email %>
-  <%= f.input :password, :required => @user.new_record? %>
-  <%= f.input :password_confirmation, :required => @user.new_record? %>
-  <%= f.button :submit %>
-<% end %>

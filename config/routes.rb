@@ -1,14 +1,10 @@
 # For more Rails 3 Routing info: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/
 # or generate see auto-generated routes.rb file in a test application
 FreshRailsApp::Application.routes.draw do
-  # Admin Section
-  namespace :admin do
-    resources :users
-    resources :administrators
-    resources :pages
 
-    root :to => "users#index"
-  end
+  ActiveAdmin.routes(self)
+
+  # devise_for :admin_users, ActiveAdmin::Devise.config
 
   resources :users
   resources :pages

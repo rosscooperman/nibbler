@@ -4,11 +4,12 @@ gem 'rails', '3.1.1'
 gem 'jquery-rails'
 
 gem 'mysql', '2.8.1'
-gem 'will_paginate', '>=3.0.pre'
 gem 'delayed_job'
 gem 'RedCloth'
 gem 'oink'
 gem 'simple_form'
+gem 'activeadmin'
+gem "meta_search",    '>= 1.1.0.pre'
 
 group :assets do
   gem 'sass-rails'

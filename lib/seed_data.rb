@@ -1,5 +1,4 @@
 module SeedData
-  extend FixtureReplacement
   extend self
 
   def seed
