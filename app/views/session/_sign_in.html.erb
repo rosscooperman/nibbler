@@ -1,20 +1,31 @@
-<%#= content_tag(:p, @signin_message) if @signin_message %>
+<% @page_title ||= "Sign In" %>
 
-<ul class="std_form">
+<% flash[:notice] = @signin_message unless flash[:alert] || flash[:error] || flash[:notice] %>
+<div id="login">
+  <h2><%= "#{active_admin_application.site_title} Login" %></h2>
 
-  <%= f.label :email, "Email Address" %>
-  <%= f.text_field :email %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <li class="submit">
-    <%= submit_tag 'Sign In', :class => "bn" %>
-    <span> or <strong><%= link_to "Join &rarr;".html_safe, new_user_path %></strong></span>
-  </li>
-
-  <li class="password_recover">
+  <%= form_for :session, :url => session_path do |f| %>
+    <fieldset class="inputs">
+      <ol>
+        <li class="email required">
+          <%= f.label :email %>
+          <%= f.text_field :email %>
+        </li>
+        <li class="password required">
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+        </li>
+      </ol>
+    </fieldset>
+    <fieldset class="buttons">
+      <ol>
+        <li class="commit"><%= f.submit 'Login' %></li>
+      </ol>
+    </fieldset>
+  <% end %>
+  
+  <span class="link_with_text">
     Forgot your password?
     <%= link_to 'Retrieve it &rarr;'.html_safe, forgot_password_path %>
-  </li>
-</ul>
+  </span>
+</div>

@@ -4,3 +4,11 @@
 
 // To customize the Active Admin interfaces, add your
 // styles here:
+
+// we want to be able to have some text to go with our login form links
+body.logged_out #login .link_with_text {
+  float: right;
+  margin-top: -32px;
+  
+  a { margin: -18px 0 0 1em; }
+}

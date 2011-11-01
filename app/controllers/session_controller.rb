@@ -1,7 +1,8 @@
 class SessionController < ApplicationController
   include ControllerAuthentication
 
-  layout 'session'
+  helper ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
+  layout 'active_admin_logged_out'
   skip_before_filter :login_required
 
   def new

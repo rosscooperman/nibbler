@@ -92,19 +92,19 @@ protected
   #
   # We can return to this location by calling #redirect_back_or_default.
   def store_location
-    session[:return_to] = "http://#{request.host}:#{request.port}#{request.url}"
+    session[:return_to] = request.url
   end
 
   # Redirect to the URI stored by the most recent store_location call or
   # to the passed default.
   def redirect_back_or_default(default)
-    url = session[:return_to] ? session[:return_to] : default
+    path = session[:return_to] ? session[:return_to] : default
     respond_to do |accepts|
-      accepts.html { redirect_to(url) }
+      accepts.html { redirect_to path }
     end
     session[:return_to] = nil
   end
-
+  
   # Inclusion hook to make #current_user and #logged_in?
   # available as ActionView helper methods.
   def self.included(base)

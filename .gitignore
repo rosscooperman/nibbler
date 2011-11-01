@@ -1,7 +1,7 @@
 # Rails directories
 log/[^.]*
 doc/[^.]*
-tmp/**/*
+tmp/*
 config/database.yml
 config/settings.yml
 db/*.sqlite3
