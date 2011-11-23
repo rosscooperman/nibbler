@@ -1,3 +1,4 @@
+<nav>
 <ul>
   <%= content_tag :li, (link_to "home", root_path, :title => "Return to the #{company_name} Home Page", :rel => "#{company_name} Home Page") %>
   <%= content_tag :li, (link_to "contact us", new_contact_submission_path, :title => "Contact Us #{company_name}", :rel => "#{company_name} Contact Page") %>
@@ -9,6 +10,7 @@
     <%= content_tag :li, (link_to "sign in", new_session_path, :title => "Sign in to your account with #{company_name}", :rel => "Sign In") %>
   <% end %>
 </ul>
+</nav>
 
 <p class="copyright">&copy;
   <%= Time.now.year %> <%= link_to company_name, root_path, :title => "Return to the #{company_name} Home Page", :rel => "#{company_name} Home Page" %>
