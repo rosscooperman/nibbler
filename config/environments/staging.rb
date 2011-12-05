@@ -13,6 +13,9 @@ FreshRailsApp::Application.configure do
   config.action_controller.perform_caching             = true
   config.action_view.cache_template_loading            = true
 
+  # Print deprecation notices to the Rails logger
+  config.active_support.deprecation = :log
+
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
 
@@ -22,5 +25,5 @@ FreshRailsApp::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
-  config.logger.level = Logger::INFO
+  config.log_level = :info
 end
