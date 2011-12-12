@@ -1,1 +1,1 @@
-FreshRailsApp::Application.middleware.use Oink::Middleware, :logger => Rails.logger
+Nibbler::Application.middleware.use Oink::Middleware, :logger => Rails.logger

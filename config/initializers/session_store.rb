@@ -1,8 +1,8 @@
 # Be sure to restart your server when you modify this file.
 
-FreshRailsApp::Application.config.session_store :active_record_store, :key => '_fresh_rails_app_session'
+Nibbler::Application.config.session_store :active_record_store, :key => '_nibbler_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
-# FreshRailsApp::Application.config.session_store :active_record_store
+# Nibbler::Application.config.session_store :active_record_store

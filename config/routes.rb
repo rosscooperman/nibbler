@@ -1,6 +1,6 @@
 # For more Rails 3 Routing info: http://www.engineyard.com/blog/2010/the-lowdown-on-routes-in-rails-3/
 # or generate see auto-generated routes.rb file in a test application
-FreshRailsApp::Application.routes.draw do
+Nibbler::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
