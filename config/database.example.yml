@@ -1,7 +1,7 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: eastmedia_dev
+  database: nibbler_dev
   username: root
   password:
   host: localhost
@@ -9,7 +9,7 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  database: eastmedia_test
+  database: nibbler_test
   username: root
   password:
   host: localhost
