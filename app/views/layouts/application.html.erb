@@ -52,12 +52,24 @@
 </section>
 
 <footer class="container">
-  <div class="row">
+  <div class="row noBackground">
 		<div class="twelve columns">
    		<%= render :partial => "layouts/footer" %>
 		</div>
   </div>
 </footer>
+
+<div class="conatiner">
+	<div class="row noBackground">
+		<div class="four columns centered" style="text-align: center;">
+			<p class="copyright">&copy;
+			  <%= Time.now.year %> <%= link_to company_name, root_path, :title => "Return to the #{company_name} Home Page", :rel => "#{company_name} Home Page" %>
+			   | All Rights Reserved.
+			</p>
+		</div>
+	</div>
+</div>
+
 </div>
   <%= yield :bottom %>
   <%= git_version_html %>
