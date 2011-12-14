@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="description" content=""/>
   <meta name="keywords" content="<%= company_name %>" />
-  <meta name="author" content="<%= company_name %> www.<%= company_name %>.com" />
+  <meta name="author" content="<%= company_name %> www.<%= company_name %>.me" />
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
   <%= stylesheet_link_tag    "application" %>
@@ -23,41 +23,48 @@
 
 <%= body_tag %>
   <%= content_tag(:div, "Staging Server", :id => "staging") if staging? %>
-  <header>
-    <div class="inner">
-      <nav>
-        <%= home_link company_name, root_path, { :class => "home_link"}, {
-            :rel => "#{company_name} home page",
-            :title => company_name }
-            %>
-        <%= render :partial => "layouts/nav" %>
-      </nav>
-    </div>
-  </header>
+<div class="container wrapper">
+<header class="container">
+	<section class="row">
+		<div class="five columns">
+			<h2>
+				<%= link_to "Nibble.me", root_path, :rel => "#{company_name} Home Page" %>
+        <%#= render :partial => "layouts/nav" %>
+      </h2>
+		</div>
+	</section>
+</header>
 
-  <% if page_top = yield(:page_top) -%>
-    <%= page_top -%>
-  <% end %>
+<section class="container">
+	<div class="row">
+		<div class="seven columns centered searcherMain">
+			<h2>Search for your favorite food truck, cuisine, or location.</h2>
+			<ul class="block-grid two-up">
+				<li>
+					<input type="text" name="some_name" value="" placeholder="Start Searching" class="nice oversize input-text">
+				</li>
+				<li>
+					<a href="#" class="nice medium radius blue button">Search</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
 
-  <div class="content">
-    <%= flash_messages(:error, :notice) -%>
-    <div class="inner">
-      <%= yield %>
-
-      <% if aside -%>
-      <aside>
-        <%= aside -%>
-      </aside>
-      <% end -%>
-    </div>
+<footer class="container">
+  <div class="row">
+		<div class="twelve columns">
+   		<%= render :partial => "layouts/footer" %>
+		</div>
   </div>
-
-  <footer>
-    <div class="inner">
-     <%= render :partial => "layouts/footer" %>
-    </div>
-  </footer>
+</footer>
+</div>
   <%= yield :bottom %>
   <%= git_version_html %>
+
+	<!-- BRETT UPDATE -->
+	<%= javascript_include_tag "foundation" %>
+	<%= javascript_include_tag "app" %>
+
 </body>
 </html>

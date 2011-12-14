@@ -48,7 +48,7 @@ module SharedHelper
   end
 
   def company_name
-    "Change the company name in Shared_helper"
+    "Nibble"
   end
 
 end

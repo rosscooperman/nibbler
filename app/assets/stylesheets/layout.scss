@@ -1,10 +1,9 @@
 .inner {
-   width: 80%;
-   max-width: 1024px;
-   padding: 1% 2%;
-   margin: 0 auto;
+  width: 80%;
+  max-width: 1024px;
+  padding: 1% 2%;
+  margin: 0 auto;
 }
-
 img,
 embed,
 object,
@@ -12,12 +11,28 @@ video {
   max-width: 100%;
   margin-bottom: 1.5em;
 }
-
 nav li {
   display: inline;
 }
-
 nav li a {
-  display:  inline-block;
+  display: inline-block;
 }
 
+/**********
+begin styles
+*****/
+
+$blue: #3bbfce;
+
+
+body {
+	background: $blue url(/assets/whitediamond.png) 0 0 repeat;
+}
+
+section.container {
+	margin-top: 100px;
+}
+
+.searcherMain {
+	padding: 30px 0;
+}
