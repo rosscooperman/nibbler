@@ -1,5 +1,5 @@
 module CronScripts
-  class UpdatePopularity < CronScripts::Base
+  class UpdateLocations < CronScripts::Base
 
     def initialize
     end
