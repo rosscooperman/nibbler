@@ -195,7 +195,7 @@
 	
 	-------------------------------------------------- */
 
-	.container { padding: 0 2 0px; }
+	.container { padding: 0 2 0px; position: relative; }
 	
 	.row { width: 100%; max-width: 980px; min-width: 727px; margin: 0 auto;  }
 	/* To fix the grid into a certain size, set max-width to width */
