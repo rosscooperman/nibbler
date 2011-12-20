@@ -7,6 +7,47 @@ class Map
       mapTypeId:   google.maps.MapTypeId.ROADMAP
       panControl:  true
       scrollwheel: false
+      styles:      [
+        {
+          featureType: "poi"
+          stylers: [
+            { visibility: "off" }
+          ]
+        },
+        {
+          featureType: "poi.park",
+          stylers: [
+            { visibility: "on" }
+          ]
+        },
+        {
+          featureType: "administrative",
+          stylers: [
+            { visibility: "off" }
+          ]
+        },
+        {
+          featureType: "transit.station.bus",
+          stylers: [
+            { visibility: "off" }
+          ]
+        },
+        {
+          featureType: "road.arterial",
+          stylers: [
+            { lightness: 63 },
+            { visibility: "on" }
+          ]
+        },
+        {
+          featureType: "transit.station.rail",
+          elementType: "labels",
+          stylers: [
+            { visibility: "on" },
+            { saturation: -24 }
+          ]
+        }
+      ]
     }
 
   addMarkers: =>
