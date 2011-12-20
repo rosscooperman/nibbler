@@ -30,7 +30,7 @@ Nibbler::Application.configure do
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
-  
+
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
@@ -39,6 +39,9 @@ Nibbler::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+
+  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  config.assets.precompile += %w{ active_admin.css active_admin.js }
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
