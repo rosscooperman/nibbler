@@ -6,4 +6,5 @@ require 'rake'
 
 Nibbler::Application.load_tasks
 
-Dir["#{Gem.searcher.find('annotate').full_gem_path}/**/tasks/**/*.rake"].each {|ext| load ext}
+annotate_gem = Gem.searcher.find('annotate')
+Dir["#{annotate_gem.full_gem_path}/**/tasks/**/*.rake"].each {|ext| load ext} unless annotate_gem.nil?
