@@ -5,7 +5,7 @@ gem 'rake',  '0.8.7'
 gem 'jquery-rails'
 gem 'sass-rails'
 
-gem 'mysql', '2.8.1'
+gem 'mysql2'
 gem 'delayed_job'
 gem 'RedCloth'
 gem 'oink'
