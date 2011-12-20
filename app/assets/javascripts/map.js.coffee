@@ -1,4 +1,33 @@
 class Map
+  mapStyles: ->
+    [
+      {
+        featureType: "poi"
+        stylers:     [ { visibility: "off" } ]
+      },
+      {
+        featureType: "poi.park"
+        stylers:     [ { visibility: "on" } ]
+      },
+      {
+        featureType: "administrative"
+        stylers:     [ { visibility: "off" } ]
+      },
+      {
+        featureType: "transit.station.bus"
+        stylers:     [ { visibility: "off" } ]
+      },
+      {
+        featureType: "road.arterial"
+        stylers:     [ { lightness: 63 }, { visibility: "on" } ]
+      },
+      {
+        featureType: "transit.station.rail"
+        elementType: "labels"
+        stylers:     [ { visibility: "on" }, { saturation: -24 } ]
+      }
+    ]
+
   constructor: ->
     latlng = new google.maps.LatLng(40.735812, -73.796539)
     @map = new google.maps.Map $('#fullMap').get(0), {
@@ -7,47 +36,7 @@ class Map
       mapTypeId:   google.maps.MapTypeId.ROADMAP
       panControl:  true
       scrollwheel: false
-      styles: [
-        {
-          featureType: "poi"
-          stylers: [
-            { visibility: "off" }
-          ]
-        },
-        {
-          featureType: "poi.park",
-          stylers: [
-            { visibility: "on" }
-          ]
-        },
-        {
-          featureType: "administrative",
-          stylers: [
-            { visibility: "off" }
-          ]
-        },
-        {
-          featureType: "transit.station.bus",
-          stylers: [
-            { visibility: "off" }
-          ]
-        },
-        {
-          featureType: "road.arterial",
-          stylers: [
-            { lightness: 63 },
-            { visibility: "on" }
-          ]
-        },
-        {
-          featureType: "transit.station.rail",
-          elementType: "labels",
-          stylers: [
-            { visibility: "on" },
-            { saturation: -24 }
-          ]
-        }
-      ]
+      styles:      this.mapStyles()
     }
 
   addMarkers: =>
