@@ -32,7 +32,7 @@ module CronScripts
     end
 
     def logger
-      @logger ||= OutputLogger.new File.join(RAILS_ROOT, "log", log_name)
+      @logger ||= OutputLogger.new Rails.root.join("log", log_name)
     end
 
     def track_times
