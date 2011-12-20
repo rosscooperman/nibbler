@@ -36,9 +36,9 @@ module Collector
             last        += time_info[:index]
 
             unless overlap((first..last), @matched_ranges)
-              # WE NEED TO FIND A WAY TO LOG THIS INFO
-              # puts "#{time_info[:index]} -- #{time_info[:start]} -- #{time_info[:finish]}"
-              # puts "#{address_for(pattern, $~, truck)} -- #{result.latitude},#{result.longitude}\n#{text}\n\n"
+              coordinates = "[#{result.latitude},#{result.longitude}]"
+              Rails.logger.info "Found a location in '#{text}'"
+              Rails.logger.info  "  #{coordinates} from #{time_info[:start]} to #{time_info[:finish]}"
 
               truck.locations.create(
                 lat:         result.latitude,
