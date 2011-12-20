@@ -7,7 +7,7 @@ class Map
       mapTypeId:   google.maps.MapTypeId.ROADMAP
       panControl:  true
       scrollwheel: false
-      styles:      [
+      styles: [
         {
           featureType: "poi"
           stylers: [
