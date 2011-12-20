@@ -144,7 +144,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (~> 0.14.6)
-    rake (0.9.2.2)
+    rake (0.8.7)
     rbx-require-relative (0.0.5)
     rdoc (3.11)
       json (~> 1.4)
@@ -228,7 +228,7 @@ DEPENDENCIES
   mysql (= 2.8.1)
   oink
   rails (= 3.1.1)
-  rake (= 0.9.2.2)
+  rake (= 0.8.7)
   rspec (>= 2.0.0)
   rspec-on-rails-matchers (>= 1.0.0)
   rspec-rails (>= 2.0.0)
