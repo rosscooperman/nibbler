@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111031120346) do
+ActiveRecord::Schema.define(:version => 20111213215408) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(:version => 20111031120346) do
     t.datetime "updated_at"
   end
 
+  create_table "data_points", :force => true do |t|
+    t.string   "collector"
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "truck_id"
+  end
+
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
     t.integer  "attempts",   :default => 0
@@ -51,6 +59,17 @@ ActiveRecord::Schema.define(:version => 20111031120346) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "locations", :force => true do |t|
+    t.integer  "truck_id"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "starting_at"
+    t.datetime "ending_at"
+    t.text     "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pages", :force => true do |t|
     t.string   "title"
@@ -69,6 +88,17 @@ ActiveRecord::Schema.define(:version => 20111031120346) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "trucks", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "city"
+    t.string   "state"
+    t.string   "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "source_data"
+  end
 
   create_table "user_view", :id => false, :force => true do |t|
     t.integer  "id",                                      :default => 0,                            :null => false

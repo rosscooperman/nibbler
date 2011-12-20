@@ -8,8 +8,12 @@ gem 'delayed_job'
 gem 'RedCloth'
 gem 'oink'
 gem 'simple_form'
-gem 'activeadmin'
+gem 'activeadmin',    '0.3.4'
 gem "meta_search",    '>= 1.1.0.pre'
+
+gem "geocoder"
+gem "chronic"
+gem "twitter"
 
 group :assets do
   gem 'sass-rails'

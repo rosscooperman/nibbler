@@ -1,7 +1,5 @@
 require 'support/spec_helpers'
 
-
-
 FactoryGirl.define do
 
   sequence :email do |n|
@@ -35,6 +33,22 @@ FactoryGirl.define do
     title { FactoryGirl.generate(:random_string) }
     slug  { FactoryGirl.generate(:random_string) }
     body  { FactoryGirl.generate(:random_string) }
+  end
+
+  factory :admin_user do
+  end
+
+  factory :truck do
+    sequence(:name) { |n| "Truck#{n}" }
+    description "Some truck"
+    city "New York"
+    state "NY"
+    source "Twitter"
+  end
+
+  factory :data_point do
+    collector "SomeCollector"
+    data "#{{ foo: 'bar' }.to_json}"
   end
 
 end
