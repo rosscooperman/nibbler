@@ -22,6 +22,15 @@ ActiveAdmin.register Truck do
       row :updated_at
       row :created_at
       row :source_data
+      row :locations do
+        div :class => 'map'
+      end
+    end
+
+    ul :class => 'coordinates', :style => 'display: none;' do
+      truck.locations.each do |location|
+        li "#{location.lat},#{location.lng}"
+      end
     end
   end
 

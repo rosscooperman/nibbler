@@ -1,4 +1,11 @@
-class Map
+$LAB.script('http://www.google.com/jsapi').wait ->
+  google.load("maps", "3", {
+    other_params: "sensor=false"
+    callback: ->
+      $(window).trigger('nibbler:maps:load')
+  })
+
+class window.Map
   mapStyles: ->
     [
       {
@@ -28,9 +35,10 @@ class Map
       }
     ]
 
-  constructor: ->
-    latlng = new google.maps.LatLng(40.735812, -73.796539)
-    @map = new google.maps.Map $('#fullMap').get(0), {
+  constructor:(selector, lat, lng) ->
+    latlng = new google.maps.LatLng(lat, lng)
+    @markers = []
+    @map = new google.maps.Map $(selector).get(0), {
       zoom:        10
       center:      latlng
       mapTypeId:   google.maps.MapTypeId.ROADMAP
@@ -39,22 +47,12 @@ class Map
       styles:      this.mapStyles()
     }
 
-  addMarkers: =>
-    markers    = $('.bar-list').data('markers')
-    markerSize = new google.maps.Size(20, 34)
-    map        = @map
+  addMarker:(lat, lng) =>
+    @markers.push(new google.maps.Marker({map: @map, position: new google.maps.LatLng(lat, lng)}))
 
-    $('.bar-list > li').each ->
-      offset = $(this).find('.map-index').html().charCodeAt(0) - 65
-      latlng = new google.maps.LatLng parseFloat($(this).data('lat')), parseFloat($(this).data('lng'))
-      origin = new google.maps.Point(0, offset * 34)
-      marker = new google.maps.MarkerImage(markers, markerSize, origin)
-      new google.maps.Marker {
-        map:      map
-        position: latlng
-        icon:     marker
-      }
+  resetBounds: =>
+    bounds = new google.maps.LatLngBounds
+    $.each @markers, ->
+      bounds.extend(this.getPosition())
+    @map.fitBounds(bounds)
 
-jQuery ->
-  map = new Map
-  # $('.bar-list').bind 'gi:loaded', -> map.addMarkers()
