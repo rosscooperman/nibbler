@@ -59,6 +59,7 @@
 
 #uncomment to include the Elasticsearch recipe
 #require_recipe "elasticsearch"
+require_recipe "elasticsearch::non_util"
 
 # To install specific plugins to Elasticsearch see below as an example
 #es_plugin "cloud-aws" do
@@ -87,17 +88,17 @@
   # postgresql9_lo "dbname"
   # postgresql9_ltree "dbname"
   # postgresql9_pg_stat_statements"postgres_test" - Not done
-  # postgresql9_pg_trgm "postgres_test"  
+  # postgresql9_pg_trgm "postgres_test"
   # postgresql9_pgcrypto "postgres_test"
   # postgresql9_pgrowlocks "dbname"
-  # postgresql9_postgis "dbname" 
+  # postgresql9_postgis "dbname"
   # postgresql9_seg "dbname"
   # postgresql9_tablefunc "dbname"
   # postgresql9_unaccent "dbname"
   # postgresql9_uuid_ossp "dbname"
-  
+
   #Admin-Level Contribs
   # postgresql9_pg_buffercache "postgres"
   # postgresql9_pg_freespacemap "postgres"
-  
+
 #end
