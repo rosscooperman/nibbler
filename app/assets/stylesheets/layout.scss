@@ -83,11 +83,15 @@ h1[rel='header'] {
 
 .topConatiner input[rel="search"] {
   opacity: 0.8;
+  filter: alpha(opacity=80);
+  -webkit-transition: opacity 1s linear;
 }
 
 .topConatiner input[rel="search"]:hover,
 .topConatiner input[rel="search"]:focus {
   opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transition: opacity 0.5s linear;
 }
 
 .noobSearch {
@@ -117,7 +121,7 @@ input[rel="search"] {
   top: 200px;
   right: 0;
   background: rgba(0,0,0, 0.5);
-  width: 300px;
+  width: 200px;
   z-index: 4;
 }
 
