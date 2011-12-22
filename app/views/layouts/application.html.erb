@@ -26,63 +26,53 @@
 
 <div id="fullMap"></div>
 
-<header id="main" class="clearfix">
-		<section>
-			<h1 rel="header">
-				<%= link_to "Nibbler.me", root_path, :rel => "#{company_name} Home Page" %>
-      	<%#= render :partial => "layouts/nav" %>
-    	</h1>
-		</section>
-		<section class="headerSearch">
-			<input type="text" name="some_name" value="" placeholder="Start Searching" class="nice oversize input-text">
-				<a href="#" class="nice medium radius blue button searchButton">Search</a>
-		</section>
-</header>
 
 
-<section class="noobSearch">
-		<h2>Search for your favorite food&nbsp;truck or enter location.</h2>
-		<section class="clearfix">
-			<input type="text" name="some_name" value="" placeholder="Start Searching" class="nice oversize input-text">
-				<a href="#" class="nice medium radius blue button searchButton">Search</a>
-		</section>
-</section>
+  <section class="topConatiner">
+    <div class="topWrapper clearfix">
+      <header>
+        <h1 rel="header"><%= link_to "Nibbler.me", root_path, :rel => "#{company_name} Home Page" %></h1>
+        </header>
+      <section class="clearfix">
+        <input type="text" rel="search" name="some_name" value="" placeholder="You could try somthing else too" class="nice oversize input-text" />
+  	  	<a href="#" class="nice medium radius blue button searchButton">Search</a>
+      </section>
+      </div>
+  </section>    
 
-<!--
-<section class="container searchResults">
-	<div class="row">
-		<div class="ten columns centered">
-			<h2>search results:</h2>
-			<ul>
-				<li>search result o1</li>
-				<li>search result o2</li>
-				<li>search result o3</li>
-				<li>search result o4</li>
-			</ul>
-		</div>
-	</div>
-</section>
+  <section class="logoMarker">
+    Nibbler
+  </section>
 
- <footer class="container">
-  <div class="row noBackground">
-		<div class="twelve columns">
-   		<%= render :partial => "layouts/footer" %>
-		</div>
-  </div>
-</footer>
+  <section class="noobSearch">
+  		<h2>Search for your favorite food&nbsp;truck or enter location.</h2>
+  		<section class="clearfix">
+  			<input type="text" rel="search" name="some_name" value="" placeholder="Start Searching" class="nice oversize input-text">
+  			<a href="#" class="nice medium radius blue button searchButton">Search</a>
+  		</section>
+  </section>
 
-<div class="conatiner">
-	<div class="row noBackground">
-		<div class="four columns centered" style="text-align: center;">
-			<p class="copyright">&copy;
-			  <%= Time.now.year %> <%= link_to company_name, root_path, :title => "Return to the #{company_name} Home Page", :rel => "#{company_name} Home Page" %>
-			   | All Rights Reserved.
-			</p>
-		</div>
-	</div>
-</div> -->
-
-</div>
+  <section class="results">
+    <h3>Results</h3>
+    <ul>
+      <li>
+        <h4>truck name</h4>
+        <div><p>Artesian Ice Cream & Coffee</p></div>
+      </li>
+      <li>
+        <h4>truck name</h4>
+        <div><p>Artesian Ice Cream & Coffee</p></div>
+      </li>
+      <li>
+        <h4>truck name</h4>
+        <div><p>Artesian Ice Cream & Coffee</p></div>
+      </li>
+      <li>
+        <h4>truck name</h4>
+        <div><p>Artesian Ice Cream & Coffee</p></div>
+      </li>
+    </ul>
+  </section>
 
 
 <%= yield :bottom %>

@@ -8,8 +8,10 @@
 $(document).ready(function(){
 	
 	$('.searchButton').click(function(){
-		$('.noobSearch').fadeOut('slow');
-		$('.headerSearch').fadeIn('slow');
+		$('.noobSearch').fadeOut(300);
+		$('.logoMarker').fadeOut(900);
+		$('.topWrapper').slideDown('slow');
 	});
 
 });
+

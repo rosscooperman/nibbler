@@ -1,98 +1,103 @@
-body, html {
-  height: 100%;
-}
 
-.inner {
-  width: 80%;
-  max-width: 1024px;
-  padding: 1% 2%;
-  margin: 0 auto;
-}
-img,
-embed,
-object,
-video {
-  max-width: 100%;
-  margin-bottom: 1.5em;
-}
-nav li {
-  display: inline;
-}
-nav li a {
-  display: inline-block;
-}
 
-/**********
-begin styles
-*****/
+@import "css3-mixins";
 
-$blue: #3bbfce;
+$blue: #057bcd;
 @mixin font {
 		font-family: Raleway, cursive;
 		font-weight: 100;
 }
 
 
+
 body {
 	background: $blue url(/assets/whitediamond.png) 0 0 repeat;
+	color: #FFF;
+	@include font;
 }
 
-#fullMap {
+h1, h2 {
+	@include font;
+	text-align: center;
+	margin: 0;
+}
+
+header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+header a:hover {
+  color: orange;
+}
+
+#fullMap { //positions background map
   position: absolute;
   left: 0;
   right: 0;
   height: 100%;
   width: 100%;
-
-//        /* Set rules to fill background */
-//        min-height: 100%;
-//        min-width: 1024px;
-//
-//        /* Set up proportionate scaling */
-//        width: 100%;
-//        height: auto;
-//
-//        /* Set up positioning */
-//        position: fixed;
-//        top: 0;
-//        left: 0;
 }
 
-header#main,
-.noobSearch {
-	position: relative;
-	background: $blue;
-	width: 960px;
-	margin: 0 auto;
+.logoMarker {
+  position: relative;
+  margin: 50px auto 0 auto;
+  width: 182px;
+  height: 246px;
+  background: url(/assets/nibbler-logo.png) 0 0 no-repeat;
+  text-indent: -9999px;
+  }
+
+.topConatiner,
+.noobSearch,
+.results {
+  position: relative;
+  margin: 0 auto;
 	padding: 20px;
-}
-h1 a {
-	color: #FFF;
-	@include font;
-}
-
-header#main section {
-	width: 400px;
-	float: left;
+	width: 960px;
+	background: $blue;
+	@include border-radius($radius: 3px);
 }
 
-.headerSearch {
-	margin-top: 15px;
-	display: none;
-}
-.headerSearch input,
-.searchButton,
-.noobSearch input {
-	float: left;
+.topConatiner {
+  width: 100%;
+  padding: 5px 0;
+  @include border-radius-separate($topLeftRadius: 0px, $topRightRadius: 0px, $bottomLeftRadius: 3px, $bottomRightRadius: 3px)
 }
 
-.searchButton {
-	margin-left: 20px;
+.topWrapper {
+  width: 960px;
+  margin: 8px auto 0 auto;
+  display: none;
+}
+
+.topConatiner header {
+  width: 400px;
+  float: left;
+}
+
+h1[rel='header'] {
+  text-align: left;
+  line-height: 1em;
+}
+
+.topConatiner input[rel="search"] {
+  opacity: 0.8;
+}
+
+.topConatiner input[rel="search"]:hover,
+.topConatiner input[rel="search"]:focus {
+  opacity: 1;
 }
 
 .noobSearch {
-	margin-top: 200px;
+	margin-top: 50px;
+	padding: 40px 0;
 	text-align: center;
+}
+
+.noobSearch h2 {
+  margin-bottom: 30px;
 }
 
 .noobSearch section {
@@ -100,35 +105,35 @@ header#main section {
 	margin: 0 auto;
 }
 
-
-
-/******** this stuff brett is going to take out  ********/
-h2{
-	@include font;
-	font-weight: bold;
+input[rel="search"] {
+  padding: 10px;
+  width: 300px;
+  @include border-radius($radius: 3px);
+  border: 0px solid #fff;
 }
 
-section.container {
-	margin-top: 100px;
+.results {
+  position: fixed;
+  top: 200px;
+  right: 0;
+  background: rgba(0,0,0, 0.5);
+  width: 300px;
+  z-index: 4;
 }
 
-.searcherMain {
-	padding: 30px 0;
+.searchButton {
+	margin-left: 20px;
 }
 
-.row { background: #EFEFEF;}
 
-.noBackground {
-	background-color: transparent;
-}
 
-.searchResults {
-	position: relative;
-	bottom: 0;
-}
 
-.searchResults li {
-	display: inline-block;
-}
+
+
+
+
+
+
+
 
 
