@@ -8,6 +8,7 @@
   <meta name="keywords" content="<%= company_name %>" />
   <meta name="author" content="<%= company_name %> www.<%= company_name %>.me" />
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link href='http://fonts.googleapis.com/css?family=Raleway:100' rel='stylesheet' type='text/css'>
 
   <%= stylesheet_link_tag    "application" %>
 
@@ -25,35 +26,44 @@
 
 <div id="fullMap"></div>
 
-<div class="container wrapper">
-<header class="container">
-	<section class="row">
-		<div class="five columns">
-			<h2>
-				<%= link_to "Nibble.me", root_path, :rel => "#{company_name} Home Page" %>
-        <%#= render :partial => "layouts/nav" %>
-      </h2>
-		</div>
-	</section>
+<header id="main" class="clearfix">
+		<section>
+			<h1 rel="header">
+				<%= link_to "Nibbler.me", root_path, :rel => "#{company_name} Home Page" %>
+      	<%#= render :partial => "layouts/nav" %>
+    	</h1>
+		</section>
+		<section class="headerSearch">
+			<input type="text" name="some_name" value="" placeholder="Start Searching" class="nice oversize input-text">
+				<a href="#" class="nice medium radius blue button searchButton">Search</a>
+		</section>
 </header>
 
-<section class="container">
+
+<section class="noobSearch">
+		<h2>Search for your favorite food&nbsp;truck or enter location.</h2>
+		<section class="clearfix">
+			<input type="text" name="some_name" value="" placeholder="Start Searching" class="nice oversize input-text">
+				<a href="#" class="nice medium radius blue button searchButton">Search</a>
+		</section>
+</section>
+
+<!--
+<section class="container searchResults">
 	<div class="row">
-		<div class="seven columns centered searcherMain">
-			<h2>Search for your favorite food&nbsp;truck, cuisine, or location.</h2>
-			<ul class="block-grid two-up">
-				<li>
-					<input type="text" name="some_name" value="" placeholder="Start Searching" class="nice oversize input-text">
-				</li>
-				<li>
-					<a href="#" class="nice medium radius blue button">Search</a>
-				</li>
+		<div class="ten columns centered">
+			<h2>search results:</h2>
+			<ul>
+				<li>search result o1</li>
+				<li>search result o2</li>
+				<li>search result o3</li>
+				<li>search result o4</li>
 			</ul>
 		</div>
 	</div>
 </section>
 
-<footer class="container">
+ <footer class="container">
   <div class="row noBackground">
 		<div class="twelve columns">
    		<%= render :partial => "layouts/footer" %>
@@ -70,9 +80,10 @@
 			</p>
 		</div>
 	</div>
-</div>
+</div> -->
 
 </div>
+
 
 <%= yield :bottom %>
 <%= git_version_html %>

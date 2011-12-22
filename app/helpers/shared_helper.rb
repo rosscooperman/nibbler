@@ -48,7 +48,7 @@ module SharedHelper
   end
 
   def company_name
-    "Nibble"
+    "Nibbler"
   end
 
 end

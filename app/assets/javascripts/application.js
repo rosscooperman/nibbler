@@ -5,3 +5,11 @@
 //= require app
 //= require map
 
+$(document).ready(function(){
+	
+	$('.searchButton').click(function(){
+		$('.noobSearch').fadeOut('slow');
+		$('.headerSearch').fadeIn('slow');
+	});
+
+});

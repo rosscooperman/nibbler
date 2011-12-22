@@ -26,9 +26,11 @@ nav li a {
 begin styles
 *****/
 
-@import url(http://fonts.googleapis.com/css?family=Snippet);
-
 $blue: #3bbfce;
+@mixin font {
+		font-family: Raleway, cursive;
+		font-weight: 100;
+}
 
 
 body {
@@ -56,9 +58,54 @@ body {
 //        left: 0;
 }
 
-h2 a {
-	font-family: 'Snippet', sans-serif;
-	font-weight: 400;
+header#main,
+.noobSearch {
+	position: relative;
+	background: $blue;
+	width: 960px;
+	margin: 0 auto;
+	padding: 20px;
+}
+h1 a {
+	color: #FFF;
+	@include font;
+}
+
+header#main section {
+	width: 400px;
+	float: left;
+}
+
+.headerSearch {
+	margin-top: 15px;
+	display: none;
+}
+.headerSearch input,
+.searchButton,
+.noobSearch input {
+	float: left;
+}
+
+.searchButton {
+	margin-left: 20px;
+}
+
+.noobSearch {
+	margin-top: 200px;
+	text-align: center;
+}
+
+.noobSearch section {
+	width: 500px;
+	margin: 0 auto;
+}
+
+
+
+/******** this stuff brett is going to take out  ********/
+h2{
+	@include font;
+	font-weight: bold;
 }
 
 section.container {
@@ -73,6 +120,15 @@ section.container {
 
 .noBackground {
 	background-color: transparent;
+}
+
+.searchResults {
+	position: relative;
+	bottom: 0;
+}
+
+.searchResults li {
+	display: inline-block;
 }
 
 
