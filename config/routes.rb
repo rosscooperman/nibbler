@@ -7,7 +7,6 @@ Nibbler::Application.routes.draw do
   # devise_for :admin_users, ActiveAdmin::Devise.config
 
   resources :users
-  resources :pages
   resources :contact_submissions
   resource  :session, :controller => "session" # Rails expects "sessions"
 
