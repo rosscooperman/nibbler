@@ -181,6 +181,52 @@ button.showResults {
 }
 
 
+// Growl Styles
+
+.growlWrapper {
+	position: fixed;
+	width: 280px;
+	top: 60px;
+	right: 0;
+}
+
+.growlNotify {
+	padding: 15px 25px;
+	width: 230px;
+	background: rgba(0,0,0,1);
+	border: 1px solid rgba(0,0,0,0.9);
+	text-shadow: 0 1px 2px rgba(0,0,0,.5);
+	-webkit-box-shadow: 0 2px 5px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1), inset 0 0 0 1px rgba(255,255,255,.1);
+	-webkit-border-radius: 3px;
+	-webkit-font-smoothing: antialiased;
+	-webkit-animation: notification .75s linear;
+	-webkit-transform: rotateY(-0deg);
+	z-index: 2;
+}
+
+.gloss {
+	position: absolute;
+	height: 50px;
+	margin: 0;
+	right: 0;
+	left: 0;
+	top: 0;
+	border-top-right-radius: 3px;
+	overflow: hidden;
+	background-position: 10px;
+	pointer-events: none;
+	background: -webkit-gradient(linear, 0% -16.5%, 16.5% -100%, from(rgba(255,255,255,.0)), to(rgba(255,255,255,.6)), color-stop(.99,rgba(255,255,255,.2)),color-stop(.5,rgba(255,255,255,.0))) no-repeat;
+	-webkit-mask-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,.5)), color-stop(.8,rgba(255,255,255,.0)));
+//	-webkit-animation: gloss .6s linear;
+}
+
+.growlNotify p {
+	color: #FFF;
+	font-family: Verdana;
+	font-weight: bold;
+}
+
+
 
 
 
