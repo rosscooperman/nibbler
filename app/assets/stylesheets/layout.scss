@@ -129,10 +129,24 @@ input[rel="search"] {
   border: 0px solid #fff;
 }
 
+.resultsWrap { 
+	background: red;
+	}
+	
 button.showResults {
 	position: fixed;
-	top: 90px;
+	padding: 10px;
+	top: 77px;
 	right: 0;
+	background: rgba(0,0,0, 0.8);
+	color: #fff;
+	border: none;
+	@include border-radius-separate (
+		$topLeftRadius: 8px, 
+		$topRightRadius: 0px, 
+		$bottomLeftRadius: 0px, 
+		$bottomRightRadius: 0px
+		);
 }
 
 .results {

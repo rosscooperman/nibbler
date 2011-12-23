@@ -33,6 +33,9 @@ $(document).ready(function(){
 	    },
 	    error:    function(xhr, status, error) {
 	      console.log(error);
+				$('.noobSearch').fadeOut(300);
+        $('.logoMarker').fadeOut(900);
+        $('.topWrapper').slideDown('slow');
 	    }
 	  });
   }
@@ -47,7 +50,7 @@ $(document).ready(function(){
 
 	// slide the results in from the right
 	$('button.showResults').click(function() {
-	    var $righty = $('.results');
+	    var $righty = $(this).next();
 		    $righty.animate({
 		      right: parseInt($righty.css('right'),10) == 0 ? -$righty.outerWidth() : 0 });
 	  });
