@@ -21,42 +21,14 @@
 </section>
 
 <section class="resultsWrap">
-  <button class="showResults">GIVE ME RESULTS!</button>
-  <ul class="results">
+  <button class="showResults" style="display: none;">SHOW/HIDE RESULTS</button>
+  <ul class="results"></ul>
+  <script id="result-template" type="text/x-handlebars-template">
     <li>
-      <h4>truck name</h4>
+      <h4>{{mapIndex}}. {{truck.name}}</h4>
       <div>
-				<p>Artesian Ice Cream & Coffee</p>
-				<a href="#" class="small radius white button">Details</a>
+				<p>{{truck.description}}</p>
 			</div>
     </li>
-    <li>
-      <h4>truck name</h4>
-      <div>
-				<p>Artesian Ice Cream & Coffee</p>
-				<a href="#" class="small radius white button">Details</a>
-			</div>
-    </li>
-    <li>
-      <h4>truck name</h4>
-      <div>
-				<p>Artesian Ice Cream & Coffee</p>
-				<a href="#" class="small radius white button">Details</a>
-			</div>
-    </li>
-		<li>
-      <h4>truck name</h4>
-      <div>
-				<p>Artesian Ice Cream & Coffee</p>
-				<a href="#" class="small radius white button">Details</a>
-			</div>
-    </li>
-		<li>
-      <h4>truck name</h4>
-      <div>
-				<p>Artesian Ice Cream & Coffee</p>
-				<a href="#" class="small radius white button">Details</a>
-			</div>
-    </li>
-  </ul>
+  </script>
 </section>

@@ -129,22 +129,22 @@ input[rel="search"] {
   border: 0px solid #fff;
 }
 
-.resultsWrap { 
+.resultsWrap {
 	background: red;
 	}
-	
+
 button.showResults {
 	position: fixed;
 	padding: 10px;
-	top: 77px;
+	top: 74px;
 	right: 0;
 	background: rgba(0,0,0, 0.8);
 	color: #fff;
 	border: none;
 	@include border-radius-separate (
-		$topLeftRadius: 8px, 
-		$topRightRadius: 0px, 
-		$bottomLeftRadius: 0px, 
+		$topLeftRadius: 8px,
+		$topRightRadius: 0px,
+		$bottomLeftRadius: 0px,
 		$bottomRightRadius: 0px
 		);
 }
