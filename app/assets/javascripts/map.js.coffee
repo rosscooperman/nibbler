@@ -50,6 +50,10 @@ class window.Map
   addMarker:(lat, lng) =>
     @markers.push(new google.maps.Marker({map: @map, position: new google.maps.LatLng(lat, lng)}))
 
+  zoomToPoint:(lat, lng) =>
+    @map.setCenter(new google.maps.LatLng(lat, lng))
+    @map.setZoom(16)
+
   resetBounds: =>
     bounds = new google.maps.LatLngBounds
     $.each @markers, ->

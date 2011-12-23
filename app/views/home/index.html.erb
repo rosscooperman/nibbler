@@ -1,25 +1,60 @@
-<% @page_title = "This sets the browser window page title" %>
+<% @page_title = "Home" %>
 
-<h1>This is an H1</h1>
-<p>Nunc tristique ultrices sollicitudin. Cras sodales consectetur ligula nec tempor. Suspendisse potenti. Nunc posuere auctor est, ut lobortis orci consequat a. Sed ante nulla, sollicitudin sed dictum eu, rhoncus in ipsum. Curabitur interdum tristique turpis, vel vulputate risus rutrum at. In interdum ultrices quam ac facilisis.</p>
-
-<h2>This is an H2</h2>
-<p>Curabitur dolor odio, tempor vitae semper et, tempor non purus. Vivamus ornare, augue in auctor pulvinar, dui elit elementum purus, eu elementum lectus metus ut augue. Nam quis sem ut risus malesuada fringilla. Integer mi quam, tincidunt vel semper ut, luctus at magna. Maecenas turpis odio, varius id elementum vitae, adipiscing in justo. Morbi ac orci augue. <a href="#">Nam posuere scelerisque</a> diam non interdum. Mauris ut tortor nec augue laoreet luctus nec non nunc. Fusce vestibulum mauris sit amet turpis fringilla blandit. In sit amet justo quis neque malesuada sodales. Suspendisse potenti. Aliquam dictum tincidunt mollis. Etiam ultrices egestas tellus. Sed dapibus venenatis metus, sed volutpat ante lacinia ut. Sed eget ante id eros elementum porta.</p>
-
-<h3>This is an H3</h3>
-<p>Sed porta varius elementum. Nam nec nisl velit. Proin lectus diam, ullamcorper eu ullamcorper sed, rutrum in dolor. Duis sit amet erat mattis urna bibendum rhoncus. Nam laoreet convallis sapien, vitae fringilla velit tristique eu. Nulla lorem metus, congue in ullamcorper sed, dictum nec sapien. Duis a leo orci, vel pretium risus. Pellentesque vel mi urna, vitae venenatis nisl. Aenean non ultricies nisl. Suspendisse commodo dolor sed dolor pretium eget dapibus diam commodo.</p>
-
-<h4>This is an H4</h4>
-<h5>This is an H5</h5>
-<h6>This is an H6</h6>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nunc dui, tempor eget cursus in, dictum ut augue. Nam a varius turpis. Pellentesque habitant morbi tristique senectus et <a href="#">netus et malesuada fames</a> ac turpis egestas. Nam eu nisi at turpis vulputate blandit. Donec est purus, iaculis non euismod euismod, ullamcorper eget metus. Fusce nulla purus, cursus non hendrerit ut, lacinia vitae ante. Aenean tempus dictum mi, fermentum lobortis tellus posuere sed. Fusce id tempus erat. Suspendisse potenti. Aliquam in ante sem. Phasellus massa turpis, porta vel ultrices vitae, pulvinar ut lectus. Vivamus orci augue, sagittis id imperdiet ut, euismod eu velit. Phasellus a nisl velit, eu pellentesque ipsum. Aliquam fermentum neque ut orci vehicula at sodales nisi ullamcorper. Proin luctus eleifend odio, sit amet varius orci gravida eu.</p>
-
-<%= image_tag("bamboo.jpg") %>
-
-<p>Curabitur pulvinar sagittis sagittis. Morbi ullamcorper aliquet pretium. Suspendisse vel ligula augue, nec blandit est. Cras ut tortor nisl. Vivamus lobortis nisl eget quam pulvinar molestie. Ut nec nunc eu diam sodales varius. Praesent nec risus lacus. Praesent massa felis, vehicula eu lacinia in, mattis sed velit.</p>
+<div id="fullMap"></div>
 
 
-<% content_for :aside do  %>
-  <p>This is an aside.</p>
-<% end %>
+
+  <section class="topConatiner">
+    <div class="topWrapper clearfix">
+      <header>
+        <h1 rel="header"><%= link_to "Nibbler.me", root_path, :rel => "#{company_name} Home Page" %></h1>
+        </header>
+      <section class="clearfix">
+        <input type="text" rel="search" name="some_name" value="" placeholder="You could try somthing else too" class="nice oversize input-text" />
+  	  	<a href="#" class="nice medium radius blue button searchButton">Search</a>
+      </section>
+      </div>
+  </section>
+
+	<button class="showResults">GIVE ME RESULTS!</button>
+
+  <section class="logoMarker">
+    Nibbler
+  </section>
+
+  <section class="noobSearch">
+		<h2>Search for your favorite food&nbsp;truck or enter location.</h2>
+		<%= form_tag trucks_path(:json), :method => :get do %>
+      <p>
+        <%= text_field_tag :q, params[:q], :class => "nice oversize input-text", :rel => "search", :placeholder => "Start Searching" %>
+  			<a href="#" class="nice medium radius blue button searchButton">Search</a>
+      </p>
+    <% end %>
+  </section>
+
+  <section class="results">
+    <h3>RESULTS</h3>
+    <ul>
+      <li>
+        <h4>truck name</h4>
+        <div>
+					<p>Artesian Ice Cream & Coffee</p>
+					<a href="#" class="small radius black button">Details</a>
+				</div>
+      </li>
+      <li>
+        <h4>truck name</h4>
+        <div>
+					<p>Artesian Ice Cream & Coffee</p>
+					<a href="#" class="small radius black button">Details</a>
+				</div>
+      </li>
+      <li>
+        <h4>truck name</h4>
+        <div>
+					<p>Artesian Ice Cream & Coffee</p>
+					<a href="#" class="small radius black button">Details</a>
+				</div>
+      </li>
+    </ul>
+  </section>

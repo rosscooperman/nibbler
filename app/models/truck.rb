@@ -14,10 +14,19 @@
 #
 
 class Truck < ActiveRecord::Base
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   has_many :data_points
   has_many :locations
 
   def update_data_points
     source.constantize.update(self)
+  end
+
+  def self.tire_search(params)
+    tire.search(load: true) do
+      query { string params[:q], default_operator: "AND" } if params[:q].present?
+    end
   end
 end

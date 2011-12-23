@@ -8,6 +8,7 @@ Nibbler::Application.routes.draw do
 
   resources :users
   resources :contact_submissions
+  resources :trucks
   resource  :session, :controller => "session" # Rails expects "sessions"
 
   root :to => "home#index"
