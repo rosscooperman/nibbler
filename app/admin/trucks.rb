@@ -23,7 +23,7 @@ ActiveAdmin.register Truck do
       row :created_at
       row :source_data
       row :locations do
-        div :class => 'map', :"data-markers" => image_path('markers.png')
+        div :id => 'theMap'
       end
     end
 

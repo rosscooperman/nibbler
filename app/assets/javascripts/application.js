@@ -45,6 +45,7 @@ $(function() {
 	    method:   'GET',
 	    dataType: 'json',
 	    success:  function(data, status, xhr) {
+	      window.theMap.clearMarkers();
 	      $.each(data, function() {
   	      window.theMap.addMarker(this.location.lat, this.location.lng);
   	      //window.theMap.zoomToPoint(this.location.lat, this.location.lng);

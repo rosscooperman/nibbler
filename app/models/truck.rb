@@ -20,6 +20,13 @@ class Truck < ActiveRecord::Base
   has_many :data_points
   has_many :locations
 
+  tire do
+    mapping do
+      indexes :name,        type: 'string', analyzer: 'snowball', boost: 100
+      indexes :description, type: 'string', analyzer: 'snowball', boost: 20
+    end
+  end
+
   def update_data_points
     source.constantize.update(self)
   end

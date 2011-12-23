@@ -1,3 +1,5 @@
+# a little bit of code to load up the Google Maps API and fire a jQuery event when
+# it has loaded successfully (so other code can start using the below map class)
 $LAB.script('http://www.google.com/jsapi').wait ->
   google.load("maps", "3", {
     other_params: "sensor=false"
@@ -6,6 +8,15 @@ $LAB.script('http://www.google.com/jsapi').wait ->
   })
 
 class window.Map
+  constructor:(selector, lat, lng) ->
+    @markers = []
+    @center  = new google.maps.LatLng(lat, lng)
+    @map     = new google.maps.Map $(selector).get(0), this.mapOptions()
+
+    @markerImage = $(selector).data('markers')
+    @markerSize  = new google.maps.Size(27, 36)
+
+
   mapStyles: ->
     [
       {
@@ -35,6 +46,7 @@ class window.Map
       }
     ]
 
+
   mapOptions:(center) ->
     {
       zoom:           10
@@ -52,35 +64,33 @@ class window.Map
       }
     }
 
-  constructor:(selector, lat, lng) ->
-    @markers = []
-    @center  = new google.maps.LatLng(lat, lng)
-    @map     = new google.maps.Map $(selector).get(0), this.mapOptions()
-
-    @markerImage = $(selector).data('markers')
-    @markerSize  = new google.maps.Size(27, 36)
 
   clearMarkers: =>
     $.each @markers, ->
       this.setMap(null)
+    @markers = []
+
 
   addMarker:(lat, lng) =>
-    origin = new google.maps.Point(0, @markers.length * 100)
-    image  = new google.maps.MarkerImage(@markerImage, @markerSize, origin)
-    marker = new google.maps.Marker({
+    options = {
       map:      @map
       position: new google.maps.LatLng(lat, lng)
-      icon:     image
-    })
+    }
+    options.icon = new google.maps.MarkerImage(@markerImage, @markerSize) if @markerImage
+
+    marker = new google.maps.Marker(options)
     @markers.push(marker)
 
-  zoomToPoint:(lat, lng) =>
-    @map.setCenter(new google.maps.LatLng(lat, lng))
+
+  zoomToPoint:(ll_or_lat, lng) =>
+    ll = if lng then new google.maps.LatLng(ll_or_lat, lng) else ll_or_lat
+    @map.setCenter(ll)
     @map.setZoom(16)
+
 
   resetBounds: =>
     if @markers.length == 1
-      this.zoomToPoint(@markers[0].getPosition().lat(), @markers[0].getPosition().lng())
+      this.zoomToPoint(@markers[0].getPosition())
     else
       bounds = new google.maps.LatLngBounds
       $.each @markers, ->
