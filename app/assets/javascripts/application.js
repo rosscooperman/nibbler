@@ -9,8 +9,13 @@
 
 $(document).ready(function(){
 
-	$('.searchButton').click(function() {
-	  var form = $('.noobSearch form');
+  function handleSearch(event) {
+	  event.preventDefault();
+    window.theMap.clearMarkers();
+
+	  var form = $(this);
+	  var query = form.find('input[name=q]').val();
+
 	  $.ajax({
 	    url:      form.attr('action'),
 	    data:     form.serialize(),
@@ -21,6 +26,7 @@ $(document).ready(function(){
   	      window.theMap.addMarker(this.location.lat, this.location.lng);
   	      window.theMap.zoomToPoint(this.location.lat, this.location.lng);
 	      });
+	      $('input[name=q]').val(query);
         $('.noobSearch').fadeOut(300);
         $('.logoMarker').fadeOut(900);
         $('.topWrapper').slideDown('slow');
@@ -29,7 +35,15 @@ $(document).ready(function(){
 	      console.log(error);
 	    }
 	  });
-	});
+  }
+
+  function handleClick(event) {
+    event.preventDefault();
+    $(this).closest('form').submit();
+  }
+
+	$('.searchButton').click(handleClick);
+	$('.noobSearch form, .topContainer form').submit(handleSearch);
 
 	// slide the results in from the right
 	$('button.showResults').click(function() {

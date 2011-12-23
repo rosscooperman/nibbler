@@ -1,19 +1,20 @@
 <% @page_title = "Home" %>
 
 <div id="fullMap"></div>
-
-
-
-  <section class="topConatiner">
+  <section class="topContainer">
     <div class="topWrapper clearfix">
       <header>
         <h1 rel="header"><%= link_to "Nibbler.me", root_path, :rel => "#{company_name} Home Page" %></h1>
-        </header>
+      </header>
       <section class="clearfix">
-        <input type="text" rel="search" name="some_name" value="" placeholder="You could try somthing else too" class="nice oversize input-text" />
-  	  	<a href="#" class="nice medium radius blue button searchButton">Search</a>
+        <%= form_tag trucks_path(:json), :method => :get do %>
+          <%= text_field_tag :q, params[:q], :class => "nice oversize input-text", :rel => "search", :placeholder => "Start Searching" %>
+    			<a href="#" class="nice medium radius blue button searchButton">Search</a>
+        <% end %>
+        <!-- <input type="text" rel="search" name="some_name" value="" placeholder="You could try somthing else too" class="nice oversize input-text" />
+        <a href="#" class="nice medium radius blue button searchButton">Search</a> -->
       </section>
-      </div>
+    </div>
   </section>
 
 	<button class="showResults">GIVE ME RESULTS!</button>

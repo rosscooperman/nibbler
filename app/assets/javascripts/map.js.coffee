@@ -47,6 +47,10 @@ class window.Map
       styles:      this.mapStyles()
     }
 
+  clearMarkers: =>
+    $.each @markers, ->
+      this.setMap(null)
+
   addMarker:(lat, lng) =>
     @markers.push(new google.maps.Marker({map: @map, position: new google.maps.LatLng(lat, lng)}))
 

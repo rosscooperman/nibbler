@@ -28,7 +28,7 @@ h1[rel='header'] {
 }
 
 h2 {
-	
+
 }
 
 header a {
@@ -57,7 +57,7 @@ header a:hover {
   text-indent: -9999px;
   }
 
-.topConatiner,
+.topContainer,
 .noobSearch,
 .results {
   position: relative;
@@ -68,7 +68,7 @@ header a:hover {
 	@include border-radius($radius: 3px);
 }
 
-.topConatiner {
+.topContainer {
   width: 100%;
   padding: 5px 0;
   @include border-radius-separate($topLeftRadius: 0px, $topRightRadius: 0px, $bottomLeftRadius: 3px, $bottomRightRadius: 3px);
@@ -80,9 +80,14 @@ header a:hover {
   display: none;
 }
 
-.topConatiner header {
+.topContainer header {
   width: 400px;
   float: left;
+}
+
+h1[rel='header'] {
+  text-align: left;
+  line-height: 1em;
 }
 
 .topConatiner input[rel="search"] {
@@ -91,8 +96,8 @@ header a:hover {
   -webkit-transition: opacity 1s linear;
 }
 
-.topConatiner input[rel="search"]:hover,
-.topConatiner input[rel="search"]:focus {
+.topContainer input[rel="search"]:hover,
+.topContainer input[rel="search"]:focus {
   opacity: 1;
   filter: alpha(opacity=100);
   -webkit-transition: opacity 0.5s linear;
@@ -138,9 +143,9 @@ button.showResults {
   width: 250px;
   z-index: 4;
 @include border-radius-separate (
-	$topLeftRadius: 8px, 
-	$topRightRadius: 0px, 
-	$bottomLeftRadius: 0px, 
+	$topLeftRadius: 8px,
+	$topRightRadius: 0px,
+	$bottomLeftRadius: 0px,
 	$bottomRightRadius: 8px
 	);
 	text-transform: uppercase;
@@ -151,7 +156,7 @@ button.showResults {
 	border-bottom: 1px solid #666;
 }
 
-.results li:nth-last-child(1){ 
+.results li:nth-last-child(1){
 	border-bottom: 0px;
 	padding: 0;
 }
