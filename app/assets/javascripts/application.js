@@ -83,12 +83,14 @@ $(function() {
 	
 	// on hover show growlNotify
 	$('.growlclk').hover(function(){
-		$('.growlNotify').animate({
-		    opacity: "toggle",
+		$('.growlNotify')
+			.stop(true, true)
+			.animate({
+		   	opacity: "toggle",
 		    top: '-=50',
-		  }, 1000);	
+		  }, 400);	
 	}, function(){
-		$('.growlNotify').animate({
+		$('.growlNotify').stop(true, true).animate({
 		    opacity: 'toggle',
 		    top: '+=100',
 		  }, 1000, 	function(){
