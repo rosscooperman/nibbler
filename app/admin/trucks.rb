@@ -21,7 +21,9 @@ ActiveAdmin.register Truck do
       row('Source') { truck.source.gsub(/^Collector::/, '') }
       row :updated_at
       row :created_at
-      row :source_data
+      row :source_data do
+        pre truck.source_data
+      end
       row :locations do
         div :id => 'theMap'
       end
@@ -40,8 +42,11 @@ ActiveAdmin.register Truck do
       f.input :description
       f.input :city
       f.input :state, :as => :select, :collection => { 'New York' => 'NY' }
-      f.input :source, :as => :select, :collection => { 'Twitter' => 'Collector::Twitter' }
-      f.input :source_data, :as => :string, :hint => 'Twitter handle, Facebook username, etc.'
+      f.input :source, :as => :select, :collection => {
+        'Twitter' => 'Collector::Twitter',
+        'Website' => 'Collector::Website'
+      }
+      f.input :source_data, :hint => 'Twitter handle, Facebook username, etc.'
     end
     f.buttons
   end
