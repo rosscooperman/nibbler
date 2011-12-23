@@ -93,11 +93,14 @@ $(function() {
 		$('.growlNotify').stop(true, true).animate({
 		    opacity: 'toggle',
 		    top: '+=100',
-		  }, 1000, 	function(){
+		  }, 800, 	function(){
 				$('.growlNotify').removeAttr('style');
 				return false;
 				});
 	});
+	
+	
+	
 	
 	
 }); //ends document load
