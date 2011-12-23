@@ -35,17 +35,27 @@ class window.Map
       }
     ]
 
-  constructor:(selector, lat, lng) ->
-    latlng = new google.maps.LatLng(lat, lng)
-    @markers = []
-    @map = new google.maps.Map $(selector).get(0), {
-      zoom:        10
-      center:      latlng
-      mapTypeId:   google.maps.MapTypeId.ROADMAP
-      panControl:  true
-      scrollwheel: false
-      styles:      this.mapStyles()
+  mapOptions:(center) ->
+    {
+      zoom:           10
+      center:         @center
+      mapTypeId:      google.maps.MapTypeId.ROADMAP
+      panControl:     true
+      scrollwheel:    false
+      styles:         this.mapStyles()
+      mapTypeControl: false
+      panControlOptions: {
+        position: google.maps.ControlPosition.LEFT_CENTER
+      }
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.LEFT_CENTER
+      }
     }
+
+  constructor:(selector, lat, lng) ->
+    @markers = []
+    @center  = new google.maps.LatLng(lat, lng)
+    @map     = new google.maps.Map $(selector).get(0), this.mapOptions()
 
   clearMarkers: =>
     $.each @markers, ->

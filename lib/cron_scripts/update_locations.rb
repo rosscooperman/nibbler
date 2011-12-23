@@ -7,7 +7,7 @@ module CronScripts
     def do_action
       Truck.order('updated_at ASC').limit(10).each do |truck|
         log "Finding new location(s) for '#{truck.name}'"
-        truck.update_data_points()
+        truck.update_data_points
         truck.touch
       end
     end
