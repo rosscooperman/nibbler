@@ -3,6 +3,11 @@
 @import "css3-mixins";
 
 $blue: #057bcd;
+
+@mixin growlalphaColor($alpha) {
+	background: rgba(0,0,0,$alpha);
+}
+
 @mixin font {
 		font-family: Raleway, cursive;
 		font-weight: 100;
@@ -186,14 +191,15 @@ button.showResults {
 .growlWrapper {
 	position: fixed;
 	width: 280px;
-	top: 60px;
-	right: 0;
+	top: 65px;
+	right: 8px;
 }
 
 .growlNotify {
-	padding: 15px 25px;
-	width: 230px;
-	background: rgba(0,0,0,1);
+	padding: 15px;
+	margin-bottom: 8px;
+	width: 250px;
+	@include growlalphaColor(0.87);
 	border: 1px solid rgba(0,0,0,0.9);
 	text-shadow: 0 1px 2px rgba(0,0,0,.5);
 	-webkit-box-shadow: 0 2px 5px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1), inset 0 0 0 1px rgba(255,255,255,.1);
@@ -220,12 +226,28 @@ button.showResults {
 //	-webkit-animation: gloss .6s linear;
 }
 
-.growlNotify p {
-	color: #FFF;
-	font-family: Verdana;
+h3[rel="growlNotify"]{
+	color: rgba(255,255,255, 1);
+	letter-spacing: 1px;
 	font-weight: bold;
 }
 
+.growlNotify p {
+	color: rgba(255,255,255,0.87);
+	font-family: Verdana;
+	font-weight: normal;
+}
+
+.tweetLocQuote {
+	margin-top: 15px;
+	padding-top: 10px;
+	border-top: 1px dotted rgba(255,255,255, 0.5);
+}
+.tweetLocQuote p {
+	padding-left: 23px;
+	background: url(/assets/social-icon-sprite.png) 0 5px no-repeat;
+	color: rgba(255,255,255,0.87);
+}
 
 
 
