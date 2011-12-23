@@ -14,7 +14,7 @@ module Collector
         options[:since_id] = data['tweet_id'] unless data['tweet_id'].nil?
       end
 
-      tweets = ::Twitter.user_timeline(truck.source_data.sub(/^\@/, ''), options).reverse
+      tweets = ::Twitter.user_timeline(truck.source_data.strip.sub(/^\@/, ''), options).reverse
       scan(tweets, truck)
       nil
     end
