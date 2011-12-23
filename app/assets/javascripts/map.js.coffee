@@ -57,12 +57,22 @@ class window.Map
     @center  = new google.maps.LatLng(lat, lng)
     @map     = new google.maps.Map $(selector).get(0), this.mapOptions()
 
+    @markerImage = $(selector).data('markers')
+    @markerSize  = new google.maps.Size(27, 36)
+
   clearMarkers: =>
     $.each @markers, ->
       this.setMap(null)
 
   addMarker:(lat, lng) =>
-    @markers.push(new google.maps.Marker({map: @map, position: new google.maps.LatLng(lat, lng)}))
+    origin = new google.maps.Point(0, @markers.length * 100)
+    image  = new google.maps.MarkerImage(@markerImage, @markerSize, origin)
+    marker = new google.maps.Marker({
+      map:      @map
+      position: new google.maps.LatLng(lat, lng)
+      icon:     image
+    })
+    @markers.push(marker)
 
   zoomToPoint:(lat, lng) =>
     @map.setCenter(new google.maps.LatLng(lat, lng))
