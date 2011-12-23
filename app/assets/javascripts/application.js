@@ -18,7 +18,6 @@ $(function() {
     $('button.showResults').fadeIn();
   }
 
-
   function renderResults(data) {
     var source   = $('#result-template').html();
     var template = Handlebars.compile(source);
@@ -81,4 +80,22 @@ $(function() {
 
 	// slide the results in from the right
 	$('button.showResults').click(toggleResults);
-});
+	
+	// on hover show growlNotify
+	$('.growlclk').hover(function(){
+		$('.growlNotify').animate({
+		    opacity: "toggle",
+		    top: '-=50',
+		  }, 1000);	
+	}, function(){
+		$('.growlNotify').animate({
+		    opacity: 'toggle',
+		    top: '+=100',
+		  }, 1000, 	function(){
+				$('.growlNotify').removeAttr('style');
+				return false;
+				});
+	});
+	
+	
+}); //ends document load

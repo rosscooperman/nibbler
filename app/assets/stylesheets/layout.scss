@@ -195,6 +195,14 @@ button.showResults {
 	right: 8px;
 }
 
+.growlWrapper p {
+	font-size: 12px;
+	line-height: 1.85em;
+	color: rgba(255,255,255,0.87);
+	font-family: Verdana, Arial, sans-serif;
+	font-weight: normal;
+}
+
 .growlNotify {
 	padding: 15px;
 	margin-bottom: 8px;
@@ -208,6 +216,9 @@ button.showResults {
 	-webkit-animation: notification .75s linear;
 	-webkit-transform: rotateY(-0deg);
 	z-index: 2;
+	display: none;
+	position: relative;
+	top:50px;
 }
 
 .gloss {
@@ -228,27 +239,24 @@ button.showResults {
 
 h3[rel="growlNotify"]{
 	color: rgba(255,255,255, 1);
-	letter-spacing: 1px;
-	font-weight: bold;
+	letter-spacing: 0.04em;
 }
 
-.growlNotify p {
-	color: rgba(255,255,255,0.87);
-	font-family: Verdana;
-	font-weight: normal;
-}
-
-.tweetLocQuote {
+.locQuote {
 	margin-top: 15px;
 	padding-top: 10px;
 	border-top: 1px dotted rgba(255,255,255, 0.5);
 }
-.tweetLocQuote p {
+.locQuote.tweet p {
 	padding-left: 23px;
 	background: url(/assets/social-icon-sprite.png) 0 5px no-repeat;
-	color: rgba(255,255,255,0.87);
 }
 
+
+.growltst {
+	position: relative;
+	background: yellow;
+}
 
 
 
