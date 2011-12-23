@@ -47,8 +47,9 @@ $(function() {
 	    success:  function(data, status, xhr) {
 	      $.each(data, function() {
   	      window.theMap.addMarker(this.location.lat, this.location.lng);
-  	      window.theMap.zoomToPoint(this.location.lat, this.location.lng);
+  	      //window.theMap.zoomToPoint(this.location.lat, this.location.lng);
 	      });
+	      window.theMap.resetBounds();
 	      renderResults(data);
 	      $('input[name=q]').val(query);
         $('.noobSearch').fadeOut(300);

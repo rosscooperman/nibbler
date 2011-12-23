@@ -79,8 +79,11 @@ class window.Map
     @map.setZoom(16)
 
   resetBounds: =>
-    bounds = new google.maps.LatLngBounds
-    $.each @markers, ->
-      bounds.extend(this.getPosition())
-    @map.fitBounds(bounds)
+    if @markers.length == 1
+      this.zoomToPoint(@markers[0].getPosition().lat(), @markers[0].getPosition().lng())
+    else
+      bounds = new google.maps.LatLngBounds
+      $.each @markers, ->
+        bounds.extend(this.getPosition())
+      @map.fitBounds(bounds)
 
