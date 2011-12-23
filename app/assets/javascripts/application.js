@@ -14,10 +14,12 @@ $(document).ready(function(){
 		$('.logoMarker').fadeOut(900);
 		$('.topWrapper').slideDown('slow');
 	});
-	
 
+	// slide the results in from the right
+	$('button.showResults').click(function() {
+	    var $righty = $('.results');
+		    $righty.animate({
+		      right: parseInt($righty.css('right'),10) == 0 ? -$righty.outerWidth() : 0 });
+	  });
 	
-	
-
 });
-

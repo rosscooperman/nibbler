@@ -116,10 +116,10 @@ input[rel="search"] {
   border: 0px solid #fff;
 }
 
-.results {
+section.results {
   position: fixed;
   top: 200px;
-  right: 0;
+  right: -300px;
   background: rgba(0,0,0, 0.5);
   width: 200px;
   z-index: 4;
@@ -129,9 +129,10 @@ input[rel="search"] {
 	margin-left: 20px;
 }
 
-
-
-
+button.showResults {
+	position: fixed;
+	right: 0;
+}
 
 
 
