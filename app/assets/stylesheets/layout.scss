@@ -22,6 +22,15 @@ h1, h2 {
 	margin: 0;
 }
 
+h1[rel='header'] {
+  text-align: left;
+  line-height: 1em;
+}
+
+h2 {
+	
+}
+
 header a {
   color: #fff;
   text-decoration: none;
@@ -62,7 +71,7 @@ header a:hover {
 .topConatiner {
   width: 100%;
   padding: 5px 0;
-  @include border-radius-separate($topLeftRadius: 0px, $topRightRadius: 0px, $bottomLeftRadius: 3px, $bottomRightRadius: 3px)
+  @include border-radius-separate($topLeftRadius: 0px, $topRightRadius: 0px, $bottomLeftRadius: 3px, $bottomRightRadius: 3px);
 }
 
 .topWrapper {
@@ -76,11 +85,6 @@ header a:hover {
   float: left;
 }
 
-h1[rel='header'] {
-  text-align: left;
-  line-height: 1em;
-}
-
 .topConatiner input[rel="search"] {
   opacity: 0.8;
   filter: alpha(opacity=80);
@@ -92,6 +96,10 @@ h1[rel='header'] {
   opacity: 1;
   filter: alpha(opacity=100);
   -webkit-transition: opacity 0.5s linear;
+}
+
+.searchButton {
+	margin-left: 20px;
 }
 
 .noobSearch {
@@ -116,23 +124,45 @@ input[rel="search"] {
   border: 0px solid #fff;
 }
 
-section.results {
-  position: fixed;
-  top: 200px;
-  right: -300px;
-  background: rgba(0,0,0, 0.5);
-  width: 200px;
-  z-index: 4;
-}
-
-.searchButton {
-	margin-left: 20px;
-}
-
 button.showResults {
 	position: fixed;
+	top: 90px;
 	right: 0;
 }
+
+.results {
+  position: fixed;
+  top: 110px;
+  right: -300px;
+  background: rgba(0,0,0, 0.8);
+  width: 250px;
+  z-index: 4;
+@include border-radius-separate (
+	$topLeftRadius: 8px, 
+	$topRightRadius: 0px, 
+	$bottomLeftRadius: 0px, 
+	$bottomRightRadius: 8px
+	);
+	text-transform: uppercase;
+}
+
+.results li {
+	padding-bottom: 1em;
+	border-bottom: 1px solid #666;
+}
+
+.results li:nth-last-child(1){ 
+	border-bottom: 0px;
+	padding: 0;
+}
+
+.results p {
+	font-family: verdana;
+	font-size: 9px;
+}
+
+
+
 
 
 

@@ -37,4 +37,5 @@ $(document).ready(function(){
 		    $righty.animate({
 		      right: parseInt($righty.css('right'),10) == 0 ? -$righty.outerWidth() : 0 });
 	  });
+	
 });

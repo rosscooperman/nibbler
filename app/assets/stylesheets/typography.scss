@@ -12,12 +12,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  //font-size: 1.875em; /* 30px */
-  font-size: 36px;
+//  font-size: 1.875em; /* 30px */
+  	font-size: 36px;
 }
 
 h2 {
-  font-size: 1.5em; /* 24px */
+//  font-size: 1.5em; /* 24px */
+		font-size: 30px;
+		letter-spacing: 0.08em;
 }
 
 h3 {
@@ -25,7 +27,10 @@ h3 {
 }
 
 h4 {
-  font-size: 0.875em; /* 14px */
+//  font-size: 0.875em; /* 14px */
+	font-size: 9px;
+	font-family: verdana;
+	font-weight: bold;
 }
 
 h5 {
