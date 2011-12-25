@@ -135,57 +135,6 @@ input[rel="search"] {
   border: 0px solid #fff;
 }
 
-.resultsWrap {
-	background: red;
-	}
-
-button.showResults {
-	position: fixed;
-	padding: 10px;
-	top: 74px;
-	right: 0;
-	background: rgba(0,0,0, 0.8);
-	color: #fff;
-	border: none;
-	@include border-radius-separate (
-		$topLeftRadius: 8px,
-		$topRightRadius: 0px,
-		$bottomLeftRadius: 0px,
-		$bottomRightRadius: 0px
-		);
-}
-
-.results {
-  position: fixed;
-  top: 110px;
-  right: -300px;
-  background: rgba(0,0,0, 0.8);
-  width: 250px;
-  z-index: 4;
-@include border-radius-separate (
-	$topLeftRadius: 8px,
-	$topRightRadius: 0px,
-	$bottomLeftRadius: 0px,
-	$bottomRightRadius: 8px
-	);
-	text-transform: uppercase;
-}
-
-.results li {
-	padding-bottom: 1em;
-	border-bottom: 1px solid #666;
-}
-
-.results li:nth-last-child(1){
-	border-bottom: 0px;
-	padding: 0;
-}
-
-.results p {
-	font-family: verdana;
-	font-size: 9px;
-}
-
 
 // Growl Styles
 
@@ -251,12 +200,6 @@ h3[rel="growlNotify"]{
 .locQuote.tweet p {
 	padding-left: 23px;
 	background: url(/assets/social-icon-sprite.png) 0 5px no-repeat;
-}
-
-
-.growltst {
-	position: relative;
-	background: yellow;
 }
 
 

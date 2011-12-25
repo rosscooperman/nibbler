@@ -20,34 +20,16 @@
   <%= render 'search' %>
 </section>
 
-<section class="growltst">
-	<a class="growlclk" href="#"> click this for growl</a>
-</section>
-
-
-
 <section class="growlWrapper">
-	<section class="growlNotify">
-		<h3 rel="growlNotify">Van Leeuwan Ice Cream</h3>
-		<p>This is the craziest awesomely good artisan ice cream and coffee. Try the Affogato it's the bee's knees!</p>
+</section>
+
+<script id="result-template" type="text/x-handlebars-template">
+  <section class="growlNotify">
+		<h3 rel="growlNotify">{{truck.name}}</h3>
+		<p>{{truck.description}}</p>
 		<section class="locQuote tweet">
-			<p>Ben van Leeuwen holding down the table at the Brooklyn night bazaar till 1am!! Kent between n.5th and n. 6th</p>
+			<p>{{truck.location.source}}</p>
 		</section>
-		<div class="gloss">
-		</div>
+		<div class="gloss"></div>
 	</section>
-</section>
-
-
-<section class="resultsWrap">
-  <button class="showResults" style="display: none;">SHOW/HIDE RESULTS</button>
-  <ul class="results"></ul>
-  <script id="result-template" type="text/x-handlebars-template">
-    <li>
-      <h4>{{mapIndex}}. {{truck.name}}</h4>
-      <div>
-				<p>{{truck.description}}</p>
-			</div>
-    </li>
-  </script>
-</section>
+</script>

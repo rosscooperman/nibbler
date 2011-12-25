@@ -4,7 +4,8 @@ json.array!(@trucks) do |json, truck|
 
   location = truck.locations.order('id DESC').first
   json.location do |json|
-    json.lat location.lat
-    json.lng location.lng
+    json.source location.source
+    json.lat    location.lat
+    json.lng    location.lng
   end
 end

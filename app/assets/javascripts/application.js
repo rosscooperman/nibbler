@@ -10,18 +10,10 @@
 
 $(function() {
 
-  function toggleResults() {
-    var righty = $(this).next();
-		righty.animate({
-		  right: (parseInt(righty.css('right'), 10) == 0) ? -righty.outerWidth() : 0
-		});
-    $('button.showResults').fadeIn();
-  }
-
   function renderResults(data) {
     var source   = $('#result-template').html();
     var template = Handlebars.compile(source);
-    var target   = $('ul.results');
+    var target   = $('.growlWrapper');
     var mapIndex = 'A'.charCodeAt(0);
 
     $.each(data, function() {
@@ -47,7 +39,6 @@ $(function() {
 	      window.theMap.clearMarkers();
 	      $.each(data, function() {
   	      window.theMap.addMarker(this.location.lat, this.location.lng);
-  	      //window.theMap.zoomToPoint(this.location.lat, this.location.lng);
 	      });
 	      window.theMap.resetBounds();
 	      renderResults(data);
@@ -55,13 +46,10 @@ $(function() {
         $('.noobSearch').fadeOut(300);
         $('.logoMarker').fadeOut(900);
         $('.topWrapper').slideDown('slow');
-        $('button.showResults').click();
 	    },
 	    error:    function(xhr, status, error) {
+	      //TODO implement some real error handling here
 	      console.log(error);
-				$('.noobSearch').fadeOut(300);
-        $('.logoMarker').fadeOut(900);
-        $('.topWrapper').slideDown('slow');
 	    }
 	  });
   }
@@ -78,9 +66,22 @@ $(function() {
 	$('.noobSearch form, .topContainer form').submit(handleSearch);
 
 
-	// slide the results in from the right
-	$('button.showResults').click(toggleResults);
-	
+  $(window).bind("nibbler:marker:mouseover", function(event) {
+    var notifiers = $('.growlWrapper .growlNotify');
+    var notifier  = $(notifiers.get(event.which));
+    notifier.stop(true, true).animate({ opacity: "toggle", top: '-=50' }, 400);
+  });
+
+  $(window).bind("nibbler:marker:mouseout", function(event) {
+    var notifiers = $('.growlWrapper .growlNotify');
+    var notifier  = $(notifiers.get(event.which));
+    notifier.stop(true, true).animate({ opacity: "toggle", top: '+=100' }, 800, function() {
+      notifier.removeAttr('style');
+      return false;
+    });
+  });
+
+
 	// on hover show growlNotify
 	$('.growlclk').hover(function(){
 		$('.growlNotify')
@@ -88,7 +89,7 @@ $(function() {
 			.animate({
 		   	opacity: "toggle",
 		    top: '-=50',
-		  }, 400);	
+		  }, 400);
 	}, function(){
 		$('.growlNotify').stop(true, true).animate({
 		    opacity: 'toggle',
@@ -98,9 +99,9 @@ $(function() {
 				return false;
 				});
 	});
-	
-	
-	
-	
-	
+
+
+
+
+
 }); //ends document load

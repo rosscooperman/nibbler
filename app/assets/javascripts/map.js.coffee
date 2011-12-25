@@ -86,11 +86,13 @@ class window.Map
     eventLng = parseFloat(event.latLng.lng().toFixed(3))
     image    = @markerImageLarge
 
-    $.each @markers, ->
+    $.each @markers, (index, value) ->
       lat = parseFloat(this.getPosition().lat().toFixed(3))
       lng = parseFloat(this.getPosition().lng().toFixed(3))
       if eventLat == lat && eventLng = lng
         this.setIcon(image)
+        event = jQuery.Event("nibbler:marker:mouseover", { target: this, which: index });
+        $(window).trigger(event)
 
 
   markerMouseOut:(event) =>
@@ -100,11 +102,13 @@ class window.Map
     eventLng = parseFloat(event.latLng.lng().toFixed(3))
     image    = @markerImage
 
-    $.each @markers, ->
+    $.each @markers, (index, value) ->
       lat = parseFloat(this.getPosition().lat().toFixed(3))
       lng = parseFloat(this.getPosition().lng().toFixed(3))
       if eventLat == lat && eventLng = lng
         this.setIcon(image)
+        event = jQuery.Event("nibbler:marker:mouseout", { target: this, which: index });
+        $(window).trigger(event)
 
 
   addMarker:(lat, lng) =>
