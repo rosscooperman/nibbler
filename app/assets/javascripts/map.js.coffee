@@ -13,8 +13,16 @@ class window.Map
     @center  = new google.maps.LatLng(lat, lng)
     @map     = new google.maps.Map $(selector).get(0), this.mapOptions()
 
-    @markerImage = $(selector).data('markers')
-    @markerSize  = new google.maps.Size(27, 36)
+    image  = $(selector).data('markers')
+
+    if image
+      origin            = new google.maps.Point(0, 0)
+      size              = new google.maps.Size(25, 39)
+      @markerImage      = new google.maps.MarkerImage(image, size, origin)
+
+      origin            = new google.maps.Point(0, 91)
+      size              = new google.maps.Size(33, 49)
+      @markerImageLarge = new google.maps.MarkerImage(image, size, origin)
 
 
   mapStyles: ->
@@ -71,14 +79,44 @@ class window.Map
     @markers = []
 
 
+  markerMouseOver:(event) =>
+    return unless @markerImageLarge
+
+    eventLat = parseFloat(event.latLng.lat().toFixed(3))
+    eventLng = parseFloat(event.latLng.lng().toFixed(3))
+    image    = @markerImageLarge
+
+    $.each @markers, ->
+      lat = parseFloat(this.getPosition().lat().toFixed(3))
+      lng = parseFloat(this.getPosition().lng().toFixed(3))
+      if eventLat == lat && eventLng = lng
+        this.setIcon(image)
+
+
+  markerMouseOut:(event) =>
+    return unless @markerImageLarge
+
+    eventLat = parseFloat(event.latLng.lat().toFixed(3))
+    eventLng = parseFloat(event.latLng.lng().toFixed(3))
+    image    = @markerImage
+
+    $.each @markers, ->
+      lat = parseFloat(this.getPosition().lat().toFixed(3))
+      lng = parseFloat(this.getPosition().lng().toFixed(3))
+      if eventLat == lat && eventLng = lng
+        this.setIcon(image)
+
+
   addMarker:(lat, lng) =>
     options = {
       map:      @map
       position: new google.maps.LatLng(lat, lng)
     }
-    options.icon = new google.maps.MarkerImage(@markerImage, @markerSize) if @markerImage
+    options.icon = @markerImage if @markerImage
 
     marker = new google.maps.Marker(options)
+    google.maps.event.addListener(marker, 'mouseover', this.markerMouseOver)
+    google.maps.event.addListener(marker, 'mouseout', this.markerMouseOut)
     @markers.push(marker)
 
 

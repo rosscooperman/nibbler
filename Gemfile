@@ -14,7 +14,7 @@ gem "activeadmin",    "0.3.4"
 gem "meta_search",    ">= 1.1.0.pre"
 gem "tire"
 gem "jbuilder"
-gem "mechanize"
+gem "hpricot"
 
 gem "geocoder"
 gem "chronic"

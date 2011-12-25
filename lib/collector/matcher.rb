@@ -39,20 +39,21 @@ module Collector
               coordinates = "[#{result.latitude},#{result.longitude}]"
               Rails.logger.info "Found a location in '#{text}'"
               Rails.logger.info  "  #{coordinates} from #{time_info[:start]} to #{time_info[:finish]}"
+              puts address_for(pattern, $~, truck)
 
-              truck.locations.create(
-                lat:         result.latitude,
-                lng:         result.longitude,
-                starting_at: time_info[:start],
-                ending_at:   time_info[:finish],
-                source:      text
-              )
+              # truck.locations.create(
+              #   lat:         result.latitude,
+              #   lng:         result.longitude,
+              #   starting_at: time_info[:start],
+              #   ending_at:   time_info[:finish],
+              #   source:      text
+              # )
             end
           end
         end
       end
 
-      truck.data_points.create(data: { text: text }.merge(data).to_json)
+      # truck.data_points.create(data: { text: text }.merge(data).to_json)
     end
 
   private
