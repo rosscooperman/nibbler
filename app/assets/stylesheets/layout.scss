@@ -1,5 +1,3 @@
-
-
 @import "css3-mixins";
 //@import url(http://fonts.googleapis.com/css?family=Comfortaa:400,300,700);
 
@@ -13,8 +11,6 @@ $blue: #057bcd;
 		font-family: Raleway, cursive;
 		font-weight: 100;
 }
-
-
 
 body {
 	background: $blue url(/assets/whitediamond.png) 0 0 repeat;
@@ -225,8 +221,46 @@ h3[rel="growlNotify"]{
 
 
 
+/******************************************
+	Small Screens
+	----------------------------------------
+*****************************************/
 
-
+@media handheld, only screen and (max-width: 767px) {
+	.topContainer,
+	.noobSearch,
+	.results,
+	.topWrapper {
+		width: 300px;
+	}
+	
+	.topContainer header {
+		width: 100%;
+	}
+	
+	.topWrapper {
+		width: 265px;
+		padding: 0 20px 20px 15px;
+	}
+	
+	input[rel="search"] {
+		color: red;
+		width: 250px;
+	}
+	
+	.medium.button.searchButton {
+		width: 200px;
+	}
+	
+	.noobSearch h2 {
+		font-size: 20px;
+	}
+	
+	#truckList {
+		display: none;
+	}
+	
+}
 
 
 
