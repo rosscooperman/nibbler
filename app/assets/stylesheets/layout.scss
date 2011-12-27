@@ -87,8 +87,12 @@ header a:hover {
 }
 
 .topContainer header {
-  width: 400px;
+  width: 300px;
   float: left;
+}
+
+.topContainer section {
+	float: left;
 }
 
 h1[rel='header'] {
@@ -110,7 +114,7 @@ h1[rel='header'] {
 }
 
 .searchButton {
-	margin-left: 20px;
+	margin-left: 0px;
 }
 
 .noobSearch {
@@ -124,7 +128,7 @@ h1[rel='header'] {
 }
 
 .noobSearch section {
-	width: 500px;
+	width: 400px;
 	margin: 0 auto;
 }
 
@@ -135,6 +139,16 @@ input[rel="search"] {
   border: 0px solid #fff;
 }
 
+#truckList {
+	margin-left: 25px;
+	width: 200px;
+	text-align: right;
+}
+
+#truckList p {
+	padding: 10px;
+	color: red;
+}
 
 // Growl Styles
 
@@ -200,6 +214,11 @@ h3[rel="growlNotify"]{
 .locQuote.tweet p {
 	padding-left: 23px;
 	background: url(/assets/social-icon-sprite.png) 0 5px no-repeat;
+}
+
+.locQuote.tweet p.tweetTime {
+	background: none;
+	color: rgba(225,225,225,0.5);
 }
 
 

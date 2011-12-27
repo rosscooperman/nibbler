@@ -10,6 +10,15 @@
     <section class="clearfix">
       <%= render 'search' %>
     </section>
+		<section id="truckList">			
+			<select>
+				<option value="00"><p>Choose a Specific truck</p></option>
+			  <option value="01"><p>Truck 01</p></option>
+			  <option value="02"><p>Truck 02</p></option>
+			  <option value="03"><p>Truck 03</p></option>
+			  <option value="04"><p>Truck 04</p></option>
+			</select>
+		</section>
   </div>
 </section>
 
@@ -29,6 +38,7 @@
 		<p>{{truck.description}}</p>
 		<section class="locQuote tweet">
 			<p>{{truck.location.source}}</p>
+			<p class="tweetTime">tweet time</p>
 		</section>
 		<div class="gloss"></div>
 	</section>
