@@ -2,8 +2,6 @@ module Collector
 
   class Base
 
-    A_TIME = "(\d{1,2}(:\d{2})?\s*(am|pm)?)"
-
     def self.add_location_pattern(regex, *args, &block)
       raise ArgumentError.new("ArgumentError: wrong number of arguments (#{args.length} for 1)") if args.length > 1
       options = (args.last.is_a?(Hash)) ? args.pop : {}
