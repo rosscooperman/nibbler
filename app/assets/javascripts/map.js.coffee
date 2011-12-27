@@ -2,7 +2,7 @@
 # it has loaded successfully (so other code can start using the below map class)
 $LAB.script('http://www.google.com/jsapi').wait ->
   google.load("maps", "3", {
-    other_params: "sensor=false"
+    other_params: "sensor=false&libraries=geometry"
     callback: ->
       $(window).trigger('nibbler:maps:load')
   })
@@ -79,36 +79,31 @@ class window.Map
     @markers = []
 
 
-  markerMouseOver:(event) =>
-    return unless @markerImageLarge
-
-    eventLat = parseFloat(event.latLng.lat().toFixed(3))
-    eventLng = parseFloat(event.latLng.lng().toFixed(3))
-    image    = @markerImageLarge
-
+  closestMarkerTo:(ll) =>
+    minDistance    = null
+    minMarkerIndex = null
     $.each @markers, (index, value) ->
-      lat = parseFloat(this.getPosition().lat().toFixed(3))
-      lng = parseFloat(this.getPosition().lng().toFixed(3))
-      if eventLat == lat && eventLng = lng
-        this.setIcon(image)
-        event = jQuery.Event("nibbler:marker:mouseover", { target: this, which: index });
-        $(window).trigger(event)
+      distance = google.maps.geometry.spherical.computeDistanceBetween(ll, this.getPosition())
+      if minDistance == null || minDistance > distance
+        minDistance    = distance
+        minMarkerIndex = index
+    return minMarkerIndex
 
 
-  markerMouseOut:(event) =>
-    return unless @markerImageLarge
+  markerMouseEvent:(event, type) =>
+    index  = this.closestMarkerTo(event.latLng)
+    marker = @markers[index]
+    image  = if (type == 'over') then @markerImageLarge else @markerImage
 
-    eventLat = parseFloat(event.latLng.lat().toFixed(3))
-    eventLng = parseFloat(event.latLng.lng().toFixed(3))
-    image    = @markerImage
+    if marker
+      marker.setIcon(image) if image
+      $(window).trigger jQuery.Event("nibbler:marker:mouse" + type, { target: marker, which: index })
 
-    $.each @markers, (index, value) ->
-      lat = parseFloat(this.getPosition().lat().toFixed(3))
-      lng = parseFloat(this.getPosition().lng().toFixed(3))
-      if eventLat == lat && eventLng = lng
-        this.setIcon(image)
-        event = jQuery.Event("nibbler:marker:mouseout", { target: this, which: index });
-        $(window).trigger(event)
+
+  markerMouseOver:(event) => this.markerMouseEvent(event, 'over')
+
+
+  markerMouseOut:(event) => this.markerMouseEvent(event, 'out')
 
 
   addMarker:(lat, lng) =>
