@@ -28,7 +28,7 @@ module Collector
       #
       # Date patterns
       #
-      regex = /on\s+((\w+)\s+between|btwn\s+(\d+(th|rd|st|nd)\s*(st|ave)?)\s*(and|&|\/)\s*(\d+(th|rd|st|nd)\s*(st|ave)?))/i
+      regex = /on\s+((\w+)\s+between|btwn\s+(\d+(th|rd|st|nd)\s*(street|st|ave|avenue)?)\s*(and|&|\/)\s*(\d+(th|rd|st|nd)\s*(street|st|ave|avenue)?))/i
       add_location_pattern(regex) do |pattern, md, truck|
         result1 = Geocoder.search("#{md[2].strip} & #{md[3].strip}, #{truck.city}, #{truck.state}").first
         result2 = Geocoder.search("#{md[2].strip} & #{md[7].strip}, #{truck.city}, #{truck.state}").first
@@ -39,7 +39,7 @@ module Collector
         )
       end
 
-      regex = /(\d+(th|rd|st|nd)\s*(st|ave)?)\s*(and|&|\/)\s*(\d+(th|rd|st|nd)\s*(st|ave)?)/i
+      regex = /(\d+(th|rd|st|nd)\s*(street|st|avenue|ave)?)\s*(and|&|\/)\s*(\d+(th|rd|st|nd)\s*(street|st|ave|avenue)?)/i
       add_location_pattern(regex, included_parts: [ 1, ' & ', 5 ])
 
       #
