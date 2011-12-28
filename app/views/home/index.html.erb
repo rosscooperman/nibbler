@@ -1,8 +1,40 @@
 <% @page_title = "Home" %>
 
 <%= content_tag :div, '', :id => 'fullMap', :"data-markers" => image_path('markers.png') %>
-
-<section class="topContainer">
+	
+<section class="topContainer truckContainer">
+	<section class="truckList">
+		 <ul class="clearfix">
+		 	<li>
+		 		<p><strong>Korilla BBQ</strong></p>
+		 		<p>Lo-fi whatever salvia, readymade mixtape farm-to-table biodiesel +1. Jean shorts gluten-free twee vice irony. Hoodie irony VHS, shoreditc hc</p>
+		 	</li>
+			<li>
+		 		<p><strong>Taim Falafel</strong></p>
+		 		<p>FiDi (Front St. & Gouveneur Ln.) read to go at 11:15AM!
+			FiDi (Front St. & Gouveneur Ln.) read to go at 11:15AM!</p>
+		 	</li>
+			<li>
+		 		<p><strong>Kimchi Taco</strong></p>
+		 		<p>closed</p>
+		 	</li>
+			<li>
+		 		<p><strong>Schnitzels & Things</strong></p>
+		 		<p>FiDi (Front St. & Gouveneur Ln.) read to go at 11:15AM!</p>
+		 	</li>
+			<li>
+		 		<p><strong>Go Burger</strong></p>
+		 		<p>FiDi (Front St. & Gouveneur Ln.) read to go at 11:15AM!
+			FiDi (Front St. & Gouveneur Ln.) read to go at 11:15AM!</p>
+		 	</li>
+			<li>
+		 		<p><strong>Korilla BBQ</strong></p>
+		 		<p>Lo-fi whatever salvia, readymade mixtape farm-to-table biodiesel +1. Jean shorts gluten-free twee vice irony. Hoodie irony VHS, shoreditc hc</p>
+		 	</li>
+		 </ul>
+	</section>
+</section>
+<section class="topContainer">	
   <div class="topWrapper clearfix">
     <header>
       <h1 rel="header"><%= link_to "Nibbler.me", root_path, :rel => "#{company_name} Home Page" %></h1>
@@ -10,15 +42,7 @@
     <section class="clearfix">
       <%= render 'search' %>
     </section>
-		<section id="truckList">			
-			<select>
-				<option value="00"><p>Choose a Specific truck</p></option>
-			  <option value="01"><p>Truck 01</p></option>
-			  <option value="02"><p>Truck 02</p></option>
-			  <option value="03"><p>Truck 03</p></option>
-			  <option value="04"><p>Truck 04</p></option>
-			</select>
-		</section>
+			<a href="#" class="nice small radius black button searchButton truckListBttn">List Trucks</a>
   </div>
 </section>
 

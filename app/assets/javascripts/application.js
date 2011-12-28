@@ -101,6 +101,10 @@ $(function() {
 	});
 
 
+$('.truckListBttn').click(function(){
+	$('.truckContainer').slideToggle('slow');
+});
+
 
 
 
