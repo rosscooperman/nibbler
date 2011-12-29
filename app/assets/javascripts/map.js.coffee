@@ -55,6 +55,10 @@ class window.Map
     ]
 
 
+  googleMap: =>
+    @map
+
+
   mapOptions:(center) ->
     {
       zoom:           10

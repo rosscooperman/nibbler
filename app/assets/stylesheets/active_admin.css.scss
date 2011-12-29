@@ -17,4 +17,12 @@ body.logged_out #login .link_with_text {
   width: 700px;
   height: 500px;
   margin-bottom: 1em;
+
+  &.bounding {
+    // styles or when the map goes into bounds-setting mode here
+  }
+}
+
+#truck_collection_bounding_area > input[type=button] {
+  margin-left: 20%;
 }

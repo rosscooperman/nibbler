@@ -1,5 +1,8 @@
 <%= semantic_form_for [ :admin, @truck ] do |f| %>
   <%= f.inputs do %>
+    <% [ :ne_lat, :ne_lng, :sw_lat, :sw_lng ].each do |dir| %>
+      <%= f.input :"bounds_#{dir}", :as => :hidden %>
+    <% end %>
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :city %>
@@ -12,9 +15,6 @@
     <li id="truck_collection_bounding_area">
       <label>Bounding Area</label>
       <div id="theMap"></div>
-    </li>
-    <li id="truck_collection_set_bounds">
-      <label>&nbsp;</label>
       <input type="button" value="Set Bounds" />
     </li>
   <% end %>
