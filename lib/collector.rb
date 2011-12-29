@@ -28,10 +28,10 @@ module Collector
       #
       # Date patterns
       #
-      regex = /on\s+((\w+)\s+between|btwn\s+(\d+(th|rd|st|nd)\s*(street|st|ave|avenue)?)\s*(and|&|\/)\s*(\d+(th|rd|st|nd)\s*(street|st|ave|avenue)?))/i
+      regex = /on\s+((\w+)\s+(between|btwn|b\/t)\s+(\d+(th|rd|st|nd)\s*(street|st|ave|avenue)?)\s*(and|&|\/)\s*(\d+(th|rd|st|nd)\s*(street|st|ave|avenue)?))/i
       add_location_pattern(regex) do |pattern, md, truck|
-        result1 = Geocoder.search("#{md[2].strip} & #{md[3].strip}, #{truck.city}, #{truck.state}").first
-        result2 = Geocoder.search("#{md[2].strip} & #{md[7].strip}, #{truck.city}, #{truck.state}").first
+        result1 = Geocoder.search("#{md[2].strip} & #{md[4].strip}, #{truck.city}, #{truck.state}").first
+        result2 = Geocoder.search("#{md[2].strip} & #{md[8].strip}, #{truck.city}, #{truck.state}").first
 
         Geocoder::Result::Base.new(
           'latitude'  => (result1.latitude + result2.latitude) / 2,
