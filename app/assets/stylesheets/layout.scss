@@ -168,6 +168,24 @@ input[rel="search"] {
 	margin-top: 1px;
 }
 
+.warningMod {
+	padding: 12px 0;
+	font: 12px/11px verdana, arial, sans-serif;
+	background: red;
+	text-align: center;
+	text-transform: uppercase;
+	@include text-shadow($x: 0px, $y: -1px, $blur: 0px, $color: rgba(0,0,0,.6))
+}
+
+.warningMod a {
+	color: darkred;
+	text-decoration: none;
+	padding: 4px;
+	@include text-shadow($x: 0px, $y: -1px, $blur: 0px, $color: rgba(0,0,0,.2));
+	&:hover {
+		color: #FFF;
+	}
+}
 
 
 // Growl Styles
