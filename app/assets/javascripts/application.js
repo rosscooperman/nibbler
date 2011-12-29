@@ -37,6 +37,7 @@ $(function() {
 	    dataType: 'json',
 	    success:  function(data, status, xhr) {
 	      window.theMap.clearMarkers();
+	      $('.growlWrapper').empty();
 	      $.each(data, function() {
   	      window.theMap.addMarker(this.location.lat, this.location.lng);
 	      });
@@ -82,30 +83,8 @@ $(function() {
   });
 
 
-	// on hover show growlNotify
-	$('.growlclk').hover(function(){
-		$('.growlNotify')
-			.stop(true, true)
-			.animate({
-		   	opacity: "toggle",
-		    top: '-=50',
-		  }, 400);
-	}, function(){
-		$('.growlNotify').stop(true, true).animate({
-		    opacity: 'toggle',
-		    top: '+=100',
-		  }, 800, 	function(){
-				$('.growlNotify').removeAttr('style');
-				return false;
-				});
-	});
-
-
-$('.truckListBttn').click(function(){
-	$('.truckContainer').slideToggle('slow');
-});
-
-
-
+  $('.truckListBttn').click(function(){
+  	$('.truckContainer').slideToggle('slow');
+  });
 
 }); //ends document load
