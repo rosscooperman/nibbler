@@ -126,6 +126,7 @@ class window.Map
 
 
   resetBounds: =>
+    return if @markers.length == 0
     if @markers.length == 1
       this.zoomToPoint(@markers[0].getPosition())
     else

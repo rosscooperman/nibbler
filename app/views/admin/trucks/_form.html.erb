@@ -1,0 +1,22 @@
+<%= semantic_form_for [ :admin, @truck ] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :city %>
+    <%= f.input :state, :as => :select, :collection => { 'New York' => 'NY' } %>
+    <%= f.input :source, :as => :select, :collection => {
+      'Twitter' => 'Collector::Twitter',
+      'Website' => 'Collector::Website'
+    } %>
+    <%= f.input :source_data, :hint => 'Twitter handle, Facebook username, etc.' %>
+    <li id="truck_collection_bounding_area">
+      <label>Bounding Area</label>
+      <div id="theMap"></div>
+    </li>
+    <li id="truck_collection_set_bounds">
+      <label>&nbsp;</label>
+      <input type="button" value="Set Bounds" />
+    </li>
+  <% end %>
+  <%= f.buttons %>
+<% end %>

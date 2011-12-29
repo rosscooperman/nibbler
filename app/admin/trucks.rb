@@ -25,7 +25,7 @@ ActiveAdmin.register Truck do
         pre truck.source_data
       end
       row :locations do
-        div :id => 'theMap'
+        div id: 'theMap'
       end
     end
 
@@ -36,18 +36,5 @@ ActiveAdmin.register Truck do
     end
   end
 
-  form do |f|
-    f.inputs do
-      f.input :name
-      f.input :description
-      f.input :city
-      f.input :state, :as => :select, :collection => { 'New York' => 'NY' }
-      f.input :source, :as => :select, :collection => {
-        'Twitter' => 'Collector::Twitter',
-        'Website' => 'Collector::Website'
-      }
-      f.input :source_data, :hint => 'Twitter handle, Facebook username, etc.'
-    end
-    f.buttons
-  end
+  form partial: 'form'
 end
