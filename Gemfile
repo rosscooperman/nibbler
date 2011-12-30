@@ -16,7 +16,7 @@ gem "tire"
 gem "jbuilder"
 gem "hpricot"
 
-gem "geocoder"
+gem "geocoder",       :git => 'git@github.com:rosscooperman/geocoder.git'
 gem "chronic"
 gem "twitter"
 

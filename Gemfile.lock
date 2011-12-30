@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:rosscooperman/geocoder.git
+  revision: 633c81fc732cc498edff4aa57523644dc623589d
+  specs:
+    geocoder (1.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -86,7 +92,6 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
-    geocoder (1.1.0)
     has_scope (0.5.1)
     hike (1.2.1)
     hodel_3000_compliant_logger (0.1.0)
@@ -239,7 +244,7 @@ DEPENDENCIES
   factory_girl_rails
   faker (= 0.9.5)
   foreman
-  geocoder
+  geocoder!
   hpricot
   jbuilder
   jquery-rails
