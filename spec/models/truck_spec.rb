@@ -20,4 +20,29 @@
 require 'spec_helper'
 
 describe Truck do
+  before do
+    @truck = Factory(:truck)
+  end
+
+  context "#has_bounds?" do
+
+    it "should return false if no bounds parameters are set" do
+      @truck.has_bounds?.should be_false
+    end
+
+    it "should return true if all bounds parameters are set" do
+      @truck.update_attributes(
+        bounds_ne_lat: 40.0,
+        bounds_ne_lng: -120.0,
+        bounds_sw_lat: 39.0,
+        bounds_sw_lng: -121.0
+      )
+      @truck.has_bounds?.should be_true
+    end
+
+    it "should return false if some (but not) all bounds parameters are set" do
+      @truck.update_attributes(:bounds_ne_lat => 40.0)
+      @truck.has_bounds?.should be_false
+    end
+  end
 end

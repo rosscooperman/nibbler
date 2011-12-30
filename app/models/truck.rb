@@ -31,13 +31,17 @@ class Truck < ActiveRecord::Base
     end
   end
 
-  def update_data_points
-    source.constantize.update(self)
-  end
-
   def self.tire_search(params)
     tire.search(load: true) do
       query { string params[:q], default_operator: "AND" } if params[:q].present?
     end
+  end
+
+  def update_data_points
+    source.constantize.update(self)
+  end
+
+  def has_bounds?
+    [ bounds_ne_lat, bounds_ne_lng, bounds_sw_lat, bounds_sw_lng ].none?(&:blank?)
   end
 end
