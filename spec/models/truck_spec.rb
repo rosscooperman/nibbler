@@ -45,4 +45,27 @@ describe Truck do
       @truck.has_bounds?.should be_false
     end
   end
+
+
+  context "#bounds" do
+
+    it "should return nil if no bounds attributes are set" do
+      @truck.bounds.should be_nil
+    end
+
+    it "should return nil if some (but not all) bounds attributes are set" do
+      @truck.update_attributes(:bounds_ne_lat => 40.0)
+      @truck.bounds.should be_nil
+    end
+
+    it "should return a 2x array if all bounds attributes are set" do
+      @truck.update_attributes(
+        bounds_ne_lat: 40.0,
+        bounds_ne_lng: -120.0,
+        bounds_sw_lat: 39.0,
+        bounds_sw_lng: -121.0
+      )
+      @truck.bounds.should == [ [40.0, -120.0], [39.0, -121.0]]
+    end
+  end
 end

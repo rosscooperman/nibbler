@@ -41,6 +41,11 @@ class Truck < ActiveRecord::Base
     source.constantize.update(self)
   end
 
+  def bounds
+    return nil unless has_bounds?
+    @bounds ||= [ [bounds_ne_lat, bounds_ne_lng], [bounds_sw_lat, bounds_sw_lng] ]
+  end
+
   def has_bounds?
     [ bounds_ne_lat, bounds_ne_lng, bounds_sw_lat, bounds_sw_lng ].none?(&:blank?)
   end
