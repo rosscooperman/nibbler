@@ -34,7 +34,7 @@ group :development, :test do
   gem "rspec-rails", ">= 2.0.0"
   gem "shoulda-matchers"
   gem "foreman"
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fsevent', :require => false
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'ruby_gntp'
