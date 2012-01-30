@@ -11,6 +11,7 @@
 #  source      :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  posted_at   :datetime
 #
 
 class Location < ActiveRecord::Base

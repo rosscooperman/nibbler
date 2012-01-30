@@ -2,14 +2,14 @@
 
 <%= content_tag :div, '', :id => 'fullMap', :"data-markers" => image_path('markers.png') %>
 
-<!--Warning Module-->	
-<section class="topContainer warningMod">	
+<!--Warning Module-->
+<section class="topContainer warningMod">
   <div class="clearfix">
 		<p>Warning, this shit just got fuuuuuucked up. It's you not us.. no wait, it's us not you. <a href="#">close</a></p>
 	</div>
 </section>
-	
-<!--Truck List-->	
+
+<!--Truck List-->
 <section class="topContainer truckContainer">
 	<section class="truckList">
 		 <ul class="clearfix">
@@ -44,7 +44,7 @@
 </section>
 
 <!--Main header search-->
-<section class="topContainer">	
+<section class="topContainer">
   <div class="topWrapper clearfix">
     <header>
       <h1 rel="header"><%= link_to "Nibbler.me", root_path, :rel => "#{company_name} Home Page" %></h1>
@@ -73,7 +73,7 @@
 		<p>{{truck.description}}</p>
 		<section class="locQuote tweet">
 			<p>{{truck.location.source}}</p>
-			<p class="tweetTime">tweet time</p>
+			<p class="tweetTime">{{truck.location.posted_at}}</p>
 		</section>
 		<div class="gloss"></div>
 	</section>

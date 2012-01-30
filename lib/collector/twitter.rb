@@ -23,7 +23,7 @@ module Collector
 
     def self.scan(tweets, truck)
       tweets.reject{ |tweet| tweet.text.match(/^@/) }.each do |tweet|
-        matches = matcher.match(tweet.text, truck, tweet_id: tweet.id)
+        matches = matcher.match(tweet.text, tweet.created_at, truck, tweet_id: tweet.id)
       end
     end
   end

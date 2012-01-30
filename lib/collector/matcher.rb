@@ -17,7 +17,7 @@ module Collector
       @time_patterns << pattern_hash_for(regex, options, &block)
     end
 
-    def match(text, truck, data = {})
+    def match(text, date, truck, data = {})
       @matched_ranges = []
 
       @location_patterns.each do |pattern|
@@ -45,6 +45,7 @@ module Collector
                 lng:         result.longitude,
                 starting_at: time_info[:start],
                 ending_at:   time_info[:finish],
+                posted_at:   date,
                 source:      text
               )
             end
