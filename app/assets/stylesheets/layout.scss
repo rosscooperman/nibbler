@@ -174,7 +174,8 @@ input[rel="search"] {
 	background: red;
 	text-align: center;
 	text-transform: uppercase;
-	@include text-shadow($x: 0px, $y: -1px, $blur: 0px, $color: rgba(0,0,0,.6))
+	@include text-shadow($x: 0px, $y: -1px, $blur: 0px, $color: rgba(0,0,0,.6));
+	@include border-radius-separate($topLeftRadius: 0px, $topRightRadius: 0px, $bottomLeftRadius: 0px, $bottomRightRadius: 0px);
 }
 
 .warningMod a {
@@ -274,38 +275,38 @@ h3[rel="growlNotify"]{
 	.topWrapper {
 		width: 300px;
 	}
-	
+
 	.noobSearch {
 		padding: 20px 0;
 		margin-top: 20px;
 	}
-	
+
 	.topContainer header {
 		width: 100%;
 	}
-	
+
 	.topWrapper {
 		width: 265px;
 		padding: 0 20px 20px 15px;
 	}
-	
+
 	input[rel="search"] {
 		color: red;
 		width: 250px;
 	}
-	
+
 	.medium.button.searchButton {
 		width: 200px;
 	}
-	
+
 	.noobSearch h2 {
 		font-size: 20px;
 	}
-	
+
 	.truckList {
 		width: 300px;
 	}
-	
+
 	.truckList li,
 	.truckList li:nth-child(3n-2),
 	.truckList li:nth-child(n+4) {
@@ -313,7 +314,7 @@ h3[rel="growlNotify"]{
 		padding: 1em 0 0 0;
 		border: none;
 	}
-	
+
 }
 
 
